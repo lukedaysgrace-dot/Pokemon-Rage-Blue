@@ -16,6 +16,6 @@
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,   \
 	     HYPER_BEAM,   RAGE,         EARTHQUAKE,   FISSURE,       \
 	     DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,          \
-	     FIRE_BLAST,   REST,         ROCK_SLIDE,   SUBSTITUTE,    \
+	     FLAMETHROWER, FIRE_BLAST,   REST,         ROCK_SLIDE,   SUBSTITUTE,    \
 	     STRENGTH
 	db 0 ; padding

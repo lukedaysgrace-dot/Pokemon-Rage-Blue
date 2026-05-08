@@ -13,7 +13,7 @@
 	db TACKLE, LEER, EMBER, QUICK_ATTACK
 	db GROWTH_MEDIUM_SLOW
 
-	tmhm MEGA_PUNCH,   DIG,          TOXIC,        BODY_SLAM,    FIRE_BLAST,   \
+	tmhm MEGA_PUNCH,   DIG,          TOXIC,        BODY_SLAM,    FLAMETHROWER, FIRE_BLAST,   \
 	     HYPER_BEAM,   DOUBLE_TEAM,  SWIFT,        \
 	     REST,         SUBSTITUTE,   CUT,          STRENGTH
 	db 0 ; padding

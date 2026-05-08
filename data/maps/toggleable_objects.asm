@@ -268,7 +268,7 @@ ToggleableObjectStates:
 	toggleable_objects_for ROCKET_HIDEOUT_B2F
 	toggle_object_state ROCKETHIDEOUTB2F_MOON_STONE,    ON
 	toggle_object_state ROCKETHIDEOUTB2F_NUGGET,        ON
-	toggle_object_state ROCKETHIDEOUTB2F_TM_HORN_DRILL, ON
+	toggle_object_state ROCKETHIDEOUTB2F_TM_SHADOW_BALL, ON
 	toggle_object_state ROCKETHIDEOUTB2F_SUPER_POTION,  ON
 	toggle_object_state ROCKETHIDEOUTB2F_GREEN,         OFF
 
@@ -378,7 +378,7 @@ ToggleableObjectStates:
 	toggle_object_state SAFARIZONEEAST_FULL_RESTORE, ON
 	toggle_object_state SAFARIZONEEAST_MAX_RESTORE,  ON
 	toggle_object_state SAFARIZONEEAST_CARBOS,       ON
-	toggle_object_state SAFARIZONEEAST_TM_EGG_BOMB,  ON
+	toggle_object_state SAFARIZONEEAST_TM_FLAMETHROWER,  ON
 
 	toggleable_objects_for SAFARI_ZONE_NORTH
 	toggle_object_state SAFARIZONENORTH_PROTEIN,       ON

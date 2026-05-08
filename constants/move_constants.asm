@@ -38,7 +38,6 @@
 	const HORN_ATTACK  ; 1e
 	const FURY_ATTACK  ; 1f
 	const SUCKER_PUNCH ; 20
-DEF HORN_DRILL EQU SUCKER_PUNCH ; legacy alias
 	const SLUDGE_BOMB  ; 21
 	const BODY_SLAM    ; 22
 	const WRAP         ; 23

@@ -13,6 +13,6 @@
 	db BITE, LEER, NO_MOVE, NO_MOVE
 	db GROWTH_SLOW
 
-	tmhm BODY_SLAM,    FIRE_BLAST,   DOUBLE_TEAM,  REST,         \
+	tmhm BODY_SLAM,    FLAMETHROWER, FIRE_BLAST,   DOUBLE_TEAM,  REST,         \
 	     ROCK_SLIDE,   SUBSTITUTE
 	db 0 ; padding

@@ -14,6 +14,6 @@
 	db GROWTH_SLOW
 
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,   HYPER_BEAM,   \
-	     DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,          FIRE_BLAST,   \
+	     DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,          FLAMETHROWER, FIRE_BLAST,   \
 	     SWIFT,        REST,         SUBSTITUTE
 	db 0 ; padding

@@ -528,7 +528,7 @@ RocketHideoutB2F_TextPointers:
 	dw_const RocketHideoutB2FRocketText, TEXT_ROCKETHIDEOUTB2F_ROCKET
 	dw_const PickUpItemText,             TEXT_ROCKETHIDEOUTB2F_MOON_STONE
 	dw_const PickUpItemText,             TEXT_ROCKETHIDEOUTB2F_NUGGET
-	dw_const PickUpItemText,             TEXT_ROCKETHIDEOUTB2F_TM_HORN_DRILL
+	dw_const RocketHideoutB2FTM07ShadowBallText, TEXT_ROCKETHIDEOUTB2F_TM_SHADOW_BALL
 	dw_const PickUpItemText,             TEXT_ROCKETHIDEOUTB2F_SUPER_POTION
 	dw_const RocketHideoutB2FGreenPlaceholderText, TEXT_ROCKETHIDEOUTB2F_GREEN
 	dw_const RocketHideoutB2FGreenPostBattleDisplayText, TEXT_ROCKETHIDEOUTB2F_GREEN_POST_BATTLE
@@ -556,6 +556,59 @@ RocketHideoutB2FRocketEndBattleText:
 
 RocketHideoutB2FRocketAfterBattleText:
 	text_far _RocketHideoutB2FRocketAfterBattleText
+	text_end
+
+RocketHideoutB2FTM07ShadowBallText:
+	text_asm
+	call EnableAutoTextBoxDrawing
+
+	; Copy of engine/events/pick_up_item.asm::PickUpItem, but with custom found text
+	ldh a, [hSpriteIndex]
+	ld b, a
+	ld hl, wToggleableObjectList
+.toggleableObjectsListLoop
+	ld a, [hli]
+	cp $ff
+	jp z, TextScriptEnd
+	cp b
+	jr z, .isToggleable
+	inc hl
+	jr .toggleableObjectsListLoop
+
+.isToggleable
+	ld a, [hl]
+	ldh [hToggleableObjectIndex], a
+
+	ld hl, wMapSpriteExtraData
+	ldh a, [hSpriteIndex]
+	dec a
+	add a
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld b, a ; item
+	ld c, 1 ; quantity
+	call GiveItem
+	jr nc, .BagFull
+
+	ldh a, [hToggleableObjectIndex]
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld a, 1
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+	ld hl, RocketHideoutB2FFoundTM07ShadowBallText
+	jr .print
+
+.BagFull
+	ld hl, NoMoreRoomForItemText
+.print
+	call PrintText
+	jp TextScriptEnd
+
+RocketHideoutB2FFoundTM07ShadowBallText:
+	text_far _RocketHideoutB2FFoundTM07ShadowBallText
+	sound_get_item_1
 	text_end
 
 RocketHideoutB2FGreenPlaceholderText:

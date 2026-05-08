@@ -97,3 +97,11 @@ _RocketHideoutB2FGreenPostBattleText::
 	cont "here."
 	cont "Be safe!"
 	done
+
+_RocketHideoutB2FFoundTM07ShadowBallText::
+	text "<PLAYER> found"
+	line "TM07!"
+
+	para "It contains"
+	line "SHADOW BALL!"
+	done

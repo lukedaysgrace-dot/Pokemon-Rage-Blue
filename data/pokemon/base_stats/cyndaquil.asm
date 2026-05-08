@@ -13,7 +13,7 @@
 	db TACKLE, LEER, NO_MOVE, NO_MOVE
 	db GROWTH_MEDIUM_SLOW
 
-	tmhm MEGA_PUNCH,   DIG,          TOXIC,        BODY_SLAM,    FIRE_BLAST,   \
+	tmhm MEGA_PUNCH,   DIG,          TOXIC,        BODY_SLAM,    FLAMETHROWER, FIRE_BLAST,   \
 	     DOUBLE_TEAM,  SWIFT,        REST,         \
 	     SUBSTITUTE,     CUT
 	db 0 ; padding

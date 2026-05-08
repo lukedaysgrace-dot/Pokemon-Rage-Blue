@@ -18,7 +18,7 @@
 	     ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   SUBMISSION,   \
 	     COUNTER,      SEISMIC_TOSS, RAGE,         SOLARBEAM,    \
 	     THUNDERBOLT,  THUNDER,      DIG,          PSYCHIC_M,    \
-	     MIMIC,        DOUBLE_TEAM,  BIDE,         FIRE_BLAST,   \
+	     MIMIC,        DOUBLE_TEAM,  BIDE,         FLAMETHROWER, FIRE_BLAST,   \
 	     SKULL_BASH,   REST,         THUNDER_WAVE, SUBSTITUTE,   \
 	     STRENGTH,     FLASH
 	db 0 ; padding

@@ -273,7 +273,7 @@ RhydonEvosMoves:
 	db 30, STOMP
 	db 35, TAIL_WHIP
 	db 40, FURY_ATTACK
-	db 48, HORN_DRILL
+	db 48, SUCKER_PUNCH
 	db 55, LEER
 	db 64, TAKE_DOWN
 	db 0
@@ -298,7 +298,7 @@ NidoranMEvosMoves:
 	db 14, POISON_STING
 	db 21, OUTRAGE
 	db 29, FURY_ATTACK
-	db 36, HORN_DRILL
+	db 36, SUCKER_PUNCH
 	db 43, DOUBLE_KICK
 	db 0
 
@@ -470,7 +470,7 @@ RhyhornEvosMoves:
 	db 30, STOMP
 	db 35, TAIL_WHIP
 	db 40, FURY_ATTACK
-	db 45, HORN_DRILL
+	db 45, SUCKER_PUNCH
 	db 50, LEER
 	db 55, TAKE_DOWN
 	db 0
@@ -1944,7 +1944,7 @@ GoldeenEvosMoves:
 	db 24, HORN_ATTACK
 	db 30, FURY_ATTACK
 	db 37, WATERFALL
-	db 45, HORN_DRILL
+	db 45, SUCKER_PUNCH
 	db 54, AGILITY
 	db 0
 
@@ -1956,7 +1956,7 @@ SeakingEvosMoves:
 	db 24, HORN_ATTACK
 	db 30, FURY_ATTACK
 	db 39, WATERFALL
-	db 48, HORN_DRILL
+	db 48, SUCKER_PUNCH
 	db 54, AGILITY
 	db 0
 
@@ -2039,7 +2039,7 @@ NidorinoEvosMoves:
 	db 14, POISON_STING
 	db 23, OUTRAGE
 	db 32, FURY_ATTACK
-	db 41, HORN_DRILL
+	db 41, SUCKER_PUNCH
 	db 50, DOUBLE_KICK
 	db 0
 
@@ -2867,7 +2867,7 @@ RhyperiorEvosMoves:
 	db 10, STOMP
 	db 15, TAIL_WHIP
 	db 24, FURY_ATTACK
-	db 30, HORN_DRILL
+	db 30, SUCKER_PUNCH
 	db 38, LEER
 	db 46, TAKE_DOWN
 	db 54, EARTHQUAKE

@@ -56,7 +56,7 @@ Moves:
 	move LEER,         DEFENSE_DOWN1_EFFECT,         0, NORMAL,   100, 30
 	move BITE,         FLINCH_SIDE_EFFECT1,         60, DARK,   100, 25
 	move GROWL,        ATTACK_DOWN1_EFFECT,          0, NORMAL,   100, 40
-	move MACH_PUNCH,  NO_ADDITIONAL_EFFECT,        50, FIGHTING, 100, 20
+	move MACH_PUNCH,   NO_ADDITIONAL_EFFECT,        50, FIGHTING, 100, 20
 	move SING,         SLEEP_EFFECT,                 0, NORMAL,    55, 15
 	move SUPERSONIC,   CONFUSION_EFFECT,             0, NORMAL,    70, 20
 	move SONICBOOM,    SPECIAL_DAMAGE_EFFECT,        1, NORMAL,    100, 20
