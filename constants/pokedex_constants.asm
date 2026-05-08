@@ -218,5 +218,13 @@
 	const DEX_DONPHAN    ; 212
 	const DEX_HOUNDOUR   ; 213
 	const DEX_HOUNDOOM   ; 214
+	const DEX_CRANIDOS   ; 215
+	const DEX_RAMPARDOS  ; 216
+	const DEX_SHIELDON   ; 217
+	const DEX_BASTIODON  ; 218
+	const DEX_BUNEARY    ; 219
+	const DEX_LOPUNNY    ; 220
+	const DEX_HIPPOPOTAS ; 221
+	const DEX_HIPPOWDON  ; 222
 
 DEF NUM_POKEMON EQU const_value - 1

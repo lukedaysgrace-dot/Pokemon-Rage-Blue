@@ -2087,3 +2087,75 @@ _HoundoomDexEntry::
 	page "days. Its howl"
 	next "makes foes shiver."
 	dex
+
+_CranidosDexEntry::
+	text "Its skull is tough"
+	next "as iron. It rams"
+	next "foes head-first to"
+
+	page "crack even stone."
+	next "It lived long ago."
+	dex
+
+_RampardosDexEntry::
+	text "Its massive jaws"
+	next "can pulverize rock."
+	next "This ancient brute"
+
+	page "charges straight"
+	next "through obstacles."
+	dex
+
+_ShieldonDexEntry::
+	text "Its face plate can"
+	next "deflect attacks. It"
+	next "grazes on plants"
+
+	page "and wanders ancient"
+	next "forests for berries."
+	dex
+
+_BastiodonDexEntry::
+	text "They formed sturdy"
+	next "walls with their"
+	next "shields to protect"
+
+	page "their herd from any"
+	next "predator attack."
+	dex
+
+_BunearyDexEntry::
+	text "Its ears coil when"
+	next "it rests. It hops"
+	next "around forests at"
+
+	page "dawn, kicking foes"
+	next "when threatened."
+	dex
+
+_LopunnyDexEntry::
+	text "Very cautious, it"
+	next "bounds away from"
+	next "danger with nimble"
+
+	page "leaps. Its kicks"
+	next "hit like hammers."
+	dex
+
+_HippopotasDexEntry::
+	text "It covers itself"
+	next "in sand to stay"
+	next "cool and hide from"
+
+	page "predators. It lives"
+	next "in dry riverbeds."
+	dex
+
+_HippowdonDexEntry::
+	text "It blasts massive"
+	next "sand sprays from its"
+	next "ports to swallow"
+
+	page "foes whole. Its body"
+	next "stores desert grit."
+	dex

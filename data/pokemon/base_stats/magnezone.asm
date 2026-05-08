@@ -1,6 +1,6 @@
 	db DEX_MAGNEZONE ; pokedex id
 
-	db   70,  70, 115,  60, 120
+	db   70,  70, 115,  70, 130
 	;   hp  atk  def  spd  spc
 
 	db ELECTRIC, STEEL ; type

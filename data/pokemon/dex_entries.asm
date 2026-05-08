@@ -30,8 +30,8 @@ PokedexEntryPointers:
 	dw BlastoiseDexEntry
 	dw PinsirDexEntry
 	dw TangelaDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw CranidosDexEntry
+	dw RampardosDexEntry
 	dw GrowlitheDexEntry
 	dw OnixDexEntry
 	dw FearowDexEntry
@@ -66,8 +66,8 @@ PokedexEntryPointers:
 	dw FarfetchdDexEntry
 	dw VenonatDexEntry
 	dw DragoniteDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw ShieldonDexEntry
+	dw BastiodonDexEntry
 	dw MissingNoDexEntry
 	dw DoduoDexEntry
 	dw PoliwagDexEntry
@@ -78,15 +78,15 @@ PokedexEntryPointers:
 	dw DittoDexEntry
 	dw MeowthDexEntry
 	dw KrabbyDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw BunearyDexEntry
+	dw LopunnyDexEntry
 	dw MissingNoDexEntry
 	dw VulpixDexEntry
 	dw NinetalesDexEntry
 	dw PikachuDexEntry
 	dw RaichuDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw HippopotasDexEntry
+	dw HippowdonDexEntry
 	dw DratiniDexEntry
 	dw DragonairDexEntry
 	dw KabutoDexEntry
@@ -1756,6 +1756,62 @@ HoundoomDexEntry:
 	db 4,7
 	dw 770
 	text_far _HoundoomDexEntry
+	text_end
+
+CranidosDexEntry:
+	db "HEADBUT@"
+	db 2,11
+	dw 694
+	text_far _CranidosDexEntry
+	text_end
+
+RampardosDexEntry:
+	db "HEADBUT@"
+	db 5,3
+	dw 2260
+	text_far _RampardosDexEntry
+	text_end
+
+ShieldonDexEntry:
+	db "SHIELD@"
+	db 1,8
+	dw 1257
+	text_far _ShieldonDexEntry
+	text_end
+
+BastiodonDexEntry:
+	db "SHIELD@"
+	db 4,3
+	dw 3296
+	text_far _BastiodonDexEntry
+	text_end
+
+BunearyDexEntry:
+	db "RABBIT@"
+	db 1,4
+	dw 121
+	text_far _BunearyDexEntry
+	text_end
+
+LopunnyDexEntry:
+	db "RABBIT@"
+	db 3,11
+	dw 734
+	text_far _LopunnyDexEntry
+	text_end
+
+HippopotasDexEntry:
+	db "HIPPO@"
+	db 2,7
+	dw 1091
+	text_far _HippopotasDexEntry
+	text_end
+
+HippowdonDexEntry:
+	db "HEAVY@"
+	db 6,7
+	dw 6610
+	text_far _HippowdonDexEntry
 	text_end
 
 MissingNoDexEntry:

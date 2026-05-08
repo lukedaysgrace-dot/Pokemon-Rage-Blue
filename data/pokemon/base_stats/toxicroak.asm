@@ -1,6 +1,6 @@
 	db DEX_TOXICROAK ; pokedex id
 
-	db  83, 106,  65,  85,  85
+	db  83, 106,  75,  85,  85
 	;   hp  atk  def  spd  spc
 
 	db POISON, FIGHTING ; type

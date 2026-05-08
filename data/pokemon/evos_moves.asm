@@ -40,8 +40,8 @@ EvosMovesPointerTable:
 	dw BlastoiseEvosMoves
 	dw PinsirEvosMoves
 	dw TangelaEvosMoves
-	dw MissingNo1FEvosMoves
-	dw MissingNo20EvosMoves
+	dw CranidosEvosMoves
+	dw RampardosEvosMoves
 	dw GrowlitheEvosMoves
 	dw OnixEvosMoves
 	dw FearowEvosMoves
@@ -76,8 +76,8 @@ EvosMovesPointerTable:
 	dw FarfetchdEvosMoves
 	dw VenonatEvosMoves
 	dw DragoniteEvosMoves
-	dw MissingNo43EvosMoves
-	dw MissingNo44EvosMoves
+	dw ShieldonEvosMoves
+	dw BastiodonEvosMoves
 	dw MissingNo45EvosMoves
 	dw DoduoEvosMoves
 	dw PoliwagEvosMoves
@@ -88,15 +88,15 @@ EvosMovesPointerTable:
 	dw DittoEvosMoves
 	dw MeowthEvosMoves
 	dw KrabbyEvosMoves
-	dw MissingNo4FEvosMoves
-	dw MissingNo50EvosMoves
+	dw BunearyEvosMoves
+	dw LopunnyEvosMoves
 	dw MissingNo51EvosMoves
 	dw VulpixEvosMoves
 	dw NinetalesEvosMoves
 	dw PikachuEvosMoves
 	dw RaichuEvosMoves
-	dw MissingNo56EvosMoves
-	dw MissingNo57EvosMoves
+	dw HippopotasEvosMoves
+	dw HippowdonEvosMoves
 	dw DratiniEvosMoves
 	dw DragonairEvosMoves
 	dw KabutoEvosMoves
@@ -614,16 +614,34 @@ TangelaEvosMoves:
 	db 49, GROWTH
 	db 0
 
-MissingNo1FEvosMoves:
+CranidosEvosMoves:
 ; Evolutions
+	db EVOLVE_LEVEL, 30, RAMPARDOS
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 6, LEER
+	db 10, ROCK_THROW
+	db 15, BITE
+	db 22, STOMP
+	db 28, HEADBUTT
+	db 36, SLAM
+	db 43, SKULL_BASH
 	db 0
 
-MissingNo20EvosMoves:
+RampardosEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, LEER
+	db 10, ROCK_THROW
+	db 15, BITE
+	db 22, STOMP
+	db 28, HEADBUTT
+	db 36, SLAM
+	db 46, SKULL_BASH
+	db 52, DOUBLE_EDGE
 	db 0
 
 GrowlitheEvosMoves:
@@ -999,16 +1017,30 @@ DragoniteEvosMoves:
 	db 60, HYPER_BEAM
 	db 0
 
-MissingNo43EvosMoves:
+ShieldonEvosMoves:
 ; Evolutions
+	db EVOLVE_LEVEL, 30, BASTIODON
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, DEFENSE_CURL
+	db 10, ROCK_THROW
+	db 15, METAL_CLAW
+	db 22, BIDE
+	db 28, SKULL_BASH
 	db 0
 
-MissingNo44EvosMoves:
+BastiodonEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, DEFENSE_CURL
+	db 10, ROCK_THROW
+	db 15, METAL_CLAW
+	db 22, BIDE
+	db 28, SKULL_BASH
+	db 36, TAKE_DOWN
 	db 0
 
 MissingNo45EvosMoves:
@@ -1113,16 +1145,28 @@ KrabbyEvosMoves:
 	db 40, HARDEN
 	db 0
 
-MissingNo4FEvosMoves:
+BunearyEvosMoves:
 ; Evolutions
+	db EVOLVE_LEVEL, 22, LOPUNNY
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 5, LEER
+	db 13, QUICK_ATTACK
+	db 18, DOUBLE_KICK
+	db 25, JUMP_KICK
 	db 0
 
-MissingNo50EvosMoves:
+LopunnyEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, LEER
+	db 13, QUICK_ATTACK
+	db 18, DOUBLE_KICK
+	db 25, JUMP_KICK
+	db 33, BODY_SLAM
 	db 0
 
 MissingNo51EvosMoves:
@@ -1167,16 +1211,29 @@ RaichuEvosMoves:
 ; Learnset
 	db 0
 
-MissingNo56EvosMoves:
+HippopotasEvosMoves:
 ; Evolutions
+	db EVOLVE_LEVEL, 34, HIPPOWDON
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 7, SAND_ATTACK
+	db 13, BITE
+	db 19, DIG
+	db 25, STOMP
 	db 0
 
-MissingNo57EvosMoves:
+HippowdonEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, SAND_ATTACK
+	db 7, BITE
+	db 13, DIG
+	db 19, STOMP
+	db 28, ROCK_THROW
+	db 36, EARTHQUAKE
 	db 0
 
 DratiniEvosMoves:

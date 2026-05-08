@@ -213,5 +213,13 @@ MonPartyData:
 	db ICON_RHYDON        ; Donphan
 	db ICON_GROWLITHE     ; Houndour
 	db ICON_ARCANINE      ; Houndoom
+	db ICON_RHYDON        ; Cranidos
+	db ICON_RHYDON        ; Rampardos
+	db ICON_GEODUDE       ; Shieldon
+	db ICON_ONIX          ; Bastiodon
+	db ICON_MEOWTH        ; Buneary
+	db ICON_MEOWTH        ; Lopunny
+	db ICON_SANDSHREW     ; Hippopotas
+	db ICON_RHYDON        ; Hippowdon
 
 ASSERT @ - MonPartyData == NUM_POKEMON

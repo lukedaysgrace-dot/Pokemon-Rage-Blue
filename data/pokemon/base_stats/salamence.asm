@@ -1,6 +1,6 @@
 	db DEX_SALAMENCE ; pokedex id
 
-	db  95, 135,  80, 100, 110
+	db  95, 135,  80, 100,  90
 	;   hp  atk  def  spd  spc
 
 	db DRAGON, FLYING ; type

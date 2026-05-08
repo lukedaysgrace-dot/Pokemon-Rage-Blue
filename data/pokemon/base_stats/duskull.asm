@@ -1,6 +1,6 @@
 	db DEX_DUSKULL ; pokedex id
 
-	db  20,  40,  90,  25,  60
+	db  50,  40,  60,  25,  60
 	;   hp  atk  def  spd  spc
 
 	db GHOST, GHOST ; type

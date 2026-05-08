@@ -1,6 +1,6 @@
 	db DEX_ESPEON ; pokedex id
 
-	db   72,  60,  60, 110, 133
+	db   67,  60,  60, 110, 133
 	;   hp  atk  def  spd  spc
 
 	db PSYCHIC_TYPE, PSYCHIC_TYPE ; type

@@ -1,6 +1,6 @@
 	db DEX_LUCARIO ; pokedex id
 
-	db  70, 110,  70,  90, 115
+	db  70, 110,  70,  90, 93
 	;   hp  atk  def  spd  spc
 
 	db FIGHTING, STEEL ; type

@@ -11,8 +11,11 @@ UncompressMonSprite::
 ; define (by index number) the bank that a pokemon's image is in
 ; index = MEW:             bank $1
 ; index = FOSSIL_KABUTOPS: bank $B
+; CRANIDOS–RAMPARDOS, SHIELDON–BASTIODON, BUNEARY–LOPUNNY, HIPPOPOTAS–HIPPOWDON:
+;   gfx in "Pics 8" (same section as late-game mons); IDs would otherwise match
+;   older Pics 2/3 ranges and load the wrong bank.
 ;       index < $1F:       bank $9 ("Pics 1")
-; $1F ≤ index < $4A:       bank $A ("Pics 2")
+; $1F ≤ index < $4A:       bank $A ("Pics 2")  (except species handled above)
 ; $4A ≤ index < $74:       bank $B ("Pics 3")
 ; $74 ≤ index < $99:       bank $C ("Pics 4")
 ; $99 ≤ index < CHIKORITA: bank $D ("Pics 5")
@@ -28,6 +31,38 @@ UncompressMonSprite::
 	cp FOSSIL_KABUTOPS
 	ld a, BANK(FossilKabutopsPic)
 	jr z, .GotBank
+	ld a, b
+	cp CRANIDOS
+	jr c, .afterExtPics8CranidosRamp
+	cp RAMPARDOS + 1
+	jr nc, .afterExtPics8CranidosRamp
+	ld a, BANK("Pics 8")
+	jr .GotBank
+.afterExtPics8CranidosRamp
+	ld a, b
+	cp SHIELDON
+	jr c, .afterExtPics8ShieldonBastiodon
+	cp BASTIODON + 1
+	jr nc, .afterExtPics8ShieldonBastiodon
+	ld a, BANK("Pics 8")
+	jr .GotBank
+.afterExtPics8ShieldonBastiodon
+	ld a, b
+	cp BUNEARY
+	jr c, .afterExtPics8BunearyLopunny
+	cp LOPUNNY + 1
+	jr nc, .afterExtPics8BunearyLopunny
+	ld a, BANK("Pics 8")
+	jr .GotBank
+.afterExtPics8BunearyLopunny
+	ld a, b
+	cp HIPPOPOTAS
+	jr c, .afterExtPics8Hippo
+	cp HIPPOWDON + 1
+	jr nc, .afterExtPics8Hippo
+	ld a, BANK("Pics 8")
+	jr .GotBank
+.afterExtPics8Hippo
 	ld a, b
 	cp TANGELA + 1
 	ld a, BANK("Pics 1")

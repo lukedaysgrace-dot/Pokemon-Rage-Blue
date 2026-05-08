@@ -1,6 +1,6 @@
 	db DEX_MEGANIUM ; pokedex id
 
-	db  80,  82, 100,  80, 100
+	db  80,  82, 100,  80, 93
 	;   hp  atk  def  spd  spc
 
 	db GRASS, GRASS ; type
