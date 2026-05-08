@@ -88,9 +88,6 @@ _GbcPrepareVBlank:
 	pop af
 	reti
 
-; Prevent data shifting
-SECTION "JpPoint", ROM0
-
 ; HAX: This function is reimplemented elsewhere.
 ; Note: this doesn't update "hLoadedROMBank", but no interrupts will occur at this time,
 ; so it's fine.
@@ -327,6 +324,11 @@ UpdateMovingBgTiles::
 	xor a
 	ldh [hMovingBGTilesCounter1], a
 
+	ldh a, [hLoadedROMBank]
+	push af
+	ld a, BANK(FlowerTile1)
+	ld [rROMB], a
+
 	ld a, [wMovingBGTilesCounter2]
 	and 3
 	cp 2
@@ -344,8 +346,7 @@ UpdateMovingBgTiles::
 	inc de
 	dec c
 	jr nz, .loop
-	ret
 
-FlowerTile1: INCBIN "gfx/tilesets/flower/flower1.2bpp"
-FlowerTile2: INCBIN "gfx/tilesets/flower/flower2.2bpp"
-FlowerTile3: INCBIN "gfx/tilesets/flower/flower3.2bpp"
+	pop af
+	ld [rROMB], a
+	ret

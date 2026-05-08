@@ -601,10 +601,14 @@ RocketHideoutB2FTM07ShadowBallText:
 	jr .print
 
 .BagFull
-	ld hl, NoMoreRoomForItemText
+	ld hl, RocketHideoutB2FNoMoreRoomText
 .print
 	call PrintText
 	jp TextScriptEnd
+
+RocketHideoutB2FNoMoreRoomText:
+	text_far _NoMoreRoomForItemText
+	text_end
 
 RocketHideoutB2FFoundTM07ShadowBallText:
 	text_far _RocketHideoutB2FFoundTM07ShadowBallText
