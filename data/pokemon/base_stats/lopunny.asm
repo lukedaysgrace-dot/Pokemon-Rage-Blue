@@ -1,6 +1,6 @@
 	db DEX_LOPUNNY ; pokedex id
 
-	db  65,  76,  84,  96,  54
+	db  65,  76,  84, 105,  75
 	;   hp  atk  def  spd  spc
 
 	db NORMAL, NORMAL ; type

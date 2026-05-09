@@ -1,6 +1,6 @@
 	db DEX_KIRLIA ; pokedex id
 
-	db  38,  35,  35,  50,  55
+	db  68,  35,  71,  60,  95
 	;   hp  atk  def  spd  spc
 
 	db PSYCHIC_TYPE, PSYCHIC_TYPE ; type

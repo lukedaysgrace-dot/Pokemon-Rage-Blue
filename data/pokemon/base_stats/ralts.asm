@@ -1,6 +1,6 @@
 	db DEX_RALTS ; pokedex id
 
-	db  28,  25,  25,  40,  35
+	db  48,  25,  45,  60,  75
 	;   hp  atk  def  spd  spc
 
 	db PSYCHIC_TYPE, PSYCHIC_TYPE ; type

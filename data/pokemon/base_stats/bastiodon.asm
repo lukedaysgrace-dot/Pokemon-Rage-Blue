@@ -1,6 +1,6 @@
 	db DEX_BASTIODON ; pokedex id
 
-	db 100,  72, 148,  30,  87
+	db 100,  80, 148,  30,  87
 	;   hp  atk  def  spd  spc
 
 	db ROCK, STEEL ; type

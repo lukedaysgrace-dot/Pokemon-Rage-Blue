@@ -1,6 +1,6 @@
 	db DEX_BLISSEY ; pokedex id
 
-	db  255,  10,  75,  50, 130
+	db  255,  10,  10,  50, 125
 	;   hp  atk  def  spd  spc
 
 	db NORMAL, NORMAL ; type

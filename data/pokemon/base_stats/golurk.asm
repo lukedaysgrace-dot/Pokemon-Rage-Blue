@@ -1,6 +1,6 @@
 	db DEX_GOLURK ; pokedex id
 
-	db  89, 124,  80,  55,  55
+	db  89, 124,  80,  55,  80
 	;   hp  atk  def  spd  spc
 
 	db GROUND, GHOST ; type

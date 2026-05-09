@@ -1,6 +1,6 @@
 	db DEX_MESMERIA ; pokedex id
 
-	db  75,  60,  65, 115, 130
+	db  75,  60,  55, 115, 130
 	;   hp  atk  def  spd  spc
 
 	db ICE, PSYCHIC_TYPE ; type

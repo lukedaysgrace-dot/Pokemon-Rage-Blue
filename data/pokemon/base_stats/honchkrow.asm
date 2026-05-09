@@ -1,6 +1,6 @@
 	db DEX_HONCHKROW ; pokedex id
 
-	db 100, 125,  52,  71,  89
+	db 100, 125,  60,  71,  89
 	;   hp  atk  def  spd  spc
 
 	db DARK, FLYING ; type
