@@ -7,9 +7,9 @@ Route3WildMons:
 	db  7, SPEAROW
 	db  8, PIDGEY
 	db  8, SPEAROW
-	db  3, JIGGLYPUFF
+	db  6, EKANS
+	db  6, SANDSHREW
 	db  5, JIGGLYPUFF
-	db  7, JIGGLYPUFF
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

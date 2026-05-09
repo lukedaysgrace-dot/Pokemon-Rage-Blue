@@ -77,14 +77,14 @@ SuperRodData:
 	db 5, TENTACOOL
 	db 15, KRABBY
 	db 15, GOLDEEN
-	db 15, MAGIKARP
+	db 20, HORSEA
 
 .Group8:
 	db 4
 	db 15, STARYU
 	db 15, HORSEA
-	db 15, SHELLDER
-	db 15, GOLDEEN
+	db 20, SHELLDER
+	db 28, SEADRA
 
 .Group9:
 	db 4

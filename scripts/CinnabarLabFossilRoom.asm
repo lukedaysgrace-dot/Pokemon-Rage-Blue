@@ -43,6 +43,8 @@ Lab4Script_GetFossilsInBag:
 FossilsList:
 	db DOME_FOSSIL
 	db HELIX_FOSSIL
+	db SKULL_FOSSIL
+	db ARMOR_FOSSIL
 	db OLD_AMBER
 	db 0 ; end
 

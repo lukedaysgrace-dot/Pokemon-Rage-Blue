@@ -49,7 +49,7 @@ ItemNames::
 	li "LEAF STONE"
 	li "CARD KEY"
 	li "NUGGET"
-	li "PP UP" ; ITEM_32
+	li "METAL COAT"
 	li "POKé DOLL"
 	li "FULL HEAL"
 	li "REVIVE"
@@ -83,6 +83,8 @@ ItemNames::
 	li "MAX ETHER"
 	li "ELIXER"
 	li "MAX ELIXER"
+	li "SKULL FOSSIL"
+	li "ARMOR FOSSIL"
 	assert_list_length NUM_ITEMS
 	li "B2F"
 	li "B1F"

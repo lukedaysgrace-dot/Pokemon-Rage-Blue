@@ -267,7 +267,7 @@ EvosMovesPointerTable:
 
 RhydonEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, RHYPERIOR
+	db EVOLVE_LEVEL, 38, RHYPERIOR
 	db 0
 ; Learnset
 	db 30, STOMP
@@ -552,7 +552,7 @@ GastlyEvosMoves:
 
 ScytherEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, SCIZOR
+	db EVOLVE_ITEM, METAL_COAT, 1, SCIZOR
 	db 0
 ; Learnset
 	db 17, LEER
@@ -658,7 +658,7 @@ GrowlitheEvosMoves:
 
 OnixEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, STEELIX
+	db EVOLVE_ITEM, METAL_COAT, 1, STEELIX
 	db 0
 ; Learnset
 	db 15, SHADOW_BALL
@@ -708,7 +708,7 @@ SlowpokeEvosMoves:
 
 KadabraEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, ALAKAZAM
+	db EVOLVE_LEVEL, 36, ALAKAZAM
 	db 0
 ; Learnset
 	db 16, CONFUSION
@@ -721,7 +721,7 @@ KadabraEvosMoves:
 
 GravelerEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, GOLEM
+	db EVOLVE_LEVEL, 36, GOLEM
 	db 0
 ; Learnset
 	db 11, DEFENSE_CURL
@@ -747,7 +747,7 @@ ChanseyEvosMoves:
 
 MachokeEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, MACHAMP
+	db EVOLVE_LEVEL, 36, MACHAMP
 	db 0
 ; Learnset
 	db 20, LOW_KICK
@@ -857,7 +857,7 @@ MissingNo32EvosMoves:
 
 MagmarEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, MAGMORTAR
+	db EVOLVE_LEVEL, 38, MAGMORTAR
 	db 0
 ; Learnset
 	db 36, LEER
@@ -876,7 +876,7 @@ MissingNo34EvosMoves:
 
 ElectabuzzEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, ELECTIVIRE
+	db EVOLVE_LEVEL, 38, ELECTIVIRE
 	db 0
 ; Learnset
 	db 34, THUNDERSHOCK
@@ -1283,7 +1283,7 @@ KabutopsEvosMoves:
 
 HorseaEvosMoves:
 ; Evolutions
-	db EVOLVE_LEVEL, 32, SEADRA
+	db EVOLVE_LEVEL, 22, SEADRA
 	db 0
 ; Learnset
 	db 19, SMOKESCREEN
@@ -1295,7 +1295,7 @@ HorseaEvosMoves:
 
 SeadraEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, KINGDRA
+	db EVOLVE_LEVEL, 38, KINGDRA
 	db 0
 ; Learnset
 	db 19, SMOKESCREEN
@@ -1831,7 +1831,7 @@ MissingNo92EvosMoves:
 
 HaunterEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, GENGAR
+	db EVOLVE_LEVEL, 36, GENGAR
 	db 0
 ; Learnset
 	db 29, HYPNOSIS
@@ -2071,7 +2071,7 @@ GeodudeEvosMoves:
 
 PorygonEvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, PORYGON2
+	db EVOLVE_LEVEL, 30, PORYGON2
 	db 0
 ; Learnset
 	db 23, PSYBEAM
@@ -2846,7 +2846,7 @@ PorygonZEvosMoves:
 
 Porygon2EvosMoves:
 ; Evolutions
-	db EVOLVE_TRADE, 1, PORYGON_Z
+	db EVOLVE_LEVEL, 38, PORYGON_Z
 	db 0
 ; Learnset
 	db 1, TACKLE

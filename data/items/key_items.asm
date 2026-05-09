@@ -49,7 +49,7 @@ KeyItemFlags:
 	dbit FALSE ; LEAF_STONE
 	dbit TRUE  ; CARD_KEY
 	dbit FALSE ; NUGGET
-	dbit FALSE ; ITEM_32
+	dbit FALSE ; METAL_COAT
 	dbit FALSE ; POKE_DOLL
 	dbit FALSE ; FULL_HEAL
 	dbit FALSE ; REVIVE
@@ -83,4 +83,6 @@ KeyItemFlags:
 	dbit FALSE ; MAX_ETHER
 	dbit FALSE ; ELIXER
 	dbit FALSE ; MAX_ELIXER
+	dbit TRUE  ; SKULL_FOSSIL
+	dbit TRUE  ; ARMOR_FOSSIL
 	end_bit_array NUM_ITEMS

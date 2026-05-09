@@ -2,9 +2,9 @@ PokemonTower7FWildMons:
 	def_grass_wildmons 15 ; encounter rate
 	db 21, GASTLY
 	db 22, GASTLY
-	db 23, GASTLY
+	db 23, DUSKULL
 	db 24, GASTLY
-	db 20, GASTLY
+	db 20, MISDREAVUS
 	db 28, HAUNTER
 	db 22, CUBONE
 	db 24, CUBONE

@@ -40,7 +40,17 @@ GiveFossilToCinnabarLab::
 	jr z, .choseDomeFossil
 	cp HELIX_FOSSIL
 	jr z, .choseHelixFossil
+	cp SKULL_FOSSIL
+	jr z, .choseSkullFossil
+	cp ARMOR_FOSSIL
+	jr z, .choseArmorFossil
 	ld b, AERODACTYL
+	jr .fossilSelected
+.choseArmorFossil
+	ld b, SHIELDON
+	jr .fossilSelected
+.choseSkullFossil
+	ld b, CRANIDOS
 	jr .fossilSelected
 .choseHelixFossil
 	ld b, OMANYTE

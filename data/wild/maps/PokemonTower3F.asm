@@ -6,7 +6,7 @@ PokemonTower3FWildMons:
 	db 23, GASTLY
 	db 19, GASTLY
 	db 18, GASTLY
-	db 24, GASTLY
+	db 24, MISDREAVUS
 	db 20, CUBONE
 	db 22, CUBONE
 	db 25, HAUNTER

@@ -5,7 +5,7 @@ MtMoon1FWildMons:
 	db  9, ZUBAT
 	db  8, GEODUDE
 	db  6, ZUBAT
-	db 10, ZUBAT
+	db 10, GOLETT
 	db 10, GEODUDE
 	db  8, PARAS
 	db 11, ZUBAT
