@@ -27,7 +27,7 @@
 	const HYPER_POTION  ; $12
 	const SUPER_POTION  ; $13
 	const POTION        ; $14
-; badges use item IDs (see scripts/CeruleanBadgeHouse.asm)
+; badges use item IDs (see badges / party display)
 	const BOULDERBADGE  ; $15
 DEF SAFARI_BAIT EQU BOULDERBADGE ; overload
 	const CASCADEBADGE  ; $16

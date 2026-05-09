@@ -1,123 +1,58 @@
 CeruleanBadgeHouse_Script:
-	ld a, 1 << BIT_NO_AUTO_TEXT_BOX
-	ld [wAutoTextBoxDrawingControl], a
-	dec a
-	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ret
+	jp EnableAutoTextBoxDrawing
 
 CeruleanBadgeHouse_TextPointers:
 	def_text_pointers
-	dw_const CeruleanBadgeHouseMiddleAgedManText, TEXT_CERULEANBADGEHOUSE_MIDDLE_AGED_MAN
+	dw_const CeruleanBadgeHouseFossilScientistText, TEXT_CERULEANBADGEHOUSE_SCIENTIST
 
-CeruleanBadgeHouseMiddleAgedManText:
+CeruleanBadgeHouseFossilScientistText:
 	text_asm
-	ld hl, .Text
+	CheckEvent EVENT_GAVE_FOSSIL_TO_LAB
+	jr nz, .check_done_reviving
+	ld hl, .IntroText
 	call PrintText
-	xor a
-	ld [wCurrentMenuItem], a
-	ld [wListScrollOffset], a
-.loop
-	ld hl, .WhichBadgeText
+	farcall Lab4Script_GetFossilsInBag
+	ld a, [wFilteredBagItemsCount]
+	and a
+	jr z, .no_fossils
+	farcall GiveFossilToCinnabarLab
+	jr .done
+.no_fossils
+	ld hl, .NoFossilsText
 	call PrintText
-	ld hl, .BadgeItemList
-	call LoadItemList
-	ld hl, wItemList
-	ld a, l
-	ld [wListPointer], a
-	ld a, h
-	ld [wListPointer + 1], a
-	xor a
-	ld [wPrintItemPrices], a
-	ld [wMenuItemToSwap], a
-	ld a, SPECIALLISTMENU
-	ld [wListMenuID], a
-	call DisplayListMenuID
-	jr c, .done
-	ld hl, CeruleanBadgeHouseBadgeTextPointers
-	ld a, [wCurItem]
-	sub BOULDERBADGE
-	add a
-	ld d, $0
-	ld e, a
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call PrintText
-	jr .loop
 .done
-	xor a
-	ld [wListScrollOffset], a
-	ld hl, .VisitAnyTimeText
-	call PrintText
 	jp TextScriptEnd
+.check_done_reviving
+	CheckEventAfterBranchReuseA EVENT_LAB_STILL_REVIVING_FOSSIL, EVENT_GAVE_FOSSIL_TO_LAB
+	jr z, .done_reviving
+	ld hl, .GoForAWalkText
+	call PrintText
+	jr .done
+.done_reviving
+	farcall LoadFossilItemAndMonName
+	ld hl, .FossilIsBackToLifeText
+	call PrintText
+	SetEvent EVENT_LAB_HANDING_OVER_FOSSIL_MON
+	ld a, [wFossilMon]
+	ld b, a
+	ld c, 30
+	call GivePokemon
+	jr nc, .done
+	ResetEvents EVENT_GAVE_FOSSIL_TO_LAB, EVENT_LAB_STILL_REVIVING_FOSSIL, EVENT_LAB_HANDING_OVER_FOSSIL_MON
+	jr .done
 
-.BadgeItemList:
-	db NUM_BADGES ; #
-	table_width 1
-	db BOULDERBADGE
-	db CASCADEBADGE
-	db THUNDERBADGE
-	db RAINBOWBADGE
-	db SOULBADGE
-	db MARSHBADGE
-	db VOLCANOBADGE
-	db EARTHBADGE
-	assert_table_length NUM_BADGES
-	db -1 ; end
-
-.Text:
-	text_far _CeruleanBadgeHouseMiddleAgedManText
+.IntroText:
+	text_far _CeruleanBadgeHouseFossilScientistIntroText
 	text_end
 
-.WhichBadgeText:
-	text_far _CeruleanBadgeHouseMiddleAgedManWhichBadgeText
+.NoFossilsText:
+	text_far _CinnabarLabFossilRoomScientist1NoFossilsText
 	text_end
 
-.VisitAnyTimeText:
-	text_far _CeruleanBadgeHouseMiddleAgedManVisitAnyTimeText
+.GoForAWalkText:
+	text_far _CinnabarLabFossilRoomScientist1GoForAWalkText
 	text_end
 
-CeruleanBadgeHouseBadgeTextPointers:
-	table_width 2
-	dw CeruleanBadgeHouseBoulderBadgeText
-	dw CeruleanBadgeHouseCascadeBadgeText
-	dw CeruleanBadgeHouseThunderBadgeText
-	dw CeruleanBadgeHouseRainbowBadgeText
-	dw CeruleanBadgeHouseSoulBadgeText
-	dw CeruleanBadgeHouseMarshBadgeText
-	dw CeruleanBadgeHouseVolcanoBadgeText
-	dw CeruleanBadgeHouseEarthBadgeText
-	assert_table_length NUM_BADGES
-
-CeruleanBadgeHouseBoulderBadgeText:
-	text_far _CeruleanBadgeHouseBoulderBadgeText
-	text_end
-
-CeruleanBadgeHouseCascadeBadgeText:
-	text_far _CeruleanBadgeHouseCascadeBadgeText
-	text_end
-
-CeruleanBadgeHouseThunderBadgeText:
-	text_far _CeruleanBadgeHouseThunderBadgeText
-	text_end
-
-CeruleanBadgeHouseRainbowBadgeText:
-	text_far _CeruleanBadgeHouseRainbowBadgeText
-	text_end
-
-CeruleanBadgeHouseSoulBadgeText:
-	text_far _CeruleanBadgeHouseSoulBadgeText
-	text_end
-
-CeruleanBadgeHouseMarshBadgeText:
-	text_far _CeruleanBadgeHouseMarshBadgeText
-	text_end
-
-CeruleanBadgeHouseVolcanoBadgeText:
-	text_far _CeruleanBadgeHouseVolcanoBadgeText
-	text_end
-
-CeruleanBadgeHouseEarthBadgeText:
-	text_far _CeruleanBadgeHouseEarthBadgeText
+.FossilIsBackToLifeText:
+	text_far _CinnabarLabFossilRoomScientist1FossilIsBackToLifeText
 	text_end

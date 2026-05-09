@@ -131,3 +131,43 @@ LoadFossilItemAndMonName::
 	ld [wNamedObjectIndex], a
 	call GetItemName
 	ret
+
+Lab4Script_GetFossilsInBag::
+	xor a
+	ld [wFilteredBagItemsCount], a
+	ld de, wFilteredBagItems
+	ld hl, FossilsList
+.loop
+	ld a, [hli]
+	and a
+	jr z, .done
+	push hl
+	push de
+	ld [wTempByteValue], a
+	ld b, a
+	predef GetQuantityOfItemInBag
+	pop de
+	pop hl
+	ld a, b
+	and a
+	jr z, .loop
+	ld a, [wTempByteValue]
+	ld [de], a
+	inc de
+	push hl
+	ld hl, wFilteredBagItemsCount
+	inc [hl]
+	pop hl
+	jr .loop
+.done
+	ld a, $ff
+	ld [de], a
+	ret
+
+FossilsList:
+	db DOME_FOSSIL
+	db HELIX_FOSSIL
+	db SKULL_FOSSIL
+	db ARMOR_FOSSIL
+	db OLD_AMBER
+	db 0 ; end

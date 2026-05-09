@@ -6,55 +6,13 @@ CinnabarLabFossilRoom_TextPointers:
 	dw_const CinnabarLabFossilRoomScientist1Text, TEXT_CINNABARLABFOSSILROOM_SCIENTIST1
 	dw_const CinnabarLabFossilRoomScientist2Text, TEXT_CINNABARLABFOSSILROOM_SCIENTIST2
 
-Lab4Script_GetFossilsInBag:
-; construct a list of all fossils in the player's bag
-	xor a
-	ld [wFilteredBagItemsCount], a
-	ld de, wFilteredBagItems
-	ld hl, FossilsList
-.loop
-	ld a, [hli]
-	and a
-	jr z, .done
-	push hl
-	push de
-	ld [wTempByteValue], a
-	ld b, a
-	predef GetQuantityOfItemInBag
-	pop de
-	pop hl
-	ld a, b
-	and a
-	jr z, .loop
-	; A fossil is in the bag
-	ld a, [wTempByteValue]
-	ld [de], a
-	inc de
-	push hl
-	ld hl, wFilteredBagItemsCount
-	inc [hl]
-	pop hl
-	jr .loop
-.done
-	ld a, $ff
-	ld [de], a
-	ret
-
-FossilsList:
-	db DOME_FOSSIL
-	db HELIX_FOSSIL
-	db SKULL_FOSSIL
-	db ARMOR_FOSSIL
-	db OLD_AMBER
-	db 0 ; end
-
 CinnabarLabFossilRoomScientist1Text:
 	text_asm
 	CheckEvent EVENT_GAVE_FOSSIL_TO_LAB
 	jr nz, .check_done_reviving
 	ld hl, .Text
 	call PrintText
-	call Lab4Script_GetFossilsInBag
+	farcall Lab4Script_GetFossilsInBag
 	ld a, [wFilteredBagItemsCount]
 	and a
 	jr z, .no_fossils
@@ -72,7 +30,7 @@ CinnabarLabFossilRoomScientist1Text:
 	call PrintText
 	jr .done
 .done_reviving
-	call LoadFossilItemAndMonNameBank1D
+	farcall LoadFossilItemAndMonName
 	ld hl, .FossilIsBackToLifeText
 	call PrintText
 	SetEvent EVENT_LAB_HANDING_OVER_FOSSIL_MON
@@ -106,6 +64,3 @@ CinnabarLabFossilRoomScientist2Text:
 	ld [wWhichTrade], a
 	predef DoInGameTradeDialogue
 	jp TextScriptEnd
-
-LoadFossilItemAndMonNameBank1D:
-	farjp LoadFossilItemAndMonName

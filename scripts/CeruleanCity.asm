@@ -1,5 +1,6 @@
 CeruleanCity_Script:
 	call EnableAutoTextBoxDrawing
+	ResetEvent EVENT_LAB_STILL_REVIVING_FOSSIL ; same cue as stepping on CINNabar Island outdoors
 	ld hl, CeruleanCity_ScriptPointers
 	ld a, [wCeruleanCityCurScript]
 	jp CallFunctionInTable
