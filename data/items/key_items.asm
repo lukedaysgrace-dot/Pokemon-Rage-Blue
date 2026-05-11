@@ -34,6 +34,7 @@ KeyItemFlags:
 	dbit FALSE ; FIRE_STONE
 	dbit FALSE ; THUNDER_STONE
 	dbit FALSE ; WATER_STONE
+	dbit FALSE ; ICE_STONE
 	dbit FALSE ; HP_UP
 	dbit FALSE ; PROTEIN
 	dbit FALSE ; IRON

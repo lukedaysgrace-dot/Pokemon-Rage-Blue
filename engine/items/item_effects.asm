@@ -51,6 +51,7 @@ ItemUsePtrTable:
 	dw ItemUseEvoStone   ; FIRE_STONE
 	dw ItemUseEvoStone   ; THUNDER_STONE
 	dw ItemUseEvoStone   ; WATER_STONE
+	dw ItemUseEvoStone   ; ICE_STONE
 	dw ItemUseVitamin    ; HP_UP
 	dw ItemUseVitamin    ; PROTEIN
 	dw ItemUseVitamin    ; IRON

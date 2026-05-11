@@ -94,10 +94,39 @@ SpriteSheetPointerTable:
 	overworld_sprite PetrelSprite, 12           ; SPRITE_PETREL
 	overworld_sprite ProtonSprite, 12           ; SPRITE_PROTON
 	overworld_sprite SoldierSprite, 12          ; SPRITE_SOLDIER
-	overworld_sprite BulbasaurSprite, 4         ; SPRITE_BULBASAUR
+	overworld_sprite BulbasaurSprite, 12        ; SPRITE_BULBASAUR
 	overworld_sprite CharmanderSprite, 4        ; SPRITE_CHARMANDER
 	overworld_sprite SquirtleSprite, 4          ; SPRITE_SQUIRTLE
 	overworld_sprite ChikoritaSprite, 4         ; SPRITE_CHIKORITA
 	overworld_sprite CyndaquilSprite, 4         ; SPRITE_CYNDAQUIL
 	overworld_sprite TotodileSprite, 4          ; SPRITE_TOTODILE
+	overworld_sprite PidgeySprite, 12           ; SPRITE_PIDGEY
+	overworld_sprite SpearowSprite, 12          ; SPRITE_SPEAROW
+	overworld_sprite FearowSprite, 12           ; SPRITE_FEAROW
+	overworld_sprite DoduoSprite, 12            ; SPRITE_DODUO
+	overworld_sprite PidgeotSprite, 12          ; SPRITE_PIDGEOT
+	overworld_sprite ChanseySprite, 12          ; SPRITE_CHANSEY
+	overworld_sprite PikachuSprite, 12          ; SPRITE_PIKACHU
+	overworld_sprite LaprasSprite, 12           ; SPRITE_LAPRAS
+	overworld_sprite MachopSprite, 12           ; SPRITE_MACHOP
+	overworld_sprite MachokeSprite, 12          ; SPRITE_MACHOKE
+	overworld_sprite PoliwrathSprite, 12        ; SPRITE_POLIWRATH
+	overworld_sprite CuboneSprite, 12           ; SPRITE_CUBONE
+	overworld_sprite MewtwoSprite, 12           ; SPRITE_MEWTWO
+	overworld_sprite MeowthSprite, 12           ; SPRITE_MEOWTH
+	overworld_sprite NidoranFSprite, 12         ; SPRITE_NIDORAN_F
+	overworld_sprite NidoranMSprite, 12         ; SPRITE_NIDORAN_M
+	overworld_sprite NidorinoSprite, 12         ; SPRITE_NIDORINO
+	overworld_sprite PsyduckSprite, 12          ; SPRITE_PSYDUCK
+	overworld_sprite ClefairySprite, 12         ; SPRITE_CLEFAIRY
+	overworld_sprite JigglypuffSprite, 12       ; SPRITE_JIGGLYPUFF
+	overworld_sprite WigglytuffSprite, 12       ; SPRITE_WIGGLYTUFF
+	overworld_sprite KangaskhanSprite, 12       ; SPRITE_KANGASKHAN
+	overworld_sprite SlowpokeSprite, 12         ; SPRITE_SLOWPOKE
+	overworld_sprite SlowbroSprite, 4           ; SPRITE_SLOWBRO
+	overworld_sprite VoltorbSprite, 4           ; SPRITE_VOLTORB
+	overworld_sprite ElectrodeSprite, 4         ; SPRITE_ELECTRODE
+	overworld_sprite ArticunoSprite, 12         ; SPRITE_ARTICUNO
+	overworld_sprite ZapdosSprite, 12           ; SPRITE_ZAPDOS
+	overworld_sprite MoltresSprite, 12          ; SPRITE_MOLTRES
 	assert_table_length NUM_SPRITES

@@ -22,13 +22,13 @@ BoulderSprite::          INCBIN "gfx/sprites/boulder.2bpp"
 PaperSprite::            INCBIN "gfx/sprites/paper.2bpp"
 PokedexSprite::          INCBIN "gfx/sprites/pokedex.2bpp"
 ClipboardSprite::        INCBIN "gfx/sprites/clipboard.2bpp"
-SnorlaxSprite::          INCBIN "gfx/sprites/snorlax.2bpp"
+SnorlaxSprite::          INCBIN "gfx/icons/snorlax_ow.2bpp"
 OldAmberSprite::         INCBIN "gfx/sprites/old_amber.2bpp"
 GamblerAsleepSprite::    INCBIN "gfx/sprites/gambler_asleep.2bpp"
-MewSprite::              INCBIN "gfx/icons/mew.2bpp"
-BulbasaurSprite::        INCBIN "gfx/icons/bulbasaur.2bpp"
-CharmanderSprite::       INCBIN "gfx/icons/charmander.2bpp"
-SquirtleSprite::         INCBIN "gfx/icons/squirtle.2bpp"
+MewSprite::              INCBIN "gfx/icons/mew_ow.2bpp"
+BulbasaurSprite::        INCBIN "gfx/sprites/bulbasaur.2bpp"
+CharmanderSprite::       INCBIN "gfx/icons/charmander_ow.2bpp"
+SquirtleSprite::         INCBIN "gfx/icons/squirtle_ow.2bpp"
 ChikoritaSprite::        INCBIN "gfx/icons/chikorita.2bpp"
 CyndaquilSprite::        INCBIN "gfx/icons/cyndaquil.2bpp"
 TotodileSprite::         INCBIN "gfx/icons/totodile.2bpp"
@@ -106,6 +106,51 @@ ArcherSprite::            INCBIN "gfx/sprites/archer.2bpp"
 PetrelSprite::            INCBIN "gfx/sprites/petrel.2bpp"
 ProtonSprite::            INCBIN "gfx/sprites/proton.2bpp"
 SoldierSprite::           INCBIN "gfx/sprites/soldier.2bpp"
+
+
+; Keep the larger Pokemon-specific overworld sheets outside the cramped legacy NPC
+; banks so the linker can place them in roomier ROMX space without disturbing the
+; original sprite ordering.
+SECTION "Pokemon OW Sprites 1", ROMX
+
+PidgeySprite::           INCBIN "gfx/sprites/pidgey.2bpp"
+SpearowSprite::          INCBIN "gfx/sprites/spearow.2bpp"
+FearowSprite::           INCBIN "gfx/sprites/fearow.2bpp"
+DoduoSprite::            INCBIN "gfx/sprites/doduo.2bpp"
+PidgeotSprite::          INCBIN "gfx/sprites/pidgeot.2bpp"
+ChanseySprite::          INCBIN "gfx/sprites/chansey.2bpp"
+PikachuSprite::          INCBIN "gfx/sprites/pikachu.2bpp"
+LaprasSprite::           INCBIN "gfx/sprites/lapras.2bpp"
+
+SECTION "Pokemon OW Sprites 2", ROMX
+
+MachopSprite::           INCBIN "gfx/sprites/machop.2bpp"
+MachokeSprite::          INCBIN "gfx/sprites/machoke.2bpp"
+PoliwrathSprite::        INCBIN "gfx/sprites/poliwrath.2bpp"
+CuboneSprite::           INCBIN "gfx/sprites/cubone.2bpp"
+MewtwoSprite::           INCBIN "gfx/sprites/mewtwo.2bpp"
+MeowthSprite::           INCBIN "gfx/sprites/meowth.2bpp"
+NidoranFSprite::         INCBIN "gfx/sprites/nidoranf.2bpp"
+NidoranMSprite::         INCBIN "gfx/sprites/nidoranm.2bpp"
+NidorinoSprite::         INCBIN "gfx/sprites/nidorino.2bpp"
+PsyduckSprite::          INCBIN "gfx/sprites/psyduck.2bpp"
+
+SECTION "Pokemon OW Sprites 3", ROMX
+
+ClefairySprite::         INCBIN "gfx/sprites/clefairy.2bpp"
+JigglypuffSprite::       INCBIN "gfx/sprites/jigglypuff.2bpp"
+WigglytuffSprite::       INCBIN "gfx/sprites/wigglytuff.2bpp"
+KangaskhanSprite::       INCBIN "gfx/sprites/kangaskhan.2bpp"
+SlowpokeSprite::         INCBIN "gfx/sprites/slowpoke.2bpp"
+ArticunoSprite::         INCBIN "gfx/sprites/articuno.2bpp"
+ZapdosSprite::           INCBIN "gfx/sprites/zapdos.2bpp"
+MoltresSprite::          INCBIN "gfx/sprites/moltres.2bpp"
+
+SECTION "Pokemon OW Sprites 4", ROMX
+
+SlowbroSprite::          INCBIN "gfx/icons/slowbro_ow.2bpp"
+VoltorbSprite::          INCBIN "gfx/icons/voltorb_ow.2bpp"
+ElectrodeSprite::        INCBIN "gfx/icons/electrode_ow.2bpp"
 
 
 ; Separate ROM bank: Battle Engine 2 cannot fit this 12-tile sheet (linker overflow).
