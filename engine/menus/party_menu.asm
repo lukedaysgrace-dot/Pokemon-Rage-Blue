@@ -121,19 +121,19 @@ RedrawPartyMenu_::
 	rl b
 	ld c, a
 	add hl, bc
-	ld de, wEvoDataBuffer
+	ld de, wBuffer
 	ld a, BANK(EvosMovesPointerTable)
 	ld bc, 2
 	call FarCopyData
-	ld hl, wEvoDataBuffer
+	ld hl, wBuffer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wEvoDataBuffer
+	ld de, wBuffer
 	ld a, BANK(EvosMovesPointerTable)
-	ld bc, wEvoDataBufferEnd - wEvoDataBuffer
+	ld bc, 29
 	call FarCopyData
-	ld hl, wEvoDataBuffer
+	ld hl, wBuffer
 	ld de, .notAbleToEvolveText
 ; loop through the pokemon's evolution entries
 .checkEvolutionsLoop

@@ -98,24 +98,25 @@ LoadMapSpriteTilePatterns:
 	push af
 	ld a, [hl] ; [x#SPRITESTATEDATA2_IMAGEBASEOFFSET]
 	ld b, a ; b = current sprite picture ID
-	cp SPRITE_BLUE_CLOAK ; 12-tile NPC but const is after FIRST_STILL_SPRITE
-	jr z, .notFourTileSprite
-	cp SPRITE_GREEN_ROCKET ; same (see data/sprites/sprites.asm: 12 + 12 tile sheet)
-	jr z, .notFourTileSprite
-	cp SPRITE_NINJA ; same
-	jr z, .notFourTileSprite
-	cp SPRITE_JANINE ; same
-	jr z, .notFourTileSprite
-	cp SPRITE_ARIANA
-	jr z, .notFourTileSprite
-	cp SPRITE_ARCHER
-	jr z, .notFourTileSprite
-	cp SPRITE_PETREL
-	jr z, .notFourTileSprite
-	cp SPRITE_PROTON
-	jr z, .notFourTileSprite
-	cp SPRITE_SOLDIER
-	jr z, .notFourTileSprite
+	cp SPRITE_GREEN_ROCKET ; 12-tile NPCs after FIRST_STILL_SPRITE
+	jr c, .checkPokemonRanges
+	cp SPRITE_UNUSED_GAMBLER_ASLEEP_2
+	jr c, .notFourTileSprite
+.checkPokemonRanges
+	cp SPRITE_NINJA
+	jr c, .checkAddedPokemonRanges
+	cp SPRITE_CHARMANDER
+	jr c, .notFourTileSprite
+.checkAddedPokemonRanges
+	cp SPRITE_PIDGEY
+	jr c, .checkStillCutoff
+	cp SPRITE_SLOWBRO
+	jr c, .notFourTileSprite
+	cp SPRITE_ARTICUNO
+	jr c, .checkStillCutoff
+	cp SPRITE_MOLTRES + 1
+	jr c, .notFourTileSprite
+.checkStillCutoff
 	cp FIRST_STILL_SPRITE ; is it a 4-tile sprite?
 	jr c, .notFourTileSprite
 	pop af

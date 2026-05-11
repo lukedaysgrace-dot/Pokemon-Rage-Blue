@@ -14,6 +14,7 @@
 	const SPRITESET_FUCHSIA         ; 0a
 	const SPRITESET_ROUTE_10_NORTH  ; 0b
 	const SPRITESET_PALLET_TOWN     ; 0c
+	const SPRITESET_CERULEAN_CITY   ; 0d
 DEF NUM_SPRITE_SETS EQU const_value - 1
 
 ; split sprite set ids

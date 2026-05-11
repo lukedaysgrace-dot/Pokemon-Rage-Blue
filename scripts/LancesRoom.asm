@@ -199,7 +199,7 @@ LancesRoomLanceText:
 	ld a, 2
 	ld [wEngagedTrainerSet], a
 	call InitBattleEnemyParameters
-	xor a
+	ld a, 1
 	ld [wGymLeaderNo], a
 	ld hl, wStatusFlags4
 	set BIT_UNKNOWN_4_1, [hl]
@@ -212,6 +212,8 @@ LancesRoomLanceText:
 	ld [wCurMapScript], a
 	jp TextScriptEnd
 .vanilla
+	ld a, 1
+	ld [wGymLeaderNo], a
 	ld hl, LancesRoomTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd

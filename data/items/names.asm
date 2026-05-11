@@ -34,6 +34,7 @@ ItemNames::
 	li "FIRE STONE"
 	li "THUNDERSTONE"
 	li "WATER STONE"
+	li "ICE STONE"
 	li "HP UP"
 	li "PROTEIN"
 	li "IRON"
