@@ -94,4 +94,10 @@ SpriteSheetPointerTable:
 	overworld_sprite PetrelSprite, 12           ; SPRITE_PETREL
 	overworld_sprite ProtonSprite, 12           ; SPRITE_PROTON
 	overworld_sprite SoldierSprite, 12          ; SPRITE_SOLDIER
+	overworld_sprite BulbasaurSprite, 4         ; SPRITE_BULBASAUR
+	overworld_sprite CharmanderSprite, 4        ; SPRITE_CHARMANDER
+	overworld_sprite SquirtleSprite, 4          ; SPRITE_SQUIRTLE
+	overworld_sprite ChikoritaSprite, 4         ; SPRITE_CHIKORITA
+	overworld_sprite CyndaquilSprite, 4         ; SPRITE_CYNDAQUIL
+	overworld_sprite TotodileSprite, 4          ; SPRITE_TOTODILE
 	assert_table_length NUM_SPRITES

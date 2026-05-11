@@ -1,6 +1,6 @@
 	db DEX_MAMOSWINE ; pokedex id
 
-	db 110, 130,  80,  80,  60
+	db 110, 110,  80,  80,  80
 	;   hp  atk  def  spd  spc
 
 	db ICE, GROUND ; type

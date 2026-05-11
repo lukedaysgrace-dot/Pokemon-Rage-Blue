@@ -1,6 +1,6 @@
 	db DEX_PILOSWINE ; pokedex id
 
-	db 100, 100,  80,  50,  60
+	db 100, 90,  80,  50,  70
 	;   hp  atk  def  spd  spc
 
 	db ICE, GROUND ; type

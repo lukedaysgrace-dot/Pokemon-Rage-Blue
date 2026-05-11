@@ -6,6 +6,8 @@ BikeShop_TextPointers:
 	dw_const BikeShopClerkText,             TEXT_BIKESHOP_CLERK
 	dw_const BikeShopMiddleAgedWomanText,   TEXT_BIKESHOP_MIDDLE_AGED_WOMAN
 	dw_const BikeShopYoungsterText,         TEXT_BIKESHOP_YOUNGSTER
+	dw_const BikeShopSailorText,            TEXT_BIKESHOP_SAILOR
+	dw_const BikeShopTotodileText,          TEXT_BIKESHOP_TOTODILE
 
 BikeShopClerkText:
 	text_asm
@@ -239,3 +241,57 @@ BikeShopYoungsterText:
 .CoolBikeText:
 	text_far _BikeShopYoungsterCoolBikeText
 	text_end
+
+BikeShopSailorText:
+	text_asm
+	CheckEvent EVENT_GOT_TOTODILE_IN_BIKE_SHOP
+	jr nz, .after_gift
+	ld hl, .OfferText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	lb bc, TOTODILE, 10
+	call GivePokemon
+	jr nc, .done
+	SetEvent EVENT_GOT_TOTODILE_IN_BIKE_SHOP
+	ld a, TOGGLE_BIKE_SHOP_TOTODILE
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld hl, .ReceivedText
+	call PrintText
+	jr .done
+.after_gift
+	ld hl, .AfterGiftText
+	call PrintText
+	jr .done
+.refused
+	ld hl, .RefusedText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+.OfferText:
+	text_far _BikeShopSailorOfferText
+	text_end
+
+.ReceivedText:
+	text_far _BikeShopSailorReceivedText
+	text_end
+
+.AfterGiftText:
+	text_far _BikeShopSailorAfterGiftText
+	text_end
+
+.RefusedText:
+	text_far _BikeShopSailorRefusedText
+	text_end
+
+BikeShopTotodileText:
+	text_far _BikeShopTotodileText
+	text_asm
+	ld a, TOTODILE
+	call PlayCry
+	call WaitForSoundToFinish
+	jp TextScriptEnd

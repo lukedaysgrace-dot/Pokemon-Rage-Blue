@@ -1,5 +1,7 @@
 	object_const_def
 	const_export VERMILIONTRADEHOUSE_LITTLE_GIRL
+	const_export VERMILIONTRADEHOUSE_GAMBLER
+	const_export VERMILIONTRADEHOUSE_CHIKORITA
 
 VermilionTradeHouse_Object:
 	db $a ; border block
@@ -12,5 +14,7 @@ VermilionTradeHouse_Object:
 
 	def_object_events
 	object_event  3,  5, SPRITE_LITTLE_GIRL, STAY, UP, TEXT_VERMILIONTRADEHOUSE_LITTLE_GIRL
+	object_event  2,  1, SPRITE_GAMBLER_ASLEEP, STAY, DOWN, TEXT_VERMILIONTRADEHOUSE_GAMBLER
+	object_event  3,  1, SPRITE_CHIKORITA, STAY, LEFT, TEXT_VERMILIONTRADEHOUSE_CHIKORITA
 
 	def_warps_to VERMILION_TRADE_HOUSE

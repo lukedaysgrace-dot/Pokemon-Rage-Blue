@@ -87,6 +87,48 @@ _VermilionCitySailor2Text::
 	line "once a year."
 	done
 
+_VermilionCityGuardOfferText::
+	text "We rescued this"
+	line "SQUIRTLE, but it"
+	cont "needs a trainer."
+
+	para "You seem capable."
+	line "Please take it."
+	done
+
+_VermilionCityGuardReceivedText::
+	text "Take good care of"
+	line "SQUIRTLE."
+	done
+
+_VermilionCityGuardSameStarterText::
+	text "You already have"
+	line "a SQUIRTLE from"
+	cont "the start."
+
+	para "I'll hold on to"
+	line "this one for"
+	cont "another trainer."
+	done
+
+_VermilionCityGuardAfterGiftText::
+	text "That SQUIRTLE was"
+	line "looking for a"
+	cont "strong trainer."
+	done
+
+_VermilionCityGuardRefusedText::
+	text "Understood."
+
+	para "We'll keep looking"
+	line "for a trainer"
+	cont "for SQUIRTLE."
+	done
+
+_VermilionCitySquirtleText::
+	text "SQUIRTLE: Squirt!"
+	done
+
 _VermilionCitySignText::
 	text "VERMILION CITY"
 	line "The Port of"

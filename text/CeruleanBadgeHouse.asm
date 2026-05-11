@@ -1,6 +1,6 @@
 _CeruleanBadgeHouseFossilScientistIntroText::
 	text "Hello there! I"
-	cont "used to"
+	line "used to"
 	cont "work at the"
 	cont "Cinnabar Lab!"
 	cont "I split off from"

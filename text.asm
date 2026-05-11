@@ -190,6 +190,7 @@ SECTION "Text 8", ROMX
 
 INCLUDE "text/VermilionGym_2.asm"
 INCLUDE "text/VermilionPidgeyHouse.asm"
+INCLUDE "text/VermilionTradeHouse.asm"
 INCLUDE "text/VermilionDock.asm"
 INCLUDE "text/VermilionOldRodHouse.asm"
 INCLUDE "text/CeladonMart1F.asm"

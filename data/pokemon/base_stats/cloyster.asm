@@ -1,6 +1,6 @@
 	db DEX_CLOYSTER ; pokedex id
 
-	db  50,  95, 180,  70,  85
+	db  80,  95, 150,  70,  85
 	;   hp  atk  def  spd  spc
 
 	db WATER, ICE ; type

@@ -45,7 +45,8 @@
 	const_next $68
 	const EVENT_BOUGHT_MUSEUM_TICKET
 	const EVENT_GOT_OLD_AMBER
-	const_skip 8
+	const EVENT_GOT_CYNDAQUIL_IN_MUSEUM
+	const_skip 7
 	const EVENT_BEAT_PEWTER_GYM_TRAINER_0
 	const_skip 3
 	const EVENT_GOT_TM34
@@ -54,7 +55,9 @@
 ; Cerulean City events
 	const_next $98
 	const EVENT_BEAT_CERULEAN_RIVAL
-	const_skip 14
+	const EVENT_GOT_BULBASAUR_IN_CERULEAN
+	const EVENT_GOT_TOTODILE_IN_BIKE_SHOP
+	const_skip 12
 	const EVENT_BEAT_CERULEAN_ROCKET_THIEF
 	const_skip 18
 	const EVENT_BEAT_CERULEAN_GYM_TRAINER_0
@@ -103,7 +106,9 @@
 	const_next $150
 	const_skip
 	const EVENT_GOT_BIKE_VOUCHER
-	const_skip 4
+	const EVENT_GOT_SQUIRTLE_IN_VERMILION
+	const EVENT_GOT_CHIKORITA_IN_TRADE_HOUSE
+	const_skip 2
 	const EVENT_SEEL_FAN_BOAST
 	const EVENT_PIKACHU_FAN_BOAST
 	const_skip 8
@@ -514,7 +519,7 @@
 	const EVENT_BEAT_ROUTE_24_TRAINER_3
 	const EVENT_BEAT_ROUTE_24_TRAINER_4
 	const EVENT_BEAT_ROUTE_24_TRAINER_5
-	const_skip
+	const EVENT_GOT_CHARMANDER_ON_ROUTE24
 	const EVENT_NUGGET_REWARD_AVAILABLE
 
 ; Route 25 events

@@ -2,6 +2,8 @@
 	const_export BIKESHOP_CLERK
 	const_export BIKESHOP_MIDDLE_AGED_WOMAN
 	const_export BIKESHOP_YOUNGSTER
+	const_export BIKESHOP_SAILOR
+	const_export BIKESHOP_TOTODILE
 
 BikeShop_Object:
 	db $e ; border block
@@ -16,5 +18,7 @@ BikeShop_Object:
 	object_event  6,  2, SPRITE_BIKE_SHOP_CLERK, STAY, NONE, TEXT_BIKESHOP_CLERK
 	object_event  5,  6, SPRITE_MIDDLE_AGED_WOMAN, WALK, UP_DOWN, TEXT_BIKESHOP_MIDDLE_AGED_WOMAN
 	object_event  1,  3, SPRITE_YOUNGSTER, STAY, UP, TEXT_BIKESHOP_YOUNGSTER
+	object_event  2,  5, SPRITE_SAILOR, STAY, RIGHT, TEXT_BIKESHOP_SAILOR
+	object_event  3,  5, SPRITE_TOTODILE, STAY, LEFT, TEXT_BIKESHOP_TOTODILE
 
 	def_warps_to BIKE_SHOP

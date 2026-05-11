@@ -52,11 +52,44 @@ _Museum1FScientist1TakePlentyOfTimeText::
 	line "time to look!"
 	done
 
-_Museum1FGamblerText::
-	text "That is one"
-	line "magnificent"
-	cont "fossil!"
+_Museum1FGamblerOfferText::
+	text "I found this poor"
+	line "CYNDAQUIL out on"
+	cont "the road."
+
+	para "I've looked after"
+	line "it, but I'm too"
+	cont "old to raise a"
+	cont "#MON now."
+
+	para "Will you take"
+	line "care of it?"
 	done
+
+_Museum1FGamblerReceivedText::
+	text "Treat CYNDAQUIL"
+	line "with kindness."
+	done
+
+_Museum1FGamblerAfterGiftText::
+	text "That CYNDAQUIL"
+	line "looked lonely."
+
+	para "I'm glad it found"
+	line "a trainer."
+	done
+
+_Museum1FGamblerRefusedText::
+	text "I understand."
+
+	para "I'll keep looking"
+	line "after CYNDAQUIL"
+	cont "for now."
+	done
+
+_Museum1FCyndaquilText::
+	text "CYNDAQUIL: Cynda!@"
+	text_end
 
 _Museum1FScientist2TakeThisToAPokemonLabText::
 	text "Ssh! I think that"

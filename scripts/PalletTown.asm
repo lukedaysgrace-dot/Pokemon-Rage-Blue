@@ -166,18 +166,40 @@ PalletTownGreenAfterBattleScript:
 	ret
 
 PalletTownUpdateGreenVisibility:
-	CheckEvent EVENT_REMATCH_DEFEATED_RIVAL_CHAMPION
+	call PalletTownShouldShowGreen
+	ld d, a
+	ld a, PALLETTOWN_GREEN
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ld a, d
+	and a
 	jr z, .hide
-	call PalletTownOriginal150PokedexComplete
-	jr nc, .hide
 .show
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret z
 	ld a, TOGGLE_PALLET_TOWN_GREEN
 	ld [wToggleableObjectIndex], a
 	predef_jump ShowObject
 .hide
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret nz
 	ld a, TOGGLE_PALLET_TOWN_GREEN
 	ld [wToggleableObjectIndex], a
 	predef_jump HideObject
+
+PalletTownShouldShowGreen:
+	CheckEvent EVENT_REMATCH_DEFEATED_RIVAL_CHAMPION
+	jr z, .hide
+	call PalletTownOriginal150PokedexComplete
+	jr nc, .hide
+	ld a, TRUE
+	ret
+.hide
+	xor a
+	ret
 
 ; Returns carry if the original 150 Pokédex entries are owned.
 ; Mew (#151, bit 6 of byte 18) is intentionally ignored.

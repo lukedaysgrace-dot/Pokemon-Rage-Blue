@@ -82,41 +82,43 @@ ENDM
 	toggle_consts_for ROUTE_24
 	const TOGGLE_NUGGET_BRIDGE_GUY             ; 26
 	const TOGGLE_ROUTE_24_ITEM                 ; 27 X
+	const TOGGLE_ROUTE_24_CHARMANDER           ; 28
 
 	toggle_consts_for ROUTE_25
-	const TOGGLE_ROUTE_25_ITEM                 ; 28 X
-	const TOGGLE_ROUTE_25_GREEN                ; 29
+	const TOGGLE_ROUTE_25_ITEM                 ; 29 X
+	const TOGGLE_ROUTE_25_GREEN                ; 2A
 
 	toggle_consts_for BLUES_HOUSE
-	const TOGGLE_DAISY_SITTING                 ; 2A
-	const TOGGLE_DAISY_WALKING                 ; 2B
-	const TOGGLE_TOWN_MAP                      ; 2C
+	const TOGGLE_DAISY_SITTING                 ; 2B
+	const TOGGLE_DAISY_WALKING                 ; 2C
+	const TOGGLE_TOWN_MAP                      ; 2D
 
 	toggle_consts_for OAKS_LAB
-	const TOGGLE_OAKS_LAB_RIVAL                ; 2D
-	const TOGGLE_OAKS_LAB_GREEN                ; 2E
-	const TOGGLE_STARTER_BALL_1                ; 2F
-	const TOGGLE_STARTER_BALL_2                ; 30
-	const TOGGLE_STARTER_BALL_3                ; 31
-	const TOGGLE_OAKS_LAB_OAK_1                ; 32
-	const TOGGLE_POKEDEX_1                     ; 33
-	const TOGGLE_POKEDEX_2                     ; 34
-	const TOGGLE_OAKS_LAB_OAK_2                ; 35
+	const TOGGLE_OAKS_LAB_RIVAL                ; 2E
+	const TOGGLE_OAKS_LAB_GREEN                ; 2F
+	const TOGGLE_STARTER_BALL_1                ; 30
+	const TOGGLE_STARTER_BALL_2                ; 31
+	const TOGGLE_STARTER_BALL_3                ; 32
+	const TOGGLE_OAKS_LAB_OAK_1                ; 33
+	const TOGGLE_POKEDEX_1                     ; 34
+	const TOGGLE_POKEDEX_2                     ; 35
+	const TOGGLE_OAKS_LAB_OAK_2                ; 36
 
 	toggle_consts_for VIRIDIAN_GYM
-	const TOGGLE_VIRIDIAN_GYM_GIOVANNI         ; 35
-	const TOGGLE_VIRIDIAN_GYM_ITEM             ; 36 X
+	const TOGGLE_VIRIDIAN_GYM_GIOVANNI         ; 36
+	const TOGGLE_VIRIDIAN_GYM_ITEM             ; 37 X
 
 	toggle_consts_for MUSEUM_1F
-	const TOGGLE_OLD_AMBER                     ; 35
+	const TOGGLE_OLD_AMBER                     ; 37
+	const TOGGLE_MUSEUM_1F_CYNDAQUIL
 
 	toggle_consts_for CERULEAN_CAVE_1F
-	const TOGGLE_CERULEAN_CAVE_1F_ITEM_1       ; 36 X
-	const TOGGLE_CERULEAN_CAVE_1F_ITEM_2       ; 37 X
-	const TOGGLE_CERULEAN_CAVE_1F_ITEM_3       ; 38 X
+	const TOGGLE_CERULEAN_CAVE_1F_ITEM_1       ; 38 X
+	const TOGGLE_CERULEAN_CAVE_1F_ITEM_2       ; 39 X
+	const TOGGLE_CERULEAN_CAVE_1F_ITEM_3       ; 3A X
 
 	toggle_consts_for POKEMON_TOWER_2F
-	const TOGGLE_POKEMON_TOWER_2F_RIVAL        ; 39
+	const TOGGLE_POKEMON_TOWER_2F_RIVAL        ; 3B
 
 	toggle_consts_for POKEMON_TOWER_3F
 	const TOGGLE_POKEMON_TOWER_3F_ITEM         ; 3A X
@@ -181,6 +183,12 @@ ENDM
 	const TOGGLE_POWER_PLANT_ITEM_3            ; 59 X
 	const TOGGLE_POWER_PLANT_ITEM_4            ; 5A X
 	const TOGGLE_POWER_PLANT_ITEM_5            ; 5B X
+
+	toggle_consts_for CERULEAN_TRADE_HOUSE
+	const TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
+
+	toggle_consts_for VERMILION_CITY
+	const TOGGLE_VERMILION_CITY_SQUIRTLE
 
 	toggle_consts_for VICTORY_ROAD_2F
 	const TOGGLE_MOLTRES                       ; 5C X
@@ -416,5 +424,11 @@ ENDM
 
 	toggle_consts_for FUCHSIA_GYM
 	const TOGGLE_FUCHSIA_GYM_JANINE            ; E6
+
+	toggle_consts_for BIKE_SHOP
+	const TOGGLE_BIKE_SHOP_TOTODILE
+
+	toggle_consts_for VERMILION_TRADE_HOUSE
+	const TOGGLE_VERMILION_TRADE_HOUSE_CHIKORITA
 
 DEF NUM_TOGGLEABLE_OBJECTS EQU const_value

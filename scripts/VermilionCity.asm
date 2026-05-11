@@ -122,6 +122,8 @@ VermilionCity_TextPointers:
 	dw_const VermilionCityGambler2Text,           TEXT_VERMILIONCITY_GAMBLER2
 	dw_const VermilionCityMachopText,             TEXT_VERMILIONCITY_MACHOP
 	dw_const VermilionCitySailor2Text,            TEXT_VERMILIONCITY_SAILOR2
+	dw_const VermilionCityGuardText,              TEXT_VERMILIONCITY_GUARD
+	dw_const VermilionCitySquirtleText,           TEXT_VERMILIONCITY_SQUIRTLE
 	dw_const VermilionCitySignText,               TEXT_VERMILIONCITY_SIGN
 	dw_const VermilionCityNoticeSignText,         TEXT_VERMILIONCITY_NOTICE_SIGN
 	dw_const MartSignText,                        TEXT_VERMILIONCITY_MART_SIGN
@@ -237,6 +239,71 @@ VermilionCityMachopText:
 VermilionCitySailor2Text:
 	text_far _VermilionCitySailor2Text
 	text_end
+
+VermilionCityGuardText:
+	text_asm
+	CheckEvent EVENT_GOT_SQUIRTLE_IN_VERMILION
+	jr nz, .after_gift
+	ld a, [wPlayerStarter]
+	cp STARTER2
+	jr z, .same_starter
+	ld hl, .OfferText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	lb bc, SQUIRTLE, 10
+	call GivePokemon
+	jr nc, .done
+	SetEvent EVENT_GOT_SQUIRTLE_IN_VERMILION
+	ld a, TOGGLE_VERMILION_CITY_SQUIRTLE
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld hl, .ReceivedText
+	call PrintText
+	jr .done
+.refused
+	ld hl, .RefusedText
+	call PrintText
+	jr .done
+.same_starter
+	ld hl, .SameStarterText
+	call PrintText
+	jr .done
+.after_gift
+	ld hl, .AfterGiftText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+.OfferText:
+	text_far _VermilionCityGuardOfferText
+	text_end
+
+.ReceivedText:
+	text_far _VermilionCityGuardReceivedText
+	text_end
+
+.SameStarterText:
+	text_far _VermilionCityGuardSameStarterText
+	text_end
+
+.AfterGiftText:
+	text_far _VermilionCityGuardAfterGiftText
+	text_end
+
+.RefusedText:
+	text_far _VermilionCityGuardRefusedText
+	text_end
+
+VermilionCitySquirtleText:
+	text_far _VermilionCitySquirtleText
+	text_asm
+	ld a, SQUIRTLE
+	call PlayCry
+	call WaitForSoundToFinish
+	jp TextScriptEnd
 
 VermilionCitySignText:
 	text_far _VermilionCitySignText

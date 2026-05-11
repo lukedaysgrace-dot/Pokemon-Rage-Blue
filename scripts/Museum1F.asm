@@ -36,6 +36,7 @@ Museum1F_TextPointers:
 	def_text_pointers
 	dw_const Museum1FScientist1Text, TEXT_MUSEUM1F_SCIENTIST1
 	dw_const Museum1FGamblerText,    TEXT_MUSEUM1F_GAMBLER
+	dw_const Museum1FCyndaquilText,  TEXT_MUSEUM1F_CYNDAQUIL
 	dw_const Museum1FScientist2Text, TEXT_MUSEUM1F_SCIENTIST2
 	dw_const Museum1FScientist3Text, TEXT_MUSEUM1F_SCIENTIST3
 	dw_const Museum1FOldAmberText,   TEXT_MUSEUM1F_OLD_AMBER
@@ -179,12 +180,61 @@ Museum1FScientist1Text:
 
 Museum1FGamblerText:
 	text_asm
+	CheckEvent EVENT_GOT_CYNDAQUIL_IN_MUSEUM
+	jr nz, .after_gift
+	ld hl, .OfferText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	lb bc, CYNDAQUIL, 10
+	call GivePokemon
+	jr nc, .done
+	SetEvent EVENT_GOT_CYNDAQUIL_IN_MUSEUM
+	ld a, TOGGLE_MUSEUM_1F_CYNDAQUIL
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld hl, .ReceivedText
+	call PrintText
+	jr .done
+.after_gift
+	ld hl, .AfterGiftText
+	call PrintText
+	jr .done
+.refused
+	ld hl, .RefusedText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+.OfferText:
+	text_far _Museum1FGamblerOfferText
+	text_end
+
+.ReceivedText:
+	text_far _Museum1FGamblerReceivedText
+	text_end
+
+.AfterGiftText:
+	text_far _Museum1FGamblerAfterGiftText
+	text_end
+
+.RefusedText:
+	text_far _Museum1FGamblerRefusedText
+	text_end
+
+Museum1FCyndaquilText:
+	text_asm
 	ld hl, .Text
 	call PrintText
+	ld a, CYNDAQUIL
+	call PlayCry
+	call WaitForSoundToFinish
 	jp TextScriptEnd
 
 .Text:
-	text_far _Museum1FGamblerText
+	text_far _Museum1FCyndaquilText
 	text_end
 
 Museum1FScientist2Text:

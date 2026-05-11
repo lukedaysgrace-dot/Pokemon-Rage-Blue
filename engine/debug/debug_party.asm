@@ -17,13 +17,17 @@ DebugNewGameParty: ; unreferenced except in _DEBUG
 	; "Tsunekazu Ishihara: Exeggutor is my favorite. That's because I was
 	; always using this character while I was debugging the program."
 	; From https://web.archive.org/web/20000607152840/http://pocket.ign.com/news/14973.html
-	db EXEGGUTOR, 5
-	db MEW, 5
-	db JOLTEON, 5
-	db DUGTRIO, 5
-	db ARTICUNO, 5
+	db EXEGGUTOR, 100
 IF DEF(_DEBUG)
-	db PIKACHU, 5
+	db MEW, 100
+ELSE
+	db MEW, 20
+ENDC
+	db BASTIODON, 100
+	db HIPPOWDON, 100
+	db RAMPARDOS, 100
+IF DEF(_DEBUG)
+	db CHARIZARD, 100
 ENDC
 	db -1 ; end
 
@@ -37,22 +41,21 @@ IF DEF(_DEBUG)
 	ld [wTownVisitedFlag], a
 	ld [wTownVisitedFlag + 1], a
 
-	; No badges (same as new game; use HMs to test badge checks).
-	xor a
+	; Get all badges except Earth Badge.
+	ld a, ~(1 << BIT_EARTHBADGE)
 	ld [wObtainedBadges], a
-	ld [wUnusedObtainedBadges], a
 
 	call SetDebugNewGameParty
 
 	; Exeggutor gets four HM moves.
 	ld hl, wPartyMon1Moves
-	ld a, FLY
+	ld a, STRENGTH
 	ld [hli], a
 	ld a, CUT
 	ld [hli], a
-	ld a, SURF
+	ld a, RAZOR_LEAF
 	ld [hli], a
-	ld a, STRENGTH
+	ld a, PSYCHIC_M
 	ld [hl], a
 	ld hl, wPartyMon1PP
 	ld a, 15
@@ -123,17 +126,13 @@ IF DEF(_DEBUG)
 	ret
 
 DebugSetPokedexEntries:
-IF NUM_POKEMON / 8 != 0
-	ld b, NUM_POKEMON / 8 ; 151 / 8 == 18
+	ld b, wPokedexOwnedEnd - wPokedexOwned - 1
 	ld a, %11111111
 .loop
 	ld [hli], a
 	dec b
 	jr nz, .loop
-ENDC
-IF NUM_POKEMON % 8 != 0
-	ld [hl], (1 << (NUM_POKEMON % 8)) - 1 ; (1 << 151 % 8)) - 1 == %01111111
-ENDC
+	ld [hl], %01111111
 	ret
 
 DebugNewGameItemsList:
@@ -142,12 +141,16 @@ DebugNewGameItemsList:
 	db FULL_HEAL, 99
 	db ESCAPE_ROPE, 99
 	db RARE_CANDY, 99
-	db MASTER_BALL, 99
+	db SILPH_SCOPE, 1
 	db TOWN_MAP, 1
 	db SECRET_KEY, 1
 	db CARD_KEY, 1
 	db S_S_TICKET, 1
 	db LIFT_KEY, 1
+	db HM_CUT, 1
+	db HM_FLY, 1
+	db HM_SURF, 1
+	db HM_STRENGTH, 1
 	db -1 ; end
 
 DebugUnusedList: ; unreferenced

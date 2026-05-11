@@ -629,6 +629,24 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x57: SPRITE_SOLDIER (same overworld green tint as GREEN / unused scientist)
 	db SPR_PAL_GREEN
 
+	; 0x58: SPRITE_BULBASAUR
+	db SPR_PAL_GREEN
+
+	; 0x59: SPRITE_CHARMANDER
+	db SPR_PAL_ORANGE
+
+	; 0x5a: SPRITE_SQUIRTLE
+	db SPR_PAL_BLUE
+
+	; 0x5b: SPRITE_CHIKORITA
+	db SPR_PAL_GREEN
+
+	; 0x5c: SPRITE_CYNDAQUIL
+	db SPR_PAL_ORANGE
+
+	; 0x5d: SPRITE_TOTODILE
+	db SPR_PAL_BLUE
+
 	assert_table_length NUM_SPRITES
 
 

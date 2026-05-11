@@ -98,3 +98,40 @@ _BikeShopYoungsterCoolBikeText::
 	text "Wow. Your BIKE is"
 	line "really cool!"
 	done
+
+_BikeShopSailorOfferText::
+	text "I got this"
+	line "TOTODILE, but"
+	cont "it's far too"
+	cont "naughty for me."
+
+	para "I can't train it"
+	line "properly at all."
+
+	para "Will you take it"
+	line "off my hands?"
+	done
+
+_BikeShopSailorReceivedText::
+	text "Maybe TOTODILE"
+	line "will behave for"
+	cont "you."
+	done
+
+_BikeShopSailorAfterGiftText::
+	text "That TOTODILE had"
+	line "more spirit than"
+	cont "I could handle."
+	done
+
+_BikeShopSailorRefusedText::
+	text "Fair enough."
+
+	para "I'll keep trying"
+	line "to calm TOTODILE"
+	cont "down."
+	done
+
+_BikeShopTotodileText::
+	text "TOTODILE: Toto!@"
+	text_end

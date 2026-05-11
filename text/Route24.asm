@@ -65,3 +65,44 @@ _Route24CooltrainerM2BattleText::
 	text "I saw your feat"
 	line "from the grass!"
 	done
+
+_Route24CharmanderOfferText::
+	text "I'm not a good"
+	line "enough trainer to"
+	cont "raise this well."
+
+	para "Will you take my"
+	line "CHARMANDER?"
+	done
+
+_Route24CharmanderReceivedText::
+	text "Raise CHARMANDER"
+	line "to be strong!"
+	done
+
+_Route24CharmanderSameStarterText::
+	text "Huh? You already"
+	line "have a CHARMANDER"
+	cont "from OAK!"
+
+	para "Then I'd better"
+	line "find someone else."
+	done
+
+_Route24CharmanderAfterGiftText::
+	text "My CHARMANDER is"
+	line "in good hands with"
+	cont "you."
+	done
+
+_Route24CharmanderRefusedText::
+	text "Oh..."
+
+	para "I'll keep looking"
+	line "for the right"
+	cont "trainer."
+	done
+
+_Route24CharmanderMonText::
+	text "CHARMANDER: Char!"
+	done

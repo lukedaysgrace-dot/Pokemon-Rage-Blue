@@ -87,6 +87,8 @@ Route24_TextPointers:
 	dw_const Route24CooltrainerF2Text, TEXT_ROUTE24_COOLTRAINER_F2
 	dw_const Route24Youngster2Text,    TEXT_ROUTE24_YOUNGSTER2
 	dw_const PickUpItemText,           TEXT_ROUTE24_TM_THUNDER_WAVE
+	dw_const Route24CharmanderText,    TEXT_ROUTE24_CHARMANDER_TRAINER
+	dw_const Route24CharmanderMonText, TEXT_ROUTE24_CHARMANDER
 
 Route24TrainerHeaders:
 	def_trainers 2
@@ -207,6 +209,71 @@ Route24Youngster2Text:
 	text_asm
 	ld hl, Route24TrainerHeader5
 	call TalkToTrainer
+	jp TextScriptEnd
+
+Route24CharmanderText:
+	text_asm
+	CheckEvent EVENT_GOT_CHARMANDER_ON_ROUTE24
+	jr nz, .after_gift
+	ld a, [wPlayerStarter]
+	cp STARTER1
+	jr z, .same_starter
+	ld hl, .OfferText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	lb bc, CHARMANDER, 10
+	call GivePokemon
+	jr nc, .done
+	SetEvent EVENT_GOT_CHARMANDER_ON_ROUTE24
+	ld a, TOGGLE_ROUTE_24_CHARMANDER
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld hl, .ReceivedText
+	call PrintText
+	jr .done
+.refused
+	ld hl, .RefusedText
+	call PrintText
+	jr .done
+.same_starter
+	ld hl, .SameStarterText
+	call PrintText
+	jr .done
+.after_gift
+	ld hl, .AfterGiftText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+.OfferText:
+	text_far _Route24CharmanderOfferText
+	text_end
+
+.ReceivedText:
+	text_far _Route24CharmanderReceivedText
+	text_end
+
+.SameStarterText:
+	text_far _Route24CharmanderSameStarterText
+	text_end
+
+.AfterGiftText:
+	text_far _Route24CharmanderAfterGiftText
+	text_end
+
+.RefusedText:
+	text_far _Route24CharmanderRefusedText
+	text_end
+
+Route24CharmanderMonText:
+	text_far _Route24CharmanderMonText
+	text_asm
+	ld a, CHARMANDER
+	call PlayCry
+	call WaitForSoundToFinish
 	jp TextScriptEnd
 
 Route24CooltrainerM2BattleText:

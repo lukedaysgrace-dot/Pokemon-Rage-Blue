@@ -109,6 +109,7 @@ ToggleableObjectStates:
 	toggleable_objects_for ROUTE_24
 	toggle_object_state ROUTE24_COOLTRAINER_M1,  ON
 	toggle_object_state ROUTE24_TM_THUNDER_WAVE, ON
+	toggle_object_state ROUTE24_CHARMANDER,      ON
 
 	toggleable_objects_for ROUTE_25
 	toggle_object_state ROUTE25_TM_SEISMIC_TOSS, ON
@@ -136,6 +137,7 @@ ToggleableObjectStates:
 
 	toggleable_objects_for MUSEUM_1F
 	toggle_object_state MUSEUM1F_OLD_AMBER, ON
+	toggle_object_state MUSEUM1F_CYNDAQUIL, ON
 
 	toggleable_objects_for CERULEAN_CAVE_1F
 	toggle_object_state CERULEANCAVE1F_FULL_RESTORE, ON
@@ -208,6 +210,12 @@ ToggleableObjectStates:
 	toggle_object_state POWERPLANT_RARE_CANDY, ON
 	toggle_object_state POWERPLANT_TM_THUNDER, ON
 	toggle_object_state POWERPLANT_TM_REFLECT, ON
+
+	toggleable_objects_for CERULEAN_TRADE_HOUSE
+	toggle_object_state CERULEANTRADEHOUSE_BULBASAUR, ON
+
+	toggleable_objects_for VERMILION_CITY
+	toggle_object_state VERMILIONCITY_SQUIRTLE, ON
 
 	toggleable_objects_for VICTORY_ROAD_2F
 	toggle_object_state VICTORYROAD2F_MOLTRES,       ON
@@ -443,6 +451,12 @@ ToggleableObjectStates:
 
 	toggleable_objects_for FUCHSIA_GYM
 	toggle_object_state FUCHSIAGYM_JANINE, OFF
+
+	toggleable_objects_for BIKE_SHOP
+	toggle_object_state BIKESHOP_TOTODILE, ON
+
+	toggleable_objects_for VERMILION_TRADE_HOUSE
+	toggle_object_state VERMILIONTRADEHOUSE_CHIKORITA, ON
 
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 

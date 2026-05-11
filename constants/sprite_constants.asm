@@ -91,4 +91,10 @@ DEF FIRST_STILL_SPRITE EQU const_value
 	const SPRITE_PETREL                 ; $55
 	const SPRITE_PROTON                 ; $56
 	const SPRITE_SOLDIER                ; $57
+	const SPRITE_BULBASAUR              ; $58
+	const SPRITE_CHARMANDER             ; $59
+	const SPRITE_SQUIRTLE               ; $5a
+	const SPRITE_CHIKORITA              ; $5b
+	const SPRITE_CYNDAQUIL              ; $5c
+	const SPRITE_TOTODILE               ; $5d
 DEF NUM_SPRITES EQU const_value - 1
