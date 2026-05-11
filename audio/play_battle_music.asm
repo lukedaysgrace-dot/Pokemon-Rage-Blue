@@ -21,10 +21,15 @@ PlayBattleMusic::
 	cp OPP_BLUE_CLOAK
 	jr z, .finalBattle
 	cp OPP_GREEN
-	jr z, .finalBattle
+	jr c, .notGreenBattle
+	cp OPP_GREEN_ROCKET + 1
+	jr c, .normalTrainerBattle
+.notGreenBattle
 	cp OPP_LANCE
 	jr nz, .normalTrainerBattle
-	ld a, MUSIC_GYM_LEADER_BATTLE ; lance also plays gym leader theme
+; lance uses the gym leader / Elite Four theme
+.gymLeaderBattle
+	ld a, MUSIC_GYM_LEADER_BATTLE
 	jr .playSong
 .normalTrainerBattle
 	ld a, MUSIC_TRAINER_BATTLE

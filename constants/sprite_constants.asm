@@ -97,4 +97,33 @@ DEF FIRST_STILL_SPRITE EQU const_value
 	const SPRITE_CHIKORITA              ; $5b
 	const SPRITE_CYNDAQUIL              ; $5c
 	const SPRITE_TOTODILE               ; $5d
+	const SPRITE_PIDGEY                 ; $5e
+	const SPRITE_SPEAROW                ; $5f
+	const SPRITE_FEAROW                 ; $60
+	const SPRITE_DODUO                  ; $61
+	const SPRITE_PIDGEOT                ; $62
+	const SPRITE_CHANSEY                ; $63
+	const SPRITE_PIKACHU                ; $64
+	const SPRITE_LAPRAS                 ; $65
+	const SPRITE_MACHOP                 ; $66
+	const SPRITE_MACHOKE                ; $67
+	const SPRITE_POLIWRATH              ; $68
+	const SPRITE_CUBONE                 ; $69
+	const SPRITE_MEWTWO                 ; $6a
+	const SPRITE_MEOWTH                 ; $6b
+	const SPRITE_NIDORAN_F              ; $6c
+	const SPRITE_NIDORAN_M              ; $6d
+	const SPRITE_NIDORINO               ; $6e
+	const SPRITE_PSYDUCK                ; $6f
+	const SPRITE_CLEFAIRY               ; $70
+	const SPRITE_JIGGLYPUFF             ; $71
+	const SPRITE_WIGGLYTUFF             ; $72
+	const SPRITE_KANGASKHAN             ; $73
+	const SPRITE_SLOWPOKE               ; $74
+	const SPRITE_SLOWBRO                ; $75
+	const SPRITE_VOLTORB                ; $76
+	const SPRITE_ELECTRODE              ; $77
+	const SPRITE_ARTICUNO               ; $78
+	const SPRITE_ZAPDOS                 ; $79
+	const SPRITE_MOLTRES                ; $7a
 DEF NUM_SPRITES EQU const_value - 1
