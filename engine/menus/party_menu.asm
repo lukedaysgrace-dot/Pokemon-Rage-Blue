@@ -10,6 +10,7 @@ RedrawPartyMenu_::
 	cp SWAP_MONS_PARTY_MENU
 	jp z, .printMessage
 	call ErasePartyMenuCursors
+	farcall LoadMonPartySpriteGfxWithLCDDisabled ; keep slot-based party icon tiles in sync after an in-menu reorder
 	farcall InitPartyMenuBlkPacket
 	hlcoord 3, 0
 	ld de, wPartySpecies
