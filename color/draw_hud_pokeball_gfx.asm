@@ -12,10 +12,10 @@ LoadPartyPokeballGfx:
 	ldh [rWBK], a
 
 	ld d, PAL_REDBAR
-	ld e, 2 ; CGB OBJ slot 2 (ATK "red" bar — SetPal also patches this each refresh)
+	ld e, 2 ; ATK_PAL_RED
 	farcall LoadSGBPalette_Sprite
 
-	; Map pokeball tile ids to CGB pal 2
+	; Map pokeball tile ids to the red attack palette
 	ld hl, W2_SpritePaletteMap + $31
 	ld a, 2
 	ld [hli], a

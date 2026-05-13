@@ -157,6 +157,10 @@ _Route13CooltrainerM3AfterBattleText::
 	cont "and PIDGEOTTO..."
 	done
 
+_Route13MewBattleText::
+	text "Mew!"
+	done
+
 _Route13TrainerTips1Text::
 	text "TRAINER TIPS"
 

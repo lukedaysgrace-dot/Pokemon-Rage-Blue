@@ -1,4 +1,5 @@
 Route13_Script:
+	call Route13UpdateMewVisibility
 	call EnableAutoTextBoxDrawing
 	ld hl, Route13TrainerHeaders
 	ld de, Route13_ScriptPointers
@@ -6,6 +7,33 @@ Route13_Script:
 	call ExecuteCurMapScriptInTable
 	ld [wRoute13CurScript], a
 	ret
+
+Route13UpdateMewVisibility:
+	CheckEvent EVENT_BEAT_PALLET_TOWN_GREEN
+	jr z, .hide
+	CheckEvent EVENT_BEAT_ROUTE13_MEW
+	jr nz, .hide
+	ld a, ROUTE13_MEW
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret z
+	ld a, TOGGLE_ROUTE_13_MEW
+	ld [wToggleableObjectIndex], a
+	predef_jump ShowObject
+.hide
+	ld a, ROUTE13_MEW
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret nz
+	ld a, TOGGLE_ROUTE_13_MEW
+	ld [wToggleableObjectIndex], a
+	predef_jump HideObject
 
 Route13_ScriptPointers:
 	def_script_pointers
@@ -25,6 +53,7 @@ Route13_TextPointers:
 	dw_const Route13Beauty2Text,       TEXT_ROUTE13_BEAUTY2
 	dw_const Route13BikerText,         TEXT_ROUTE13_BIKER
 	dw_const Route13CooltrainerM3Text, TEXT_ROUTE13_COOLTRAINER_M3
+	dw_const Route13MewText,           TEXT_ROUTE13_MEW
 	dw_const Route13TrainerTips1Text,  TEXT_ROUTE13_TRAINER_TIPS1
 	dw_const Route13TrainerTips2Text,  TEXT_ROUTE13_TRAINER_TIPS2
 	dw_const Route13SignText,          TEXT_ROUTE13_SIGN
@@ -51,6 +80,8 @@ Route13TrainerHeader8:
 	trainer EVENT_BEAT_ROUTE_13_TRAINER_8, 2, Route13BikerBattleText, Route13BikerEndBattleText, Route13BikerAfterBattleText
 Route13TrainerHeader9:
 	trainer EVENT_BEAT_ROUTE_13_TRAINER_9, 4, Route13CooltrainerM3BattleText, Route13CooltrainerM3EndBattleText, Route13CooltrainerM3AfterBattleText
+Route13MewTrainerHeader:
+	trainer EVENT_BEAT_ROUTE13_MEW, 0, Route13MewBattleText, Route13MewBattleText, Route13MewBattleText
 	db -1 ; end
 
 Route13CooltrainerM1Text:
@@ -219,6 +250,20 @@ Route13CooltrainerM3Text:
 	text_asm
 	ld hl, Route13TrainerHeader9
 	call TalkToTrainer
+	jp TextScriptEnd
+
+Route13MewText:
+	text_asm
+	ld hl, Route13MewTrainerHeader
+	call TalkToTrainer
+	jp TextScriptEnd
+
+Route13MewBattleText:
+	text_far _Route13MewBattleText
+	text_asm
+	ld a, MEW
+	call PlayCry
+	call WaitForSoundToFinish
 	jp TextScriptEnd
 
 Route13CooltrainerM3BattleText:

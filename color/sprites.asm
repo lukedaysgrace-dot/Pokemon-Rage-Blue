@@ -316,6 +316,15 @@ LoadAnimationTilesetPalettes:
 	dec b
 	jr nz, .copyLoop
 
+	; Battle HUD pokeball tiles live at $31-$34 in vSprites. Animation palette setup
+	; rewrites the whole sprite palette map, so restore their intended palette after the copy.
+	ld a, ATK_PAL_RED
+	ld hl, W2_SpritePaletteMap + $31
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+
 	; If in a trade, some of the tiles near the end are different. Override some tiles
 	; for the link cable, and replace the "purple" palette to match the exact color of
 	; the link cable.

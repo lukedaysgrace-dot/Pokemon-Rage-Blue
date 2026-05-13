@@ -244,18 +244,131 @@ IndigoPlateauLobbyGreenText:
 	jp TextScriptEnd
 
 IndigoPlateauLobbyGreenBeforeBattleText:
-	text "Hey, <PLAYER>!"
-	line "Not getting into"
-	cont "LORELEI'S room"
-	cont "that easy!"
+	text "Hey! There you"
+	line "are."
+
+	para "I heard someone"
+	line "tore through"
+	cont "VICTORY ROAD"
+	cont "like a TAUROS"
+	cont "stampede."
+
+	para "Figured it had"
+	line "to be you."
+	cont "Hehe."
+
+	para "Not bad."
+	line "Seriously."
+
+	para "You've gotten"
+	line "a lot stronger"
+	cont "since we left"
+	cont "PALLET TOWN."
+
+	para "And honestly?"
+	line "It's good seeing"
+	cont "you again."
+
+	para "Things got weird"
+	line "for a while"
+	cont "after TEAM"
+	cont "ROCKET."
+
+	para "After everything"
+	line "in CINNABAR..."
+	cont "I couldn't stop"
+	cont "thinking about"
+	cont "MEW."
+
+	para "Back in the"
+	line "ROCKET HIDEOUT,"
+	cont "I found old"
+	cont "files about it."
+
+	para "At first I"
+	line "thought TEAM"
+	cont "ROCKET was just"
+	cont "chasing another"
+	cont "legend."
+
+	para "But after"
+	line "CINNABAR?"
+	cont "Hehe... no way."
+
+	para "A #MON so"
+	line "rare most people"
+	cont "think it's a"
+	cont "myth..."
+
+	para "And strong"
+	line "enough for TEAM"
+	cont "ROCKET to try"
+	cont "cloning it into"
+	cont "something else."
+
+	para "MEWTWO..."
+
+	para "Even now, that"
+	line "place gives me"
+	cont "chills."
+
+	para "But then I found"
+	line "ARTICUNO."
+
+	para "And ZAPDOS."
+
+	para "And MOLTRES."
+
+	para "The legendary"
+	line "birds are real."
+
+	para "Which means MEW"
+	line "has to be too."
+
+	para "So now I just"
+	line "want answers."
+
+	para "Where is it now?"
+	line "And what else"
+	cont "did TEAM ROCKET"
+	cont "discover before"
+	cont "they vanished?"
+
+	para "But enough"
+	line "about that."
+
+	para "You didn't climb"
+	line "all the way here"
+	cont "to hear me"
+	cont "ramble."
+
+	para "I want to see"
+	line "how far you've"
+	cont "come."
 
 	para "One battle."
-	line "Right here."
+	line "Right here,"
+	cont "right now."
+
+	para "And don't think"
+	line "I'm going easy"
+	cont "just because the"
+	cont "ELITE FOUR are"
+	cont "waiting upstairs."
+
+	para "If you're really"
+	line "ready to become"
+	cont "CHAMPION..."
+
+	para "Then prove it"
+	line "to me."
 	done
 
 IndigoPlateauLobbyGreenEndBattleText:
-	text "You beat me..."
-	line "again..."
+	text "Not even the"
+	line "legendary birds"
+	cont "could slow"
+	cont "you down.."
 	prompt
 
 IndigoPlateauLobbyGreenPlayerLoseText:
@@ -264,9 +377,74 @@ IndigoPlateauLobbyGreenPlayerLoseText:
 	done
 
 IndigoPlateauLobbyGreenAfterBattleText:
-	text "All right,"
-	line "you win."
+	text "Hehe. Guess I"
+	line "talked a big"
+	cont "game for nothing."
 
-	para "Go take on the"
-	line "ELITE FOUR."
+	para "And here I"
+	line "thought showing"
+	cont "up with all"
+	cont "three legendary"
+	cont "birds would make"
+	cont "for a dramatic"
+	cont "entrance."
+
+	para "You kinda"
+	line "ruined that."
+
+	para "But... I'm glad"
+	line "you're the one"
+	cont "standing here."
+
+	para "Most people"
+	line "would've turned"
+	cont "around after"
+	cont "everything we"
+	cont "saw."
+
+	para "TEAM ROCKET."
+	line "CINNABAR."
+	cont "MEWTWO..."
+
+	para "Honestly, part"
+	line "of me wishes we"
+	cont "never learned"
+	cont "any of it."
+
+	para "But another"
+	line "part of me can't"
+	cont "stop chasing the"
+	cont "answers."
+
+	para "And knowing you?"
+	line "Hehe..."
+	cont "you're probably"
+	cont "the same."
+
+	para "One way or"
+	line "another... I'm"
+	cont "going to find"
+	cont "MEW."
+
+	para "I don't care"
+	line "how long it"
+	cont "takes or where"
+	cont "the trail leads."
+
+	para "The ELITE FOUR"
+	line "are waiting."
+
+	para "So go on."
+
+	para "And hey..."
+	line "when this is all"
+	cont "over, come find"
+	cont "me."
+
+	para "I've got a"
+	line "feeling our"
+	cont "journey's not"
+	cont "ending at the"
+	cont "INDIGO PLATEAU."
+	cont "Hehe."
 	done

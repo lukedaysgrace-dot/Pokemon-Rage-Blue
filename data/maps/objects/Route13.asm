@@ -9,6 +9,7 @@
 	const_export ROUTE13_BEAUTY2
 	const_export ROUTE13_BIKER
 	const_export ROUTE13_COOLTRAINER_M3
+	const_export ROUTE13_MEW
 
 Route13_Object:
 	db $43 ; border block
@@ -31,5 +32,6 @@ Route13_Object:
 	object_event 32,  6, SPRITE_BEAUTY, STAY, DOWN, TEXT_ROUTE13_BEAUTY2, OPP_BEAUTY, 5
 	object_event 10,  7, SPRITE_BIKER, STAY, UP, TEXT_ROUTE13_BIKER, OPP_BIKER, 1
 	object_event  7, 13, SPRITE_COOLTRAINER_M, STAY, UP, TEXT_ROUTE13_COOLTRAINER_M3, OPP_BIRD_KEEPER, 3
+	object_event 47,  3, SPRITE_MEW, STAY, DOWN, TEXT_ROUTE13_MEW, MEW, 70
 
 	def_warps_to ROUTE_13

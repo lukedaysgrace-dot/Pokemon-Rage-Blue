@@ -45,6 +45,7 @@ ToggleableObjectStates:
 	toggleable_objects_for PALLET_TOWN
 	toggle_object_state PALLETTOWN_OAK, OFF
 	toggle_object_state PALLETTOWN_GREEN, OFF
+	toggle_object_state PALLETTOWN_MEW, OFF
 
 	toggleable_objects_for VIRIDIAN_CITY
 	toggle_object_state VIRIDIANCITY_OLD_MAN_SLEEPY, ON
@@ -95,6 +96,9 @@ ToggleableObjectStates:
 	toggle_object_state ROUTE12_SNORLAX,    ON
 	toggle_object_state ROUTE12_TM_PAY_DAY, ON
 	toggle_object_state ROUTE12_IRON,       ON
+
+	toggleable_objects_for ROUTE_13
+	toggle_object_state ROUTE13_MEW, OFF
 
 	toggleable_objects_for ROUTE_15
 	toggle_object_state ROUTE15_TM_RAGE, ON

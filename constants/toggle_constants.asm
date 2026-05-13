@@ -18,6 +18,7 @@ ENDM
 	toggle_consts_for PALLET_TOWN
 	const TOGGLE_PALLET_TOWN_OAK               ; 00
 	const TOGGLE_PALLET_TOWN_GREEN             ; 01
+	const TOGGLE_PALLET_TOWN_MEW               ; 02
 
 	toggle_consts_for VIRIDIAN_CITY
 	const TOGGLE_LYING_OLD_MAN                 ; 01
@@ -69,8 +70,11 @@ ENDM
 	const TOGGLE_ROUTE_12_ITEM_1               ; 20 X
 	const TOGGLE_ROUTE_12_ITEM_2               ; 21 X
 
+	toggle_consts_for ROUTE_13
+	const TOGGLE_ROUTE_13_MEW                  ; 22
+
 	toggle_consts_for ROUTE_15
-	const TOGGLE_ROUTE_15_ITEM                 ; 22 X
+	const TOGGLE_ROUTE_15_ITEM                 ; 23 X
 
 	toggle_consts_for ROUTE_16
 	const TOGGLE_ROUTE_16_SNORLAX              ; 23

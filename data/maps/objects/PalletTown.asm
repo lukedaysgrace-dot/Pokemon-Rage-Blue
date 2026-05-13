@@ -3,6 +3,7 @@
 	const_export PALLETTOWN_GIRL
 	const_export PALLETTOWN_FISHER
 	const_export PALLETTOWN_GREEN
+	const_export PALLETTOWN_MEW
 
 PalletTown_Object:
 	db $b ; border block
@@ -23,5 +24,6 @@ PalletTown_Object:
 	object_event  3,  8, SPRITE_GIRL, WALK, ANY_DIR, TEXT_PALLETTOWN_GIRL
 	object_event 11, 14, SPRITE_FISHER, WALK, ANY_DIR, TEXT_PALLETTOWN_FISHER
 	object_event  4, 13, SPRITE_UNUSED_SCIENTIST, STAY, DOWN, TEXT_PALLETTOWN_GREEN
+	object_event  5, 11, SPRITE_MEW, STAY, DOWN, TEXT_PALLETTOWN_MEW
 
 	def_warps_to PALLET_TOWN

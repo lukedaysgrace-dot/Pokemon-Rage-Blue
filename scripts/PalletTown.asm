@@ -19,6 +19,7 @@ PalletTown_ScriptPointers:
 	dw_const PalletTownDaisyScript,                SCRIPT_PALLETTOWN_DAISY
 	dw_const PalletTownNoopScript,                 SCRIPT_PALLETTOWN_NOOP
 	dw_const PalletTownGreenAfterBattleScript,     SCRIPT_PALLETTOWN_GREEN_AFTER_BATTLE
+	dw_const PalletTownGreenExitScript,            SCRIPT_PALLETTOWN_GREEN_EXIT
 
 PalletTownDefaultScript:
 	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB
@@ -155,10 +156,95 @@ PalletTownGreenAfterBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jr z, .reset
+	ld a, PAD_CTRL_PAD
+	ld [wJoyIgnore], a
 	SetEvent EVENT_BEAT_PALLET_TOWN_GREEN
 	ld a, TEXT_PALLETTOWN_GREEN
 	ldh [hTextID], a
 	call DisplayTextID
+	ld a, TOGGLE_PALLET_TOWN_MEW
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	call UpdateSprites
+	ld a, TEXT_PALLETTOWN_MEW_CRY
+	ldh [hTextID], a
+	call DisplayTextID
+	ld a, MEW
+	call PlayCry
+	call WaitForSoundToFinish
+	ld a, TOGGLE_PALLET_TOWN_MEW
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	call UpdateSprites
+	ld a, TEXT_PALLETTOWN_GREEN_AFTER_MEW
+	ldh [hTextID], a
+	call DisplayTextID
+	ld de, PalletTownGreenExitMovementDefault
+	ld a, [wYCoord]
+	cp 13
+	jr nz, .checkAboveTile
+	ld a, [wXCoord]
+	cp 5
+	jr nz, .checkAboveTile
+	ld de, PalletTownGreenExitMovementFromRight
+	jr .gotExitMovement
+.checkAboveTile
+	ld a, [wYCoord]
+	cp 12
+	jr nz, .gotExitMovement
+	ld a, [wXCoord]
+	cp 4
+	jr nz, .gotExitMovement
+	ld de, PalletTownGreenExitMovementFromAbove
+.gotExitMovement
+	ld a, PALLETTOWN_GREEN
+	ldh [hSpriteIndex], a
+	call MoveSprite
+	ld a, SCRIPT_PALLETTOWN_GREEN_EXIT
+	ld [wPalletTownCurScript], a
+	ret
+.reset
+	xor a ; SCRIPT_PALLETTOWN_DEFAULT
+	ld [wJoyIgnore], a
+	ld [wPalletTownCurScript], a
+	ret
+
+PalletTownGreenExitMovementDefault:
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db -1 ; end
+
+PalletTownGreenExitMovementFromRight:
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db -1 ; end
+
+PalletTownGreenExitMovementFromAbove:
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db -1 ; end
+
+PalletTownGreenExitScript:
+	ld a, [wStatusFlags5]
+	bit BIT_SCRIPTED_NPC_MOVEMENT, a
+	ret nz
+	ld a, TOGGLE_PALLET_TOWN_GREEN
+	ld [wToggleableObjectIndex], a
+	predef HideObject
 .reset
 	xor a ; SCRIPT_PALLETTOWN_DEFAULT
 	ld [wJoyIgnore], a
@@ -193,6 +279,8 @@ PalletTownUpdateGreenVisibility:
 PalletTownShouldShowGreen:
 	CheckEvent EVENT_REMATCH_DEFEATED_RIVAL_CHAMPION
 	jr z, .hide
+	CheckEvent EVENT_BEAT_PALLET_TOWN_GREEN
+	jr nz, .hide
 	call PalletTownOriginal150PokedexComplete
 	jr nc, .hide
 	ld a, TRUE
@@ -228,10 +316,13 @@ PalletTown_TextPointers:
 	dw_const PalletTownGirlText,             TEXT_PALLETTOWN_GIRL
 	dw_const PalletTownFisherText,           TEXT_PALLETTOWN_FISHER
 	dw_const PalletTownGreenText,            TEXT_PALLETTOWN_GREEN
+	dw_const PalletTownMewText,              TEXT_PALLETTOWN_MEW
 	dw_const PalletTownOaksLabSignText,      TEXT_PALLETTOWN_OAKSLAB_SIGN
 	dw_const PalletTownSignText,             TEXT_PALLETTOWN_SIGN
 	dw_const PalletTownPlayersHouseSignText, TEXT_PALLETTOWN_PLAYERSHOUSE_SIGN
 	dw_const PalletTownRivalsHouseSignText,  TEXT_PALLETTOWN_RIVALSHOUSE_SIGN
+	dw_const PalletTownMewCryText,           TEXT_PALLETTOWN_MEW_CRY
+	dw_const PalletTownGreenAfterMewText,    TEXT_PALLETTOWN_GREEN_AFTER_MEW
 
 PalletTownOakText:
 	text_asm
@@ -300,15 +391,119 @@ PalletTownGreenText:
 	jp TextScriptEnd
 
 PalletTownGreenBeforeBattleText:
-	text "You made it all"
-	line "the way back here."
+	text "I had a feeling"
+	line "you'd come back"
+	cont "here eventually."
 
-	para "Show me what"
-	line "you can do!"
+	para "Funny, isn't it?"
+
+	para "After everything"
+	line "that happened..."
+	cont "we ended up"
+	cont "right back in"
+	cont "PALLET TOWN."
+
+	para "Back where this"
+	line "all started."
+
+	para "I've been"
+	line "waiting for you."
+
+	para "And all that"
+	line "searching finally"
+	cont "paid off."
+
+	para "Hehe... yeah."
+
+	para "I found it."
+
+	para "MEW."
+
+	para "Turns out"
+	line "chasing legends"
+	cont "across KANTO,"
+	cont "diving into"
+	cont "ruins, and"
+	cont "nearly getting"
+	cont "myself killed..."
+
+	para "Actually paid"
+	line "off."
+
+	para "But the funny"
+	line "thing?"
+
+	para "The legendary"
+	line "birds never"
+	cont "mattered."
+
+	para "ARTICUNO,"
+	line "ZAPDOS,"
+	cont "MOLTRES..."
+	cont "I let them"
+	cont "all go."
+
+	para "At some point"
+	line "I realized I"
+	cont "wasn't catching"
+	cont "them because it"
+	cont "meant something."
+
+	para "I was just"
+	line "hoping they'd"
+	cont "lead me to"
+	cont "answers."
+
+	para "To MEW."
+
+	para "And in the"
+	line "end... MEW was"
+	cont "never something"
+	cont "I could force."
+
+	para "You understand"
+	line "that, don't you?"
+
+	para "It's not like"
+	line "MEWTWO."
+
+	para "It doesn't"
+	line "belong in a lab."
+	cont "Or a cage."
+
+	para "Hehe..."
+	line "honestly, I"
+	cont "think it chose"
+	cont "to appear"
+	cont "because it"
+	cont "wanted to."
+
+	para "And after"
+	line "everything we've"
+	cont "both been"
+	cont "through..."
+
+	para "I think it"
+	line "wanted to meet"
+	cont "the trainer who"
+	cont "changed KANTO."
+
+	para "So."
+
+	para "One last battle."
+
+	para "No distractions."
+	line "No ELITE FOUR"
+	cont "standing behind"
+	cont "us."
+
+	para "Just you and me."
 	done
 
 PalletTownGreenEndBattleText:
-	text "Not bad."
+	text "I can't believe"
+	line "it... even with"
+	cont "MEW by my side."
 	prompt
 
 PalletTownGreenPlayerLoseText:
@@ -317,11 +512,55 @@ PalletTownGreenPlayerLoseText:
 	done
 
 PalletTownGreenAfterBattleText:
-	text "That was a good"
-	line "battle."
+	text "So that's my"
+	line "answer."
 
-	para "I'll be watching"
-	line "from here."
+	para "Even with MEW"
+	line "at my side..."
+	cont "I still"
+	cont "couldn't"
+	cont "beat you."
+
+	para "But honestly?"
+
+	para "I think I"
+	line "understand now."
+
+	para "MEW was never"
+	line "meant to belong"
+	cont "to anyone."
+
+	para "It's too free"
+	line "for that."
+
+	para "Too curious."
+
+	para "Too... alive."
+
+	para "Hehe..."
+	line "maybe that's"
+	cont "why it came"
+	cont "willingly in"
+	cont "the first"
+	cont "place."
+
+	para "Not to be"
+	line "caught."
+
+	para "Just to see us."
+
+	para "To see how far"
+	line "two kids from"
+	cont "PALLET TOWN"
+	cont "would go."
+
+	para "...I think it's"
+	line "time."
+
+	para "Go on, MEW."
+
+	para "You don't have"
+	line "to stay anymore."
 	done
 
 PalletTownOaksLabSignText:
@@ -339,3 +578,38 @@ PalletTownPlayersHouseSignText:
 PalletTownRivalsHouseSignText:
 	text_far _PalletTownRivalsHouseSignText
 	text_end
+
+PalletTownMewText:
+	text_asm
+	jp TextScriptEnd
+
+PalletTownMewCryText:
+	text "Mew!"
+	done
+
+PalletTownGreenAfterMewText:
+	text "Guess some"
+	line "legends aren't"
+	cont "supposed to be"
+	cont "kept."
+
+	para "But I'm glad I"
+	line "got to meet it."
+
+	para "And I'm glad you"
+	line "were here to see"
+	cont "the end of this"
+	cont "journey with me."
+
+	para "...Look."
+
+	para "It's flying"
+	line "east."
+
+	para "I wonder what's"
+	line "waiting for it"
+	cont "out there."
+
+	para "I'll see you"
+	line "around, <PLAYER>."
+	done
