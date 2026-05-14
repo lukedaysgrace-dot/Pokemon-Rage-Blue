@@ -10,6 +10,7 @@ IF DEF(_RED)
 	db  25, HAUNTER
 	db  22, GOLBAT
 	db  19, VULPIX
+	db  26, MAROWAK
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -26,6 +27,8 @@ IF DEF(_BLUE)
 	db  18, DUSKULL
 	db  25, HAUNTER
 	db  19, VULPIX
+	db  23, MAROWAK
+	db  22, GOLBAT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

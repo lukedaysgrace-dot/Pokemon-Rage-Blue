@@ -87,11 +87,25 @@ _AddPartyMon::
 	jr z, .enemyPerfectDVs
 	cp BLUE_CLOAK
 	jr z, .enemyPerfectDVs
+	cp GREEN
+	jr z, .enemyPerfectDVs
+	cp GREEN_ROCKET
+	jr z, .enemyPerfectDVs
 	cp GIOVANNI
+	jr z, .enemyPerfectDVs
+	cp JANINE
+	jr z, .enemyPerfectDVs
+	cp ARIANA
+	jr z, .enemyPerfectDVs
+	cp PETREL
+	jr z, .enemyPerfectDVs
+	cp PROTON
+	jr z, .enemyPerfectDVs
+	cp ARCHER
 	jr z, .enemyPerfectDVs
 	cp KAREN
 	jr c, .enemyAverageDVs
-	cp SABRINA + 1 ; Karen-Sabrina: gym leaders
+	cp SABRINA + 1 ; Bruno–Sabrina: gym leaders
 	jr c, .enemyPerfectDVs
 	cp LORELEI
 	jr z, .enemyPerfectDVs
@@ -374,8 +388,10 @@ _AddPartyMon::
 	jp .writeTrainerStatExp
 
 .checkRocketExecsStatExp
-	; Rocket executives: 0x199A each stat.
+	; Janine / Rocket executives: ~10% of max Stat EXP -> 0x199A (~6554) each stat.
 	ld a, [wTrainerClass]
+	cp JANINE
+	jr z, .setRocketExecStatExp
 	cp PETREL
 	jr z, .setRocketExecStatExp
 	cp PROTON

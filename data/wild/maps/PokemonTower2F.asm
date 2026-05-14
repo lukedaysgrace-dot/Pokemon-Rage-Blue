@@ -28,6 +28,7 @@ IF DEF(_BLUE)
 	db  21, CUBONE
 	db  22, GOLBAT
 	db  25, HAUNTER
+	db  28, MAROWAK
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

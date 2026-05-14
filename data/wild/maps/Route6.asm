@@ -7,6 +7,9 @@ IF DEF(_RED)
 	db  10, MEOWTH
 	db  12, MANKEY
 	db  15, DODUO
+	db  18, MAGNETON
+	db  16, PIDGEOT
+	db  16, POLIWHIRL
 	db  16, PSYDUCK
 	end_grass_wildmons
 
@@ -22,7 +25,10 @@ IF DEF(_BLUE)
 	db  10, MEOWTH
 	db  12, MANKEY
 	db  15, DODUO
-	db  16, PSYDUCK
+	db  18, MAGNETON
+	db  16, PIDGEOT
+	db  16, POLIWHIRL
+	db  18, PSYDUCK
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

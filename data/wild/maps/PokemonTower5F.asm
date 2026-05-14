@@ -9,6 +9,8 @@ IF DEF(_RED)
 	db  25, HAUNTER
 	db  20, VULPIX
 	db  25, HAUNTER
+	db  25, GOLBAT
+	db  43, HYPNO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -24,6 +26,9 @@ IF DEF(_BLUE)
 	db  19, CUBONE
 	db  25, HAUNTER
 	db  20, VULPIX
+	db  25, HAUNTER
+	db  23, MAROWAK
+	db  31, MAROWAK
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

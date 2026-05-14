@@ -10,6 +10,7 @@ IF DEF(_RED)
 	db  36, GENGAR
 	db  25, HAUNTER
 	db  24, GOLBAT
+	db  34, HYPNO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -25,6 +26,9 @@ IF DEF(_BLUE)
 	db  22, GOLBAT
 	db  18, DUSKULL
 	db  25, HAUNTER
+	db  36, MAROWAK
+	db  25, GOLBAT
+	db  43, HYPNO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

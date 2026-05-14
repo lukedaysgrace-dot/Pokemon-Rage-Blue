@@ -21,6 +21,9 @@ IF DEF(_RED)
 	db  10, KRABBY
 	db  28, KINGLER
 	db  20, SEEL
+	db  30, SHELLDER
+	db  35, STARYU
+	db  40, HORSEA
 	end_water_wildmons
 ENDC
 
@@ -33,6 +36,8 @@ IF DEF(_BLUE)
 	db  13, VENONAT
 	db  12, ABRA
 	db  21, WEEPINBELL
+	db  21, GLOOM
+	db   8, MESMERIA
 	db   8, CROAGUNK
 	end_grass_wildmons
 

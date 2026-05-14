@@ -94,6 +94,7 @@ ROMX $F
 	"Battle Core"
 ROMX $10
 	"bank10"
+	"Add Party Mon"
 ROMX $11
 	"Maps 5"
 	"Pokédex Rating"

@@ -60,7 +60,6 @@ INCLUDE "engine/overworld/update_map.asm"
 INCLUDE "engine/overworld/cut.asm"
 INCLUDE "engine/overworld/toggleable_objects.asm"
 INCLUDE "engine/overworld/push_boulder.asm"
-INCLUDE "engine/pokemon/add_mon.asm"
 INCLUDE "engine/flag_action.asm"
 INCLUDE "engine/events/heal_party.asm"
 INCLUDE "engine/math/bcd.asm"
@@ -75,6 +74,11 @@ INCLUDE "engine/events/hidden_events/elevator.asm"
 INCLUDE "engine/events/hidden_events/town_map.asm"
 INCLUDE "engine/events/hidden_events/pokemon_stuff.asm"
 INCLUDE "engine/overworld/player_sprite_gfx.asm"
+
+
+SECTION "Add Party Mon", ROMX
+
+INCLUDE "engine/pokemon/add_mon.asm"
 
 
 SECTION "Font Graphics", ROMX

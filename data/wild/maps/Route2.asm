@@ -7,6 +7,10 @@ IF DEF(_RED)
 	db   5, GROWLITHE
 	db   4, JIGGLYPUFF
 	db   5, POLIWAG
+	db   3, PIDGEY
+	db   3, RATTATA
+	db   4, SPEAROW
+	db   5, GROWLITHE
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -22,6 +26,9 @@ IF DEF(_BLUE)
 	db   5, BUNEARY
 	db   4, JIGGLYPUFF
 	db   5, PHANPY
+	db   3, PIDGEY
+	db   4, SPEAROW
+	db   5, BUNEARY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

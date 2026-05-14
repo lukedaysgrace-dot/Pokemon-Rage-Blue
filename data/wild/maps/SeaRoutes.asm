@@ -13,6 +13,7 @@ IF DEF(_RED)
 	db  33, SEAKING
 	db  25, GOLDEEN
 	db  36, TENTACRUEL
+	db  39, MAGIKARP
 	end_water_wildmons
 ENDC
 
@@ -30,6 +31,7 @@ IF DEF(_BLUE)
 	db  33, SEAKING
 	db  25, GOLDEEN
 	db  36, TENTACRUEL
+	db  39, MAGIKARP
 	end_water_wildmons
 ENDC
 

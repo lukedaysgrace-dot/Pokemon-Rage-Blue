@@ -8,6 +8,9 @@ IF DEF(_RED)
 	db  22, GOLBAT
 	db  25, GRAVELER
 	db  13, ONIX
+	db  17, GEODUDE
+	db  16, ZUBAT
+	db  20, ZUBAT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -25,6 +28,7 @@ IF DEF(_BLUE)
 	db  25, MACHOKE
 	db  25, MAROWAK
 	db  13, ONIX
+	db  22, GOLBAT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

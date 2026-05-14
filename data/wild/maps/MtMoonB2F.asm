@@ -10,6 +10,7 @@ IF DEF(_RED)
 	db  12, JIGGLYPUFF
 	db  10, MACHOP
 	db  12, ONIX
+	db  13, PARAS
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

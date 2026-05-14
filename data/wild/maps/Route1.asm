@@ -8,6 +8,9 @@ IF DEF(_RED)
 	db   3, NIDORAN_F
 	db   4, PIKACHU
 	db   4, POLIWAG
+	db   4, PIDGEY
+	db   3, RATTATA
+	db   4, PIKACHU
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -23,6 +26,9 @@ IF DEF(_BLUE)
 	db   3, NIDORAN_M
 	db   3, NIDORAN_F
 	db   4, PIKACHU
+	db   3, POLIWAG
+	db   3, PIDGEY
+	db   4, RATTATA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

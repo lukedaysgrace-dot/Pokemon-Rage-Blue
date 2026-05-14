@@ -6196,7 +6196,7 @@ LoadEnemyMonData:
 	ld a, [wIsInBattle]
 	cp $2 ; is it a trainer battle?
 	jr nz, .wildOrGiftDVs
-; Rivals, gym leaders, Elite Four: max DVs; other trainers: average fixed DVs
+; Rivals, Green, Rocket execs/admins, gym leaders, Elite Four: max DVs; other trainers: average fixed DVs
 	ld a, [wTrainerClass]
 	cp RIVAL1
 	jr z, .perfectTrainerDVs
@@ -6206,11 +6206,25 @@ LoadEnemyMonData:
 	jr z, .perfectTrainerDVs
 	cp BLUE_CLOAK
 	jr z, .perfectTrainerDVs
+	cp GREEN
+	jr z, .perfectTrainerDVs
+	cp GREEN_ROCKET
+	jr z, .perfectTrainerDVs
 	cp GIOVANNI
+	jr z, .perfectTrainerDVs
+	cp JANINE
+	jr z, .perfectTrainerDVs
+	cp ARIANA
+	jr z, .perfectTrainerDVs
+	cp PETREL
+	jr z, .perfectTrainerDVs
+	cp PROTON
+	jr z, .perfectTrainerDVs
+	cp ARCHER
 	jr z, .perfectTrainerDVs
 	cp KAREN
 	jr c, .averageTrainerDVs
-	cp SABRINA + 1 ; $21-$28: Karen, Brock, Misty, Lt.Surge, Erika, Koga, Blaine, Sabrina
+	cp SABRINA + 1 ; $21-$28: Bruno, Brock, Misty, Lt.Surge, Erika, Koga, Blaine, Sabrina
 	jr c, .perfectTrainerDVs
 	cp LORELEI
 	jr z, .perfectTrainerDVs

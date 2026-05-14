@@ -27,9 +27,10 @@ IF DEF(_BLUE)
 	db  34, MAGMAR
 	db  38, MUK
 	db  42, TOXICROAK
+	db  35, RATICATE
+	db  42, RATTATA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

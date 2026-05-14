@@ -28,9 +28,9 @@ IF DEF(_BLUE)
 	db  19, MISDREAVUS
 	db  15, ZUBAT
 	db  25, HAUNTER
+	db  22, GOLBAT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

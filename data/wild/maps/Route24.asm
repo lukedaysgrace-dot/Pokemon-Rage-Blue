@@ -9,6 +9,8 @@ IF DEF(_RED)
 	db  13, ABRA
 	db  18, PIDGEOTTO
 	db  12, VENONAT
+	db  11, METAPOD
+	db  12, PIDGEOTTO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -25,6 +27,8 @@ IF DEF(_BLUE)
 	db  13, ABRA
 	db   8, RALTS
 	db  12, VENONAT
+	db  11, METAPOD
+	db   9, PIDGEOTTO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
