@@ -1,16 +1,37 @@
 SafariZoneEastWildMons:
+IF DEF(_RED)
 	def_grass_wildmons 30 ; encounter rate
-	db 24, NIDORAN_M
-	db 24, NIDORAN_F
-	db 26, DODUO
-	db 22, PARAS
-	db 25, EXEGGCUTE
-	db 33, NIDORINO
-	db 33, NIDORINA
-	db 25, KANGASKHAN
-	db 28, SCYTHER
-	db 28, PINSIR
+	db  24, EXEGGCUTE
+	db  26, PARAS
+	db  24, PARASECT
+	db  25, VENONAT
+	db  33, VENOMOTH
+	db  23, NIDORINO
+	db  24, NIDORINA
+	db  25, RHYHORN
+	db  25, TAUROS
+	db  28, PINSIR
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
+ENDC
+
+IF DEF(_BLUE)
+	def_grass_wildmons 30 ; encounter rate
+	db  24, EXEGGCUTE
+	db  26, PARAS
+	db  24, PARASECT
+	db  25, VENONAT
+	db  33, VENOMOTH
+	db  23, NIDORINO
+	db  24, NIDORINA
+	db  25, RHYHORN
+	db  25, TAUROS
+	db  28, PHANPY
+	end_grass_wildmons
+
+	def_water_wildmons 0 ; encounter rate
+	end_water_wildmons
+ENDC
+

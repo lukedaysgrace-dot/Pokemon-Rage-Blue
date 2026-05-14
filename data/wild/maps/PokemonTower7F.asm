@@ -1,16 +1,27 @@
 PokemonTower7FWildMons:
+IF DEF(_RED)
 	def_grass_wildmons 15 ; encounter rate
-	db 21, GASTLY
-	db 22, GASTLY
-	db 23, DUSKULL
-	db 24, GASTLY
-	db 20, MISDREAVUS
-	db 28, HAUNTER
-	db 22, CUBONE
-	db 24, CUBONE
-	db 28, HAUNTER
-	db 30, HAUNTER
+	db  25, HAUNTER
+	db  22, GOLBAT
+	db  28, HAUNTER
+	db  22, CUBONE
+	db  25, HAUNTER
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
+ENDC
+
+IF DEF(_BLUE)
+	def_grass_wildmons 15 ; encounter rate
+	db  25, HAUNTER
+	db  24, GASTLY
+	db  22, GOLBAT
+	db  28, HAUNTER
+	db  25, HAUNTER
+	end_grass_wildmons
+
+	def_water_wildmons 0 ; encounter rate
+	end_water_wildmons
+ENDC
+

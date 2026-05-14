@@ -1,16 +1,32 @@
 PokemonTower5FWildMons:
+IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
-	db 20, GASTLY
-	db 21, GASTLY
-	db 22, GASTLY
-	db 23, GASTLY
-	db 19, GASTLY
-	db 18, DUSKULL
-	db 25, HAUNTER
-	db 20, CUBONE
-	db 22, CUBONE
-	db 24, GASTLY
+	db  25, HAUNTER
+	db  25, HAUNTER
+	db  22, GASTLY
+	db  23, GOLBAT
+	db  19, CUBONE
+	db  25, HAUNTER
+	db  20, VULPIX
+	db  25, HAUNTER
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
+ENDC
+
+IF DEF(_BLUE)
+	def_grass_wildmons 10 ; encounter rate
+	db  25, HAUNTER
+	db  25, HAUNTER
+	db  22, GASTLY
+	db  23, GOLBAT
+	db  19, CUBONE
+	db  25, HAUNTER
+	db  20, VULPIX
+	end_grass_wildmons
+
+	def_water_wildmons 0 ; encounter rate
+	end_water_wildmons
+ENDC
+

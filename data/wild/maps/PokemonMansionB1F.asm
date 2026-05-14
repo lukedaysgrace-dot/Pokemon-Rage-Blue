@@ -1,16 +1,35 @@
 PokemonMansionB1FWildMons:
+IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
-	db 33, KOFFING
-	db 31, KOFFING
-	db 33, GRIMER
-	db 31, GRIMER
-	db 35, GROWLITHE
-	db 35, VULPIX
-	db 32, PONYTA
-	db 38, MAGMAR
-	db 42, WEEZING
-	db 42, MUK
+	db  33, GRIMER
+	db  31, KOFFING
+	db  35, RATICATE
+	db  38, MUK
+	db  35, WEEZING
+	db  40, VULPIX
+	db  34, MAGMAR
+	db  38, MUK
+	db  42, RATTATA
+	db  42, WEEZING
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
+ENDC
+
+IF DEF(_BLUE)
+	def_grass_wildmons 10 ; encounter rate
+	db  33, GRIMER
+	db  31, KOFFING
+	db  38, MUK
+	db  35, WEEZING
+	db  40, VULPIX
+	db  34, MAGMAR
+	db  38, MUK
+	db  42, TOXICROAK
+	end_grass_wildmons
+
+	def_water_wildmons 0 ; encounter rate
+	end_water_wildmons
+ENDC
+

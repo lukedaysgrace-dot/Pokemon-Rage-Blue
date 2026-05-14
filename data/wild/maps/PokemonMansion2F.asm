@@ -1,16 +1,37 @@
 PokemonMansion2FWildMons:
+IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
-	db 32, GROWLITHE
-	db 32, VULPIX
-	db 34, KOFFING
-	db 34, GRIMER
-	db 30, PONYTA
-	db 32, PONYTA
-	db 30, GRIMER
-	db 28, PONYTA
-	db 39, WEEZING
-	db 37, MUK
+	db  32, RATTATA
+	db  34, RATICATE
+	db  34, KOFFING
+	db  30, GRIMER
+	db  30, MAGMAR
+	db  35, WEEZING
+	db  38, MUK
+	db  28, GROWLITHE
+	db  39, RATICATE
+	db  37, RATTATA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
+ENDC
+
+IF DEF(_BLUE)
+	def_grass_wildmons 10 ; encounter rate
+	db  32, RATTATA
+	db  34, RATICATE
+	db  34, KOFFING
+	db  30, GRIMER
+	db  30, MAGMAR
+	db  35, WEEZING
+	db  38, MUK
+	db  28, GROWLITHE
+	db  39, RATICATE
+	db  38, MAGMORTAR
+	end_grass_wildmons
+
+	def_water_wildmons 0 ; encounter rate
+	end_water_wildmons
+ENDC
+

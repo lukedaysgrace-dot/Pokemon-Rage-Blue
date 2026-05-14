@@ -1,16 +1,37 @@
 VictoryRoad3FWildMons:
+IF DEF(_RED)
 	def_grass_wildmons 15 ; encounter rate
-	db 24, MACHOP
-	db 26, GEODUDE
-	db 22, ZUBAT
-	db 42, ONIX
-	db 40, VENOMOTH
-	db 45, ONIX
-	db 43, GRAVELER
-	db 41, GOLBAT
-	db 42, MACHOKE
-	db 45, MACHOKE
+	db  28, MACHOKE
+	db  26, GOLBAT
+	db  22, ONIX
+	db  42, HYPNO
+	db  40, MAROWAK
+	db  45, KADABRA
+	db  43, GOLEM
+	db  41, PARASECT
+	db  42, VENOMOTH
+	db  45, DODRIO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
+ENDC
+
+IF DEF(_BLUE)
+	def_grass_wildmons 15 ; encounter rate
+	db  24, LARVITAR
+	db  30, PUPITAR
+	db  30, SHELGON
+	db  42, GARDEVOIR
+	db  40, KIRLIA
+	db  45, LUCARIO
+	db  50, SALAMENCE
+	db  55, TYRANITAR
+	db  42, HIPPOPOTAS
+	db  45, HIPPOWDON
+	end_grass_wildmons
+
+	def_water_wildmons 0 ; encounter rate
+	end_water_wildmons
+ENDC
+
