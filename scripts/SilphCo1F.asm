@@ -134,6 +134,7 @@ SilphCo1FPetrelBattleScript:
 	ld hl, wStatusFlags7
 	set BIT_USE_CUR_MAP_SCRIPT, [hl]
 	xor a
+	ld [wJoyIgnore], a
 	ldh [hJoyHeld], a
 	ret
 
