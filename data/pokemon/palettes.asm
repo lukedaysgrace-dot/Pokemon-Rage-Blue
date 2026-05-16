@@ -459,7 +459,7 @@ TrainerPalettes:
 	db PAL_ARIANA ; UNUSED_JUGGLER = Ariana (e.g. Silph 11F); was PAL_JUGGLER (blue)
 	db PAL_FISHERMAN
 	db PAL_SWIMMER
-	db PAL_JR_TRAINER_F
+	db PAL_ARIANA
 	db PAL_CUEBALL
 	db PAL_GAMBLER
 	db PAL_BEAUTY
@@ -501,6 +501,6 @@ TrainerPalettes:
 	db PAL_PROTON
 	db PAL_ARCHER
 	db PAL_SOLDIER
-	db PAL_REDMON
+	db PAL_ROCKET
 	assert_table_length NUM_TRAINERS + 1
 ENDC
