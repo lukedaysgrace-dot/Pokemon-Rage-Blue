@@ -147,4 +147,5 @@ SpriteSheetPointerTable::
 	overworld_sprite TamerNewSprite, 12         ; SPRITE_TAMER_NEW
 	overworld_sprite BirdKeeperNewSprite, 12    ; SPRITE_BIRD_KEEPER_NEW
 	overworld_sprite BlackbeltNewSprite, 12     ; SPRITE_BLACKBELT_NEW
+	overworld_sprite SwimmerFSprite, 12         ; SPRITE_SWIMMER_F
 	assert_table_length NUM_SPRITES

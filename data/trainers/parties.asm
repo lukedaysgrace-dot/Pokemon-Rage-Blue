@@ -15,6 +15,7 @@ TrainerDataPointers:
 	dw ArianaData
 	dw FisherData
 	dw SwimmerData
+	dw SwimmerFData
 	dw CueBallData
 	dw GamblerData
 	dw BeautyData
@@ -340,6 +341,19 @@ SwimmerData:
 	db 37, KINGLER, 0
 	db 36, STARMIE, BLASTOISE, 0
 	db 32, POLIWRATH, TENTACRUEL, SEADRA, 0
+	db 31, TENTACRUEL, TENTACRUEL, TENTACRUEL, 0
+SwimmerFData:
+; Route 19
+	db 30, GOLDUCK, SEAKING, 0
+	db 29, STARYU, STARMIE, STARMIE, 0
+	db 30, SEADRA, SEADRA, KINGDRA, 0
+; Route 20
+	db 35, VAPOREON, 0
+	db 30, OMANYTE, SHELLDER, CLOYSTER, 0
+	db 31, GOLDEEN, SEAKING, 0
+	db 31, POLIWRATH, SEAKING, 0
+	db 30, TENTACRUEL, SEADRA, SEEL, 0
+	db 30, SEADRA, SEADRA, KINGDRA, 0
 CueBallData:
 ; Route 16
 	db 28, MACHOKE, PRIMEAPE, PINSIR, 0

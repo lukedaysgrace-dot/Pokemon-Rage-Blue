@@ -144,4 +144,5 @@ DEF FIRST_STILL_SPRITE EQU const_value
 	const SPRITE_TAMER_NEW              ; $8a
 	const SPRITE_BIRD_KEEPER_NEW        ; $8b
 	const SPRITE_BLACKBELT_NEW          ; $8c
+	const SPRITE_SWIMMER_F              ; $8d
 DEF NUM_SPRITES EQU const_value - 1

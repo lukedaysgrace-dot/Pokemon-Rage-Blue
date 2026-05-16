@@ -15,6 +15,7 @@ TrainerNames::
 	li "ARIANA"
 	li "FISHERMAN"
 	li "SWIMMER"
+	li "SWIMMER♀"
 	li "CUE BALL"
 	li "GAMBLER"
 	li "BEAUTY"

@@ -26,6 +26,7 @@ TrainerClassMoveChoiceModifications:
 	move_choices 1, 2, 3 ; ARIANA
 	move_choices 1, 3    ; FISHER
 	move_choices 1, 3    ; SWIMMER
+	move_choices 1, 3    ; SWIMMER_F
 	move_choices 1, 3    ; CUE_BALL
 	move_choices 1, 3    ; GAMBLER
 	move_choices 1, 3    ; BEAUTY

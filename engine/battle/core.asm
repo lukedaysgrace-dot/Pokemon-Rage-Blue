@@ -7291,11 +7291,22 @@ _LoadTrainerPic:
 	ld a, BANK(GreenPicFront)
 	jr .loadSprite
 .bankCheckLink
+	cp BIKER
+	jr z, .trainerPicOverflow
+	cp SWIMMER
+	jr z, .trainerPicOverflow
+	cp JUGGLER
+	jr z, .trainerPicOverflow
+	cp ROCKET
+	jr z, .trainerPicOverflow
 	ld a, [wLinkState]
 	and a
 	ld a, BANK("Trainer Pics")
 	jr z, .loadSprite
 	ld a, BANK(RedPicFront)
+	jr .loadSprite
+.trainerPicOverflow
+	ld a, BANK("Trainer Pics Overflow")
 .loadSprite
 	call UncompressSpriteFromDE
 	ld de, vFrontPic

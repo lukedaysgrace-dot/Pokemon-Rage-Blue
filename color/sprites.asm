@@ -797,6 +797,9 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x8c: SPRITE_BLACKBELT_NEW
 	db SPR_PAL_RANDOM
 
+	; 0x8d: SPRITE_SWIMMER_F
+	db SPR_PAL_RANDOM
+
 	assert_table_length NUM_SPRITES
 
 

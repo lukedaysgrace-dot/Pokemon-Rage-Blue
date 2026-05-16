@@ -1,7 +1,7 @@
 ; Must satisfy OPP_ID_OFFSET + last trainer class <= 255 (8-bit wCurOpponent /
-; wEngagedTrainerClass). With SOLDIER at $38, 200 + $38 = 256 wraps to 0 and
+; wEngagedTrainerClass). With SOLDIER at $39, 199 + $39 = 256 wraps to 0 and
 ; breaks trainer battles (wild path, no fight after dialogue).
-DEF OPP_ID_OFFSET EQU 199
+DEF OPP_ID_OFFSET EQU 198
 
 MACRO trainer_const
 	const \1
@@ -35,47 +35,48 @@ DEF UNUSED_JUGGLER EQU ARIANA
 DEF OPP_UNUSED_JUGGLER EQU OPP_ARIANA
 	trainer_const FISHER         ; $0E
 	trainer_const SWIMMER        ; $0F
-	trainer_const CUE_BALL       ; $10
-	trainer_const GAMBLER        ; $11
-	trainer_const BEAUTY         ; $12
-	trainer_const PSYCHIC_TR     ; $13
-	trainer_const ROCKER         ; $14
-	trainer_const JUGGLER        ; $15
-	trainer_const TAMER          ; $16
-	trainer_const BIRD_KEEPER    ; $17
-	trainer_const BLACKBELT      ; $18
-	trainer_const RIVAL1         ; $19
-	trainer_const PROF_OAK       ; $1A
-	trainer_const CHIEF          ; $1B
-	trainer_const SCIENTIST      ; $1C
-	trainer_const GIOVANNI       ; $1D
-	trainer_const ROCKET         ; $1E
-	trainer_const COOLTRAINER_M  ; $1F
-	trainer_const COOLTRAINER_F  ; $20
-	trainer_const BRUNO          ; $21
+	trainer_const SWIMMER_F      ; $10
+	trainer_const CUE_BALL       ; $11
+	trainer_const GAMBLER        ; $12
+	trainer_const BEAUTY         ; $13
+	trainer_const PSYCHIC_TR     ; $14
+	trainer_const ROCKER         ; $15
+	trainer_const JUGGLER        ; $16
+	trainer_const TAMER          ; $17
+	trainer_const BIRD_KEEPER    ; $18
+	trainer_const BLACKBELT      ; $19
+	trainer_const RIVAL1         ; $1A
+	trainer_const PROF_OAK       ; $1B
+	trainer_const CHIEF          ; $1C
+	trainer_const SCIENTIST      ; $1D
+	trainer_const GIOVANNI       ; $1E
+	trainer_const ROCKET         ; $1F
+	trainer_const COOLTRAINER_M  ; $20
+	trainer_const COOLTRAINER_F  ; $21
+	trainer_const BRUNO          ; $22
 DEF KAREN EQU BRUNO
 DEF OPP_KAREN EQU OPP_BRUNO
-	trainer_const BROCK          ; $22
-	trainer_const MISTY          ; $23
-	trainer_const LT_SURGE       ; $24
-	trainer_const ERIKA          ; $25
-	trainer_const KOGA           ; $26
-	trainer_const BLAINE         ; $27
-	trainer_const SABRINA        ; $28
-	trainer_const GENTLEMAN      ; $29
-	trainer_const RIVAL2         ; $2A
-	trainer_const RIVAL3         ; $2B
-	trainer_const LORELEI        ; $2C
-	trainer_const CHANNELER      ; $2D
-	trainer_const AGATHA         ; $2E
-	trainer_const LANCE          ; $2F
-	trainer_const BLUE_CLOAK     ; $30
-	trainer_const GREEN          ; $31
-	trainer_const GREEN_ROCKET   ; $32
-	trainer_const NINJA          ; $33
-	trainer_const JANINE         ; $34
-	trainer_const PETREL         ; $35
-	trainer_const PROTON         ; $36
-	trainer_const ARCHER         ; $37
-	trainer_const SOLDIER        ; $38
+	trainer_const BROCK          ; $23
+	trainer_const MISTY          ; $24
+	trainer_const LT_SURGE       ; $25
+	trainer_const ERIKA          ; $26
+	trainer_const KOGA           ; $27
+	trainer_const BLAINE         ; $28
+	trainer_const SABRINA        ; $29
+	trainer_const GENTLEMAN      ; $2A
+	trainer_const RIVAL2         ; $2B
+	trainer_const RIVAL3         ; $2C
+	trainer_const LORELEI        ; $2D
+	trainer_const CHANNELER      ; $2E
+	trainer_const AGATHA         ; $2F
+	trainer_const LANCE          ; $30
+	trainer_const BLUE_CLOAK     ; $31
+	trainer_const GREEN          ; $32
+	trainer_const GREEN_ROCKET   ; $33
+	trainer_const NINJA          ; $34
+	trainer_const JANINE         ; $35
+	trainer_const PETREL         ; $36
+	trainer_const PROTON         ; $37
+	trainer_const ARCHER         ; $38
+	trainer_const SOLDIER        ; $39
 DEF NUM_TRAINERS EQU const_value - 1

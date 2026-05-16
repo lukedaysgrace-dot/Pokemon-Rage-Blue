@@ -19,6 +19,7 @@ TrainerAIPointers:
 	dbw 4, BlueAI          ; ARIANA
 	dbw 3, GenericAI       ; FISHER
 	dbw 3, GenericAI       ; SWIMMER
+	dbw 3, GenericAI       ; SWIMMER_F
 	dbw 3, GenericAI       ; CUE_BALL
 	dbw 3, GenericAI       ; GAMBLER
 	dbw 3, GenericAI       ; BEAUTY

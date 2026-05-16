@@ -210,6 +210,7 @@ ROMX $32
 	"Trainer Class OW Sprites 1"
 ROMX $33
 	"Trainer Class OW Sprites 2"
+	"Trainer Pics Overflow"
 WRAM0
 	"Audio RAM"
 	org $c100

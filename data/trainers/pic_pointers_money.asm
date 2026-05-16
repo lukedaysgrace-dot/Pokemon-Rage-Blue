@@ -22,6 +22,7 @@ TrainerPicAndMoneyPointers::
 	pic_money ArianaPic,       4500
 	pic_money FisherPic,       3500
 	pic_money SwimmerPic,       500
+	pic_money SwimmerFPic,      500
 	pic_money CueBallPic,      2500
 	pic_money GamblerPic,      7000
 	pic_money BeautyPic,       7000

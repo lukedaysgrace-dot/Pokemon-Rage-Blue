@@ -180,6 +180,7 @@ SECTION "Trainer Class OW Sprites 2", ROMX
 EngineerNewSprite::      INCBIN "gfx/sprites/engineer_new.2bpp"
 FisherNewSprite::        INCBIN "gfx/sprites/fisher_new.2bpp"
 SwimmerNewSprite::       INCBIN "gfx/sprites/swimmer_new.2bpp"
+SwimmerFSprite::         INCBIN "gfx/sprites/swimmerf.2bpp"
 CueBallNewSprite::       INCBIN "gfx/sprites/cue_ball_new.2bpp"
 RockerNewSprite::        INCBIN "gfx/sprites/rocker_new.2bpp"
 JugglerNewSprite::       INCBIN "gfx/sprites/juggler_new.2bpp"
