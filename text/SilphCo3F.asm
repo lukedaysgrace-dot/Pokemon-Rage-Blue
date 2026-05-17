@@ -46,9 +46,11 @@ _SilphCo3FScientistAfterBattleText::
 	done
 
 _SilphCo3FTamer1BattleText::
-	text "Rocket Exec hired"
+	text "ROCKET execs hired"
 	line "real trainers."
-	cont "Guess that's me!"
+
+	para "Guess that means"
+	line "me!"
 	done
 
 _SilphCo3FTamer1EndBattleText::
@@ -58,24 +60,36 @@ _SilphCo3FTamer1EndBattleText::
 _SilphCo3FTamer1AfterBattleText::
 	text "You'll choke on"
 	line "those warp tiles."
-	cont "Enjoy getting lost!"
+
+	para "Enjoy getting"
+	line "lost!"
 	done
 
 _SilphCo3FJuggler1BattleText::
-	text "SILPH thinks they're"
-	line "smart? We're smarter."
-	cont "Hypnosis incoming!"
+	text "SILPH's security"
+	line "folded too fast."
+
+	para "Now it's our job"
+	line "to keep the rest"
+	cont "of you out."
+
+	para "Try getting past"
+	line "me if you want!"
 	done
 
 _SilphCo3FJuggler1EndBattleText::
-	text "My timing slipped!"
+	text "So much for"
+	line "buying time..."
 	prompt
 
 _SilphCo3FJuggler1AfterBattleText::
-	text "CARD KEY opens doors,"
-	line "sure."
-	cont "Warp maze upstairs"
-	cont "won't forgive you!"
+	text "You can open doors"
+	line "with a CARD KEY,"
+	cont "sure."
+
+	para "That won't make"
+	line "the floors above"
+	cont "any friendlier."
 	done
 
 _SilphCo3FProtonText::

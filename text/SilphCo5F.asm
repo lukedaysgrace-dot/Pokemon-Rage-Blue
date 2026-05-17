@@ -45,7 +45,11 @@ _SilphCo5FScientistAfterBattleText::
 	done
 
 _SilphCo5FRockerBattleText::
-	text "Whaaat? There"
-	line "shouldn't be any"
-	cont "children here?"
+	text "How did you make"
+	line "it all the way"
+	cont "up here?"
+
+	para "No matter. This"
+	line "floor stays under"
+	cont "ROCKET control."
 	done

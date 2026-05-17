@@ -98,8 +98,10 @@ _SilphCo2FRocket2AfterBattleText::
 
 _SilphCo2FTamerBattleText::
 	text "TEAM ROCKET pays"
-	line "my bills. You're"
-	cont "not getting past!"
+	line "my bills."
+
+	para "You're not getting"
+	line "past me!"
 	done
 
 _SilphCo2FTamerEndBattleText::
@@ -107,28 +109,39 @@ _SilphCo2FTamerEndBattleText::
 	prompt
 
 _SilphCo2FTamerAfterBattleText::
-	text "Fine. Crawl deeper"
-	line "into our maze!"
-	cont "See how far it gets"
-	cont "you!"
+	text "Fine. Go deeper"
+	line "into the maze."
+
+	para "See how far that"
+	line "gets you!"
 	done
 
 _SilphCo2FJugglerBattleText::
-	text "My #MON bend minds,"
-	line "not spoons."
-	cont "You'll hate this!"
+	text "You don't belong"
+	line "on this floor."
+
+	para "ARCHER wants this"
+	line "building locked"
+	cont "down tight."
+
+	para "I'm here to make"
+	line "sure nobody slips"
+	cont "past us!"
 	done
 
 _SilphCo2FJugglerEndBattleText::
-	text "Focused..."
-	line "too hard..."
+	text "I couldn't"
+	line "hold the line..."
 	prompt
 
 _SilphCo2FJugglerAfterBattleText::
-	text "Psychics aren't toys,"
-	line "kid. ARCHER keeps"
-	cont "the real monsters"
-	cont "upstairs."
+	text "If you're still"
+	line "heading up, you'd"
+	cont "better be ready."
+
+	para "The higher floors"
+	line "are crawling with"
+	cont "ROCKET trainers."
 	done
 
 _SilphCo2FProtonText::

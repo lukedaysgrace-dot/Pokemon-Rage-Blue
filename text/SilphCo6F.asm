@@ -107,9 +107,11 @@ _SilphCo6FRocket2AfterBattleText::
 	done
 
 _SilphCo6FTamerBattleText::
-	text "Rocket brass flew me"
-	line "in for intimidation."
-	cont "You're small prey!"
+	text "ROCKET brass flew"
+	line "me in to scare"
+	cont "people."
+
+	para "You're small prey!"
 	done
 
 _SilphCo6FTamerEndBattleText::
@@ -117,7 +119,9 @@ _SilphCo6FTamerEndBattleText::
 	prompt
 
 _SilphCo6FTamerAfterBattleText::
-	text "SILPH thinks guards"
-	line "matter?"
-	cont "We're worse."
+	text "SILPH thinks"
+	line "security matters?"
+
+	para "We're worse than"
+	line "guards."
 	done

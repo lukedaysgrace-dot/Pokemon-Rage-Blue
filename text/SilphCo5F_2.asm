@@ -1,12 +1,16 @@
 _SilphCo5FRockerEndBattleText::
-	text "Oh"
-	line "goodness!"
+	text "You broke"
+	line "through..."
 	prompt
 
 _SilphCo5FRockerAfterBattleText::
 	text "You're only on 5F."
-	line "It's a long way"
-	cont "to my BOSS!"
+	line "There are plenty"
+	cont "more of us above."
+
+	para "If you're chasing"
+	line "the boss, keep"
+	cont "climbing."
 	done
 
 _SilphCo5FRocket2BattleText::

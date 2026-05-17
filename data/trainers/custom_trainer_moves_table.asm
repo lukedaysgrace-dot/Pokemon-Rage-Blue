@@ -12,7 +12,7 @@ CustomTrainerMoves:
 ; Geodude L12
 db BROCK, 1, 1, TACKLE, DEFENSE_CURL, NO_MOVE, NO_MOVE
 ; Kabuto L13
-db BROCK, 1, 2, ABSORB, SCRATCH, LEER
+db BROCK, 1, 2, ABSORB, SCRATCH, LEER, NO_MOVE
 ; Onix L15
 db BROCK, 1, 3, TACKLE, SCREECH, NO_MOVE, BIDE
 
@@ -1130,4 +1130,7 @@ db ARIANA, 1, 3, PECK, NIGHT_SHADE, HAZE, WING_ATTACK
 ; Ninetales L33
 db ARIANA, 1, 4, EMBER, CONFUSE_RAY, FIRE_BLAST, QUICK_ATTACK
 
+CustomTrainerMovesEnd:
+ASSERT (CustomTrainerMovesEnd - CustomTrainerMoves) % 7 == 0, \
+	"CustomTrainerMoves records must be 7 bytes: class, trainer no, slot, and 4 moves"
 db $ff

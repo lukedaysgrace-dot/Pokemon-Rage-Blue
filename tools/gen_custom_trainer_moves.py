@@ -34,6 +34,12 @@ def load_base_moves() -> dict[str, list[str]]:
             text,
         )
         if not m:
+            m = re.search(
+                r"dw\s+\w+PicFront\s*,\s*\w+PicBack\s*\n\s*\n?\s*"
+                r"db\s+(\w+)\s*,\s*(\w+)\s*,\s*(\w+)\s*,\s*(\w+)",
+                text,
+            )
+        if not m:
             continue
         label = file_to_label(p.stem)
         out[label] = [m.group(i) for i in range(1, 5)]
@@ -455,7 +461,15 @@ def main() -> int:
         lines.append(f'\t; {safe}')
         lines.append(f"\tdb {cls}, {tno}, {slot}, {m1}, {m2}, {m3}, {m4}")
 
-    lines.append("\tdb $ff")
+    lines.extend(
+        [
+            "",
+            "CustomTrainerMovesEnd:",
+            "ASSERT (CustomTrainerMovesEnd - CustomTrainerMoves) % 7 == 0, \\",
+            '\t"CustomTrainerMoves records must be 7 bytes: class, trainer no, slot, and 4 moves"',
+            "\tdb $ff",
+        ]
+    )
     lines.append("")
     print("\n".join(lines))
     return 0
