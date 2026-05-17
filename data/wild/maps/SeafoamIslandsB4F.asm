@@ -3,13 +3,13 @@ IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
 	db  34, DEWGONG
 	db  31, GOLBAT
-	db  37, SLOWBRO
+	db   34, SLOWPOKE
 	db  33, JYNX
 	db  29, SEEL
 	db  31, JYNX
 	db  31, GOLBAT
 	db  34, DEWGONG
-	db  39, SLOWBRO
+	db   34, SLOWPOKE
 	db  32, SHELLDER
 	end_grass_wildmons
 
@@ -21,14 +21,14 @@ IF DEF(_BLUE)
 	def_grass_wildmons 10 ; encounter rate
 	db  34, DEWGONG
 	db  31, GOLBAT
-	db  37, SLOWBRO
+	db   34, SLOWPOKE
 	db  33, JYNX
 	db  29, SEEL
 	db  31, JYNX
 	db  31, GOLBAT
 	db  34, DEWGONG
-	db  39, SLOWBRO
-	db  38, WEAVILE
+	db   34, SLOWPOKE
+	db   34, SNEASEL
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

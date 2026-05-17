@@ -9,7 +9,7 @@ IF DEF(_RED)
 	db  34, DEWGONG
 	db  37, SLOWBRO
 	db  29, GOLBAT
-	db  39, SHELLDER
+	db   37, SHELLDER
 	db  37, SEEL
 	end_grass_wildmons
 
@@ -27,7 +27,7 @@ IF DEF(_BLUE)
 	db  34, DEWGONG
 	db  37, SLOWBRO
 	db  29, GOLBAT
-	db  39, SHELLDER
+	db   37, SHELLDER
 	db  37, GLACEON
 	end_grass_wildmons
 

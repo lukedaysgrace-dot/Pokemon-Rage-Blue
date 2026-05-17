@@ -4,7 +4,7 @@ IF DEF(_RED)
 	db  13, ODDISH
 	db  13, BELLSPROUT
 	db  15, PIDGEY
-	db  18, PIDGEOTTO
+	db  16, PIDGEY
 	db  12, MEOWTH
 	db  15, MANKEY
 	db  16, DODUO
@@ -22,13 +22,13 @@ IF DEF(_BLUE)
 	db  13, ODDISH
 	db  13, BELLSPROUT
 	db  15, PIDGEY
-	db  18, PIDGEOTTO
+	db  16, PIDGEY
 	db  12, MEOWTH
 	db  15, MANKEY
 	db  16, DODUO
 	db  16, RALTS
 	db  14, ABRA
-	db  21, GLOOM
+	db  16, ODDISH
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

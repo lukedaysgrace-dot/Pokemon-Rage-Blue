@@ -258,8 +258,10 @@ _ViridianGymGiovanniRematchDefeatText::
 	prompt
 
 _ViridianGymGiovanniRematchDefeatOverworldText::
-	text "...Even now, I"
-	line "can't beat you."
-	cont "Your strength is"
-	cont "...undeniable."
+	text "Power alone did"
+	line "not decide this."
+
+	para "You command trust,"
+	line "discipline, and"
+	cont "ambition."
 	done

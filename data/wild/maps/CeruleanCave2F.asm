@@ -7,10 +7,10 @@ IF DEF(_RED)
 	db  52, SNORLAX
 	db  52, LAPRAS
 	db  55, DRAGONITE
-	db  56, EXEGGUTOR
+	db   55, EXEGGUTOR
 	db  54, POLIWRATH
 	db  55, MACHAMP
-	db  60, GYARADOS
+	db   55, GYARADOS
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -25,10 +25,10 @@ IF DEF(_BLUE)
 	db  52, SNORLAX
 	db  52, LAPRAS
 	db  55, DRAGONITE
-	db  56, EXEGGUTOR
+	db   55, EXEGGUTOR
 	db  54, POLIWRATH
 	db  55, MACHAMP
-	db  60, GYARADOS
+	db   55, GYARADOS
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

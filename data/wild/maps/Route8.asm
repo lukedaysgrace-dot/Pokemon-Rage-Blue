@@ -8,9 +8,9 @@ IF DEF(_RED)
 	db  20, GROWLITHE
 	db  20, MANKEY
 	db  19, SANDSHREW
-	db  28, PERSIAN
-	db  22, ARBOK
-	db  28, PRIMEAPE
+	db   20, MEOWTH
+	db   20, EKANS
+	db   20, MANKEY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -26,9 +26,9 @@ IF DEF(_BLUE)
 	db  20, GROWLITHE
 	db  20, MANKEY
 	db  19, SANDSHREW
-	db  28, PERSIAN
-	db  22, ARBOK
-	db  28, PRIMEAPE
+	db   20, MEOWTH
+	db   20, EKANS
+	db   20, MANKEY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

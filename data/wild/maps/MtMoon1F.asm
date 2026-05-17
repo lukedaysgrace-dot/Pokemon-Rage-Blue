@@ -9,7 +9,7 @@ IF DEF(_RED)
 	db  10, MACHOP
 	db  10, GEODUDE
 	db   8, ZUBAT
-	db  11, ONIX
+	db   10, ONIX
 	db   8, PARAS
 	end_grass_wildmons
 

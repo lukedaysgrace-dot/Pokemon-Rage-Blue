@@ -60,12 +60,14 @@ _LoreleisRoomLoreleiRematchDefeatText::
 	cont "stop you."
 	prompt
 
-; Same lines as defeat; overworld expects @ (done), not battle @ (prompt).
 _LoreleisRoomLoreleiRematchDefeatOverworldText::
-	text "Impressive..."
-	line "You didn't crack."
-	cont "The cold couldn't"
-	cont "stop you."
+	text "You kept your head"
+	line "when the field"
+	cont "froze over."
+
+	para "That calm is why"
+	line "the title remains"
+	cont "yours."
 	done
 
 _LoreleisRoomLoreleiRematchMustRestartText::

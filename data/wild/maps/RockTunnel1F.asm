@@ -6,11 +6,11 @@ IF DEF(_RED)
 	db  17, MACHOP
 	db  15, ZUBAT
 	db  16, GEODUDE
-	db  18, RHYHORN
+	db   17, RHYHORN
 	db  15, MACHOP
 	db  17, ONIX
 	db  13, ONIX
-	db  22, GOLBAT
+	db   17, ZUBAT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -24,7 +24,7 @@ IF DEF(_BLUE)
 	db  17, MACHOP
 	db  15, ZUBAT
 	db  16, GEODUDE
-	db  18, RHYHORN
+	db   17, RHYHORN
 	db  15, MACHOP
 	db  17, ONIX
 	db  13, SNEASEL

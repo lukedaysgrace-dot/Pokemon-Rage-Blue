@@ -8,9 +8,9 @@ IF DEF(_RED)
 	db  25, HAUNTER
 	db  24, CUBONE
 	db  26, HYPNO
-	db  43, HYPNO
-	db  43, HYPNO
-	db  43, HYPNO
+	db   26, HYPNO
+	db   26, HYPNO
+	db   26, HYPNO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -27,8 +27,8 @@ IF DEF(_BLUE)
 	db  24, DUSKULL
 	db  25, GOLBAT
 	db  26, HYPNO
-	db  43, HYPNO
-	db  31, HYPNO
+	db   26, HYPNO
+	db   26, HYPNO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

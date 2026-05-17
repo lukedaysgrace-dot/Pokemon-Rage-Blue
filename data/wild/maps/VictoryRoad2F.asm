@@ -28,7 +28,7 @@ IF DEF(_BLUE)
 	db  42, RHYDON
 	db  40, GOLEM
 	db  40, KADABRA
-	db  43, STEELIX
+	db   42, STEELIX
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

@@ -7,10 +7,10 @@ IF DEF(_RED)
 	db  10, ODDISH
 	db  14, BELLSPROUT
 	db  13, ABRA
-	db  18, PIDGEOTTO
+	db   14, PIDGEY
 	db  12, VENONAT
 	db  11, METAPOD
-	db  12, PIDGEOTTO
+	db   12, PIDGEY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -21,14 +21,14 @@ IF DEF(_BLUE)
 	def_grass_wildmons 25 ; encounter rate
 	db   7, WEEDLE
 	db   8, VENIPEDE
-	db  13, PIDGEY
+	db   11, PIDGEY
 	db  10, ODDISH
-	db  14, BELLSPROUT
-	db  13, ABRA
+	db   11, BELLSPROUT
+	db   11, ABRA
 	db   8, RALTS
-	db  12, VENONAT
+	db   11, VENONAT
 	db  11, METAPOD
-	db   9, PIDGEOTTO
+	db     9, PIDGEY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

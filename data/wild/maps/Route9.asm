@@ -8,7 +8,7 @@ IF DEF(_RED)
 	db  16, NIDORINO
 	db  16, NIDORINA
 	db  20, FEAROW
-	db  22, ARBOK
+	db   20, EKANS
 	db  20, RATICATE
 	db  17, VOLTORB
 	end_grass_wildmons
@@ -26,7 +26,7 @@ IF DEF(_BLUE)
 	db  16, NIDORINO
 	db  16, NIDORINA
 	db  20, FEAROW
-	db  22, ARBOK
+	db   20, EKANS
 	db  20, RATICATE
 	db  17, HOUNDOUR
 	end_grass_wildmons

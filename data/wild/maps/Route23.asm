@@ -8,9 +8,9 @@ IF DEF(_RED)
 	db  38, SHELLDER
 	db  38, HORSEA
 	db  41, NIDORINO
-	db  43, GROWLITHE
+	db   41, GROWLITHE
 	db  41, POLIWHIRL
-	db  43, DRAGONAIR
+	db   41, DRAGONAIR
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -26,9 +26,9 @@ IF DEF(_BLUE)
 	db  38, SHELLDER
 	db  38, HORSEA
 	db  41, NIDORINO
-	db  43, GROWLITHE
+	db   41, GROWLITHE
 	db  41, POLIWHIRL
-	db  43, DRAGONAIR
+	db   41, DRAGONAIR
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

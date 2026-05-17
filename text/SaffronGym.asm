@@ -255,14 +255,16 @@ _SaffronGymSabrinaRematchDefeatText::
 	text "...Just as I"
 	line "foresaw. Your"
 	cont "strength still"
-	cont "grows past all I"
-	cont "expected!"
+
+	para "grows past all I"
+	line "expected!"
 	prompt
 
 _SaffronGymSabrinaRematchDefeatOverworldText::
-	text "...Just as I"
-	line "foresaw. Your"
-	cont "strength still"
-	cont "grows past all I"
-	cont "expected!"
+	text "The future bent"
+	line "toward your will."
+
+	para "I must look deeper"
+	line "if I am to meet"
+	cont "you there again."
 	done

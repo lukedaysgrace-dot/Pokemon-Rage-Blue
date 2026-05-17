@@ -21,12 +21,12 @@ TrainerPicAndMoneyPointers::
 	pic_money EngineerPic,     5000
 	pic_money ArianaPic,       4500
 	pic_money FisherPic,       3500
-	pic_money SwimmerPic,       500
-	pic_money SwimmerFPic,      500
+	pic_money SwimmerPic,      2000
+	pic_money SwimmerFPic,     2000
 	pic_money CueBallPic,      2500
 	pic_money GamblerPic,      7000
 	pic_money BeautyPic,       7000
-	pic_money PsychicPic,      1000
+	pic_money PsychicPic,      3000
 	pic_money RockerPic,       2500
 	pic_money JugglerPic,      3500
 	pic_money TamerPic,        4000
@@ -55,14 +55,14 @@ TrainerPicAndMoneyPointers::
 	pic_money ChannelerPic,    3000
 	pic_money AgathaPic,       9900
 	pic_money LancePic,        9900
-	pic_money BlueCloakPic,     9900
-	pic_money GreenPicFront,   2000
-	pic_money GreenRocketPic,  3500
+	pic_money BlueCloakPic,    9900
+	pic_money GreenPicFront,   4000
+	pic_money GreenRocketPic,  4500
 	pic_money NinjaPic,        3500
-	pic_money JaninePic,       3500
+	pic_money JaninePic,       5500
 	pic_money PetrelPic,       4000
 	pic_money ProtonPic,       4000
-	pic_money ArcherPic,       4500
+	pic_money ArcherPic,       5500
 	pic_money SoldierPic,      3000
 	pic_money RocketGirlPic,   3000
 	assert_table_length NUM_TRAINERS

@@ -1386,7 +1386,10 @@ wTempTilesetNumTiles:: db
 ; so that it can be restored when the player is done with the pokemart NPC
 wSavedListScrollOffset:: db
 
-	ds 2
+; number of low health alarm cycles played for the current red-HP stretch
+wLowHealthAlarmCount:: db
+
+	ds 1
 
 ; base coordinates of frame block
 wBaseCoordX:: db

@@ -4,13 +4,13 @@ IF DEF(_RED)
 	db  24, VENONAT
 	db  26, ODDISH
 	db  23, GLOOM
-	db  36, PIDGEOT
+	db   26, PIDGEOTTO
 	db  22, WEEPINBELL
 	db  26, VILEPLUME
 	db  26, TANGELA
-	db  31, VENOMOTH
-	db  28, DITTO
-	db  30, PARASECT
+	db   26, VENONAT
+	db   26, DITTO
+	db   26, PARASECT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -22,13 +22,13 @@ IF DEF(_BLUE)
 	db  24, VENONAT
 	db  26, ODDISH
 	db  23, GLOOM
-	db  36, PIDGEOT
+	db   26, PIDGEOTTO
 	db  22, WEEPINBELL
 	db  26, VILEPLUME
-	db  36, TANGROWTH
-	db  31, VENOMOTH
-	db  28, DITTO
-	db  30, PARASECT
+	db   26, TANGELA
+	db   26, VENONAT
+	db   26, DITTO
+	db   26, PARASECT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

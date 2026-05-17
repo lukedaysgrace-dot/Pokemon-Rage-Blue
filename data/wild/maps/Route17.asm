@@ -5,12 +5,12 @@ IF DEF(_RED)
 	db  22, RATTATA
 	db  25, RATICATE
 	db  24, DODUO
-	db  36, PIDGEOT
+	db   26, PIDGEOTTO
 	db  26, FEAROW
-	db  31, DODRIO
-	db  29, SPEAROW
+	db   26, DODUO
+	db   26, SPEAROW
 	db  25, PONYTA
-	db  40, RAPIDASH
+	db   26, PONYTA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -23,12 +23,12 @@ IF DEF(_BLUE)
 	db  22, RATTATA
 	db  25, RATICATE
 	db  24, DODUO
-	db  36, PIDGEOT
+	db   26, PIDGEOTTO
 	db  26, FEAROW
-	db  31, DODRIO
-	db  29, SPEAROW
+	db   26, DODUO
+	db   26, SPEAROW
 	db  25, PONYTA
-	db  40, RAPIDASH
+	db   26, PONYTA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

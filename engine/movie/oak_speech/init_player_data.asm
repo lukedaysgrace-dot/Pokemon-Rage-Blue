@@ -41,6 +41,11 @@ DEF START_MONEY EQU $3000
 	ld bc, wGameProgressFlagsEnd - wGameProgressFlags
 	call FillMemory ; clear all game progress flags (FillMemory uses a; must be 0)
 
+	; Start every new save with all 8 badges already obtained.
+	dec a ; $ff
+	ld [wObtainedBadges], a
+	ld [wBeatGymFlags], a
+
 	ResetEvent EVENT_GOT_BICYCLE
 	ResetEvent EVENT_GOT_SKATEBOARD_FROM_BIKE_SHOP
 	ResetEvent EVENT_GOT_BIKE_VOUCHER

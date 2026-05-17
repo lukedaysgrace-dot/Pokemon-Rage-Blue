@@ -19,7 +19,9 @@ LoneMoves:
 TeamMoves:
 	; trainer, move
 	db LORELEI, BLIZZARD
+IF DEF(_RED)
 	db KAREN,   FISSURE
+ENDC
 	db AGATHA,  TOXIC
 	db LANCE,   BARRIER
 	db -1 ; end

@@ -5,12 +5,12 @@ IF DEF(_RED)
 	db  26, DODUO
 	db  23, NIDORINO
 	db  24, EXEGGCUTE
-	db  33, RHYHORN
+	db   27, RHYHORN
 	db  26, PARASECT
 	db  25, NIDORINA
-	db  31, TAUROS
+	db   27, TAUROS
 	db  26, DRATINI
-	db  28, CHANSEY
+	db   27, CHANSEY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -23,12 +23,12 @@ IF DEF(_BLUE)
 	db  26, DODUO
 	db  23, NIDORINO
 	db  24, EXEGGCUTE
-	db  33, RHYHORN
+	db   27, RHYHORN
 	db  26, PARASECT
 	db  25, NIDORINA
-	db  31, TAUROS
+	db   27, TAUROS
 	db  26, DRATINI
-	db  28, SNEASEL
+	db   27, SNEASEL
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

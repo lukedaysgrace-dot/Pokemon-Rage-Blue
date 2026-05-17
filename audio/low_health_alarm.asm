@@ -9,6 +9,11 @@ Music_DoLowHealthAlarm::
 	and LOW_HEALTH_TIMER_MASK
 	jr nz, .notToneHi ;if timer > 0, play low tone.
 
+	ld a, [wLowHealthAlarmCount]
+	cp LOW_HEALTH_ALARM_MAX_PLAYS
+	jr nc, .silenceAlarm
+	inc a
+	ld [wLowHealthAlarmCount], a
 	call .playToneHi
 	ld a, 30 ;keep this tone for 30 frames.
 	jr .resetTimer
@@ -33,7 +38,10 @@ Music_DoLowHealthAlarm::
 
 .disableAlarm
 	xor a
-	ld [wLowHealthAlarm], a  ;disable alarm
+	ld [wLowHealthAlarmCount], a
+.silenceAlarm
+	xor a
+	ld [wLowHealthAlarm], a
 	ld [wChannelSoundIDs + CHAN5], a  ;re-enable sound channel?
 	ld de, .toneDataSilence
 	jr .playTone

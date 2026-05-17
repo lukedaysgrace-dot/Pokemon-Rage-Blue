@@ -31,16 +31,18 @@ _CeruleanGymMistyRematchDefeatText::
 	text "Ugh, seriously?!"
 	line "I gave everything"
 	cont "that time! ..."
-	cont "Okay--you're"
-	cont "still CHAMPION."
+
+	para "Okay--you're"
+	line "still CHAMPION."
 	prompt
 
 _CeruleanGymMistyRematchDefeatOverworldText::
-	text "Ugh, seriously?!"
-	line "I gave everything"
-	cont "that time! ..."
-	cont "Okay--you're"
-	cont "still CHAMPION."
+	text "You read the tide"
+	line "of that battle"
+	cont "perfectly."
+
+	para "I'll make a bigger"
+	line "splash next time!"
 	done
 
 _CeruleanGymMistyTM11ExplanationText::

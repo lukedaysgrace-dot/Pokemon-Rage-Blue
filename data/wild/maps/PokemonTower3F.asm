@@ -3,14 +3,14 @@ IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
 	db  20, GASTLY
 	db  21, GASTLY
-	db  25, HAUNTER
-	db  23, CUBONE
+	db   22, GASTLY
+	db   22, CUBONE
 	db  19, ZUBAT
 	db  18, GASTLY
-	db  25, HAUNTER
+	db   22, GASTLY
 	db  22, GOLBAT
 	db  19, VULPIX
-	db  26, MAROWAK
+	db   22, CUBONE
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -21,13 +21,13 @@ IF DEF(_BLUE)
 	def_grass_wildmons 10 ; encounter rate
 	db  20, GASTLY
 	db  21, MISDREAVUS
-	db  25, HAUNTER
+	db   23, GASTLY
 	db  23, CUBONE
 	db  19, DUSKULL
 	db  18, DUSKULL
-	db  25, HAUNTER
+	db   23, GASTLY
 	db  19, VULPIX
-	db  23, MAROWAK
+	db   23, CUBONE
 	db  22, GOLBAT
 	end_grass_wildmons
 

@@ -6,11 +6,11 @@ IF DEF(_RED)
 	db  30, ZUBAT
 	db  30, GOLBAT
 	db  28, SEEL
-	db  37, SLOWBRO
+	db   32, SLOWPOKE
 	db  29, JYNX
 	db  28, SLOWPOKE
-	db  34, DEWGONG
-	db  38, SHELLDER
+	db   32, SEEL
+	db   32, SHELLDER
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -24,11 +24,11 @@ IF DEF(_BLUE)
 	db  30, ZUBAT
 	db  30, GOLBAT
 	db  28, SEEL
-	db  37, SLOWBRO
+	db   32, SLOWPOKE
 	db  29, JYNX
 	db  28, SLOWPOKE
-	db  34, DEWGONG
-	db  38, SWINUB
+	db   32, SEEL
+	db   32, SWINUB
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

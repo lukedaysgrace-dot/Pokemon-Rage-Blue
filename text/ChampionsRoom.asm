@@ -162,10 +162,12 @@ _ChampionsRoomRivalRematchDefeatedText::
 	text "...No way..."
 	line "I still can't take"
 	cont "you down?!"
-	cont "Tch... fine."
-	cont "Stay CHAMPION."
-	cont "I'll get my title"
-	cont "back, just wait!"
+
+	para "Tch... fine."
+	line "Stay CHAMPION."
+
+	para "I'll get my title"
+	line "back, just wait!"
 	prompt
 
 _ChampionsRoomRivalRematchLobbyOnlyText::
@@ -177,11 +179,12 @@ _ChampionsRoomRivalRematchLobbyOnlyText::
 	done
 
 _ChampionsRoomRivalRematchAfterWinCutsceneText::
-	text "...No way..."
-	line "I still can't take"
-	cont "you down?!"
-	cont "Tch... fine."
-	cont "Stay CHAMPION."
-	cont "I'll get my title"
-	cont "back, just wait!"
+	text "Tch... every time"
+	line "I close the gap,"
+	cont "you make it wider."
+
+	para "Don't get comfy."
+	line "I'll rebuild my"
+	cont "team and come"
+	cont "right back at you!"
 	done

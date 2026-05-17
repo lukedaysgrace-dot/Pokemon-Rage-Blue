@@ -34,14 +34,17 @@ _VermilionGymLTSurgeRematchDefeatText::
 	text "Rrgh! You tanked"
 	line "the voltage!"
 	cont "Like it was"
-	cont "nothing! Hah!"
-	cont "That's CHAMPION!"
+
+	para "nothing! Hah!"
+	line "That's CHAMPION!"
 	prompt
 
 _VermilionGymLTSurgeRematchDefeatOverworldText::
-	text "Rrgh! You tanked"
-	line "the voltage!"
-	cont "Like it was"
-	cont "nothing! Hah!"
-	cont "That's CHAMPION!"
+	text "Your team kept"
+	line "moving through"
+	cont "every jolt!"
+
+	para "Next drill, I'll"
+	line "crank the power"
+	cont "even higher!"
 	done

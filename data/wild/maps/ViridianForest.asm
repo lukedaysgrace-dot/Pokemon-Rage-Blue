@@ -10,7 +10,7 @@ IF DEF(_RED)
 	db   4, VENONAT
 	db   5, PIKACHU
 	db   6, SCYTHER
-	db  18, BEEDRILL
+	db    8, KAKUNA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -28,7 +28,7 @@ IF DEF(_BLUE)
 	db   5, PIKACHU
 	db   6, SCYTHER
 	db   7, METAPOD
-	db  18, BEEDRILL
+	db    8, KAKUNA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

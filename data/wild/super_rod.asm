@@ -59,7 +59,7 @@ IF DEF(_RED)
 
 .Group5R:
 	db 2
-	db   25, POLIWHIRL
+	db    19, POLIWAG
 	db   15, SLOWPOKE
 
 .Group6R:
@@ -74,14 +74,14 @@ IF DEF(_RED)
 	db     5, TENTACOOL
 	db   15, KRABBY
 	db   15, GOLDEEN
-	db   20, HORSEA
+	db    15, HORSEA
 
 .Group8R:
 	db 4
 	db   15, STARYU
 	db   15, HORSEA
-	db   20, SHELLDER
-	db   28, SEADRA
+	db    19, SHELLDER
+	db    19, HORSEA
 
 .Group9R:
 	db 4
@@ -92,7 +92,7 @@ IF DEF(_RED)
 
 .Group10R:
 	db 4
-	db   33, SEAKING
+	db    19, GOLDEEN
 	db   15, KRABBY
 	db   15, GOLDEEN
 	db   15, MAGIKARP
@@ -156,7 +156,7 @@ IF DEF(_BLUE)
 
 .Group5B:
 	db 2
-	db   25, POLIWHIRL
+	db    19, POLIWAG
 	db   15, SLOWPOKE
 
 .Group6B:
@@ -164,32 +164,32 @@ IF DEF(_BLUE)
 	db   15, DRATINI
 	db   15, KRABBY
 	db   15, PSYDUCK
-	db   22, SEADRA
+	db    19, HORSEA
 
 .Group7B:
 	db 4
 	db     5, TENTACOOL
 	db   15, KRABBY
 	db   15, GOLDEEN
-	db   38, KINGDRA
+	db    15, HORSEA
 
 .Group8B:
 	db 4
 	db   15, STARYU
 	db   15, HORSEA
-	db   20, SHELLDER
-	db   38, KINGDRA
+	db    19, SHELLDER
+	db    19, HORSEA
 
 .Group9B:
 	db 4
 	db   37, SLOWBRO
 	db   33, SEAKING
 	db   28, KINGLER
-	db   38, KINGDRA
+	db    37, SEADRA
 
 .Group10B:
 	db 4
-	db   33, SEAKING
+	db    19, GOLDEEN
 	db   15, KRABBY
 	db   15, GOLDEEN
 	db   15, MAGIKARP

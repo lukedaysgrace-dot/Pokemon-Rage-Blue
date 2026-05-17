@@ -5,12 +5,12 @@ IF DEF(_RED)
 	db  16, SPEAROW
 	db  14, RATTATA
 	db  11, MAGNEMITE
-	db  20, RATICATE
-	db  20, FEAROW
+	db   17, RATTATA
+	db   17, SPEAROW
 	db  17, ELECTABUZZ
-	db  28, MAROWAK
+	db   17, CUBONE
 	db  13, EKANS
-	db  22, ARBOK
+	db   17, EKANS
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -23,12 +23,12 @@ IF DEF(_BLUE)
 	db  16, SPEAROW
 	db  14, RATTATA
 	db  11, MAGNEMITE
-	db  20, RATICATE
-	db  20, FEAROW
+	db   17, RATTATA
+	db   17, SPEAROW
 	db  17, ELECTABUZZ
-	db  28, MAROWAK
+	db   17, CUBONE
 	db  13, EKANS
-	db  38, ELECTIVIRE
+	db   17, ELECTABUZZ
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

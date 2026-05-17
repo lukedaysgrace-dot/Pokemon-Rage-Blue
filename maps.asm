@@ -1213,7 +1213,11 @@ LoreleisRoom_Blocks: INCBIN "maps/LoreleisRoom.blk"
 INCLUDE "data/maps/headers/BrunosRoom.asm"
 INCLUDE "scripts/BrunosRoom.asm"
 INCLUDE "data/maps/objects/BrunosRoom.asm"
+IF DEF(_RED)
+BrunosRoom_Blocks: INCBIN "maps/BrunosRoomRed.blk"
+ELSE
 BrunosRoom_Blocks: INCBIN "maps/BrunosRoom.blk"
+ENDC
 
 INCLUDE "data/maps/headers/AgathasRoom.asm"
 INCLUDE "scripts/AgathasRoom.asm"

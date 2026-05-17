@@ -7,7 +7,7 @@ IF DEF(_RED)
 	db  23, RATICATE
 	db  21, PIDGEOTTO
 	db  30, TANGELA
-	db  36, PIDGEOT
+	db   32, PIDGEOTTO
 	db  28, FARFETCHD
 	db  30, TANGELA
 	db  32, CHANSEY
@@ -22,8 +22,8 @@ IF DEF(_RED)
 	db  30, TENTACRUEL
 	db  33, SEAKING
 	db  30, KINGLER
-	db  35, SEADRA
-	db  40, GYARADOS
+	db   33, SEADRA
+	db   33, GYARADOS
 	end_water_wildmons
 ENDC
 
@@ -31,14 +31,14 @@ IF DEF(_BLUE)
 	def_grass_wildmons 25 ; encounter rate
 	db  21, RATTATA
 	db  23, PIDGEY
-	db  30, MEOWTH
+	db   25, MEOWTH
 	db  23, RATICATE
 	db  21, PIDGEOTTO
-	db  30, TANGELA
-	db  36, PIDGEOT
-	db  28, FARFETCHD
-	db  36, TANGROWTH
-	db  32, CHANSEY
+	db   25, TANGELA
+	db   25, PIDGEOTTO
+	db   25, FARFETCHD
+	db   25, TANGELA
+	db   25, CHANSEY
 	end_grass_wildmons
 
 	def_water_wildmons 5 ; encounter rate
@@ -50,8 +50,8 @@ IF DEF(_BLUE)
 	db  30, TENTACRUEL
 	db  33, SEAKING
 	db  30, KINGLER
-	db  35, SEADRA
-	db  40, GYARADOS
+	db   33, SEADRA
+	db   33, GYARADOS
 	end_water_wildmons
 ENDC
 

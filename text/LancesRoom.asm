@@ -76,16 +76,19 @@ _LancesRoomLanceRematchDefeatText::
 	text "...You've grown"
 	line "stronger since"
 	cont "your last fight."
-	cont "A CHAMPION in"
-	cont "more than name!"
+
+	para "A CHAMPION in"
+	line "more than name!"
 	prompt
 
 _LancesRoomLanceRematchDefeatOverworldText::
-	text "...You've grown"
-	line "stronger since"
-	cont "your last fight."
-	cont "A CHAMPION in"
-	cont "more than name!"
+	text "Your bond with"
+	line "your #MON burns"
+	cont "brighter than any"
+	cont "dragon's flame."
+
+	para "Go on. The final"
+	line "challenge awaits."
 	done
 
 _LancesRoomLanceRematchMustRestartText::

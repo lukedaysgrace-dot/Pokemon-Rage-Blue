@@ -33,7 +33,11 @@ TrainerNames::
 	li "ROCKET"
 	li "COOLTRAINER♂"
 	li "COOLTRAINER♀"
+IF DEF(_RED)
+	li "BRUNO"
+ELSE
 	li "KAREN"
+ENDC
 	li "BROCK"
 	li "MISTY"
 	li "LT.SURGE"

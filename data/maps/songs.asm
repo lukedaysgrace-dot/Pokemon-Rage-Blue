@@ -246,6 +246,10 @@ MapSongBanks::
 	db MUSIC_SILPH_CO, BANK(Music_SilphCo) ; UNUSED_MAP_F3
 	db MUSIC_SILPH_CO, BANK(Music_SilphCo) ; UNUSED_MAP_F4
 	db MUSIC_GYM, BANK(Music_Gym) ; LORELEIS_ROOM
+IF DEF(_RED)
+	db MUSIC_DUNGEON1, BANK(Music_Dungeon1) ; BRUNOS_ROOM
+ELSE
 	db MUSIC_DUNGEON3, BANK(Music_Dungeon3) ; KARENS_ROOM
+ENDC
 	db MUSIC_POKEMON_TOWER, BANK(Music_PokemonTower) ; AGATHAS_ROOM
 	assert_table_length NUM_MAPS

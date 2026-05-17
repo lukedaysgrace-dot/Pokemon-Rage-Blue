@@ -57,16 +57,19 @@ _AgathaRematchDefeatText::
 	text "Ha!"
 	line "Even now, you"
 	cont "don't falter."
-	cont "That title suits"
-	cont "you after all..."
+
+	para "That title suits"
+	line "you after all..."
 	prompt
 
 _AgathaRematchDefeatOverworldText::
-	text "Ha!"
-	line "Even now, you"
-	cont "don't falter."
-	cont "That title suits"
-	cont "you after all..."
+	text "Heh. You still"
+	line "battle like you"
+	cont "have something"
+	cont "to prove."
+
+	para "Good. Never let"
+	line "that spirit rot."
 	done
 
 _AgathaRematchMustRestartText::

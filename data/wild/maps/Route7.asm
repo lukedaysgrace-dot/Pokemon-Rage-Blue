@@ -6,7 +6,7 @@ IF DEF(_RED)
 	db  17, MEOWTH
 	db  22, DODUO
 	db  22, MANKEY
-	db  28, PRIMEAPE
+	db   22, MANKEY
 	db  18, GROWLITHE
 	db  20, FEAROW
 	db  19, VULPIX
@@ -24,11 +24,11 @@ IF DEF(_BLUE)
 	db  17, MEOWTH
 	db  22, DODUO
 	db  22, MANKEY
-	db  28, PRIMEAPE
+	db   22, MANKEY
 	db  18, GROWLITHE
 	db  20, FEAROW
 	db  19, VULPIX
-	db  24, HOUNDOOM
+	db   22, HOUNDOUR
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

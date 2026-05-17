@@ -43,8 +43,10 @@ _FuchsiaGymKogaRematchDefeatText::
 	prompt
 
 _FuchsiaGymKogaRematchDefeatOverworldText::
-	text "...Impressive."
-	line "You adapted to"
-	cont "each trick I used."
-	cont "A true master!"
+	text "You saw through"
+	line "my every feint."
+
+	para "I will vanish,"
+	line "train, and return"
+	cont "sharper still."
 	done

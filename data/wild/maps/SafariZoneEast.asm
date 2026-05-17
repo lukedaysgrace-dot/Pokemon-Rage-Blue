@@ -5,12 +5,12 @@ IF DEF(_RED)
 	db  26, PARAS
 	db  24, PARASECT
 	db  25, VENONAT
-	db  33, VENOMOTH
+	db   27, VENONAT
 	db  23, NIDORINO
 	db  24, NIDORINA
 	db  25, RHYHORN
 	db  25, TAUROS
-	db  28, PINSIR
+	db   27, PINSIR
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -23,12 +23,12 @@ IF DEF(_BLUE)
 	db  26, PARAS
 	db  24, PARASECT
 	db  25, VENONAT
-	db  33, VENOMOTH
+	db   27, VENONAT
 	db  23, NIDORINO
 	db  24, NIDORINA
 	db  25, RHYHORN
 	db  25, TAUROS
-	db  28, PHANPY
+	db   27, PHANPY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

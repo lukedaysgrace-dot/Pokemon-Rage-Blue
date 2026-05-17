@@ -1,15 +1,15 @@
 Route6WildMons:
 IF DEF(_RED)
 	def_grass_wildmons 15 ; encounter rate
-	db  18, PIDGEOTTO
+	db   16, PIDGEY
 	db  13, ODDISH
 	db  15, BELLSPROUT
 	db  10, MEOWTH
 	db  12, MANKEY
 	db  15, DODUO
-	db  18, MAGNETON
-	db  16, PIDGEOT
-	db  16, POLIWHIRL
+	db   16, MAGNEMITE
+	db   16, PIDGEY
+	db   16, POLIWAG
 	db  16, PSYDUCK
 	end_grass_wildmons
 
@@ -25,9 +25,9 @@ IF DEF(_BLUE)
 	db  10, MEOWTH
 	db  12, MANKEY
 	db  15, DODUO
-	db  18, MAGNETON
-	db  16, PIDGEOT
-	db  16, POLIWHIRL
+	db   18, MAGNEMITE
+	db   16, PIDGEY
+	db   16, POLIWAG
 	db  18, PSYDUCK
 	end_grass_wildmons
 

@@ -6,11 +6,11 @@ IF DEF(_RED)
 	db  35, MAGMAR
 	db  32, RATICATE
 	db  34, KOFFING
-	db  40, MAGMAR
+	db   38, MAGMAR
 	db  34, GRIMER
 	db  38, GROWLITHE
 	db  36, WEEZING
-	db  42, MUK
+	db   38, MUK
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -24,11 +24,11 @@ IF DEF(_BLUE)
 	db  35, RATTATA
 	db  32, RATICATE
 	db  34, KOFFING
-	db  40, MAGMAR
+	db   38, MAGMAR
 	db  34, GRIMER
 	db  38, GROWLITHE
 	db  36, WEEZING
-	db  42, MAGMORTAR
+	db   38, MAGMORTAR
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

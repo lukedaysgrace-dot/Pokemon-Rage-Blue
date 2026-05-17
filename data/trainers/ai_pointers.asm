@@ -52,7 +52,7 @@ TrainerAIPointers:
 	dbw 3, GenericAI       ; CHANNELER
 	dbw 4, EliteFourAI     ; AGATHA
 	dbw 4, EliteFourAI     ; LANCE
-	dbw 4, BlueCloakAI     ; BLUE_CLOAK
+	dbw 4, BlueAI          ; BLUE_CLOAK
 	dbw 4, BlueAI          ; GREEN
 	dbw 4, BlueAI          ; GREEN_ROCKET
 	dbw 4, CooltrainerMAI  ; NINJA

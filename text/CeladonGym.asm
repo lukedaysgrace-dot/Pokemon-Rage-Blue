@@ -240,8 +240,11 @@ _CeladonGymErikaRematchDefeatText::
 	prompt
 
 _CeladonGymErikaRematchDefeatOverworldText::
-	text "How graceful..."
-	line "Even in victory."
-	cont "You embody a"
-	cont "true CHAMPION."
+	text "Your #MON bloomed"
+	line "beautifully under"
+	cont "pressure."
+
+	para "I must tend my"
+	line "garden with even"
+	cont "greater care."
 	done

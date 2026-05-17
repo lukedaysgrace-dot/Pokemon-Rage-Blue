@@ -33,7 +33,7 @@ TrainerDataPointers:
 	dw RocketData
 	dw CooltrainerMData
 	dw CooltrainerFData
-	dw KarenData
+	dw BrunoKarenData
 	dw BrockData
 	dw MistyData
 	dw LtSurgeData
@@ -628,10 +628,16 @@ CooltrainerFData:
 	;db 45,NIDORINA,NIDOQUEEN,0
 	;db 43,PERSIAN,NINETALES,RAICHU,0
 
-KarenData:
+BrunoKarenData:
+IF DEF(_RED)
+	db $FF, 53, ONIX, 55, HITMONCHAN, 55, HITMONLEE, 56, ONIX, 58, MACHAMP, 0
+; Post-Champion rematch (wTrainerNo 2)
+	db $FF, 58, STEELIX, 58, HITMONCHAN, 58, HITMONLEE, 58, RHYPERIOR, 58, MACHAMP, 58, ANNIHILAPE, 0
+ELSE
 	db $FF, 46, UMBREON, 47, HONCHKROW, 47, FERALIGATR, 47, TYRANITAR, 50, HOUNDOOM, 48, WEAVILE, 0
 ; Post-Champion rematch (wTrainerNo 2)
 	db $FF, 58, UMBREON, 58, HONCHKROW, 58, WEAVILE, 58, TYRANITAR, 58, HONCHKROW, 58, WEAVILE, 0
+ENDC
 BrockData:
 	db $FF, 12, GEODUDE, 13, KABUTO, 15, ONIX, 0
 ; Post-Champion rematch (wTrainerNo 2)

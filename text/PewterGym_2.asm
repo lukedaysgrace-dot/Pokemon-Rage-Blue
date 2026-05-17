@@ -162,14 +162,17 @@ _PewterGymBrockRematchDefeatText::
 	text "Solid as ever..."
 	line "I see why you're"
 	cont "CHAMPION."
-	cont "I'll keep honing"
-	cont "my strength."
+
+	para "I'll keep honing"
+	line "my strength."
 	prompt
 
 _PewterGymBrockRematchDefeatOverworldText::
-	text "Solid as ever..."
-	line "I see why you're"
-	cont "CHAMPION."
-	cont "I'll keep honing"
-	cont "my strength."
+	text "That battle showed"
+	line "where my defense"
+	cont "still has cracks."
+
+	para "Next time, my"
+	line "rock-hard team"
+	cont "will stand taller."
 	done

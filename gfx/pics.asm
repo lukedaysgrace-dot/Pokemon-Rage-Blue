@@ -520,7 +520,11 @@ ScientistPic::     INCBIN "gfx/trainers/scientist.pic"
 GiovanniPic::      INCBIN "gfx/trainers/giovanni.pic"
 CooltrainerMPic::  INCBIN "gfx/trainers/cooltrainerm.pic"
 CooltrainerFPic::  INCBIN "gfx/trainers/cooltrainerf.pic"
+IF DEF(_RED)
+KarenPic::         INCBIN "gfx/trainers/bruno.pic"
+ELSE
 KarenPic::         INCBIN "gfx/trainers/karen.pic"
+ENDC
 BrockPic::         INCBIN "gfx/trainers/brock.pic"
 MistyPic::         INCBIN "gfx/trainers/misty.pic"
 LtSurgePic::       INCBIN "gfx/trainers/lt.surge.pic"

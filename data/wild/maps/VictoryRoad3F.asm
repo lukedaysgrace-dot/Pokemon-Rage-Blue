@@ -25,8 +25,8 @@ IF DEF(_BLUE)
 	db  42, GARDEVOIR
 	db  40, KIRLIA
 	db  45, LUCARIO
-	db  50, SALAMENCE
-	db  55, TYRANITAR
+	db   45, SHELGON
+	db   45, PUPITAR
 	db  42, HIPPOPOTAS
 	db  45, HIPPOWDON
 	end_grass_wildmons

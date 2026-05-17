@@ -74,7 +74,9 @@ LittleBoySprite::        INCBIN "gfx/sprites/little_boy.2bpp"
 GameboyKidSprite::       INCBIN "gfx/sprites/gameboy_kid.2bpp"
 FairySprite::            INCBIN "gfx/sprites/fairy.2bpp"
 AgathaSprite::           INCBIN "gfx/sprites/agatha.2bpp"
+IF !DEF(_RED)
 KarenSprite::            INCBIN "gfx/sprites/karen.2bpp"
+ENDC
 LoreleiSprite::          INCBIN "gfx/sprites/lorelei.2bpp"
 
 
@@ -157,6 +159,14 @@ ElectrodeSprite::        INCBIN "gfx/icons/electrode_ow.2bpp"
 SECTION "Blue Cloak OW Sprite", ROMX
 
 BlueCloakWorldSprite::   INCBIN "gfx/sprites/blue_cloak_world.2bpp"
+
+IF DEF(_RED)
+; Red uses Bruno in the shared Bruno/Karen slot. Keep his larger source sheet out of
+; the cramped legacy NPC bank; the sprite pointer table already tracks the bank.
+SECTION "Bruno OW Sprite", ROMX
+
+KarenSprite::            INCBIN "gfx/sprites/bruno.2bpp"
+ENDC
 
 
 SECTION "NPC Sprites 2 Overflow", ROMX
@@ -408,6 +418,7 @@ INCBIN "gfx/icons/sneasel.2bpp"
 INCBIN "gfx/icons/weavile.2bpp"
 INCBIN "gfx/icons/mesmeria.2bpp"
 INCBIN "gfx/icons/croagunk.2bpp"
+INCBIN "gfx/icons/toxicroak.2bpp"
 INCBIN "gfx/icons/phanpy.2bpp"
 INCBIN "gfx/icons/donphan.2bpp"
 INCBIN "gfx/icons/houndour.2bpp"
@@ -419,6 +430,7 @@ INCBIN "gfx/icons/bastiodon.2bpp"
 INCBIN "gfx/icons/buneary.2bpp"
 INCBIN "gfx/icons/lopunny.2bpp"
 INCBIN "gfx/icons/hippopotas.2bpp"
+INCBIN "gfx/icons/hippowdon.2bpp"
 INCBIN "gfx/icons/lileep.2bpp"
 INCBIN "gfx/icons/cradily.2bpp"
 INCBIN "gfx/icons/anorith.2bpp"

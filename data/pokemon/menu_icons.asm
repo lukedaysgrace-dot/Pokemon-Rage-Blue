@@ -208,7 +208,7 @@ MonPartyData:
 	db ICON_WEAVILE       ; Weavile
 	db ICON_MESMERIA      ; Mesmeria
 	db ICON_CROAGUNK      ; Croagunk
-	db ICON_CROAGUNK      ; Toxicroak
+	db ICON_TOXICROAK     ; Toxicroak
 	db ICON_PHANPY        ; Phanpy
 	db ICON_DONPHAN       ; Donphan
 	db ICON_HOUNDOUR      ; Houndour
@@ -220,7 +220,7 @@ MonPartyData:
 	db ICON_BUNEARY       ; Buneary
 	db ICON_LOPUNNY       ; Lopunny
 	db ICON_HIPPOPOTAS    ; Hippopotas
-	db ICON_HIPPOPOTAS    ; Hippowdon
+	db ICON_HIPPOWDON     ; Hippowdon
 	db ICON_LILEEP        ; Lileep
 	db ICON_CRADILY       ; Cradily
 	db ICON_ANORITH       ; Anorith
