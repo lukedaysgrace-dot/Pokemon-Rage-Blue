@@ -468,10 +468,10 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_ORANGE
 
 	; 0x1f: SPRITE_OAK_SCIENTIST_AIDE
-	db SPR_PAL_BLUE
+	db SPR_PAL_GREEN
 
 	; 0x20: SPRITE_OAK_AIDE
-	db SPR_PAL_GREEN
+	db SPR_PAL_BROWN
 
 	; 0x21: SPRITE_ROCKER ($20)
 	db SPR_PAL_ORANGE
@@ -624,7 +624,7 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_PURPLE
 
 	; 0x53: SPRITE_ARIANA
-	db SPR_PAL_PURPLE
+	db SPR_PAL_ORANGE
 
 	; 0x54: SPRITE_ARCHER
 	db SPR_PAL_BLUE

@@ -442,27 +442,40 @@ SaveScreenInfoText:
 
 DisplayOptionMenu:
 	hlcoord 0, 0
-	ld b, 3
+	ld b, 2
 	ld c, 18
 	call TextBoxBorder
-	hlcoord 0, 5
-	ld b, 3
+	hlcoord 0, 4
+	ld b, 2
 	ld c, 18
 	call TextBoxBorder
-	hlcoord 0, 10
-	ld b, 3
+	hlcoord 0, 8
+	ld b, 2
 	ld c, 18
 	call TextBoxBorder
+	hlcoord 0, 12
+	ld b, 2
+	ld c, 18
+	call TextBoxBorder
+	ldh a, [hUILayoutFlags]
+	push af
+	set BIT_SINGLE_SPACED_LINES, a
+	ldh [hUILayoutFlags], a
 	hlcoord 1, 1
 	ld de, TextSpeedOptionText
 	call PlaceString
-	hlcoord 1, 6
+	hlcoord 1, 5
 	ld de, BattleAnimationOptionText
 	call PlaceString
-	hlcoord 1, 11
+	hlcoord 1, 9
 	ld de, BattleStyleOptionText
 	call PlaceString
-	hlcoord 2, 16
+	hlcoord 1, 13
+	ld de, BackSpritesOptionText
+	call PlaceString
+	pop af
+	ldh [hUILayoutFlags], a
+	hlcoord 2, 17
 	ld de, OptionMenuCancelText
 	call PlaceString
 	xor a
@@ -472,7 +485,7 @@ DisplayOptionMenu:
 	inc a ; 1 << BIT_FAST_TEXT_DELAY
 	ld [wLetterPrintingDelayFlags], a
 	ld [wOptionsCancelCursorX], a
-	ld a, 3 ; text speed cursor Y coordinate
+	ld a, 2 ; text speed cursor Y coordinate
 	ld [wTopMenuItemY], a
 	call SetCursorPositionsFromOptions
 	ld a, [wOptionsTextSpeedCursorX] ; text speed cursor X coordinate
@@ -497,7 +510,7 @@ DisplayOptionMenu:
 	jr z, .checkDirectionKeys
 ; A was pressed
 	ld a, [wTopMenuItemY]
-	cp 16 ; is the cursor on Cancel?
+	cp 17 ; is the cursor on Cancel?
 	jr nz, .loop
 .exitMenu
 	ld a, SFX_PRESS_AB
@@ -513,44 +526,52 @@ DisplayOptionMenu:
 	jr nz, .downPressed
 	bit B_PAD_UP, b
 	jr nz, .upPressed
-	cp 8 ; cursor in Battle Animation section?
+	cp 6 ; cursor in Battle Animation section?
 	jr z, .cursorInBattleAnimation
-	cp 13 ; cursor in Battle Style section?
+	cp 10 ; cursor in Battle Style section?
 	jr z, .cursorInBattleStyle
-	cp 16 ; cursor on Cancel?
+	cp 14 ; cursor in Back Sprites section?
+	jr z, .cursorInBackSprites
+	cp 17 ; cursor on Cancel?
 	jr z, .loop
 ; cursor in Text Speed
 	bit B_PAD_LEFT, b
 	jp nz, .pressedLeftInTextSpeed
 	jp .pressedRightInTextSpeed
 .downPressed
-	cp 16
-	ld b, -13
+	cp 17
+	ld b, -15
 	ld hl, wOptionsTextSpeedCursorX
 	jr z, .updateMenuVariables
-	ld b, 5
-	cp 3
+	ld b, 4
+	cp 2
 	inc hl
 	jr z, .updateMenuVariables
-	cp 8
+	cp 6
+	inc hl
+	jr z, .updateMenuVariables
+	cp 10
 	inc hl
 	jr z, .updateMenuVariables
 	ld b, 3
 	inc hl
 	jr .updateMenuVariables
 .upPressed
-	cp 8
-	ld b, -5
+	cp 6
+	ld b, -4
 	ld hl, wOptionsTextSpeedCursorX
 	jr z, .updateMenuVariables
-	cp 13
+	cp 10
 	inc hl
 	jr z, .updateMenuVariables
-	cp 16
+	cp 14
+	inc hl
+	jr z, .updateMenuVariables
+	cp 17
 	ld b, -3
 	inc hl
 	jr z, .updateMenuVariables
-	ld b, 13
+	ld b, 15
 	inc hl
 .updateMenuVariables
 	add b
@@ -568,6 +589,11 @@ DisplayOptionMenu:
 	ld a, [wOptionsBattleStyleCursorX] ; battle style cursor X coordinate
 	xor 1 ^ 10 ; toggle between 1 and 10
 	ld [wOptionsBattleStyleCursorX], a
+	jp .eraseOldMenuCursor
+.cursorInBackSprites
+	ld a, [wOptionsBackSpriteCursorX] ; back sprites cursor X coordinate
+	xor 1 ^ 10 ; toggle between 1 and 10
+	ld [wOptionsBackSpriteCursorX], a
 	jp .eraseOldMenuCursor
 .pressedLeftInTextSpeed
 	ld a, [wOptionsTextSpeedCursorX] ; text speed cursor X coordinate
@@ -606,6 +632,10 @@ BattleStyleOptionText:
 	db   "BATTLE STYLE"
 	next " SHIFT    SET@"
 
+BackSpritesOptionText:
+	db   "BACK SPRITES"
+	next " 32x32    48x48@"
+
 OptionMenuCancelText:
 	db "CANCEL@"
 
@@ -637,9 +667,18 @@ SetOptionsFromCursorPositions:
 	jr z, .battleStyleShift
 ; battle style Set
 	set BIT_BATTLE_SHIFT, d
-	jr .storeOptions
+	jr .checkBackSprites
 .battleStyleShift
 	res BIT_BATTLE_SHIFT, d
+.checkBackSprites
+	ld a, [wOptionsBackSpriteCursorX] ; back sprites cursor X coordinate
+	dec a
+	jr z, .backSprites32
+; back sprites 48x48 HD
+	set BIT_BACK_SPRITES_HD, d
+	jr .storeOptions
+.backSprites32
+	res BIT_BACK_SPRITES_HD, d
 .storeOptions
 	ld a, d
 	ld [wOptions], a
@@ -650,7 +689,7 @@ SetCursorPositionsFromOptions:
 	ld hl, TextSpeedOptionData + 1
 	ld a, [wOptions]
 	ld c, a
-	and $3f
+	and TEXT_DELAY_MASK
 	push bc
 	ld de, 2
 	call IsInArray
@@ -658,26 +697,37 @@ SetCursorPositionsFromOptions:
 	dec hl
 	ld a, [hl]
 	ld [wOptionsTextSpeedCursorX], a ; text speed cursor X coordinate
-	hlcoord 0, 3
+	hlcoord 0, 2
 	call .placeUnfilledRightArrow
-	sla c
+	ld a, c
+	bit BIT_BATTLE_ANIMATION, a
 	ld a, 1 ; On
-	jr nc, .storeBattleAnimationCursorX
+	jr z, .storeBattleAnimationCursorX
 	ld a, 10 ; Off
 .storeBattleAnimationCursorX
 	ld [wOptionsBattleAnimCursorX], a ; battle animation cursor X coordinate
-	hlcoord 0, 8
+	hlcoord 0, 6
 	call .placeUnfilledRightArrow
-	sla c
+	ld a, c
+	bit BIT_BATTLE_SHIFT, a
 	ld a, 1
-	jr nc, .storeBattleStyleCursorX
+	jr z, .storeBattleStyleCursorX
 	ld a, 10
 .storeBattleStyleCursorX
 	ld [wOptionsBattleStyleCursorX], a ; battle style cursor X coordinate
-	hlcoord 0, 13
+	hlcoord 0, 10
+	call .placeUnfilledRightArrow
+	ld a, c
+	bit BIT_BACK_SPRITES_HD, a
+	ld a, 1
+	jr z, .storeBackSpriteCursorX
+	ld a, 10
+.storeBackSpriteCursorX
+	ld [wOptionsBackSpriteCursorX], a ; back sprites cursor X coordinate
+	hlcoord 0, 14
 	call .placeUnfilledRightArrow
 ; cursor in front of Cancel
-	hlcoord 0, 16
+	hlcoord 0, 17
 	ld a, 1
 .placeUnfilledRightArrow
 	ld e, a
