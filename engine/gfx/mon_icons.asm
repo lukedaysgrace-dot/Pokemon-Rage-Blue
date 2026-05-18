@@ -19,6 +19,10 @@ AnimatePartyMon::
 
 GetAnimationSpeed:
 	ld c, a
+	cp 3
+	jr c, .speedIndexOk
+	ld c, 1 ; yellow HP speed (naming screen default)
+.speedIndexOk
 	ld hl, PartyMonSpeeds
 	add hl, bc
 	ld a, [wOnSGB]
@@ -117,6 +121,7 @@ LoadMonPartySpriteGfx: ; nickname screen, trade cable setup, etc.
 	ld a, [wMonPartySpriteSpecies]
 	and a
 	jr nz, .haveSpecies
+.noSpecies
 	ld hl, MonIcons
 	xor a
 	ld [wTempByteValue], a
@@ -125,6 +130,10 @@ LoadMonPartySpriteGfx: ; nickname screen, trade cable setup, etc.
 	ld a, BANK(MonIcons)
 	jr .copyIcon
 .haveSpecies:
+	cp $ff
+	jr z, .noSpecies
+	cp OPP_ID_OFFSET
+	jr nc, .noSpecies
 	ld [wPokedexNum], a
 	push de
 	predef IndexToPokedex

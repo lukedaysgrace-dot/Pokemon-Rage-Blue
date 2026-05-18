@@ -105,6 +105,8 @@ ItemUsePtrTable:
 	dw UnusableItem      ; ARMOR_FOSSIL
 	dw UnusableItem      ; CLAW_FOSSIL
 	dw UnusableItem      ; ROOT_FOSSIL
+	dw UnusableItem      ; JAW_FOSSIL
+	dw UnusableItem      ; SAIL_FOSSIL
 
 ItemUseBall:
 

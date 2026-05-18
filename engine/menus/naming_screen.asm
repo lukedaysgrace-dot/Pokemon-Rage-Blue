@@ -95,12 +95,16 @@ DisplayNamingScreen:
 	ld a, [wNamingScreenType]
 	cp NAME_MON_SCREEN
 	jr nz, .iconSpeciesReady
+	ld a, [wCurPartySpecies]
+	and a
+	jr nz, .storeIconSpecies
 	ld hl, wPartySpecies
 	ld a, [wWhichPokemon]
 	ld e, a
 	ld d, 0
 	add hl, de
 	ld a, [hl]
+.storeIconSpecies
 	ld [wMonPartySpriteSpecies], a
 	jr .iconSpeciesDone
 .iconSpeciesReady:

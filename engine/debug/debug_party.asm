@@ -45,7 +45,12 @@ IF DEF(_DEBUG)
 	ld a, ~(1 << BIT_EARTHBADGE)
 	ld [wObtainedBadges], a
 
+	; Skip AskName during bulk add (oak speech warp has no map screen yet).
+	ld a, $10
+	ld [wMonDataLocation], a
 	call SetDebugNewGameParty
+	xor a
+	ld [wMonDataLocation], a
 
 	; Exeggutor gets four HM moves.
 	ld hl, wPartyMon1Moves

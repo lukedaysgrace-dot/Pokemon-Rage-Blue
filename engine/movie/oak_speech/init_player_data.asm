@@ -31,6 +31,7 @@ DEF START_MONEY EQU $3000
 	ld [hl], a
 
 	ld [wMonDataLocation], a
+	ld [wWhichPokemon], a
 
 	xor a
 	ld hl, wPlayerCoins

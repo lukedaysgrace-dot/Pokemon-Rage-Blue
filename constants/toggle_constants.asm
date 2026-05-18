@@ -222,6 +222,10 @@ ENDM
 	const TOGGLE_MT_MOON_1F_ITEM_7             ; 6E X
 	const TOGGLE_MT_MOON_1F_ROOT_FOSSIL
 
+	toggle_consts_for MT_MOON_B1F
+	const TOGGLE_MT_MOON_B1F_JAW_FOSSIL
+	const TOGGLE_MT_MOON_B1F_SAIL_FOSSIL
+
 	toggle_consts_for MT_MOON_B2F
 	const TOGGLE_MT_MOON_B2F_FOSSIL_1          ; 6E
 	const TOGGLE_MT_MOON_B2F_FOSSIL_2          ; 6F
