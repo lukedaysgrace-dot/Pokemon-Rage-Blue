@@ -152,6 +152,7 @@ ROMX $1D
 	"Vending Machine"
 	"Maps 21"
 	"Itemfinder 2"
+	"bank1E Overflow"
 ROMX $1E
 	"bank1E"
 ROMX $1F

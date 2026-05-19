@@ -2191,6 +2191,9 @@ CharmanderEvosMoves:
 	db 34, SLASH
 	db 38, FLAMETHROWER
 	db 46, FIRE_SPIN
+	db 97, FRENZY_PLANT
+	db 98, HYDRO_CANNON
+        db 99, BLAST_BURN
 	db 0
 
 SquirtleEvosMoves:
@@ -2205,6 +2208,9 @@ SquirtleEvosMoves:
 	db 28, WITHDRAW
 	db 35, BUBBLEBEAM
 	db 42, HYDRO_PUMP
+	db 97, FRENZY_PLANT
+	db 98, HYDRO_CANNON
+        db 99, BLAST_BURN
 	db 0
 
 CharmeleonEvosMoves:

@@ -165,6 +165,9 @@ AttackAnimationPointers:
 	dw SlashAnim
 	dw SubstituteAnim
 	dw FocusEnergyAnim
+	dw BlastBurnAnim
+	dw HydroCannonAnim
+	dw FrenzyPlantAnim
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
@@ -1199,6 +1202,45 @@ SubstituteAnim:
 
 FocusEnergyAnim:
 	battle_anim FOCUS_ENERGY, SE_SPIRAL_BALLS_INWARD
+	db -1 ; end
+
+BlastBurnAnim:
+	battle_anim BLAST_BURN, SE_DARK_SCREEN_PALETTE
+	battle_anim FLAMETHROWER, SUBANIM_1_FLAME_BEAM, 1, 4
+	battle_anim FIRE_BLAST, SUBANIM_1_FLAME_BEAM, 1, 6
+	battle_anim NO_MOVE, SUBANIM_1_FLAME_STAR, 1, 4
+	battle_anim NO_MOVE, SUBANIM_1_FLAME_COLUMN_1, 1, 5
+	battle_anim NO_MOVE, SUBANIM_1_FLAME_COLUMN_2, 1, 5
+	battle_anim NO_MOVE, SUBANIM_1_FLAME_COLUMN_3, 1, 5
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SUBANIM_1_FLAME_STAR, 1, 6
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
+HydroCannonAnim:
+	battle_anim HYDRO_CANNON, SE_DARK_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
+	battle_anim HYDRO_PUMP, SUBANIM_0_BEAM, 0, 3
+	battle_anim HYDRO_PUMP, SUBANIM_0_WATER_COLUMNS, 0, 6
+	battle_anim NO_MOVE, SE_WATER_DROPLETS_EVERYWHERE
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
+FrenzyPlantAnim:
+	battle_anim NO_MOVE, SE_LIGHT_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_DARK_SCREEN_PALETTE
+	battle_anim RAZOR_LEAF, SE_PETALS_FALLING
+	battle_anim VINE_WHIP, SUBANIM_0_SLICE, 0, 1
+	battle_anim VINE_WHIP, SUBANIM_0_SLICE, 0, 1
+	battle_anim NO_MOVE, SUBANIM_0_STAR_TWICE, 0, 6
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
 BallTossAnim:

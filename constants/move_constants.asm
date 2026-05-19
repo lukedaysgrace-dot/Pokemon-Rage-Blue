@@ -171,7 +171,10 @@
 	const SLASH        ; a3
 	const SUBSTITUTE   ; a4
 	const FOCUS_ENERGY ; a5
-	const STRUGGLE     ; a6
+	const BLAST_BURN   ; a6
+	const HYDRO_CANNON ; a7
+	const FRENZY_PLANT ; a8
+	const STRUGGLE     ; a9
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

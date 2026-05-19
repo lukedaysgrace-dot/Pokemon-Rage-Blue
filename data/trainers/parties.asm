@@ -166,8 +166,7 @@ JrTrainerMData:
 	db 19, RATTATA, DIGLETT, EKANS, SANDSHREW, 0
 ; Route 12
 	db 29, NIDORINO, NIDORINO, 0
-;joenote - special fight with future trainer red
-	db $FF, 83, LAPRAS, 85, VENUSAUR, 85, CHARIZARD, 85, BLASTOISE, 87, SNORLAX, 88, PIKACHU, 0	;jr trainer male #9
+	db 29, NIDORINO, NIDORINA, 0
 ; Unused
 	;db 18,DIGLETT,DIGLETT,SANDSHREW,0
 JrTrainerFData:
@@ -674,8 +673,7 @@ GentlemanData:
 	db 23, PIKACHU, 0
 ; SS Anne 2F Rooms
 	db 17, GROWLITHE, PONYTA, 0
-;joenote - special fight with mr fuji
-	db $FF, 69, MAROWAK, 70, OMASTAR, 70, KABUTOPS, 71, AERODACTYL, 73, ARCANINE, 100, DITTO, 0	;gentleman #5
+	db 22, GROWLITHE, NIDORINO, 0
 ; Unused
 	;db 48,PRIMEAPE,0
 Rival2Data:
