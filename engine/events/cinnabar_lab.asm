@@ -28,7 +28,7 @@ GiveFossilToCinnabarLab::
 	res BIT_NO_TEXT_DELAY, [hl]
 	call HandleMenuInput
 	bit B_PAD_B, a
-	jr nz, .cancelledGivingFossil
+	jp nz, .cancelledGivingFossil
 	ld hl, wFilteredBagItems
 	ld a, [wCurrentMenuItem]
 	ld d, 0
@@ -48,7 +48,17 @@ GiveFossilToCinnabarLab::
 	jr z, .choseClawFossil
 	cp ROOT_FOSSIL
 	jr z, .choseRootFossil
+	cp JAW_FOSSIL
+	jr z, .choseJawFossil
+	cp SAIL_FOSSIL
+	jr z, .choseSailFossil
 	ld b, AERODACTYL
+	jr .fossilSelected
+.choseSailFossil
+	ld b, AMAURA
+	jr .fossilSelected
+.choseJawFossil
+	ld b, TYRUNT
 	jr .fossilSelected
 .choseRootFossil
 	ld b, LILEEP
@@ -181,5 +191,7 @@ FossilsList:
 	db ARMOR_FOSSIL
 	db CLAW_FOSSIL
 	db ROOT_FOSSIL
+	db JAW_FOSSIL
+	db SAIL_FOSSIL
 	db OLD_AMBER
 	db 0 ; end

@@ -1,3 +1,7 @@
+	object_const_def
+	const_export MTMOONB1F_JAW_FOSSIL
+	const_export MTMOONB1F_SAIL_FOSSIL
+
 MtMoonB1F_Object:
 	db $3 ; border block
 
@@ -14,5 +18,7 @@ MtMoonB1F_Object:
 	def_bg_events
 
 	def_object_events
+	object_event 14,  7, SPRITE_FOSSIL, STAY, NONE, TEXT_MTMOONB1F_JAW_FOSSIL, JAW_FOSSIL
+	object_event 12, 15, SPRITE_FOSSIL, STAY, NONE, TEXT_MTMOONB1F_SAIL_FOSSIL, SAIL_FOSSIL
 
 	def_warps_to MT_MOON_B1F

@@ -98,6 +98,8 @@ DEF SAFARI_ROCK EQU CASCADEBADGE ; overload
 	const ARMOR_FOSSIL  ; $56
 	const CLAW_FOSSIL   ; $57
 	const ROOT_FOSSIL   ; $58
+	const JAW_FOSSIL    ; $59
+	const SAIL_FOSSIL   ; $5A
 DEF NUM_ITEMS EQU const_value - 1
 
 ; elevator floors use item IDs (see scripts/CeladonMartElevator.asm and scripts/SilphCoElevator.asm)

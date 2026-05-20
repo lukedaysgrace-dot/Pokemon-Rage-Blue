@@ -252,6 +252,10 @@ ToggleableObjectStates:
 	toggle_object_state MTMOON1F_ARMOR_FOSSIL, ON
 	toggle_object_state MTMOON1F_ROOT_FOSSIL, ON
 
+	toggleable_objects_for MT_MOON_B1F
+	toggle_object_state MTMOONB1F_JAW_FOSSIL, ON
+	toggle_object_state MTMOONB1F_SAIL_FOSSIL, ON
+
 	toggleable_objects_for MT_MOON_B2F
 	toggle_object_state MTMOONB2F_DOME_FOSSIL,   ON
 	toggle_object_state MTMOONB2F_HELIX_FOSSIL,  ON
