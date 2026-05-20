@@ -37,7 +37,6 @@ ROM0
 	"Home"
 ROMX $1
 	"bank1"
-	"Blue Cloak OW Sprite"
 ROMX $2
 	"Sound Effect Headers 1"
 	"Music Headers 1"
@@ -208,10 +207,43 @@ ROMX $31
 	"bank31"
 ROMX $32
 	"NPC Sprites 2 Overflow"
+	"Blue Cloak OW Sprite"
 	"Trainer Class OW Sprites 1"
 ROMX $33
 	"Trainer Class OW Sprites 2"
 	"Trainer Pics Overflow"
+ROMX $34
+	"Pokemon Back HD"
+ROMX $35
+	"Pokemon Back HD Pics 1"
+ROMX $36
+	"Pokemon Back HD Pics 2"
+ROMX $37
+	"Pokemon Back HD Pics 3"
+ROMX $38
+	"Pokemon Back HD Pics 4"
+ROMX $39
+	"Pokemon Back HD Pics 5"
+ROMX $3A
+	"Pokemon Back HD Pics 6"
+ROMX $3B
+	"Pokemon Back HD Pics 7"
+ROMX $3C
+	"Pokemon Back HD Pics 8"
+ROMX $3D
+	"Pokemon Back HD Pics 9"
+ROMX $3E
+	"Pokemon Back HD Pics 10"
+ROMX $3F
+	"Pokemon Back HD Pics 11"
+ROMX $40
+	"Pokemon Back HD Pics 12"
+ROMX $41
+	"Pokemon Back HD Pics 13"
+ROMX $42
+	"Pokemon Back HD Pics 14"
+ROMX $43
+	"Pokemon Back HD Pics 15"
 WRAM0
 	"Audio RAM"
 	org $c100

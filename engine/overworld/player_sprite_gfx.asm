@@ -15,7 +15,7 @@ _LoadWalkingPlayerSpriteGraphics::
 _LoadSurfingPlayerSpriteGraphics::
 	ld de, SeelSprite
 	ld hl, vNPCSprites
-	ld b, BANK(RedSprite)
+	ld b, BANK(SeelSprite)
 	jr _LoadPlayerSpriteGraphicsCommonBC
 
 _LoadBikePlayerSpriteGraphics::

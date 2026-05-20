@@ -155,7 +155,7 @@ VoltorbSprite::          INCBIN "gfx/icons/voltorb_ow.2bpp"
 ElectrodeSprite::        INCBIN "gfx/icons/electrode_ow.2bpp"
 
 
-; Separate ROM bank: Battle Engine 2 cannot fit this 12-tile sheet (linker overflow).
+; Keep this 12-tile sheet in overflow space; the sprite pointer table records its bank.
 SECTION "Blue Cloak OW Sprite", ROMX
 
 BlueCloakWorldSprite::   INCBIN "gfx/sprites/blue_cloak_world.2bpp"
