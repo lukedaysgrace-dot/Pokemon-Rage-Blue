@@ -3,7 +3,16 @@ PalletTown_Script:
 	jr z, .next
 	SetEvent EVENT_PALLET_AFTER_GETTING_POKEBALLS
 .next
+	; EVENT_BEAT_PALLET_TOWN_GREEN is set at the start of the after-battle script; do not
+	; run visibility until the exit cutscene finishes or HideObject runs while Green is
+	; still walking and locks the player waiting on scripted movement.
+	ld a, [wPalletTownCurScript]
+	cp SCRIPT_PALLETTOWN_GREEN_AFTER_BATTLE
+	jr z, .skipGreenVisibility
+	cp SCRIPT_PALLETTOWN_GREEN_EXIT
+	jr z, .skipGreenVisibility
 	call PalletTownUpdateGreenVisibility
+.skipGreenVisibility
 	call EnableAutoTextBoxDrawing
 	ld hl, PalletTown_ScriptPointers
 	ld a, [wPalletTownCurScript]
@@ -253,35 +262,20 @@ PalletTownGreenExitScript:
 
 PalletTownUpdateGreenVisibility:
 	call PalletTownShouldShowGreen
-	ld d, a
-	ld a, PALLETTOWN_GREEN
-	swap a
-	ldh [hCurrentSpriteOffset], a
-	predef IsObjectHidden
-	ld a, d
 	and a
-	jr z, .hide
-.show
-	ldh a, [hIsToggleableObjectOff]
-	and a
-	ret z
+	jr z, .hideGreen
 	ld a, TOGGLE_PALLET_TOWN_GREEN
 	ld [wToggleableObjectIndex], a
 	predef_jump ShowObject
-.hide
-	ldh a, [hIsToggleableObjectOff]
-	and a
-	ret nz
+.hideGreen
 	ld a, TOGGLE_PALLET_TOWN_GREEN
 	ld [wToggleableObjectIndex], a
 	predef_jump HideObject
 
 PalletTownShouldShowGreen:
-	CheckEvent EVENT_REMATCH_DEFEATED_RIVAL_CHAMPION
-	jr z, .hide
 	CheckEvent EVENT_BEAT_PALLET_TOWN_GREEN
 	jr nz, .hide
-	call PalletTownOriginal150PokedexComplete
+	call PalletTownDexCompleteForGreen
 	jr nc, .hide
 	ld a, TRUE
 	ret
@@ -289,24 +283,20 @@ PalletTownShouldShowGreen:
 	xor a
 	ret
 
-; Returns carry if the original 150 Pokédex entries are owned.
-; Mew (#151, bit 6 of byte 18) is intentionally ignored.
-PalletTownOriginal150PokedexComplete:
+; Same completion rule as Celadon Mansion Game Designer: own at least NUM_POKEMON - 1
+; species (Mew optional). The old "first 18 bytes $ff + byte 18 low bits" check could fail
+; on expanded dex / non-vanilla IndexToPokedex layouts while the in-game "diploma" path
+; still counts you as complete.
+PalletTownDexCompleteForGreen:
 	ld hl, wPokedexOwned
-	ld b, 18
-.checkFullBytes
-	ld a, [hli]
-	cp $ff
-	jr nz, .notComplete
-	dec b
-	jr nz, .checkFullBytes
-	ld a, [hl]
-	and %00111111
-	cp %00111111
-	jr nz, .notComplete
+	ld b, wPokedexOwnedEnd - wPokedexOwned
+	call CountSetBits
+	ld a, [wNumSetBits]
+	cp NUM_POKEMON - 1
+	jr c, .dexIncomplete
 	scf
 	ret
-.notComplete
+.dexIncomplete
 	and a
 	ret
 

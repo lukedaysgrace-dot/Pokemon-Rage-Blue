@@ -124,6 +124,12 @@ ChampionsRoomRivalDefeatedScript:
 	cp $ff
 	jp z, ResetRivalScript
 	call UpdateSprites
+	; Rematch teams use wTrainerNo 4–6 (see .saveTrainerId). If that ever disagrees
+	; with PostGameRematchesUnlocked (e.g. inconsistent HoF / champion flags), we still
+	; must set rematch + Pallet GREEN unlock flags when this battle used a rematch party.
+	ld a, [wTrainerNo]
+	cp 4
+	jr nc, .championRivalRematchWin
 	call PostGameRematchesUnlocked
 	jr nz, .championRivalRematchWin
 	SetEvent EVENT_BEAT_CHAMPION_RIVAL
