@@ -1,6 +1,6 @@
 	db DEX_RAMPARDOS ; pokedex id
 
-	db  97, 145,  70,  58,  75
+	db  97, 145,  70,  58,  70
 	;   hp  atk  def  spd  spc
 
 	db ROCK, ROCK ; type

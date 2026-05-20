@@ -489,6 +489,16 @@ AnorithPicBack::       INCBIN "gfx/pokemon/back/anorithb.pic"
 ArmaldoPicFront::      INCBIN "gfx/pokemon/front/armaldo.pic"
 ArmaldoPicBack::       INCBIN "gfx/pokemon/back/armaldob.pic"
 
+SECTION "Pics 9", ROMX
+
+TyruntPicFront::       INCBIN "gfx/pokemon/front/tyrunt.pic"
+TyruntPicBack::        INCBIN "gfx/pokemon/back/tyruntb.pic"
+TyrantrumPicFront::    INCBIN "gfx/pokemon/front/tyrantrum.pic"
+TyrantrumPicBack::     INCBIN "gfx/pokemon/back/tyrantrumb.pic"
+AmauraPicFront::       INCBIN "gfx/pokemon/front/amaura.pic"
+AmauraPicBack::        INCBIN "gfx/pokemon/back/amaurab.pic"
+AurorusPicFront::      INCBIN "gfx/pokemon/front/aurorus.pic"
+AurorusPicBack::       INCBIN "gfx/pokemon/back/aurorusb.pic"
 
 SECTION "Trainer Pics", ROMX
 

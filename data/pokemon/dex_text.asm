@@ -2198,3 +2198,39 @@ _ArmaldoDexEntry::
 	page "with huge claws"
 	next "on the seafloor."
 	dex
+
+_TyruntDexEntry::
+	text "Its big jaws can"
+	next "crunch through"
+	next "thick metal, but"
+
+	page "it is still young"
+	next "and selfish."
+	dex
+
+_TyrantrumDexEntry::
+	text "Ancient people"
+	next "feared its huge"
+	next "jaws. It ruled"
+
+	page "the land as a"
+	next "mighty king."
+	dex
+
+_AmauraDexEntry::
+	text "It was restored"
+	next "from a fossil."
+	next "Cold air gathers"
+
+	page "around the sails"
+	next "on its head."
+	dex
+
+_AurorusDexEntry::
+	text "It can create"
+	next "walls of ice by"
+	next "freezing moisture"
+
+	page "in the air with"
+	next "cold power."
+	dex

@@ -440,6 +440,10 @@ ELSE
 	db PAL_GREENMON  ; CRADILY
 	db PAL_CYANMON   ; ANORITH
 	db PAL_CYANMON   ; ARMALDO
+	db PAL_REDMON    ; TYRUNT
+	db PAL_REDMON    ; TYRANTRUM
+	db PAL_CYANMON   ; AMAURA
+	db PAL_CYANMON   ; AURORUS
 	assert_table_length NUM_POKEMON + 1
 TrainerPalettes:
 	table_width 1, TrainerPalettes
