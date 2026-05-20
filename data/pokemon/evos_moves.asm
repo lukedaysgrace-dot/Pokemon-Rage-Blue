@@ -59,18 +59,18 @@ EvosMovesPointerTable:
 	dw PsyduckEvosMoves
 	dw DrowzeeEvosMoves
 	dw GolemEvosMoves
-	dw MissingNo32EvosMoves
+	dw TyruntEvosMoves
 	dw MagmarEvosMoves
-	dw MissingNo34EvosMoves
+	dw TyrantrumEvosMoves
 	dw ElectabuzzEvosMoves
 	dw MagnetonEvosMoves
 	dw KoffingEvosMoves
-	dw MissingNo38EvosMoves
+	dw AmauraEvosMoves
 	dw MankeyEvosMoves
 	dw SeelEvosMoves
 	dw DiglettEvosMoves
 	dw TaurosEvosMoves
-	dw MissingNo3DEvosMoves
+	dw AurorusEvosMoves
 	dw MissingNo3EEvosMoves
 	dw MissingNo3FEvosMoves
 	dw FarfetchdEvosMoves
@@ -852,10 +852,20 @@ GolemEvosMoves:
 	db 50, EARTHQUAKE
 	db 0
 
-MissingNo32EvosMoves:
+TyruntEvosMoves:
 ; Evolutions
+	db EVOLVE_LEVEL, 39, TYRANTRUM
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, TAIL_WHIP
+	db 10, STOMP
+	db 17, BITE
+	db 24, BIDE
+	db 31, ROCK_SLIDE
+	db 38, DRAGON_RAGE
+	db 45, THRASH
+	db 52, EARTHQUAKE
 	db 0
 
 MagmarEvosMoves:
@@ -871,10 +881,20 @@ MagmarEvosMoves:
 	db 55, FLAMETHROWER
 	db 0
 
-MissingNo34EvosMoves:
+TyrantrumEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, TAIL_WHIP
+	db 10, STOMP
+	db 17, BITE
+	db 24, BIDE
+	db 31, ROCK_SLIDE
+	db 38, DRAGON_RAGE
+	db 45, THRASH
+	db 52, EARTHQUAKE
+	db 60, HYPER_BEAM
 	db 0
 
 ElectabuzzEvosMoves:
@@ -914,10 +934,19 @@ KoffingEvosMoves:
 	db 48, EXPLOSION
 	db 0
 
-MissingNo38EvosMoves:
+AmauraEvosMoves:
 ; Evolutions
+	db EVOLVE_LEVEL, 39, AURORUS
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, GROWL
+	db 10, AURORA_BEAM
+	db 17, MIST
+	db 24, TAKE_DOWN
+	db 31, ICE_BEAM
+	db 38, LIGHT_SCREEN
+	db 45, BLIZZARD
 	db 0
 
 MankeyEvosMoves:
@@ -967,10 +996,19 @@ TaurosEvosMoves:
 	db 51, TAKE_DOWN
 	db 0
 
-MissingNo3DEvosMoves:
+AurorusEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 1, TACKLE
+	db 1, GROWL
+	db 10, AURORA_BEAM
+	db 17, MIST
+	db 24, TAKE_DOWN
+	db 31, ICE_BEAM
+	db 38, LIGHT_SCREEN
+	db 45, BLIZZARD
+	db 55, HYPER_BEAM
 	db 0
 
 MissingNo3EEvosMoves:

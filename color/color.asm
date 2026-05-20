@@ -750,7 +750,7 @@ IF DEF(_RED)
 	ld d, PAL_REDMON
 ENDC
 IF DEF(_BLUE)
-	ld d, PAL_BLUEMON
+	ld d, PAL_CYANMON
 ENDC
 	ld e, 0
 	farcall LoadSGBPalette_Sprite

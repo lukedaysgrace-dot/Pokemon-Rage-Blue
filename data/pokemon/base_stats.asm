@@ -226,4 +226,8 @@ INCLUDE "data/pokemon/base_stats/lileep.asm"
 INCLUDE "data/pokemon/base_stats/cradily.asm"
 INCLUDE "data/pokemon/base_stats/anorith.asm"
 INCLUDE "data/pokemon/base_stats/armaldo.asm"
+INCLUDE "data/pokemon/base_stats/tyrunt.asm"
+INCLUDE "data/pokemon/base_stats/tyrantrum.asm"
+INCLUDE "data/pokemon/base_stats/amaura.asm"
+INCLUDE "data/pokemon/base_stats/aurorus.asm"
 	assert_table_length NUM_POKEMON

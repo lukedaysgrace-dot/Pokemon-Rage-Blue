@@ -25,8 +25,8 @@ IF DEF(_BLUE)
 	db  49, SANDSLASH
 	db  49, VICTREEBEL
 	db  52, VENOMOTH
-	db  49, WIGGLYTUFF
-	db  52, CLEFABLE
+	db  49, TYRUNT
+	db  49, AMAURA
 	db  53, NINETALES
 	db  53, DITTO
 	end_grass_wildmons
@@ -34,4 +34,3 @@ IF DEF(_BLUE)
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

@@ -49,18 +49,18 @@ PokedexEntryPointers:
 	dw PsyduckDexEntry
 	dw DrowzeeDexEntry
 	dw GolemDexEntry
-	dw MissingNoDexEntry
+	dw TyruntDexEntry
 	dw MagmarDexEntry
-	dw MissingNoDexEntry
+	dw TyrantrumDexEntry
 	dw ElectabuzzDexEntry
 	dw MagnetonDexEntry
 	dw KoffingDexEntry
-	dw MissingNoDexEntry
+	dw AmauraDexEntry
 	dw MankeyDexEntry
 	dw SeelDexEntry
 	dw DiglettDexEntry
 	dw TaurosDexEntry
-	dw MissingNoDexEntry
+	dw AurorusDexEntry
 	dw MissingNoDexEntry
 	dw MissingNoDexEntry
 	dw FarfetchdDexEntry
@@ -1840,6 +1840,34 @@ ArmaldoDexEntry:
 	db 4,11
 	dw 1504
 	text_far _ArmaldoDexEntry
+	text_end
+
+TyruntDexEntry:
+	db "ROYAL HEIR@"
+	db 2,7
+	dw 573
+	text_far _TyruntDexEntry
+	text_end
+
+TyrantrumDexEntry:
+	db "DESPOT@"
+	db 8,2
+	dw 5952
+	text_far _TyrantrumDexEntry
+	text_end
+
+AmauraDexEntry:
+	db "TUNDRA@"
+	db 4,3
+	dw 556
+	text_far _AmauraDexEntry
+	text_end
+
+AurorusDexEntry:
+	db "TUNDRA@"
+	db 8,10
+	dw 4960
+	text_far _AurorusDexEntry
 	text_end
 
 MissingNoDexEntry:
