@@ -24,8 +24,8 @@ IF DEF(_BLUE)
 	db  51, SALAMENCE
 	db  52, SNORLAX
 	db  52, LAPRAS
-	db  55, TYRANTRUM
-	db  55, AURORUS
+	db  55, DRAGONITE
+	db   55, EXEGGUTOR
 	db  54, POLIWRATH
 	db  55, MACHAMP
 	db   55, GYARADOS
@@ -34,3 +34,4 @@ IF DEF(_BLUE)
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
+

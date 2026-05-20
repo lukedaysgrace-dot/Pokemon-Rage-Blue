@@ -1,6 +1,6 @@
 	db DEX_CRADILY ; pokedex id
 
-	db  96,  91, 107,  43, 103
+	db  86,  81,  97,  43,  93
 	;   hp  atk  def  spd  spc
 
 	db ROCK, GRASS ; type

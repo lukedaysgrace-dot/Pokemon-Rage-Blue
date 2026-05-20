@@ -1,6 +1,6 @@
 	db DEX_ARMALDO ; pokedex id
 
-	db  75, 125, 100,  55,  85
+	db  75, 125, 100,  45,  75
 	;   hp  atk  def  spd  spc
 
 	db ROCK, BUG ; type
