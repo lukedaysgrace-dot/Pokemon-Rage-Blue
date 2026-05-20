@@ -103,6 +103,8 @@ _AddPartyMon::
 	jr z, .enemyPerfectDVs
 	cp ARCHER
 	jr z, .enemyPerfectDVs
+	cp PROF_OAK
+	jr z, .enemyPerfectDVs
 	cp KAREN
 	jr c, .enemyAverageDVs
 	cp SABRINA + 1 ; Bruno–Sabrina: gym leaders
@@ -440,7 +442,7 @@ _AddPartyMon::
 	jr z, .eliteFourMaybeRematch2
 	cp RIVAL3
 	jr z, .championRivalMaybeRematch456
-	jp .maybeZeroTrainerStatExp
+	jp .checkProfOakStatExp
 
 .eliteFourMaybeRematch2
 	ld a, [wTrainerNo]
@@ -455,6 +457,15 @@ _AddPartyMon::
 	cp 4
 	jp nc, .setRematchStatExp
 	ld b, $33
+	ld c, $33
+	jp .writeTrainerStatExp
+
+.checkProfOakStatExp
+	; Route 1 dex reward: 45% of max Stat EXP -> 0x7333 (~29491) each stat.
+	ld a, [wTrainerClass]
+	cp PROF_OAK
+	jp nz, .maybeZeroTrainerStatExp
+	ld b, $73
 	ld c, $33
 	jp .writeTrainerStatExp
 

@@ -52,6 +52,9 @@ ENDM
 	const TOGGLE_SAFFRON_CITY_E                ; 18
 	const TOGGLE_SAFFRON_CITY_F                ; 19
 
+	toggle_consts_for ROUTE_1
+	const TOGGLE_ROUTE_1_OAK
+
 	toggle_consts_for ROUTE_2
 	const TOGGLE_ROUTE_2_ITEM_1                ; 1A X
 	const TOGGLE_ROUTE_2_ITEM_2                ; 1B X

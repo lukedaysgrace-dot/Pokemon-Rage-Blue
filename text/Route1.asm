@@ -48,3 +48,42 @@ _Route1SignText::
 	line "PALLET TOWN -"
 	cont "VIRIDIAN CITY"
 	done
+
+_Route1OakBeforeBattleText::
+	text "Ah, <PLAYER>!"
+
+	para "You've completed"
+	line "the #DEX!"
+
+	para "Every single one"
+	line "of the original"
+	cont "151 #MON, MEW"
+	cont "included."
+
+	para "I'm impressed."
+	line "Let me see how"
+	cont "far you've come!"
+	done
+
+_Route1OakEndBattleText::
+	text "Splendid! You've"
+	line "grown into a fine"
+	cont "#MON TRAINER!"
+	done
+
+_Route1OakPlayerLoseText::
+	text "Don't give up!"
+	line "Study your #MON"
+	cont "and try again!"
+	done
+
+_Route1OakAfterBattleText::
+	text "You remind me of"
+	line "myself at your"
+	cont "age."
+
+	para "Keep training,"
+	line "and take good"
+	cont "care of your"
+	cont "#MON!"
+	done

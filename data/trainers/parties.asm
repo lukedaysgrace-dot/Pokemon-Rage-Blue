@@ -491,10 +491,8 @@ Rival1Data:
 	db $FF, 18, PIDGEOTTO, 15, ABRA, 15, RATTATA, 17, IVYSAUR, 0
 	db $FF, 18, PIDGEOTTO, 15, ABRA, 15, RATTATA, 17, CHARMELEON, 0
 ProfOakData:
-; Unused - joenote: restored
-	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, BLASTOISE, 70, GYARADOS, 0
-	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, VENUSAUR, 70, GYARADOS, 0
-	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, CHARIZARD, 70, GYARADOS, 0
+; Route 1 postgame dex-completion fight - wTrainerNo 1
+	db $FF, 75, TAUROS, 75, EXEGGUTOR, 75, CLOYSTER, 75, DRAGONITE, 75, SNORLAX, 75, CHARIZARD, 0
 ChiefData:
 ; none
 ;joenote - special fight with the silph chief

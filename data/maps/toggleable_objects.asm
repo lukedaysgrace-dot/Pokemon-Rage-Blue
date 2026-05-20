@@ -79,6 +79,9 @@ ToggleableObjectStates:
 	toggle_object_state SAFFRONCITY_ROCKET8,        ON
 	toggle_object_state SAFFRONCITY_ROCKET9,        OFF
 
+	toggleable_objects_for ROUTE_1
+	toggle_object_state ROUTE1_OAK, OFF
+
 	toggleable_objects_for ROUTE_2
 	toggle_object_state ROUTE2_MOON_STONE, ON
 	toggle_object_state ROUTE2_HP_UP,      ON

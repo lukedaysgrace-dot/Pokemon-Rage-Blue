@@ -6222,6 +6222,8 @@ LoadEnemyMonData:
 	jr z, .perfectTrainerDVs
 	cp ARCHER
 	jr z, .perfectTrainerDVs
+	cp PROF_OAK
+	jr z, .perfectTrainerDVs
 	cp KAREN
 	jr c, .averageTrainerDVs
 	cp SABRINA + 1 ; $21-$28: Bruno, Brock, Misty, Lt.Surge, Erika, Koga, Blaine, Sabrina
