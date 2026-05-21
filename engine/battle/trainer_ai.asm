@@ -199,9 +199,6 @@ CooltrainerFAI:
 	; Uncomment the line below to fix this.
 	cp 25 percent + 1
 	; ret nc
-	ld a, 10
-	call AICheckIfHPBelowFraction
-	jp c, AIUseHyperPotion
 	ld a, 5
 	call AICheckIfHPBelowFraction
 	ret nc
@@ -267,8 +264,6 @@ Rival3AI:
 	jp AIUseFullRestore
 
 BlueCloakAI:
-	call BlueCloakTryBadMatchupSwitch
-	ret c
 	call Random
 	cp 30 percent
 	ret nc
@@ -281,7 +276,8 @@ EliteFourAI:
 	ret
 
 BlueAI:
-	jp BlueCloakTryBadMatchupSwitch
+	and a ; use smart move scoring only; no items or voluntary switches
+	ret
 
 LoreleiAI:
 	cp 50 percent + 1
@@ -299,12 +295,8 @@ KarenAI:
 AgathaAI:
 	cp 8 percent
 	jp c, AISwitchIfEnoughMons
-	cp 50 percent + 1
-	ret nc
-	ld a, 4
-	call AICheckIfHPBelowFraction
-	ret nc
-	jp AIUseSuperPotion
+	and a
+	ret
 
 LanceAI:
 	cp 50 percent + 1
@@ -316,22 +308,6 @@ LanceAI:
 
 GenericAI:
 	and a ; clear carry
-	ret
-
-BlueCloakTryBadMatchupSwitch:
-	ld a, [wActionResultOrTookBattleTurn]
-	and a
-	ret nz
-	ld a, [wPlayerMovePower]
-	and a
-	ret z
-	callfar AIGetPlayerTypeEffectiveness
-	ld a, [wTypeEffectiveness]
-	cp SUPER_EFFECTIVE
-	jr c, .noAction
-	jp AISwitchIfEnoughMons
-.noAction
-	and a
 	ret
 
 BlueCloakTryDireHit:
