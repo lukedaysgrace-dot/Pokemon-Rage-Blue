@@ -18,6 +18,7 @@ ENDM
 	music_const MUSIC_SS_ANNE,             Music_SSAnne
 	music_const MUSIC_MEET_PROF_OAK,       Music_MeetProfOak
 	music_const MUSIC_MEET_RIVAL,          Music_MeetRival
+	music_const MUSIC_BLUE_CLOAK_START,   Music_BlueCloakStart
 	music_const MUSIC_MUSEUM_GUY,          Music_MuseumGuy
 	music_const MUSIC_SAFARI_ZONE,         Music_SafariZone
 	music_const MUSIC_PKMN_HEALED,         Music_PkmnHealed

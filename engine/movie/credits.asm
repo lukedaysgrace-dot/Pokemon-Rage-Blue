@@ -7,6 +7,8 @@ CreditsRollOnly:
 	call ClearScreen
 	ld c, 100
 	call DelayFrames
+	call LoadFontTilePatterns
+	call LoadTextBoxTilePatterns
 	call DisableLCD
 	ld hl, vFont
 	ld bc, ($80 tiles) / 2

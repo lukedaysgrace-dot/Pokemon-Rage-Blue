@@ -75,6 +75,12 @@ Music_MeetRival::
 	channel 2, Music_MeetRival_Ch2
 	channel 3, Music_MeetRival_Ch3
 
+Music_BlueCloakStart::
+	channel_count 3
+	channel 1, Music_TitleMeetRival_Ch1
+	channel 2, Music_TitleMeetRival_Ch2
+	channel 3, Music_TitleMeetRival_Ch3
+
 Music_MuseumGuy::
 	channel_count 4
 	channel 1, Music_MuseumGuy_Ch1

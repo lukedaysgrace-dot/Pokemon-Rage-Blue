@@ -174,11 +174,11 @@ CinnabarIslandGymSignText:
 	text_end
 
 CinnabarIslandBlueCloakHeaderBeforeText:
-	text_far _ViridianCityBlueCloakPreBattleText1
+	text_far _CinnabarIslandBlueCloakPreBattleText1
 	text_end
 
 CinnabarIslandBlueCloakHeaderAfterText:
-	text_far _ViridianCityBlueCloakAfterBeatShortText
+	text_far _CinnabarIslandBlueCloakAfterBeatShortText
 	text_end
 
 CinnabarIslandBlueCloakNotYetText:
@@ -186,15 +186,15 @@ CinnabarIslandBlueCloakNotYetText:
 	text_end
 
 CinnabarIslandBlueCloakPreBattleText1:
-	text_far _ViridianCityBlueCloakPreBattleText1
+	text_far _CinnabarIslandBlueCloakPreBattleText1
 	text_end
 
 CinnabarIslandBlueCloakPreBattleText2:
-	text_far _ViridianCityBlueCloakPreBattleText2
+	text_far _CinnabarIslandBlueCloakPreBattleText2
 	text_end
 
 CinnabarIslandBlueCloakDefeatedText:
-	text_far _ViridianCityBlueCloakDefeatedText
+	text_far _CinnabarIslandBlueCloakDefeatedText
 	text_end
 
 CinnabarIslandBlueCloakVictoryText:
@@ -202,7 +202,7 @@ CinnabarIslandBlueCloakVictoryText:
 	text_end
 
 CinnabarIslandBlueCloakAfterBeatShortText:
-	text_far _ViridianCityBlueCloakAfterBeatShortText
+	text_far _CinnabarIslandBlueCloakAfterBeatShortText
 	text_end
 
 CinnabarIslandBlueCloakText:
@@ -218,6 +218,12 @@ CinnabarIslandBlueCloakText:
 .needAllRematches
 	CheckEvent EVENT_BEAT_PALLET_TOWN_GREEN
 	jp z, .notYet
+	ld a, SFX_STOP_ALL_MUSIC
+	ld [wNewSoundID], a
+	call PlaySound
+	ld c, BANK(Music_BlueCloakStart)
+	ld a, MUSIC_BLUE_CLOAK_START
+	call PlayMusic
 	ld hl, CinnabarIslandBlueCloakPreBattleText1
 	call PrintText
 	ld hl, CinnabarIslandBlueCloakPreBattleText2
@@ -264,5 +270,5 @@ CinnabarIslandBlueCloakText:
 	jp TextScriptEnd
 
 CinnabarIslandBlueCloakAfterWinText:
-	text_far _ViridianCityBlueCloakAfterBeatText
+	text_far _CinnabarIslandBlueCloakAfterBeatText
 	text_end
