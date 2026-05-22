@@ -25,7 +25,7 @@ TrainerAIPointers:
 	dbw 3, AgathaAI        ; BEAUTY
 	dbw 3, AgathaAI        ; PSYCHIC_TR
 	dbw 3, AgathaAI        ; ROCKER
-	dbw 4, JugglerAI       ; JUGGLER
+	dbw 4, CooltrainerFAI  ; JUGGLER
 	dbw 3, AgathaAI        ; TAMER
 	dbw 3, AgathaAI        ; BIRD_KEEPER
 	dbw 3, BlackbeltAI     ; BLACKBELT
