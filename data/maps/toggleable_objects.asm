@@ -116,7 +116,13 @@ ToggleableObjectStates:
 	toggleable_objects_for ROUTE_24
 	toggle_object_state ROUTE24_COOLTRAINER_M1,  ON
 	toggle_object_state ROUTE24_TM_THUNDER_WAVE, ON
+IF DEF(_RED)
+	toggle_object_state ROUTE24_CHARMANDER_TRAINER, OFF
+	toggle_object_state ROUTE24_CHARMANDER,         OFF
+ELSE
+	toggle_object_state ROUTE24_CHARMANDER_TRAINER, ON
 	toggle_object_state ROUTE24_CHARMANDER,      ON
+ENDC
 
 	toggleable_objects_for ROUTE_25
 	toggle_object_state ROUTE25_TM_SEISMIC_TOSS, ON
@@ -144,7 +150,13 @@ ToggleableObjectStates:
 
 	toggleable_objects_for MUSEUM_1F
 	toggle_object_state MUSEUM1F_OLD_AMBER, ON
+IF DEF(_BLUE)
+	toggle_object_state MUSEUM1F_GAMBLER,   ON
 	toggle_object_state MUSEUM1F_CYNDAQUIL, ON
+ELSE
+	toggle_object_state MUSEUM1F_GAMBLER,   OFF
+	toggle_object_state MUSEUM1F_CYNDAQUIL, OFF
+ENDC
 
 	toggleable_objects_for CERULEAN_CAVE_1F
 	toggle_object_state CERULEANCAVE1F_FULL_RESTORE, ON
@@ -219,10 +231,22 @@ ToggleableObjectStates:
 	toggle_object_state POWERPLANT_TM_REFLECT, ON
 
 	toggleable_objects_for CERULEAN_TRADE_HOUSE
+IF DEF(_RED)
+	toggle_object_state CERULEANTRADEHOUSE_GIRL,      OFF
+	toggle_object_state CERULEANTRADEHOUSE_BULBASAUR, OFF
+ELSE
+	toggle_object_state CERULEANTRADEHOUSE_GIRL,      ON
 	toggle_object_state CERULEANTRADEHOUSE_BULBASAUR, ON
+ENDC
 
 	toggleable_objects_for VERMILION_CITY
+IF DEF(_RED)
+	toggle_object_state VERMILIONCITY_GUARD,    OFF
+	toggle_object_state VERMILIONCITY_SQUIRTLE, OFF
+ELSE
+	toggle_object_state VERMILIONCITY_GUARD,    ON
 	toggle_object_state VERMILIONCITY_SQUIRTLE, ON
+ENDC
 
 	toggleable_objects_for VICTORY_ROAD_2F
 	toggle_object_state VICTORYROAD2F_MOLTRES,       ON
@@ -474,10 +498,18 @@ ENDC
 	toggle_object_state FUCHSIAGYM_JANINE, OFF
 
 	toggleable_objects_for BIKE_SHOP
+IF DEF(_BLUE)
 	toggle_object_state BIKESHOP_TOTODILE, ON
+ELSE
+	toggle_object_state BIKESHOP_TOTODILE, OFF
+ENDC
 
 	toggleable_objects_for VERMILION_TRADE_HOUSE
+IF DEF(_BLUE)
 	toggle_object_state VERMILIONTRADEHOUSE_CHIKORITA, ON
+ELSE
+	toggle_object_state VERMILIONTRADEHOUSE_CHIKORITA, OFF
+ENDC
 
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 

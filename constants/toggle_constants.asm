@@ -89,6 +89,7 @@ ENDM
 	toggle_consts_for ROUTE_24
 	const TOGGLE_NUGGET_BRIDGE_GUY             ; 26
 	const TOGGLE_ROUTE_24_ITEM                 ; 27 X
+	const TOGGLE_ROUTE_24_CHARMANDER_TRAINER
 	const TOGGLE_ROUTE_24_CHARMANDER           ; 28
 
 	toggle_consts_for ROUTE_25
@@ -117,6 +118,7 @@ ENDM
 
 	toggle_consts_for MUSEUM_1F
 	const TOGGLE_OLD_AMBER                     ; 37
+	const TOGGLE_MUSEUM_1F_CYNDAQUIL_TRAINER
 	const TOGGLE_MUSEUM_1F_CYNDAQUIL
 
 	toggle_consts_for CERULEAN_CAVE_1F
@@ -192,9 +194,11 @@ ENDM
 	const TOGGLE_POWER_PLANT_ITEM_5            ; 5B X
 
 	toggle_consts_for CERULEAN_TRADE_HOUSE
+	const TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR_TRAINER
 	const TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
 
 	toggle_consts_for VERMILION_CITY
+	const TOGGLE_VERMILION_CITY_SQUIRTLE_TRAINER
 	const TOGGLE_VERMILION_CITY_SQUIRTLE
 
 	toggle_consts_for VICTORY_ROAD_2F

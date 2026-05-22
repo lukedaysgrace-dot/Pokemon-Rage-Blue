@@ -1,5 +1,13 @@
 BikeShop_Script:
-	jp EnableAutoTextBoxDrawing
+	call EnableAutoTextBoxDrawing
+IF DEF(_BLUE)
+	CheckEvent EVENT_GOT_TOTODILE_IN_BIKE_SHOP
+	ret nz
+	ld a, TOGGLE_BIKE_SHOP_TOTODILE
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+ENDC
+	ret
 
 BikeShop_TextPointers:
 	def_text_pointers

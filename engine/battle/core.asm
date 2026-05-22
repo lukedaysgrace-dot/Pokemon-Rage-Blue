@@ -6459,33 +6459,48 @@ SwapPlayerAndEnemyLevels:
 LoadPlayerBackPic:
 	ld a, [wBattleType]
 	dec a ; is it the old man tutorial?
-	ld de, RedPicBack
 	jr nz, .notOldMan
 	ld de, OldManPicBack
-	jr .haveBackPic
-.notOldMan
-	ld a, [wPlayerGender]
-	and a
-	jr z, .haveBackPic
-	ld de, MintPicBack
-.haveBackPic
-	ld a, [wBattleType]
-	dec a
-	jr nz, .backPicBankNotOldMan
 	ld a, BANK(OldManPicBack)
-	jr .backPicBankReady
-.backPicBankNotOldMan
+	jr .loadRegularBackPic
+.notOldMan
+	ld a, [wOptions]
+	bit BIT_BACK_SPRITES_HD, a
+	jr z, .loadRegularPlayerBackPic
 	ld a, [wPlayerGender]
 	and a
-	jr z, .backPicBankMale
+	jr z, .loadRedBackPicHD
+	ld de, MintPicBackHD
+	ld a, BANK(MintPicBackHD)
+	jr .loadBackPicHD
+.loadRedBackPicHD
+	ld de, RedPicBackHD
+	ld a, BANK(RedPicBackHD)
+.loadBackPicHD
+	call UncompressSpriteFromDE
+	ld a, $66
+	ld c, a
+	ld de, vBackPic
+	call LoadUncompressedSpriteData
+	jr .writeOAMAndLoadTiles
+.loadRegularPlayerBackPic
+	ld de, RedPicBack
+	ld a, [wPlayerGender]
+	and a
+	jr z, .regularBackPicBankMale
+	ld de, MintPicBack
 	ld a, BANK(MintPicBack)
 	jr .backPicBankReady
-.backPicBankMale
+.regularBackPicBankMale
 	ld a, BANK(RedPicBack)
 .backPicBankReady
 	ASSERT BANK(RedPicBack) == BANK(OldManPicBack)
+.loadRegularBackPic
 	call UncompressSpriteFromDE
 	predef ScaleSpriteByTwo
+	ld de, vBackPic
+	call InterlaceMergeSpriteBuffers
+.writeOAMAndLoadTiles
 	ld hl, wShadowOAM
 	xor a
 	ldh [hOAMTile], a ; initial tile number
@@ -6518,8 +6533,6 @@ LoadPlayerBackPic:
 	ld e, a
 	dec b
 	jr nz, .loop
-	ld de, vBackPic
-	call InterlaceMergeSpriteBuffers
 	ld a, RAMG_SRAM_ENABLE
 	ld [rRAMG], a
 	xor a

@@ -1,5 +1,8 @@
 SECTION "Pokemon Back HD", ROMX
 
+RedPicBackHD::  INCBIN "gfx/pokemon/backhd/redb.pic"
+MintPicBackHD:: INCBIN "gfx/pokemon/backhd/mintb.pic"
+
 LoadMonBackPic:
 ; Reload header for the back pic. In battle, use the party slot's species (source of truth)
 ; unless transformed — then wBattleMonSpecies is the appearance. Out of battle (e.g. HoF),

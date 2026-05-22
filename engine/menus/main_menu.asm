@@ -634,7 +634,7 @@ BattleStyleOptionText:
 
 BackSpritesOptionText:
 	db   "BACK SPRITES"
-	next " 32x32    48x48@"
+	next " CLASSIC  HIGH DEF@"
 
 OptionMenuCancelText:
 	db "CANCEL@"

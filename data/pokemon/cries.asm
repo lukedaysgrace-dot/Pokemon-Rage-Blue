@@ -202,7 +202,7 @@ CryData::
 	mon_cry SFX_CRY_15, $A0, $20 ; Cyndaquil
 	mon_cry SFX_CRY_15, $60, $60 ; Quilava
 	mon_cry SFX_CRY_15, $20, $D0 ; Typhlosion
-	mon_cry SFX_CRY_21, $A0, $30 ; Totodile
+	mon_cry SFX_CRY_22, $68, $D8 ; Totodile
 	mon_cry SFX_CRY_1D, $70, $70 ; Croconaw
 	mon_cry SFX_CRY_17, $40, $C0 ; Feraligatr
 	mon_cry SFX_CRY_10, $80, $60 ; Murkrow

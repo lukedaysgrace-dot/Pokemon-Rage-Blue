@@ -101,6 +101,26 @@ HallOfFameOakCongratulationsScript:
 	ld a, TOGGLE_CERULEAN_CAVE_GUY
 	ld [wToggleableObjectIndex], a
 	predef HideObject
+IF DEF(_RED)
+	ld a, TOGGLE_ROUTE_24_CHARMANDER_TRAINER
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	ld a, TOGGLE_ROUTE_24_CHARMANDER
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	ld a, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR_TRAINER
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	ld a, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	ld a, TOGGLE_VERMILION_CITY_SQUIRTLE_TRAINER
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	ld a, TOGGLE_VERMILION_CITY_SQUIRTLE
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+ENDC
 	ld a, SCRIPT_HALLOFFAME_RESET_EVENTS_AND_SAVE
 	ld [wHallOfFameCurScript], a
 	ret
