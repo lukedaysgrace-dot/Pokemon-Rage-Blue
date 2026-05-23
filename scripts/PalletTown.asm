@@ -264,10 +264,24 @@ PalletTownUpdateGreenVisibility:
 	call PalletTownShouldShowGreen
 	and a
 	jr z, .hideGreen
+	ld a, PALLETTOWN_GREEN
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret z
 	ld a, TOGGLE_PALLET_TOWN_GREEN
 	ld [wToggleableObjectIndex], a
 	predef_jump ShowObject
 .hideGreen
+	ld a, PALLETTOWN_GREEN
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret nz
 	ld a, TOGGLE_PALLET_TOWN_GREEN
 	ld [wToggleableObjectIndex], a
 	predef_jump HideObject
