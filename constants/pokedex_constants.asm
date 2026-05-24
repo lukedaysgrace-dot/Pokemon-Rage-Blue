@@ -224,8 +224,8 @@
 	const DEX_BASTIODON  ; 218
 	const DEX_BUNEARY    ; 219
 	const DEX_LOPUNNY    ; 220
-	const DEX_HIPPOPOTAS ; 221
-	const DEX_HIPPOWDON  ; 222
+	const DEX_WIMPOD     ; 221
+	const DEX_GOLISOPOD  ; 222
 	const DEX_LILEEP     ; 223
 	const DEX_CRADILY    ; 224
 	const DEX_ANORITH    ; 225

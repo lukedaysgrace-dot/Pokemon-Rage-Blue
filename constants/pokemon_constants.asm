@@ -92,8 +92,8 @@
 	const NINETALES          ; $53
 	const PIKACHU            ; $54
 	const RAICHU             ; $55
-	const HIPPOPOTAS         ; $56
-	const HIPPOWDON          ; $57
+	const WIMPOD             ; $56
+	const GOLISOPOD          ; $57
 	const DRATINI            ; $58
 	const DRAGONAIR          ; $59
 	const KABUTO             ; $5A

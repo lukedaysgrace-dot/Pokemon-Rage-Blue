@@ -219,8 +219,8 @@ MonPartyData:
 	db ICON_BASTIODON     ; Bastiodon
 	db ICON_BUNEARY       ; Buneary
 	db ICON_LOPUNNY       ; Lopunny
-	db ICON_HIPPOPOTAS    ; Hippopotas
-	db ICON_HIPPOWDON     ; Hippowdon
+	db ICON_WIMPOD        ; Wimpod
+	db ICON_GOLISOPOD     ; Golisopod
 	db ICON_LILEEP        ; Lileep
 	db ICON_CRADILY       ; Cradily
 	db ICON_ANORITH       ; Anorith

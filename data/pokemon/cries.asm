@@ -91,8 +91,8 @@ CryData::
 	mon_cry SFX_CRY_24, $88, $60 ; Ninetales
 	mon_cry SFX_CRY_0F, $EE, $01 ; Pikachu
 	mon_cry SFX_CRY_09, $EE, $08 ; Raichu
-	mon_cry SFX_CRY_21, $20, $E0 ; Hippopotas
-	mon_cry SFX_CRY_11, $10, $C0 ; Hippowdon
+	mon_cry SFX_CRY_21, $20, $E0 ; Wimpod
+	mon_cry SFX_CRY_11, $10, $C0 ; Golisopod
 	mon_cry SFX_CRY_0F, $60, $40 ; Dratini
 	mon_cry SFX_CRY_0F, $40, $80 ; Dragonair
 	mon_cry SFX_CRY_16, $BB, $40 ; Kabuto

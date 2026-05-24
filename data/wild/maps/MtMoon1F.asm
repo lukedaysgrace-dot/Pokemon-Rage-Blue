@@ -27,7 +27,7 @@ IF DEF(_BLUE)
 	db  10, MACHOP
 	db  10, ONIX
 	db   8, GOLETT
-	db   9, HIPPOPOTAS
+	db   9, WIMPOD
 	db   8, LARVITAR
 	end_grass_wildmons
 

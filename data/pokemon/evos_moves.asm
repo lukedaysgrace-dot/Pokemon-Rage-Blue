@@ -95,8 +95,8 @@ EvosMovesPointerTable:
 	dw NinetalesEvosMoves
 	dw PikachuEvosMoves
 	dw RaichuEvosMoves
-	dw HippopotasEvosMoves
-	dw HippowdonEvosMoves
+	dw WimpodEvosMoves
+	dw GolisopodEvosMoves
 	dw DratiniEvosMoves
 	dw DragonairEvosMoves
 	dw KabutoEvosMoves
@@ -1260,29 +1260,32 @@ RaichuEvosMoves:
 	db 47, THUNDERBOLT
 	db 0
 
-HippopotasEvosMoves:
+WimpodEvosMoves:
 ; Evolutions
-	db EVOLVE_LEVEL, 34, HIPPOWDON
+	db EVOLVE_LEVEL, 30, GOLISOPOD
 	db 0
 ; Learnset
-	db 1, TACKLE
-	db 7, SAND_ATTACK
-	db 13, BITE
-	db 19, DIG
-	db 25, STOMP
+	db 1, SAND_ATTACK
+	db 21, BUG_BITE
 	db 0
 
-HippowdonEvosMoves:
+GolisopodEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 1, TACKLE
 	db 1, SAND_ATTACK
-	db 7, BITE
-	db 13, DIG
-	db 19, STOMP
-	db 28, ROCK_THROW
-	db 36, EARTHQUAKE
+	db 1, BUG_BITE
+	db 1, GROWL
+	db 12, STRENGTH
+	db 16, HEADBUTT
+	db 20, BITE
+	db 24, LEECH_LIFE
+	db 32, SWORDS_DANCE
+	db 36, SLAM
+	db 40, SLASH
+	db 44, CROSS_CHOP
+	db 48, BUBBLEBEAM
+	db 56, CRABHAMMER
 	db 0
 
 DratiniEvosMoves:

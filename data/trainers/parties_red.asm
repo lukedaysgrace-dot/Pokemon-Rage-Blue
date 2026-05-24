@@ -362,12 +362,12 @@ TamerData:
 	db 33, ARBOK, SANDSLASH, ARBOK, 0
 ; Viridian Gym
 	db 43, RHYPERIOR, 0
-	db 39, HIPPOWDON, TAUROS, 0
+	db 39, GOLISOPOD, TAUROS, 0
 ; Victory Road 2F
 	db 44, PERSIAN, GOLDUCK, 0
 ; Silph Co. hired muscle — rosters 6–8 (2F / one pair on 3F / 6F)
 	db 31, RHYPERIOR, STEELIX, 0
-	db 32, HIPPOWDON, MACHAMP, 0
+	db 32, GOLISOPOD, MACHAMP, 0
 	db 32, MACHAMP, TAUROS, 0
 BirdKeeperData:
 ; Route 13
@@ -466,7 +466,7 @@ GiovanniData:
 RocketData:
 ; Mt. Moon B2F
 	db 13, RATTATA, ZUBAT, 0
-	db 11, SANDSHREW, HIPPOPOTAS, HOUNDOUR, 0
+	db 11, SANDSHREW, WIMPOD, HOUNDOUR, 0
 	db 12, ZUBAT, EKANS, 0
 	db 16, RATICATE, 0
 ; Cerulean City
@@ -529,12 +529,12 @@ CooltrainerMData:
 ; Viridian Gym
 	db 39, NIDOQUEEN, NIDOKING, 0
 ; Victory Road 3F
-	db 43, HIPPOWDON, CLOYSTER, ARCANINE, 0
+	db 43, GOLISOPOD, CLOYSTER, ARCANINE, 0
 	db 43, KINGLER, TENTACRUEL, BLASTOISE, 0
 ; Victory Road 1F
 	db 42, VENUSAUR, BLASTOISE, CHARIZARD, RAICHU, 0
 ; Viridian Gym
-	db 39, SANDSLASH, HIPPOWDON, 0
+	db 39, SANDSLASH, GOLISOPOD, 0
 	db 43, SNORLAX, 0
 ; Unused
 	;db 45,KINGLER,STARMIE,0

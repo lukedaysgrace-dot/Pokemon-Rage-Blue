@@ -176,8 +176,8 @@ PokemonBackHDPicPointers::
 	dba NinetalesBackHDPic
 	dba PikachuBackHDPic
 	dba RaichuBackHDPic
-	dba HippopotasBackHDPic
-	dba HippowdonBackHDPic
+	dba WimpodBackHDPic
+	dba GolisopodBackHDPic
 	dba DratiniBackHDPic
 	dba DragonairBackHDPic
 	dba KabutoBackHDPic
@@ -558,8 +558,8 @@ ShieldonBackHDPic:: INCBIN "gfx/pokemon/backhd/shieldonb.pic"
 BastiodonBackHDPic:: INCBIN "gfx/pokemon/backhd/bastiodonb.pic"
 BunearyBackHDPic:: INCBIN "gfx/pokemon/backhd/bunearyb.pic"
 LopunnyBackHDPic:: INCBIN "gfx/pokemon/backhd/lopunnyb.pic"
-HippopotasBackHDPic:: INCBIN "gfx/pokemon/backhd/hippopotasb.pic"
-HippowdonBackHDPic:: INCBIN "gfx/pokemon/backhd/hippowdonb.pic"
+WimpodBackHDPic:: INCBIN "gfx/pokemon/backhd/wimpodb.pic"
+GolisopodBackHDPic:: INCBIN "gfx/pokemon/backhd/golisopodb.pic"
 LileepBackHDPic:: INCBIN "gfx/pokemon/backhd/lileepb.pic"
 CradilyBackHDPic:: INCBIN "gfx/pokemon/backhd/cradilyb.pic"
 AnorithBackHDPic:: INCBIN "gfx/pokemon/backhd/anorithb.pic"
