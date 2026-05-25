@@ -1,6 +1,7 @@
 PokemonTower2FWildMons:
+	def_grass_wildmons 0 ; encounter rate
 IF DEF(_RED)
-	def_grass_wildmons 10 ; encounter rate
+	def_grass_wildmons 1 ; encounter rate
 	db  17, GASTLY
 	db  18, GASTLY
 	db   19, GASTLY
@@ -18,7 +19,7 @@ IF DEF(_RED)
 ENDC
 
 IF DEF(_BLUE)
-	def_grass_wildmons 10 ; encounter rate
+	def_grass_wildmons 1 ; encounter rate
 	db  17, GASTLY
 	db  18, GASTLY
 	db   19, GASTLY
@@ -34,4 +35,3 @@ IF DEF(_BLUE)
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

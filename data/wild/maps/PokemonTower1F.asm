@@ -1,6 +1,7 @@
 PokemonTower1FWildMons:
+	def_grass_wildmons 0 ; encounter rate
 IF DEF(_RED)
-	def_grass_wildmons 8 ; encounter rate
+	def_grass_wildmons 1 ; encounter rate
 	db  15, GASTLY
 	db  16, GASTLY
 	db  17, GASTLY
@@ -18,7 +19,7 @@ IF DEF(_RED)
 ENDC
 
 IF DEF(_BLUE)
-	def_grass_wildmons 8 ; encounter rate
+	def_grass_wildmons 1 ; encounter rate
 	db  15, GASTLY
 	db  16, GASTLY
 	db  17, DUSKULL

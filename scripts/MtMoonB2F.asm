@@ -328,7 +328,7 @@ MtMoonB2FYouHaveNoRoomText:
 	text_end
 
 MtMoonB2FCheckHasAllOtherFossils:
-	ld b, SKULL_FOSSIL
+	ld b, SAIL_FOSSIL
 	call IsItemInBag
 	ret z
 	ld b, ARMOR_FOSSIL
@@ -337,9 +337,38 @@ MtMoonB2FCheckHasAllOtherFossils:
 	ld b, CLAW_FOSSIL
 	call IsItemInBag
 	ret z
+	ld b, SKULL_FOSSIL
+	call IsItemInBag
+	ret z
+	ld b, JAW_FOSSIL
+	call IsItemInBag
+	ret z
 	ld b, ROOT_FOSSIL
 	call IsItemInBag
 	ret
+
+IF DEF(_RED)
+MtMoonB2FTakeRequiredFossils:
+	ld hl, MtMoonB2FRequiredFossils
+.loop
+	ld a, [hli]
+	cp -1
+	ret z
+	ldh [hItemToRemoveID], a
+	push hl
+	farcall RemoveItemByID
+	pop hl
+	jr .loop
+
+MtMoonB2FRequiredFossils:
+	db SAIL_FOSSIL
+	db ARMOR_FOSSIL
+	db CLAW_FOSSIL
+	db SKULL_FOSSIL
+	db JAW_FOSSIL
+	db ROOT_FOSSIL
+	db -1
+ENDC
 
 MtMoonB2FGiveSuperNerdFossil:
 	CheckEvent EVENT_GOT_DOME_FOSSIL
@@ -349,6 +378,9 @@ MtMoonB2FGiveSuperNerdFossil:
 	jr nc, .bag_full
 	call MtMoonB2FReceivedFossilText
 	SetEvent EVENT_GOT_MT_MOON_SUPER_NERD_FOSSIL
+IF DEF(_RED)
+	call MtMoonB2FTakeRequiredFossils
+ENDC
 	ret
 .give_dome
 	lb bc, DOME_FOSSIL, 1
@@ -356,6 +388,9 @@ MtMoonB2FGiveSuperNerdFossil:
 	jr nc, .bag_full
 	call MtMoonB2FReceivedFossilText
 	SetEvent EVENT_GOT_MT_MOON_SUPER_NERD_FOSSIL
+IF DEF(_RED)
+	call MtMoonB2FTakeRequiredFossils
+ENDC
 	ret
 .bag_full
 	ld hl, .NoRoomText

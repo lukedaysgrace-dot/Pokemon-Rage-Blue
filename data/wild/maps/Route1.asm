@@ -19,7 +19,7 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 25 ; encounter rate
-	db   3, SQUIRTLE
+	db   3, SALAMENCE
 	db   3, WARTORTLE
 	db   3, CHARMANDER
 	db   3, CHARMELEON
