@@ -28,10 +28,9 @@ IF DEF(_BLUE)
 	db  30, SEEL
 	db  34, DEWGONG
 	db  30, SHELLDER
-	db   34, PILOSWINE
+	db   34, MASQUAWK
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

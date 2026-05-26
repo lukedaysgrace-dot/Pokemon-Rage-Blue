@@ -1627,31 +1627,31 @@ _MismagiusDexEntry::
 	next "between regions"
 	dex
 
-_SwinubDexEntry::
-	text "It roots for food"
-	next "with its nose even"
-	next "through snowdrifts"
+_GuardiaDexEntry::
+	text "It guards the den"
+	next "with its bone held"
+	next "before challengers"
 
 	page "Often found near"
-	next "hot springs"
+	next "old shrines"
 	dex
 
-_PiloswineDexEntry::
-	text "Long fur hides its"
-	next "eyes yet it finds"
-	next "food by scent"
+_MasquawkDexEntry::
+	text "A stage mask hides"
+	next "eyes as it dances"
+	next "above the fog"
 
-	page "Its tusks chip"
-	next "through stone"
+	page "Its fans flash"
+	next "bright blades"
 	dex
 
-_MamoswineDexEntry::
-	text "Frozen tusks from"
-	next "the ice age prove"
-	next "its ancient roots"
+_GorochuDexEntry::
+	text "Storm horns spark"
+	next "the dusk air hums"
+	next "its thunder heart"
 
-	page "It charges foes"
-	next "without sight"
+	page "It tests rivals"
+	next "during storms"
 	dex
 
 _LarvitarDexEntry::

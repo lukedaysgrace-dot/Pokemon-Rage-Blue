@@ -313,9 +313,9 @@ PokemonBackHDPicPointers::
 	dba HonchkrowBackHDPic
 	dba MisdreavusBackHDPic
 	dba MismagiusBackHDPic
-	dba SwinubBackHDPic
-	dba PiloswineBackHDPic
-	dba MamoswineBackHDPic
+	dba GuardiaBackHDPic
+	dba MasquawkBackHDPic
+	dba GorochuBackHDPic
 	dba LarvitarBackHDPic
 	dba PupitarBackHDPic
 	dba TyranitarBackHDPic
@@ -580,9 +580,9 @@ MurkrowBackHDPic:: INCBIN "gfx/pokemon/backhd/murkrowb.pic"
 HonchkrowBackHDPic:: INCBIN "gfx/pokemon/backhd/honchkrowb.pic"
 MisdreavusBackHDPic:: INCBIN "gfx/pokemon/backhd/misdreavusb.pic"
 MismagiusBackHDPic:: INCBIN "gfx/pokemon/backhd/mismagiusb.pic"
-SwinubBackHDPic:: INCBIN "gfx/pokemon/backhd/swinubb.pic"
-PiloswineBackHDPic:: INCBIN "gfx/pokemon/backhd/piloswineb.pic"
-MamoswineBackHDPic:: INCBIN "gfx/pokemon/backhd/mamoswineb.pic"
+GuardiaBackHDPic:: INCBIN "gfx/pokemon/backhd/guardiab.pic"
+MasquawkBackHDPic:: INCBIN "gfx/pokemon/backhd/masquawkb.pic"
+GorochuBackHDPic:: INCBIN "gfx/pokemon/backhd/gorochub.pic"
 
 SECTION "Pokemon Back HD Pics 13", ROMX
 

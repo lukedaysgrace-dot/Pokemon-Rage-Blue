@@ -163,9 +163,9 @@ MonPartyData:
 	db ICON_HONCHKROW     ; Honchkrow
 	db ICON_MISDREAVUS    ; Misdreavus
 	db ICON_MISMAGIUS     ; Mismagius
-	db ICON_SWINUB        ; Swinub
-	db ICON_PILOSWINE     ; Piloswine
-	db ICON_MAMOSWINE     ; Mamoswine
+	db ICON_GUARDIA       ; Guardia
+	db ICON_MASQUAWK      ; Masquawk
+	db ICON_GOROCHU       ; Gorochu
 	db ICON_LARVITAR      ; Larvitar
 	db ICON_PUPITAR       ; Pupitar
 	db ICON_TYRANITAR     ; Tyranitar

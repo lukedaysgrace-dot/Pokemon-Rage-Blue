@@ -203,9 +203,9 @@ PokedexEntryPointers:
 	dw HonchkrowDexEntry
 	dw MisdreavusDexEntry
 	dw MismagiusDexEntry
-	dw SwinubDexEntry
-	dw PiloswineDexEntry
-	dw MamoswineDexEntry
+	dw GuardiaDexEntry
+	dw MasquawkDexEntry
+	dw GorochuDexEntry
 	dw LarvitarDexEntry
 	dw PupitarDexEntry
 	dw TyranitarDexEntry
@@ -1408,25 +1408,25 @@ MismagiusDexEntry:
 	text_far _MismagiusDexEntry
 	text_end
 
-SwinubDexEntry:
-	db "PIG@"
-	db 1,4
-	dw 143
-	text_far _SwinubDexEntry
+GuardiaDexEntry:
+	db "ARM@"
+	db 4,11
+	dw 1210
+	text_far _GuardiaDexEntry
 	text_end
 
-PiloswineDexEntry:
-	db "SWINE@"
+MasquawkDexEntry:
+	db "MASKS@"
+	db 4,3
+	dw 778
+	text_far _MasquawkDexEntry
+	text_end
+
+GorochuDexEntry:
+	db "SURGEHORN@"
 	db 3,7
-	dw 1107
-	text_far _PiloswineDexEntry
-	text_end
-
-MamoswineDexEntry:
-	db "TWIN TUSK@"
-	db 8,2
-	dw 6415
-	text_far _MamoswineDexEntry
+	dw 1122
+	text_far _GorochuDexEntry
 	text_end
 
 LarvitarDexEntry:

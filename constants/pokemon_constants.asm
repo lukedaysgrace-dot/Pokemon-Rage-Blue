@@ -210,9 +210,9 @@
 	const HONCHKROW          ; $C9
 	const MISDREAVUS         ; $CA
 	const MISMAGIUS          ; $CB
-	const SWINUB             ; $CC
-	const PILOSWINE          ; $CD
-	const MAMOSWINE          ; $CE
+	const GUARDIA            ; $CC
+	const MASQUAWK           ; $CD
+	const GOROCHU            ; $CE
 	const LARVITAR           ; $CF
 	const PUPITAR            ; $D0
 	const TYRANITAR          ; $D1

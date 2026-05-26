@@ -225,9 +225,9 @@ EvosMovesPointerTable:
 	dw HonchkrowEvosMoves
 	dw MisdreavusEvosMoves
 	dw MismagiusEvosMoves
-	dw SwinubEvosMoves
-	dw PiloswineEvosMoves
-	dw MamoswineEvosMoves
+	dw GuardiaEvosMoves
+	dw MasquawkEvosMoves
+	dw GorochuEvosMoves
 	dw LarvitarEvosMoves
 	dw PupitarEvosMoves
 	dw TyranitarEvosMoves
@@ -1083,6 +1083,7 @@ MissingNo3FEvosMoves:
 	db 0
 FarfetchdEvosMoves:
 ; Evolutions
+	blue_evolve_level 36, MASQUAWK
 	db 0
 ; Learnset
 	db 6, LEER
@@ -1334,6 +1335,7 @@ PikachuEvosMoves:
 	db 0
 RaichuEvosMoves:
 ; Evolutions
+	blue_evolve_level 45, GOROCHU
 	db 0
 ; Learnset
 	db 6, TAIL_WHIP
@@ -2001,6 +2003,7 @@ PersianEvosMoves:
 	db 0
 MarowakEvosMoves:
 ; Evolutions
+	blue_evolve_level 42, GUARDIA
 	db 0
 ; Learnset
 	db 6, TAIL_WHIP
@@ -2645,42 +2648,38 @@ MismagiusEvosMoves:
 	db 28, PSYBEAM
 	db 40, SHADOW_BALL
 	db 0
-SwinubEvosMoves:
-	blue_evolve_level 33, PILOSWINE
+GuardiaEvosMoves:
 	db 0
 ; Learnset
-	db 8, POWDER_SNOW
-	db 16, ICE_SHARD
-	db 23, MIST
-	db 36, AMNESIA
-	db 38, ICE_BEAM
-	db 39, TAKE_DOWN
-	db 40, EARTHQUAKE
-	db 46, BLIZZARD
+	db 7, LEER
+	db 18, LOW_KICK
+	db 24, FOCUS_ENERGY
+	db 31, BONEMERANG
+	db 38, EARTHQUAKE
+	db 44, CROSS_CHOP
+	db 50, ROCK_SLIDE
 	db 0
-PiloswineEvosMoves:
-	blue_evolve_level 46, MAMOSWINE
+MasquawkEvosMoves:
 	db 0
 ; Learnset
-	db 9, POWDER_SNOW
-	db 16, ICE_SHARD
-	db 23, MIST
-	db 25, HORN_ATTACK
-	db 36, AMNESIA
-	db 38, ICE_BEAM
-	db 42, EARTHQUAKE
-	db 46, BLIZZARD
+	db 6, LEER
+	db 13, FOCUS_ENERGY
+	db 20, WING_ATTACK
+	db 30, SLASH
+	db 36, CROSS_CHOP
+	db 43, SKY_ATTACK
+	db 48, SWORDS_DANCE
 	db 0
-MamoswineEvosMoves:
+GorochuEvosMoves:
 	db 0
 ; Learnset
-	db 16, ICE_SHARD
-	db 23, MIST
-	db 36, AMNESIA
-	db 42, EARTHQUAKE
-	db 46, ICE_BEAM
-	db 50, TAKE_DOWN
-	db 54, BLIZZARD
+	db 6, TAIL_WHIP
+	db 22, SWIFT
+	db 27, THUNDERBOLT
+	db 34, FIRE_PUNCH
+	db 38, THUNDERPUNCH
+	db 45, THUNDER
+	db 50, LIGHT_SCREEN
 	db 0
 LarvitarEvosMoves:
 	blue_evolve_level 25, PUPITAR

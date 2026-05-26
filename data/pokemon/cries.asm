@@ -209,9 +209,9 @@ CryData::
 	mon_cry SFX_CRY_18, $30, $C0 ; Honchkrow
 	mon_cry SFX_CRY_1C, $A0, $90 ; Misdreavus
 	mon_cry SFX_CRY_07, $40, $E0 ; Mismagius
-	mon_cry SFX_CRY_13, $50, $60 ; Swinub
-	mon_cry SFX_CRY_13, $30, $90 ; Piloswine
-	mon_cry SFX_CRY_13, $10, $B0 ; Mamoswine
+	mon_cry SFX_CRY_08, $20, $C0 ; Guardia
+	mon_cry SFX_CRY_10, $98, $70 ; Masquawk
+	mon_cry SFX_CRY_09, $E0, $FF ; Gorochu
 	mon_cry SFX_CRY_04, $B0, $30 ; Larvitar
 	mon_cry SFX_CRY_04, $C0, $70 ; Pupitar
 	mon_cry SFX_CRY_17, $10, $E0 ; Tyranitar

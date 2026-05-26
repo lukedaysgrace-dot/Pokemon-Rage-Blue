@@ -168,9 +168,9 @@
 	const DEX_HONCHKROW  ; 162
 	const DEX_MISDREAVUS ; 163
 	const DEX_MISMAGIUS  ; 164
-	const DEX_SWINUB     ; 165
-	const DEX_PILOSWINE  ; 166
-	const DEX_MAMOSWINE  ; 167
+	const DEX_GUARDIA    ; 165
+	const DEX_MASQUAWK   ; 166
+	const DEX_GOROCHU    ; 167
 	const DEX_LARVITAR   ; 168
 	const DEX_PUPITAR    ; 169
 	const DEX_TYRANITAR  ; 170
