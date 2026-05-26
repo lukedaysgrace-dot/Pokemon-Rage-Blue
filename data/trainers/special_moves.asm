@@ -20,7 +20,7 @@ TeamMoves:
 	; trainer, move
 	db LORELEI, BLIZZARD
 IF DEF(_RED)
-	db KAREN,   FISSURE
+	db BRUNO,   FISSURE
 ENDC
 	db AGATHA,  TOXIC
 	db LANCE,   BARRIER

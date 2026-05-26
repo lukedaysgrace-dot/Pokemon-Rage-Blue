@@ -62,6 +62,15 @@ _BrunoRematchDefeatOverworldText::
 	line "body and spirit"
 	cont "for our next bout!"
 	done
+
+_BrunoRematchMustRestartText::
+	text "Want another test"
+	line "of strength?"
+
+	para "Start again from"
+	line "the #MON LEAGUE"
+	cont "LOBBY."
+	done
 ELSE
 _KarenBeforeBattleText::
 	text "You've come all"

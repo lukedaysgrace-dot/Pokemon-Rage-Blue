@@ -150,8 +150,14 @@ BrunosRoomTrainerHeader0:
 
 BrunosRoomBrunoText:
 	text_asm
-	CheckEvent EVENT_BEAT_CHAMPION_RIVAL
+	call PostGameRematchesUnlocked
 	jr z, .vanilla
+	CheckEvent EVENT_BEAT_BRUNOS_ROOM_TRAINER_0
+	jr z, .rematch
+	ld hl, BrunoRematchMustRestartText
+	call PrintText
+	jp TextScriptEnd
+.rematch
 	ld hl, BrunoRematchPreBattleText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -189,6 +195,10 @@ BrunoRematchEndBattleText:
 
 BrunoRematchVictoryText:
 	text_far _BrunoRematchDefeatOverworldText
+	text_end
+
+BrunoRematchMustRestartText:
+	text_far _BrunoRematchMustRestartText
 	text_end
 
 BrunoBeforeBattleText:

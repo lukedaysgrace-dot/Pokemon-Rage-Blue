@@ -555,6 +555,7 @@ CooltrainerFData:
 	;db 43,PERSIAN,NINETALES,RAICHU,0
 
 BrunoKarenData:
+; Red uses Bruno in the shared BRUNO/KAREN trainer slot.
 	db $FF, 53, ONIX, 55, HITMONCHAN, 55, HITMONLEE, 56, ONIX, 58, MACHAMP, 0
 ; Post-Champion rematch (wTrainerNo 2)
 	db $FF, 58, STEELIX, 58, HITMONCHAN, 58, HITMONLEE, 58, RHYPERIOR, 58, MACHAMP, 58, ANNIHILAPE, 0
