@@ -230,9 +230,9 @@
 	const DEX_CRADILY    ; 224
 	const DEX_ANORITH    ; 225
 	const DEX_ARMALDO    ; 226
-	const DEX_TYRUNT     ; 227
-	const DEX_TYRANTRUM  ; 228
-	const DEX_AMAURA     ; 229
-	const DEX_AURORUS    ; 230
+	const DEX_CUFANT     ; 227
+	const DEX_COPPERAJAH ; 228
+	const DEX_TOXEL      ; 229
+	const DEX_TOXTRICITY ; 230
 
 DEF NUM_POKEMON EQU const_value - 1

@@ -225,9 +225,9 @@ MonPartyData:
 	db ICON_CRADILY       ; Cradily
 	db ICON_ANORITH       ; Anorith
 	db ICON_ARMALDO       ; Armaldo
-	db ICON_TYRUNT        ; Tyrunt
-	db ICON_TYRANTRUM     ; Tyrantrum
-	db ICON_AMAURA        ; Amaura
-	db ICON_AURORUS       ; Aurorus
+	db ICON_CUFANT        ; Cufant
+	db ICON_COPPERAJAH    ; Copperajah
+	db ICON_TOXEL         ; Toxel
+	db ICON_TOXTRICITY    ; Toxtricity
 
 ASSERT @ - MonPartyData == NUM_POKEMON

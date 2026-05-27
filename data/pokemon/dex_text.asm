@@ -2199,38 +2199,38 @@ _ArmaldoDexEntry::
 	next "on the seafloor."
 	dex
 
-_TyruntDexEntry::
-	text "Its big jaws can"
-	next "crunch through"
-	next "thick metal, but"
+_CufantDexEntry::
+	text "It carries heavy"
+	next "loads and digs"
+	next "with a trunk."
 
-	page "it is still young"
-	next "and selfish."
+	page "Rain makes its"
+	next "copper skin green."
 	dex
 
-_TyrantrumDexEntry::
-	text "Ancient people"
-	next "feared its huge"
-	next "jaws. It ruled"
+_CopperajahDexEntry::
+	text "These proud giants"
+	next "can crush rock"
+	next "with trunks. They"
 
-	page "the land as a"
-	next "mighty king."
+	page "live with others"
+	next "in herds."
 	dex
 
-_AmauraDexEntry::
-	text "It was restored"
-	next "from a fossil."
-	next "Cold air gathers"
+_ToxelDexEntry::
+	text "Toxins in its"
+	next "sac make weak"
+	next "electricity that"
 
-	page "around the sails"
-	next "on its head."
+	page "flows through skin"
+	next "to jolt its foes."
 	dex
 
-_AurorusDexEntry::
-	text "It can create"
-	next "walls of ice by"
-	next "freezing moisture"
+_ToxtricityDexEntry::
+	text "It makes low"
+	next "strums from chest"
+	next "organs, then fires"
 
-	page "in the air with"
-	next "cold power."
+	page "poison and volts"
+	next "at its foes."
 	dex

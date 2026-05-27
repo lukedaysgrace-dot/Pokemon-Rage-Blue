@@ -56,18 +56,18 @@
 	const PSYDUCK            ; $2F
 	const DROWZEE            ; $30
 	const GOLEM              ; $31
-	const TYRUNT             ; $32
+	const CUFANT             ; $32
 	const MAGMAR             ; $33
-	const TYRANTRUM          ; $34
+	const COPPERAJAH         ; $34
 	const ELECTABUZZ         ; $35
 	const MAGNETON           ; $36
 	const KOFFING            ; $37
-	const AMAURA             ; $38
+	const TOXEL              ; $38
 	const MANKEY             ; $39
 	const SEEL               ; $3A
 	const DIGLETT            ; $3B
 	const TAUROS             ; $3C
-	const AURORUS            ; $3D
+	const TOXTRICITY         ; $3D
 	const_skip               ; $3E
 	const_skip               ; $3F
 	const FARFETCHD          ; $40

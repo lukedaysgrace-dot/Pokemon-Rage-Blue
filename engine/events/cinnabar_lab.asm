@@ -55,10 +55,10 @@ GiveFossilToCinnabarLab::
 	ld b, AERODACTYL
 	jr .fossilSelected
 .choseSailFossil
-	ld b, AMAURA
+	ld b, TOXEL
 	jr .fossilSelected
 .choseJawFossil
-	ld b, TYRUNT
+	ld b, CUFANT
 	jr .fossilSelected
 .choseRootFossil
 	ld b, LILEEP

@@ -71,18 +71,18 @@ EvosMovesPointerTable:
 	dw PsyduckEvosMoves
 	dw DrowzeeEvosMoves
 	dw GolemEvosMoves
-	dw TyruntEvosMoves
+	dw CufantEvosMoves
 	dw MagmarEvosMoves
-	dw TyrantrumEvosMoves
+	dw CopperajahEvosMoves
 	dw ElectabuzzEvosMoves
 	dw MagnetonEvosMoves
 	dw KoffingEvosMoves
-	dw AmauraEvosMoves
+	dw ToxelEvosMoves
 	dw MankeyEvosMoves
 	dw SeelEvosMoves
 	dw DiglettEvosMoves
 	dw TaurosEvosMoves
-	dw AurorusEvosMoves
+	dw ToxtricityEvosMoves
 	dw MissingNo3EEvosMoves
 	dw MissingNo3FEvosMoves
 	dw FarfetchdEvosMoves
@@ -916,17 +916,17 @@ GolemEvosMoves:
 	db 44, SELFDESTRUCT
 	db 50, EXPLOSION
 	db 0
-TyruntEvosMoves:
+CufantEvosMoves:
 ; Evolutions
-	blue_evolve_level 30, TYRANTRUM
+	blue_evolve_level 34, COPPERAJAH
 	db 0
 ; Learnset
-	db 6, TAIL_WHIP
-	db 16, BIDE
-	db 17, ROCK_THROW
-	db 25, STOMP
-	db 29, CRUNCH
-	db 30, ROCK_SLIDE
+	db 6, GROWL
+	db 12, ROCK_THROW
+	db 16, STOMP
+	db 24, METAL_CLAW
+	db 29, IRON_TAIL
+	db 34, ROCK_SLIDE
 	db 0
 MagmarEvosMoves:
 ; Evolutions
@@ -942,16 +942,15 @@ MagmarEvosMoves:
 	db 41, FLAMETHROWER
 	db 46, FIRE_BLAST
 	db 0
-TyrantrumEvosMoves:
+CopperajahEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
 	db 17, ROCK_THROW
 	db 25, STOMP
-	db 30, ROCK_SLIDE
-	db 34, CRUNCH
-	db 38, SLAM
-	db 44, OUTRAGE
+	db 34, ROCK_SLIDE
+	db 38, IRON_TAIL
+	db 44, EARTHQUAKE
 	db 50, HYPER_BEAM
 	db 0
 ElectabuzzEvosMoves:
@@ -992,18 +991,18 @@ KoffingEvosMoves:
 	db 41, SELFDESTRUCT
 	db 47, EXPLOSION
 	db 0
-AmauraEvosMoves:
+ToxelEvosMoves:
 ; Evolutions
-	blue_evolve_level 30, AURORUS
+	blue_evolve_level 30, TOXTRICITY
 	db 0
 ; Learnset
 	db 6, GROWL
-	db 9, POWDER_SNOW
-	db 15, ROCK_THROW
+	db 9, THUNDERSHOCK
+	db 15, ACID
 	db 20, THUNDER_WAVE
-	db 25, AURORA_BEAM
-	db 29, ROCK_SLIDE
-	db 30, TAKE_DOWN
+	db 25, SCREECH
+	db 29, SLUDGE
+	db 30, THUNDERBOLT
 	db 0
 MankeyEvosMoves:
 ; Evolutions
@@ -1058,17 +1057,17 @@ TaurosEvosMoves:
 	db 46, DOUBLE_EDGE
 	db 49, OUTRAGE
 	db 0
-AurorusEvosMoves:
+ToxtricityEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 9, POWDER_SNOW
-	db 17, ROCK_THROW
-	db 25, AURORA_BEAM
-	db 30, ROCK_SLIDE
-	db 34, TAKE_DOWN
-	db 39, ICE_BEAM
-	db 45, BLIZZARD
+	db 9, THUNDERSHOCK
+	db 17, ACID
+	db 25, SCREECH
+	db 30, THUNDERBOLT
+	db 34, SLUDGE
+	db 39, SLUDGE_BOMB
+	db 45, THUNDER
 	db 50, HYPER_BEAM
 	db 0
 MissingNo3EEvosMoves:

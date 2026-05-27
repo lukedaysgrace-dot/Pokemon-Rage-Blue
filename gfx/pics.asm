@@ -491,14 +491,14 @@ ArmaldoPicBack::       INCBIN "gfx/pokemon/back/armaldob.pic"
 
 SECTION "Pics 9", ROMX
 
-TyruntPicFront::       INCBIN "gfx/pokemon/front/tyrunt.pic"
-TyruntPicBack::        INCBIN "gfx/pokemon/back/tyruntb.pic"
-TyrantrumPicFront::    INCBIN "gfx/pokemon/front/tyrantrum.pic"
-TyrantrumPicBack::     INCBIN "gfx/pokemon/back/tyrantrumb.pic"
-AmauraPicFront::       INCBIN "gfx/pokemon/front/amaura.pic"
-AmauraPicBack::        INCBIN "gfx/pokemon/back/amaurab.pic"
-AurorusPicFront::      INCBIN "gfx/pokemon/front/aurorus.pic"
-AurorusPicBack::       INCBIN "gfx/pokemon/back/aurorusb.pic"
+CufantPicFront::       INCBIN "gfx/pokemon/front/cufant.pic"
+CufantPicBack::        INCBIN "gfx/pokemon/back/cufantb.pic"
+CopperajahPicFront::   INCBIN "gfx/pokemon/front/copperajah.pic"
+CopperajahPicBack::    INCBIN "gfx/pokemon/back/copperajahb.pic"
+ToxelPicFront::        INCBIN "gfx/pokemon/front/toxel.pic"
+ToxelPicBack::         INCBIN "gfx/pokemon/back/toxelb.pic"
+ToxtricityPicFront::   INCBIN "gfx/pokemon/front/toxtricity.pic"
+ToxtricityPicBack::    INCBIN "gfx/pokemon/back/toxtricityb.pic"
 
 SECTION "Trainer Pics", ROMX
 

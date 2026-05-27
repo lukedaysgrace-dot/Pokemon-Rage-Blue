@@ -136,18 +136,18 @@ PokemonBackHDPicPointers::
 	dba PsyduckBackHDPic
 	dba DrowzeeBackHDPic
 	dba GolemBackHDPic
-	dba TyruntBackHDPic
+	dba CufantBackHDPic
 	dba MagmarBackHDPic
-	dba TyrantrumBackHDPic
+	dba CopperajahBackHDPic
 	dba ElectabuzzBackHDPic
 	dba MagnetonBackHDPic
 	dba KoffingBackHDPic
-	dba AmauraBackHDPic
+	dba ToxelBackHDPic
 	dba MankeyBackHDPic
 	dba SeelBackHDPic
 	dba DiglettBackHDPic
 	dba TaurosBackHDPic
-	dba AurorusBackHDPic
+	dba ToxtricityBackHDPic
 	db 0
 	dw 0
 	db 0
@@ -550,10 +550,10 @@ SECTION "Pokemon Back HD Pics 11", ROMX
 
 CranidosBackHDPic:: INCBIN "gfx/pokemon/backhd/cranidosb.pic"
 RampardosBackHDPic:: INCBIN "gfx/pokemon/backhd/rampardosb.pic"
-TyruntBackHDPic:: INCBIN "gfx/pokemon/backhd/tyruntb.pic"
-TyrantrumBackHDPic:: INCBIN "gfx/pokemon/backhd/tyrantrumb.pic"
-AmauraBackHDPic:: INCBIN "gfx/pokemon/backhd/amaurab.pic"
-AurorusBackHDPic:: INCBIN "gfx/pokemon/backhd/aurorusb.pic"
+CufantBackHDPic:: INCBIN "gfx/pokemon/backhd/cufantb.pic"
+CopperajahBackHDPic:: INCBIN "gfx/pokemon/backhd/copperajah.pic"
+ToxelBackHDPic:: INCBIN "gfx/pokemon/backhd/toxelb.pic"
+ToxtricityBackHDPic:: INCBIN "gfx/pokemon/backhd/toxtricityb.pic"
 ShieldonBackHDPic:: INCBIN "gfx/pokemon/backhd/shieldonb.pic"
 BastiodonBackHDPic:: INCBIN "gfx/pokemon/backhd/bastiodonb.pic"
 BunearyBackHDPic:: INCBIN "gfx/pokemon/backhd/bunearyb.pic"

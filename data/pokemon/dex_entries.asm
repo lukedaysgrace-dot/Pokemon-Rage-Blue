@@ -49,18 +49,18 @@ PokedexEntryPointers:
 	dw PsyduckDexEntry
 	dw DrowzeeDexEntry
 	dw GolemDexEntry
-	dw TyruntDexEntry
+	dw CufantDexEntry
 	dw MagmarDexEntry
-	dw TyrantrumDexEntry
+	dw CopperajahDexEntry
 	dw ElectabuzzDexEntry
 	dw MagnetonDexEntry
 	dw KoffingDexEntry
-	dw AmauraDexEntry
+	dw ToxelDexEntry
 	dw MankeyDexEntry
 	dw SeelDexEntry
 	dw DiglettDexEntry
 	dw TaurosDexEntry
-	dw AurorusDexEntry
+	dw ToxtricityDexEntry
 	dw MissingNoDexEntry
 	dw MissingNoDexEntry
 	dw FarfetchdDexEntry
@@ -1842,32 +1842,32 @@ ArmaldoDexEntry:
 	text_far _ArmaldoDexEntry
 	text_end
 
-TyruntDexEntry:
-	db "ROYAL HEIR@"
-	db 2,7
-	dw 573
-	text_far _TyruntDexEntry
+CufantDexEntry:
+	db "COPPERDERM@"
+	db 3,11
+	dw 2205
+	text_far _CufantDexEntry
 	text_end
 
-TyrantrumDexEntry:
-	db "DESPOT@"
-	db 8,2
-	dw 5952
-	text_far _TyrantrumDexEntry
+CopperajahDexEntry:
+	db "COPPERDERM@"
+	db 9,10
+	dw 14330
+	text_far _CopperajahDexEntry
 	text_end
 
-AmauraDexEntry:
-	db "TUNDRA@"
-	db 4,3
-	dw 556
-	text_far _AmauraDexEntry
+ToxelDexEntry:
+	db "BABY@"
+	db 1,4
+	dw 243
+	text_far _ToxelDexEntry
 	text_end
 
-AurorusDexEntry:
-	db "TUNDRA@"
-	db 8,10
-	dw 4960
-	text_far _AurorusDexEntry
+ToxtricityDexEntry:
+	db "PUNK@"
+	db 5,3
+	dw 882
+	text_far _ToxtricityDexEntry
 	text_end
 
 MissingNoDexEntry:
