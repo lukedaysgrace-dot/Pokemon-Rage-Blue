@@ -2209,28 +2209,28 @@ _CufantDexEntry::
 	dex
 
 _CopperajahDexEntry::
-	text "These proud giants"
+	text "Copper skin turns"
+	next "green in rain. It"
 	next "can crush rock"
-	next "with trunks. They"
 
-	page "live with others"
-	next "in herds."
+	page "with its great"
+	next "trunk."
 	dex
 
 _ToxelDexEntry::
-	text "Toxins in its"
-	next "sac make weak"
-	next "electricity that"
+	text "It stores poison"
+	next "in a sac."
+	next "Touching its skin"
 
-	page "flows through skin"
-	next "to jolt its foes."
+	page "gives a small and"
+	next "weak shock."
 	dex
 
 _ToxtricityDexEntry::
-	text "It makes low"
-	next "strums from chest"
-	next "organs, then fires"
+	text "It strums its"
+	next "chest to make"
+	next "loud music, then"
 
-	page "poison and volts"
-	next "at its foes."
+	page "fires poison and"
+	next "volts at foes."
 	dex
