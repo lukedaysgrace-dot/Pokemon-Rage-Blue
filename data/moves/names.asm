@@ -176,5 +176,7 @@ MoveNames::
 	li "X SCISSOR"
 	li "DRAGON CLAW"
 	li "THUNDER FANG"
+	li "ACCELEROCK"
+	li "STONE EDGE"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

@@ -77,6 +77,8 @@ MoveGrammar:
 	db X_SCISSOR
 	db DRAGON_CLAW
 	db THUNDER_FANG
+	db ACCELEROCK
+	db STONE_EDGE
 	db SUBSTITUTE
 	db FOCUS_ENERGY
 	db 0 ; end set

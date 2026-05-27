@@ -385,35 +385,17 @@ MainInBattleLoop:
 	jr z, .enemyMovesFirst
 ; +1 priority (Quick Attack, Mach Punch, etc.)
 	ld a, [wPlayerSelectedMove]
-	cp QUICK_ATTACK
-	jr z, .playerUsedPriorityMove
-	cp SUCKER_PUNCH
-	jr z, .playerUsedPriorityMove
-	cp MACH_PUNCH
-	jr z, .playerUsedPriorityMove
-	cp ICE_SHARD
-	jr nz, .playerDidNotUseQuickAttack
+	call .isPriorityMove
+	jr nc, .playerDidNotUseQuickAttack
 .playerUsedPriorityMove
 	ld a, [wEnemySelectedMove]
-	cp QUICK_ATTACK
-	jr z, .compareSpeed  ; if both used Quick Attack
-	cp SUCKER_PUNCH
-	jr z, .compareSpeed  ; if both used priority moves
-	cp MACH_PUNCH
-	jr z, .compareSpeed
-	cp ICE_SHARD
-	jr z, .compareSpeed
+	call .isPriorityMove
+	jr c, .compareSpeed ; if both used priority moves
 	jp .playerMovesFirst ; if player used a priority move and enemy didn't
 .playerDidNotUseQuickAttack
 	ld a, [wEnemySelectedMove]
-	cp QUICK_ATTACK
-	jr z, .enemyMovesFirst ; if enemy used Quick Attack and player didn't
-	cp SUCKER_PUNCH
-	jr z, .enemyMovesFirst ; if enemy used Sucker Punch and player didn't
-	cp MACH_PUNCH
-	jr z, .enemyMovesFirst
-	cp ICE_SHARD
-	jr z, .enemyMovesFirst
+	call .isPriorityMove
+	jr c, .enemyMovesFirst ; if enemy used a priority move and player didn't
 	ld a, [wPlayerSelectedMove]
 	cp COUNTER
 	jr nz, .playerDidNotUseCounter
@@ -446,6 +428,20 @@ MainInBattleLoop:
 	cp 50 percent + 1
 	jr c, .enemyMovesFirst
 	jr .playerMovesFirst
+
+.isPriorityMove:
+	ld hl, .priorityMoves
+	ld de, 1
+	jp IsInArray
+
+.priorityMoves:
+	db QUICK_ATTACK
+	db SUCKER_PUNCH
+	db MACH_PUNCH
+	db ICE_SHARD
+	db ACCELEROCK
+	db -1 ; end
+
 .enemyMovesFirst
 	ld a, $1
 	ldh [hWhoseTurn], a

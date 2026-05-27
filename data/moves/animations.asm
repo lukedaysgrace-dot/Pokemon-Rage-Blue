@@ -175,6 +175,8 @@ AttackAnimationPointers:
 	dw XScissorAnim
 	dw DragonClawAnim
 	dw ThunderFangAnim
+	dw AccelerockAnim
+	dw StoneEdgeAnim
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
@@ -1301,6 +1303,26 @@ ThunderFangAnim:
 	battle_anim BITE, SUBANIM_0_STAR_THRICE, 0, 6
 	battle_anim THUNDERSHOCK, SUBANIM_1_LIGHTNING_BALL, 1, 2
 	battle_anim NO_MOVE, SE_BLINK_ENEMY_MON
+	db -1 ; end
+
+AccelerockAnim:
+	battle_anim ACCELEROCK, SE_SLIDE_MON_OFF
+	battle_anim ROCK_THROW, SUBANIM_0_ROCKS_FALL_ENEMY, 0, 1
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_MOVING, 1, 3
+	battle_anim NO_MOVE, SE_SHOW_MON_PIC
+	db -1 ; end
+
+StoneEdgeAnim:
+	battle_anim STONE_EDGE, SE_DARK_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_WAVY_SCREEN
+	battle_anim FISSURE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_SHAKE_SCREEN
+	battle_anim ROCK_THROW, SUBANIM_0_ROCKS_FALL_ENEMY, 0, 2
+	battle_anim CUT, SUBANIM_0_SLICE_BOTH_SIDES, 0, 2
+	battle_anim RAZOR_WIND, SUBANIM_0_SLICE, 0, 1
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_SHAKE_SCREEN
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
 BallTossAnim:

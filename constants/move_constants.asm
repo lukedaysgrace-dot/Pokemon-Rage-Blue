@@ -181,7 +181,9 @@
 	const X_SCISSOR    ; ad
 	const DRAGON_CLAW  ; ae
 	const THUNDER_FANG ; af
-	const STRUGGLE     ; b0
+	const ACCELEROCK   ; b0
+	const STONE_EDGE   ; b1
+	const STRUGGLE     ; b2
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

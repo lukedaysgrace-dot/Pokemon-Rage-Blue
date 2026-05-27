@@ -661,6 +661,8 @@ AIMoveChoiceModification3:
 	jr z, .flydigcheck_faster
 	cp ICE_SHARD
 	jr z, .flydigcheck_faster
+	cp ACCELEROCK
+	jr z, .flydigcheck_faster
 
 .flydigcheck_notfaster
 	jr .endflydigcheck
