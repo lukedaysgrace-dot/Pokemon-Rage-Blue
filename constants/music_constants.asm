@@ -32,6 +32,7 @@ ENDM
 	music_const MUSIC_GYM_LEADER_BATTLE,   Music_GymLeaderBattle
 	music_const MUSIC_TRAINER_BATTLE,      Music_TrainerBattle
 	music_const MUSIC_WILD_BATTLE,         Music_WildBattle
+	music_const MUSIC_GREEN_THEME,         Music_GreenTheme
 	music_const MUSIC_FINAL_BATTLE,        Music_FinalBattle
 	music_const MUSIC_DEFEATED_TRAINER,    Music_DefeatedTrainer
 	music_const MUSIC_DEFEATED_WILD_MON,   Music_DefeatedWildMon
@@ -39,7 +40,6 @@ ENDM
 
 	; AUDIO_3
 	music_const MUSIC_TITLE_SCREEN,        Music_TitleScreen
-	music_const MUSIC_GREEN_THEME,         Music_GreenTheme
 	music_const MUSIC_CREDITS,             Music_Credits
 	music_const MUSIC_HALL_OF_FAME,        Music_HallOfFame
 	music_const MUSIC_OAKS_LAB,            Music_OaksLab

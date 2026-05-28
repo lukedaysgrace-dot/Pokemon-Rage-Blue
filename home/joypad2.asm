@@ -82,14 +82,13 @@ WaitForTextScrollButtonPress::
 	ldh [hDownArrowBlinkCount1], a
 	ret
 
-; (unless in link battle) waits for A or B being pressed and outputs the scrolling sound effect
+; (unless in link battle) waits for A or B being pressed to advance text
 ManualTextScroll::
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jr z, .inLinkBattle
 	call WaitForTextScrollButtonPress
-	ld a, SFX_PRESS_AB
-	jp PlaySound
+	ret
 .inLinkBattle
 	ld c, 65
 	jp DelayFrames

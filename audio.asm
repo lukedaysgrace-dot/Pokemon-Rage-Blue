@@ -427,7 +427,6 @@ INCLUDE "audio/music/bikeriding.asm"
 INCLUDE "audio/music/dungeon1.asm"
 INCLUDE "audio/music/gamecorner.asm"
 INCLUDE "audio/music/titlescreen.asm"
-INCLUDE "audio/music/song.asm"
 INCLUDE "audio/sfx/get_item1_3.asm"
 INCLUDE "audio/music/dungeon2.asm"
 INCLUDE "audio/music/dungeon3.asm"
@@ -446,3 +445,9 @@ INCLUDE "audio/music/surfing.asm"
 INCLUDE "audio/music/jigglypuffsong.asm"
 INCLUDE "audio/music/halloffame.asm"
 INCLUDE "audio/music/credits.asm"
+
+
+SECTION "Green Theme Music", ROMX
+
+INCLUDE "audio/music/green_compat.asm"
+INCLUDE "audio/music/green.asm"

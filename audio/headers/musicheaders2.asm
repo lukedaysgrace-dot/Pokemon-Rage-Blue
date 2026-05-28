@@ -16,6 +16,13 @@ Music_WildBattle::
 	channel 2, Music_WildBattle_Ch2
 	channel 3, Music_WildBattle_Ch3
 
+Music_GreenTheme::
+	channel_count 4
+	channel 1, Music_Ronald_Ch1
+	channel 2, Music_Ronald_Ch2
+	channel 3, Music_Ronald_Ch3
+	channel 4, Music_Ronald_Ch4
+
 Music_FinalBattle::
 	channel_count 3
 	channel 1, Music_FinalBattle_Ch1
