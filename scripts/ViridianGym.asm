@@ -22,6 +22,8 @@ MaybeShowGiovanniForRematch:
 	ret z
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
 	ret z
+	CheckEvent EVENT_REMATCH_DEFEATED_GIOVANNI
+	ret nz
 	ld a, TOGGLE_VIRIDIAN_GYM_GIOVANNI
 	ld [wToggleableObjectIndex], a
 	predef ShowObject
@@ -236,7 +238,7 @@ ViridianGymTrainerHeader7:
 ViridianGymGiovanniText:
 	text_asm
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
-	jr z, .beforeBeat
+	jp z, .beforeBeat
 	CheckEventReuseA EVENT_GOT_TM27
 	jr nz, .haveTM
 	call z, ViridianGymReceiveTM27
@@ -244,9 +246,9 @@ ViridianGymGiovanniText:
 	jp .text_script_end
 .haveTM
 	call PostGameRematchesUnlocked
-	jr z, .afterBeat
+	jr z, .afterFirstBattle
 	CheckEvent EVENT_REMATCH_DEFEATED_GIOVANNI
-	jr nz, .afterBeat
+	jr nz, .afterRematch
 	ld hl, .RematchPreBattleText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -273,7 +275,11 @@ ViridianGymGiovanniText:
 	ld [wViridianGymCurScript], a
 	ld [wCurMapScript], a
 	jr .text_script_end
-.afterBeat
+.afterFirstBattle
+	ld hl, .PostFirstBattleText
+	call PrintText
+	jr .text_script_end
+.afterRematch
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, .PostBattleAdviceText
@@ -318,6 +324,10 @@ ViridianGymGiovanniText:
 .PostBattleAdviceText:
 	text_far _ViridianGymGiovanniPostBattleAdviceText
 	text_waitbutton
+	text_end
+
+.PostFirstBattleText:
+	text_far _ViridianGymGiovanniPostFirstBattleText
 	text_end
 
 .RematchPreBattleText:

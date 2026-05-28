@@ -43,6 +43,23 @@ _ViridianGymGiovanniPostBattleAdviceText::
 	cont "Farewell!@"
 	text_end
 
+_ViridianGymGiovanniPostFirstBattleText::
+	text "This isn't over"
+	line "yet."
+
+	para "TEAM ROCKET will"
+	line "not give up this"
+	cont "easily!"
+
+	para "Take your BADGE"
+	line "and go."
+
+	para "When my strength"
+	line "has returned,"
+	cont "you will face me"
+	cont "again!"
+	done
+
 _ViridianGymGiovanniEarthBadgeInfoText::
 	text "The EARTHBADGE"
 	line "makes #MON of"
