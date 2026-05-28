@@ -5,7 +5,6 @@ RockerSprite::           INCBIN "gfx/sprites/rocker.2bpp"
 SwimmerSprite::          INCBIN "gfx/sprites/swimmer.2bpp"
 SafariZoneWorkerSprite:: INCBIN "gfx/sprites/safari_zone_worker.2bpp"
 GymGuideSprite::         INCBIN "gfx/sprites/gym_guide.2bpp"
-GrampsSprite::           INCBIN "gfx/sprites/gramps.2bpp"
 ClerkSprite::            INCBIN "gfx/sprites/clerk.2bpp"
 FishingGuruSprite::      INCBIN "gfx/sprites/fishing_guru.2bpp"
 GrannySprite::           INCBIN "gfx/sprites/granny.2bpp"
@@ -78,6 +77,11 @@ IF !DEF(_RED)
 KarenSprite::            INCBIN "gfx/sprites/karen.2bpp"
 ENDC
 LoreleiSprite::          INCBIN "gfx/sprites/lorelei.2bpp"
+
+
+SECTION "Gramps OW Sprite", ROMX
+
+GrampsSprite::           INCBIN "gfx/sprites/gramps.2bpp"
 
 
 SECTION "Gym Leader OW Sprites", ROMX

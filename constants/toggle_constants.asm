@@ -52,6 +52,9 @@ ENDM
 	const TOGGLE_SAFFRON_CITY_E                ; 18
 	const TOGGLE_SAFFRON_CITY_F                ; 19
 
+	toggle_consts_for INDIGO_PLATEAU
+	const TOGGLE_INDIGO_PLATEAU_GRAMPS
+
 	toggle_consts_for ROUTE_1
 	const TOGGLE_ROUTE_1_OAK
 

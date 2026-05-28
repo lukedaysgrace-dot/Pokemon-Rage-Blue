@@ -56,7 +56,7 @@ HandleLedges::
 
 INCLUDE "data/tilesets/ledge_tiles.asm"
 
-LoadHoppingShadowOAM:
+LoadHoppingShadowOAM::
 	ld hl, vChars1 tile $7f
 	ld de, LedgeHoppingShadow
 	lb bc, BANK(LedgeHoppingShadow), (LedgeHoppingShadowEnd - LedgeHoppingShadow) / TILE_1BPP_SIZE

@@ -79,6 +79,9 @@ ToggleableObjectStates:
 	toggle_object_state SAFFRONCITY_ROCKET8,        ON
 	toggle_object_state SAFFRONCITY_ROCKET9,        OFF
 
+	toggleable_objects_for INDIGO_PLATEAU
+	toggle_object_state INDIGOPLATEAU_GRAMPS, OFF
+
 	toggleable_objects_for ROUTE_1
 	toggle_object_state ROUTE1_OAK, OFF
 
