@@ -8,7 +8,25 @@ IndigoPlateauLobby_Script:
 	xor a
 	ld [wCurMapScript], a
 .script_ok
+	and a
+	jr nz, .run_script
+	call IndigoPlateauLobbyHideGreen
+.run_script
+	ld hl, IndigoPlateauLobby_ScriptPointers
+	ld a, [wCurMapScript]
 	jp CallFunctionInTable
+
+IndigoPlateauLobbyHideGreen:
+	ld a, INDIGOPLATEAULOBBY_GREEN
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret nz
+	ld a, TOGGLE_INDIGO_PLATEAU_LOBBY_GREEN
+	ld [wToggleableObjectIndex], a
+	predef_jump HideObject
 
 IndigoPlateauLobby_ScriptPointers:
 	def_script_pointers
