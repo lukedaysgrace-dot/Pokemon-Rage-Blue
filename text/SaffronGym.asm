@@ -253,11 +253,10 @@ _SaffronGymSabrinaRematchPreBattleText::
 
 _SaffronGymSabrinaRematchDefeatText::
 	text "...Just as I"
-	line "foresaw. Your"
-	cont "strength still"
+	line "foresaw."
 
-	para "grows past all I"
-	line "expected!"
+	para "Your strength"
+	line "still grows."
 	prompt
 
 _SaffronGymSabrinaRematchDefeatOverworldText::

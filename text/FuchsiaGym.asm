@@ -37,9 +37,10 @@ _FuchsiaGymKogaRematchPreBattleText::
 
 _FuchsiaGymKogaRematchDefeatText::
 	text "...Impressive."
-	line "You adapted to"
-	cont "each trick I used."
-	cont "A true master!"
+	line "You saw through"
+	cont "each trick."
+
+	para "A true master!"
 	prompt
 
 _FuchsiaGymKogaRematchDefeatOverworldText::

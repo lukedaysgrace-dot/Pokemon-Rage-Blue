@@ -28,9 +28,8 @@ _CeruleanGymMistyRematchPreBattleText::
 	done
 
 _CeruleanGymMistyRematchDefeatText::
-	text "Ugh, seriously?!"
-	line "I gave everything"
-	cont "that time! ..."
+	text "Ugh!"
+	line "I gave it my all!"
 
 	para "Okay--you're"
 	line "still CHAMPION."

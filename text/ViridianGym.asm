@@ -268,10 +268,11 @@ _ViridianGymGiovanniRematchPreBattleText::
 	done
 
 _ViridianGymGiovanniRematchDefeatText::
-	text "...Even now, I"
-	line "can't beat you."
-	cont "Your strength is"
-	cont "...undeniable."
+	text "...Even now,"
+	line "I can't beat you."
+
+	para "Your strength is"
+	line "...undeniable."
 	prompt
 
 _ViridianGymGiovanniRematchDefeatOverworldText::

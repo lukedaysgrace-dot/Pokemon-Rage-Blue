@@ -56,8 +56,9 @@ _LoreleisRoomLoreleiRematchPreBattleText::
 _LoreleisRoomLoreleiRematchDefeatText::
 	text "Impressive..."
 	line "You didn't crack."
-	cont "The cold couldn't"
-	cont "stop you."
+
+	para "The cold"
+	line "couldn't stop you."
 	prompt
 
 _LoreleisRoomLoreleiRematchDefeatOverworldText::

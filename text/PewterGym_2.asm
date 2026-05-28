@@ -160,7 +160,7 @@ _PewterGymBrockRematchPreBattleText::
 
 _PewterGymBrockRematchDefeatText::
 	text "Solid as ever..."
-	line "I see why you're"
+	line "You are truly"
 	cont "CHAMPION."
 
 	para "I'll keep honing"

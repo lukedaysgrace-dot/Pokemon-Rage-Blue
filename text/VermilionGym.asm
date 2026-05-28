@@ -31,12 +31,12 @@ _VermilionGymLTSurgeRematchPreBattleText::
 	done
 
 _VermilionGymLTSurgeRematchDefeatText::
-	text "Rrgh! You tanked"
-	line "the voltage!"
-	cont "Like it was"
+	text "Rrgh!"
+	line "You tanked the"
+	cont "voltage!"
 
-	para "nothing! Hah!"
-	line "That's CHAMPION!"
+	para "Hah! That's a"
+	line "CHAMPION!"
 	prompt
 
 _VermilionGymLTSurgeRematchDefeatOverworldText::

@@ -51,7 +51,9 @@ _BrunoRematchDefeatText::
 	text "Hah!"
 	line "Your strength is"
 	cont "undeniable!"
-	cont "I'll train harder!"
+
+	para "I'll train"
+	line "harder!"
 	prompt
 
 _BrunoRematchDefeatOverworldText::

@@ -223,10 +223,11 @@ _CinnabarGymBlaineRematchPreBattleText::
 	done
 
 _CinnabarGymBlaineRematchDefeatText::
-	text "HAHA! Burned out"
-	line "again! You're"
-	cont "hotter than ever,"
-	cont "CHAMPION!"
+	text "HAHA!"
+	line "Burned out again!"
+
+	para "You're hotter"
+	line "than ever!"
 	prompt
 
 _CinnabarGymBlaineRematchDefeatOverworldText::
