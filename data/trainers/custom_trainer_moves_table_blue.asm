@@ -1,0 +1,1094 @@
+; Level-up moves (Gen 1 WriteMonMoves-style) for Blue version trainer parties.
+; This file is included by custom_trainer_moves_table.asm for _BLUE builds.
+
+CustomTrainerMoves:
+
+
+; =============================================================================
+; Gym leaders (wTrainerNo 1 on each map)
+; =============================================================================
+
+; --- Brock ---
+; Geodude L12
+db BROCK, 1, 1, TACKLE, DEFENSE_CURL, NO_MOVE, NO_MOVE
+; Kabuto L13
+db BROCK, 1, 2, ABSORB, SCRATCH, LEER, NO_MOVE
+; Onix L15
+db BROCK, 1, 3, TACKLE, SCREECH, NO_MOVE, BIDE
+
+; --- Misty ---
+; Staryu L18
+db MISTY, 1, 1, TACKLE, WATER_GUN, NO_MOVE, NO_MOVE
+; Horsea L19
+db MISTY, 1, 2, TACKLE, WATER_GUN, SMOKESCREEN, NO_MOVE
+; Starmie L22
+db MISTY, 1, 3, BUBBLEBEAM, TACKLE, HARDEN, NO_MOVE
+
+
+; --- Lt. Surge ---
+; Voltorb L18
+db LT_SURGE, 1, 1, TACKLE, SCREECH, SONICBOOM, NO_MOVE
+; Electabuzz L21
+db LT_SURGE, 1, 2, THUNDERPUNCH, FIRE_PUNCH, ICE_PUNCH, QUICK_ATTACK
+; Raichu L25
+db LT_SURGE, 1, 3, THUNDERBOLT, BODY_SLAM, THUNDER_WAVE, NO_MOVE
+
+
+; --- Erika ---
+; Tangela L29
+db ERIKA, 1, 1, RAZOR_LEAF, WRAP, POISONPOWDER, SLEEP_POWDER
+; Parasect L31
+db ERIKA, 1, 2, LEECH_LIFE, MEGA_DRAIN, SLASH, SPORE
+; Victreebel L33
+db ERIKA, 1, 3, GROWTH, SLEEP_POWDER, WRAP, RAZOR_LEAF
+; Vileplume L33
+db ERIKA, 1, 4, GROWTH, SLEEP_POWDER, WRAP, RAZOR_LEAF
+
+
+; --- Koga ---
+; Arbok L37
+db KOGA, 1, 1, SLUDGE_BOMB, DOUBLE_TEAM, EARTHQUAKE, GLARE
+; Muk L39
+db KOGA, 1, 2, DISABLE, BODY_SLAM, MINIMIZE, SLUDGE_BOMB
+; Venomoth L38
+db KOGA, 1, 3, PSYBEAM, SUPERSONIC, MEGA_DRAIN, SMOKESCREEN
+; Weezing L43
+db KOGA, 1, 4, TOXIC, SLUDGE_BOMB, MIMIC, EXPLOSION
+; Tentacruel L41
+db KOGA, 1, 5, SURF, ICE_BEAM, SLUDGE_BOMB, MEGA_DRAIN
+
+
+; --- Blaine ---
+; Ninetales L40
+db BLAINE, 1, 1, SOLARBEAM, SHADOW_BALL, CONFUSE_RAY, FLAMETHROWER
+; Magmortar L43
+db BLAINE, 1, 2, CROSS_CHOP, THUNDERPUNCH, CONFUSE_RAY, FLAMETHROWER
+; Rapidash L43
+db BLAINE, 1, 3, FIRE_BLAST, SOLARBEAM, BODY_SLAM, FIRE_SPIN
+; Arcanine L47
+db BLAINE, 1, 4, FIRE_BLAST, EARTHQUAKE, BODY_SLAM, CRUNCH
+; Flareon L45
+db BLAINE, 1, 5, FIRE_BLAST, FIRE_SPIN, QUICK_ATTACK, DIG
+
+
+; --- Sabrina ---
+; Mr Mime L37
+db SABRINA, 1, 1, PSYCHIC_M, FIRE_PUNCH, SEISMIC_TOSS, THUNDERBOLT
+; Hypno L38
+db SABRINA, 1, 2, PSYCHIC_M, HYPNOSIS, DISABLE, HEADBUTT
+; Golduck L38
+db SABRINA, 1, 3, SURF, BLIZZARD, AMNESIA, PSYCHIC_M
+; Jynx L38
+db SABRINA, 1, 4, LOVELY_KISS, ICE_BEAM, PSYCHIC_M, BODY_SLAM
+; Alakazam L43
+db SABRINA, 1, 5, PSYWAVE, PSYCHIC_M, RECOVER, REFLECT
+
+
+; =============================================================================
+; Giovanni (three separate battles)
+; =============================================================================
+
+; --- Giovanni — Rocket Hideout (wTrainerNo 1) ---
+; Phanpy L24
+db GIOVANNI, 1, 1, DIG, BODY_SLAM, SLUDGE, ROCK_THROW
+; Rhyhorn L27
+db GIOVANNI, 1, 2, HORN_ATTACK, STOMP, DIG, ROCK_THROW
+; Kabuto L28
+db GIOVANNI, 1, 3, MEGA_DRAIN, HARDEN, BUBBLEBEAM, ROCK_THROW
+; Kangaskhan L29
+db GIOVANNI, 1, 4, COMET_PUNCH, RAGE, BITE, DIG
+
+
+; --- Giovanni — Silph Co. (wTrainerNo 2) ---
+; Donphan L37
+db GIOVANNI, 2, 1, EARTHQUAKE, SLUDGE_BOMB, THUNDERBOLT, BODY_SLAM
+; Kangaskhan L37
+db GIOVANNI, 2, 2, COMET_PUNCH, RAGE, CRUNCH, FLAMETHROWER
+; Rhydon L37
+db GIOVANNI, 2, 3, THUNDERBOLT, ROCK_SLIDE, DIG, BODY_SLAM
+; Kabutops L40
+db GIOVANNI, 2, 4, SLASH, SURF, ICE_BEAM, ROCK_SLIDE
+; Nidoqueen L41
+db GIOVANNI, 2, 5, SLUDGE_BOMB, DIG, BODY_SLAM, ICE_BEAM
+
+
+; --- Giovanni — Viridian Gym (wTrainerNo 3) ---
+; Kangaskhan L41
+db GIOVANNI, 3, 1, SUCKER_PUNCH, EARTHQUAKE, BLIZZARD, HYPER_BEAM
+; Donphan L44
+db GIOVANNI, 3, 2, BODY_SLAM, ROCK_SLIDE, EARTHQUAKE, SLUDGE_BOMB
+; Nidoqueen L45
+db GIOVANNI, 3, 3, EARTHQUAKE, BODY_SLAM, THUNDER, SURF
+; Nidoking L43
+db GIOVANNI, 3, 4, EARTHQUAKE, BODY_SLAM, BLIZZARD, ROCK_SLIDE
+; Rhydon L42
+db GIOVANNI, 3, 5, ROCK_SLIDE, SURF, EARTHQUAKE, BODY_SLAM
+; Kabutops L42
+db GIOVANNI, 3, 6, ROCK_SLIDE, SURF, BLIZZARD, EARTHQUAKE
+
+
+; =============================================================================
+; Elite Four (wTrainerNo 1 each)
+; =============================================================================
+
+; --- Lorelei ---
+; Dewgong L45
+db LORELEI, 1, 1, SURF, ICE_BEAM, REST, BODY_SLAM
+; Cloyster L46
+db LORELEI, 1, 2, SUPERSONIC, ICE_BEAM, CLAMP, ICE_BEAM
+; Slowbro L46
+db LORELEI, 1, 3, SURF, ICE_BEAM, PSYCHIC_M, AMNESIA
+; Mesmeria L47
+db LORELEI, 1, 4, PSYCHIC_M, ICE_BEAM, LOVELY_KISS, BODY_SLAM
+; Lapras L47
+db LORELEI, 1, 5, BODY_SLAM, CONFUSE_RAY, BLIZZARD, HYDRO_PUMP
+; Glaceon L46
+db LORELEI, 1, 6, SHADOW_BALL, BLIZZARD, TOXIC, BUBBLEBEAM
+
+; --- Karen ---
+; Umbreon L46
+db KAREN, 1, 1, CRUNCH, BITE, CONFUSE_RAY, BODY_SLAM
+; Honchkrow L47
+db KAREN, 1, 2, CRUNCH, WING_ATTACK, SHADOW_BALL, HAZE
+; Feraligatr L47
+db KAREN, 1, 3, CRUNCH, BLIZZARD, EARTHQUAKE, OUTRAGE
+; Tyranitar L47
+db KAREN, 1, 4, CRUNCH, ROCK_SLIDE, EARTHQUAKE, THUNDER
+; Houndoom L50
+db KAREN, 1, 5, CRUNCH, FLAMETHROWER, SUCKER_PUNCH, SOLARBEAM
+; Weavile L48
+db KAREN, 1, 6, CRUNCH, BLIZZARD, SUCKER_PUNCH, RAZOR_WIND
+
+
+; --- Exile Bruno (Cerulean Cave B1F, EXILE_BRUNO wTrainerNo 1) ---
+; Hitmonlee L70
+db EXILE_BRUNO, 1, 1, HI_JUMP_KICK, MEGA_KICK, JUMP_KICK, OUTRAGE
+; Hitmonchan L70
+db EXILE_BRUNO, 1, 2, THUNDERPUNCH, ICE_PUNCH, MEGA_PUNCH, COUNTER
+; Machamp L70
+db EXILE_BRUNO, 1, 3, BODY_SLAM, SUBMISSION, ROCK_SLIDE, EARTHQUAKE
+; Lucario L70
+db EXILE_BRUNO, 1, 4, METAL_CLAW, ROCK_SLIDE, BODY_SLAM, PSYCHIC_M
+; Poliwrath L70
+db EXILE_BRUNO, 1, 5, SURF, ICE_PUNCH, SUBMISSION, HYDRO_PUMP
+; Annihilape L70
+db EXILE_BRUNO, 1, 6, SHADOW_BALL, OUTRAGE, SUBMISSION, COUNTER
+
+
+; --- Agatha ---
+; Golurk L48
+db AGATHA, 1, 1, SHADOW_BALL, EARTHQUAKE, ROCK_SLIDE, CROSS_CHOP
+; Tentacruel L47
+db AGATHA, 1, 2, SURF, ICE_BEAM, SLUDGE, WRAP
+; Dusknoir L46
+db AGATHA, 1, 3, SHADOW_BALL, THUNDER, SUCKER_PUNCH, CONFUSE_RAY
+; Arbok L48
+db AGATHA, 1, 4, EARTHQUAKE, GLARE, SUCKER_PUNCH, SLUDGE_BOMB
+; Gengar L52
+db AGATHA, 1, 5, MEGA_DRAIN, SHADOW_BALL, HYPNOSIS, DREAM_EATER
+; Mismagius L47
+db AGATHA, 1, 6, SHADOW_BALL, THUNDERBOLT, FLAMETHROWER, CONFUSE_RAY
+
+
+; --- Lance ---
+; Gyarados L52
+db LANCE, 1, 1, DRAGON_RAGE, SLAM, HYDRO_PUMP, HYPER_BEAM
+; Dragonite L54
+db LANCE, 1, 2, THUNDER_WAVE, SLAM, THUNDERBOLT, HYPER_BEAM
+; Dragonite L54
+db LANCE, 1, 3, SURF, SLAM, BARRIER, BLIZZARD
+; Aerodactyl L52
+db LANCE, 1, 4, ROCK_SLIDE, FIRE_BLAST, WING_ATTACK, HYPER_BEAM
+; Dragonite L55
+db LANCE, 1, 5, SLAM, FLAMETHROWER, BLIZZARD, HYPER_BEAM
+; Kingdra L54
+db LANCE, 1, 6, SURF, ICE_BEAM, DRAGON_RAGE, HYPER_BEAM
+
+
+; =============================================================================
+; Rival — RIVAL1 (wTrainerNo = row order in parties.asm Rival1Data)
+; =============================================================================
+; Map (for testing / edits):
+;   wTrainerNo 1–3  = Prof. Oak's Lab (starter mirror; one Pokémon each)
+;   wTrainerNo 4–6  = Route 22 west of Viridian (first multi-Pokémon fight; NOT Cerulean)
+;   wTrainerNo 7–9  = Cerulean City (north exit area — different map than Route 22)
+;
+; ---- EDIT: Prof. Oak's Lab (wTrainerNo 1–3) — change moves on the db lines below ----
+
+; --- Oak's Lab — rival's Squirtle L5 (wTrainerNo 1; you picked Charmander) ---
+; Squirtle L5
+db RIVAL1, 1, 1, TACKLE, TAIL_WHIP, NO_MOVE, NO_MOVE
+
+; --- Oak's Lab — rival's Bulbasaur L5 (wTrainerNo 2; you picked Squirtle) ---
+; Bulbasaur L5
+db RIVAL1, 2, 1, TACKLE, GROWL, NO_MOVE, NO_MOVE
+
+; --- Oak's Lab — rival's Charmander L5 (wTrainerNo 3; you picked Bulbasaur) ---
+; Charmander L5
+db RIVAL1, 3, 1, SCRATCH, GROWL, NO_MOVE, NO_MOVE
+
+
+; ---- EDIT: Route 22 (first fight, west of Viridian) — wTrainerNo 4–6 ----
+
+; --- Route 22 first — Pidgey L9 + Squirtle L8 (wTrainerNo 4) ---
+; Pidgey L9
+db RIVAL1, 4, 1, GUST, SAND_ATTACK, NO_MOVE, NO_MOVE
+; Squirtle L8
+db RIVAL1, 4, 2, TACKLE, TAIL_WHIP, BUBBLE, NO_MOVE
+
+; --- Route 22 first — Pidgey L9 + Bulbasaur L8 (wTrainerNo 5) ---
+; Pidgey L9
+db RIVAL1, 5, 1, GUST, SAND_ATTACK, NO_MOVE, NO_MOVE
+; Bulbasaur L8
+db RIVAL1, 5, 2, TACKLE, GROWL, LEECH_SEED, NO_MOVE
+
+; --- Route 22 first — Pidgey L9 + Charmander L8 (wTrainerNo 6) ---
+; Pidgey L9
+db RIVAL1, 6, 1, GUST, SAND_ATTACK, NO_MOVE, NO_MOVE
+; Charmander L8
+db RIVAL1, 6, 2, SCRATCH, GROWL, NO_MOVE, NO_MOVE
+
+
+; ---- EDIT: Cerulean City rival (NOT Route 22; wTrainerNo 7–9) ----
+
+; --- Cerulean — Pidgeotto L18, Abra L15, Rattata L15, Wartortle L17 (wTrainerNo 7) ---
+; Pidgeotto L18
+db RIVAL1, 7, 1, GUST, SAND_ATTACK, QUICK_ATTACK, NO_MOVE
+; Abra L15
+db RIVAL1, 7, 2, TELEPORT, COUNTER, CONFUSION, NO_MOVE
+; Rattata L15
+db RIVAL1, 7, 3, TACKLE, TAIL_WHIP, QUICK_ATTACK, HYPER_FANG
+; Wartortle L17
+db RIVAL1, 7, 4, TACKLE, TAIL_WHIP, BUBBLE, WATER_GUN
+
+; --- Cerulean — Pidgeotto L18, Abra L15, Rattata L15, Ivysaur L17 (wTrainerNo 8) ---
+; Pidgeotto L18
+db RIVAL1, 8, 1, GUST, SAND_ATTACK, QUICK_ATTACK, NO_MOVE
+; Abra L15
+db RIVAL1, 8, 2, TELEPORT, COUNTER, CONFUSION, NO_MOVE
+; Rattata L15
+db RIVAL1, 8, 3, TACKLE, TAIL_WHIP, QUICK_ATTACK, HYPER_FANG
+; Ivysaur L17
+db RIVAL1, 8, 4, TACKLE, GROWL, LEECH_SEED, VINE_WHIP
+
+; --- Cerulean — Pidgeotto L18, Abra L15, Rattata L15, Charmeleon L17 (wTrainerNo 9) ---
+; Pidgeotto L18
+db RIVAL1, 9, 1, GUST, SAND_ATTACK, QUICK_ATTACK, NO_MOVE
+; Abra L15
+db RIVAL1, 9, 2, TELEPORT, COUNTER, CONFUSION, NO_MOVE
+; Rattata L15
+db RIVAL1, 9, 3, TACKLE, TAIL_WHIP, QUICK_ATTACK, HYPER_FANG
+; Charmeleon L17
+db RIVAL1, 9, 4, SCRATCH, GROWL, EMBER, LEER
+
+
+; =============================================================================
+; Rival — RIVAL2 (wTrainerNo 1–12; parties.asm Rival2Data)
+; =============================================================================
+;   wTrainerNo 1–3   S.S. Anne 2F
+;   wTrainerNo 4–6   Pokémon Tower 2F
+;   wTrainerNo 7–9   Silph Co. 7F
+;   wTrainerNo 10–12 Route 22 (late game — second Route 22 fight, not Cerulean)
+
+; --- S.S. Anne — Wartortle team (wTrainerNo 1) ---
+; Pidgeotto L19
+db RIVAL2, 1, 1, GUST, SAND_ATTACK, QUICK_ATTACK, NO_MOVE
+; Raticate L16
+db RIVAL2, 1, 2, TACKLE, TAIL_WHIP, QUICK_ATTACK, HYPER_FANG
+; Kadabra L18
+db RIVAL2, 1, 3, TELEPORT, CONFUSION, DISABLE, NO_MOVE
+; Wartortle L20
+db RIVAL2, 1, 4, TACKLE, TAIL_WHIP, BUBBLE, WATER_GUN
+
+; --- S.S. Anne — Ivysaur team (wTrainerNo 2) ---
+; Pidgeotto L19
+db RIVAL2, 2, 1, GUST, SAND_ATTACK, QUICK_ATTACK, NO_MOVE
+; Raticate L16
+db RIVAL2, 2, 2, TACKLE, TAIL_WHIP, QUICK_ATTACK, HYPER_FANG
+; Kadabra L18
+db RIVAL2, 2, 3, TELEPORT, CONFUSION, DISABLE, NO_MOVE
+; Ivysaur L20
+db RIVAL2, 2, 4, TACKLE, GROWL, LEECH_SEED, VINE_WHIP
+
+; --- S.S. Anne — Charmeleon team (wTrainerNo 3) ---
+; Pidgeotto L19
+db RIVAL2, 3, 1, GUST, SAND_ATTACK, QUICK_ATTACK, NO_MOVE
+; Raticate L16
+db RIVAL2, 3, 2, TACKLE, TAIL_WHIP, QUICK_ATTACK, HYPER_FANG
+; Kadabra L18
+db RIVAL2, 3, 3, TELEPORT, CONFUSION, DISABLE, NO_MOVE
+; Charmeleon L20
+db RIVAL2, 3, 4, SCRATCH, GROWL, EMBER, LEER
+
+
+; --- Pokémon Tower — Wartortle team (wTrainerNo 4) ---
+; Pidgeotto L25
+db RIVAL2, 4, 1, GUST, SAND_ATTACK, QUICK_ATTACK, CRUNCH
+; Growlithe L23
+db RIVAL2, 4, 2, BITE, MACH_PUNCH, EMBER, LEER
+; Exeggcute L22
+db RIVAL2, 4, 3, BARRAGE, HYPNOSIS, NO_MOVE, NO_MOVE
+; Kadabra L20
+db RIVAL2, 4, 4, TELEPORT, CONFUSION, DISABLE, NO_MOVE
+; Wartortle L25
+db RIVAL2, 4, 5, TAIL_WHIP, BUBBLE, WATER_GUN, BITE
+
+; --- Pokémon Tower — Ivysaur team (wTrainerNo 5) ---
+; Pidgeotto L25
+db RIVAL2, 5, 1, GUST, SAND_ATTACK, QUICK_ATTACK, CRUNCH
+; Gyarados L23
+db RIVAL2, 5, 2, BITE, DRAGON_RAGE, LEER, HYDRO_PUMP
+; Growlithe L22
+db RIVAL2, 5, 3, BITE, MACH_PUNCH, EMBER, NO_MOVE
+; Kadabra L20
+db RIVAL2, 5, 4, TELEPORT, CONFUSION, DISABLE, NO_MOVE
+; Ivysaur L25
+db RIVAL2, 5, 5, GROWL, LEECH_SEED, VINE_WHIP, POISONPOWDER
+
+; --- Pokémon Tower — Charmeleon team (wTrainerNo 6) ---
+; Pidgeotto L25
+db RIVAL2, 6, 1, GUST, SAND_ATTACK, QUICK_ATTACK, CRUNCH
+; Exeggcute L23
+db RIVAL2, 6, 2, BARRAGE, HYPNOSIS, NO_MOVE, NO_MOVE
+; Gyarados L22
+db RIVAL2, 6, 3, BITE, DRAGON_RAGE, LEER, HYDRO_PUMP
+; Kadabra L20
+db RIVAL2, 6, 4, TELEPORT, CONFUSION, DISABLE, NO_MOVE
+; Charmeleon L25
+db RIVAL2, 6, 5, GROWL, EMBER, LEER, RAGE
+
+
+; --- Silph Co. — Blastoise team (wTrainerNo 7) ---
+; Pidgeot L37
+db RIVAL2, 7, 1, SAND_ATTACK, QUICK_ATTACK, CRUNCH, WING_ATTACK
+; Growlithe L38
+db RIVAL2, 7, 2, MACH_PUNCH, EMBER, LEER, TAKE_DOWN
+; Exeggcute L35
+db RIVAL2, 7, 3, HYPNOSIS, REFLECT, LEECH_SEED, STUN_SPORE
+; Alakazam L35
+db RIVAL2, 7, 4, CONFUSION, DISABLE, PSYBEAM, RECOVER
+; Blastoise L40
+db RIVAL2, 7, 5, BUBBLE, WATER_GUN, BITE, WITHDRAW
+
+; --- Silph Co. — Venusaur team (wTrainerNo 8) ---
+; Pidgeot L37
+db RIVAL2, 8, 1, SAND_ATTACK, QUICK_ATTACK, CRUNCH, WING_ATTACK
+; Gyarados L38
+db RIVAL2, 8, 2, BITE, DRAGON_RAGE, LEER, HYDRO_PUMP
+; Growlithe L35
+db RIVAL2, 8, 3, MACH_PUNCH, EMBER, LEER, TAKE_DOWN
+; Alakazam L35
+db RIVAL2, 8, 4, CONFUSION, DISABLE, PSYBEAM, RECOVER
+; Venusaur L40
+db RIVAL2, 8, 5, LEECH_SEED, VINE_WHIP, POISONPOWDER, RAZOR_LEAF
+
+; --- Silph Co. — Charizard team (wTrainerNo 9) ---
+; Pidgeot L37
+db RIVAL2, 9, 1, SAND_ATTACK, QUICK_ATTACK, CRUNCH, WING_ATTACK
+; Exeggcute L38
+db RIVAL2, 9, 2, REFLECT, LEECH_SEED, STUN_SPORE, POISONPOWDER
+; Gyarados L35
+db RIVAL2, 9, 3, BITE, DRAGON_RAGE, LEER, HYDRO_PUMP
+; Alakazam L35
+db RIVAL2, 9, 4, CONFUSION, DISABLE, PSYBEAM, RECOVER
+; Charizard L40
+db RIVAL2, 9, 5, EMBER, LEER, RAGE, SLASH
+
+
+; ---- EDIT: Route 22 late game (second Route 22 fight; wTrainerNo 10–12) ----
+
+; --- Route 22 second — Blastoise team (wTrainerNo 10) ---
+; Pidgeot L47
+db RIVAL2, 10, 1, QUICK_ATTACK, CRUNCH, WING_ATTACK, AGILITY
+; Rhyhorn L45 (species in parties.asm; past evolve level)
+db RIVAL2, 10, 2, STOMP, TAIL_WHIP, FURY_ATTACK, SUCKER_PUNCH
+; Growlithe L45
+db RIVAL2, 10, 3, EMBER, LEER, TAKE_DOWN, AGILITY
+; Exeggcute L47
+db RIVAL2, 10, 4, LEECH_SEED, STUN_SPORE, POISONPOWDER, SOLARBEAM
+; Alakazam L50
+db RIVAL2, 10, 5, PSYBEAM, RECOVER, PSYCHIC_M, REFLECT
+; Blastoise L53
+db RIVAL2, 10, 6, BITE, WITHDRAW, SKULL_BASH, HYDRO_PUMP
+
+; --- Route 22 second — Venusaur team (wTrainerNo 11) ---
+; Pidgeot L47
+db RIVAL2, 11, 1, QUICK_ATTACK, CRUNCH, WING_ATTACK, AGILITY
+; Rhyhorn L45 (species in parties.asm; past evolve level)
+db RIVAL2, 11, 2, STOMP, TAIL_WHIP, FURY_ATTACK, SUCKER_PUNCH
+; Gyarados L45
+db RIVAL2, 11, 3, BITE, DRAGON_RAGE, LEER, HYDRO_PUMP
+; Growlithe L47
+db RIVAL2, 11, 4, EMBER, LEER, TAKE_DOWN, AGILITY
+; Alakazam L50
+db RIVAL2, 11, 5, PSYBEAM, RECOVER, PSYCHIC_M, REFLECT
+; Venusaur L53
+db RIVAL2, 11, 6, VINE_WHIP, POISONPOWDER, RAZOR_LEAF, GROWTH
+
+; --- Route 22 second — Charizard team (wTrainerNo 12) ---
+; Pidgeot L47
+db RIVAL2, 12, 1, QUICK_ATTACK, CRUNCH, WING_ATTACK, AGILITY
+; Rhyhorn L45 (species in parties.asm; past evolve level)
+db RIVAL2, 12, 2, STOMP, TAIL_WHIP, FURY_ATTACK, SUCKER_PUNCH
+; Exeggcute L45
+db RIVAL2, 12, 3, LEECH_SEED, STUN_SPORE, POISONPOWDER, SOLARBEAM
+; Gyarados L47
+db RIVAL2, 12, 4, BITE, DRAGON_RAGE, LEER, HYDRO_PUMP
+; Alakazam L50
+db RIVAL2, 12, 5, PSYBEAM, RECOVER, PSYCHIC_M, REFLECT
+; Charizard L53
+db RIVAL2, 12, 6, LEER, RAGE, SLASH, FLAMETHROWER
+
+
+; =============================================================================
+; Rival — RIVAL3 Champion (wTrainerNo 1–3 first fight, 4–6 post-Champion rematch)
+; =============================================================================
+
+; --- Champion — final starter is Blastoise (wTrainerNo 1) ---
+; Pidgeot L61
+db RIVAL3, 1, 1, SKY_ATTACK, BODY_SLAM, MIMIC, RAZOR_WIND
+; Alakazam L59
+db RIVAL3, 1, 2, THUNDER_WAVE, RECOVER, PSYCHIC_M, KINESIS
+; Rhydon L61
+db RIVAL3, 1, 3, THUNDERBOLT, EARTHQUAKE, ROCK_SLIDE, SURF
+; Arcanine L61
+db RIVAL3, 1, 4, MACH_PUNCH, EMBER, LEER, TAKE_DOWN
+; Exeggutor L63
+db RIVAL3, 1, 5, PSYCHIC_M, DREAM_EATER, EGG_BOMB, HYPNOSIS
+; Blastoise L65
+db RIVAL3, 1, 6, BLIZZARD, WITHDRAW, SKULL_BASH, HYDRO_PUMP
+
+; --- Champion — final starter is Venusaur (wTrainerNo 2) ---
+; Pidgeot L61
+db RIVAL3, 2, 1, SKY_ATTACK, TRI_ATTACK, MIMIC, RAZOR_WIND
+; Alakazam L59
+db RIVAL3, 2, 2, THUNDER_WAVE, RECOVER, PSYCHIC_M, KINESIS
+; Rhydon L61
+db RIVAL3, 2, 3, THUNDERBOLT, EARTHQUAKE, ROCK_SLIDE, SURF
+; Gyarados L61
+db RIVAL3, 2, 4, ICE_BEAM, BODY_SLAM, HYDRO_PUMP, HYPER_BEAM
+; Arcanine L63
+db RIVAL3, 2, 5, REFLECT, EARTHQUAKE, BODY_SLAM, FLAMETHROWER
+; Venusaur L65
+db RIVAL3, 2, 6, RAZOR_LEAF, TOXIC, SLEEP_POWDER, SOLARBEAM
+
+; --- Champion — final starter is Charizard (wTrainerNo 3) ---
+; Pidgeot L61
+db RIVAL3, 3, 1, SKY_ATTACK, TRI_ATTACK, MIMIC, DOUBLE_TEAM
+; Alakazam L59
+db RIVAL3, 3, 2, THUNDER_WAVE, RECOVER, PSYCHIC_M, REFLECT
+; Rhydon L61
+db RIVAL3, 3, 3, THUNDERBOLT, EARTHQUAKE, ROCK_SLIDE, SURF
+; Exeggutor L61
+db RIVAL3, 3, 4, PSYCHIC_M, EGG_BOMB, DREAM_EATER, HYPNOSIS
+; Gyarados L63
+db RIVAL3, 3, 5, ICE_BEAM, BODY_SLAM, HYDRO_PUMP, HYPER_BEAM
+; Charizard L65
+db RIVAL3, 3, 6, RAZOR_WIND, SLASH, FLAMETHROWER, FIRE_SPIN
+
+; --- Champion rematch — Blastoise team (wTrainerNo 4) ---
+; Pidgeot L68
+db RIVAL3, 4, 1, DRILL_PECK, SKY_ATTACK, AGILITY, HYPER_BEAM
+; Alakazam L67
+db RIVAL3, 4, 2, PSYCHIC_M, RECOVER, REFLECT, PSYWAVE
+; Rhydon L69
+db RIVAL3, 4, 3, EARTHQUAKE, ROCK_SLIDE, SUCKER_PUNCH, TAIL_WHIP
+; Arcanine L69
+db RIVAL3, 4, 4, FLAMETHROWER, BODY_SLAM, HYPER_BEAM, TAKE_DOWN
+; Exeggutor L71
+db RIVAL3, 4, 5, PSYCHIC_M, LEECH_SEED, EGG_BOMB, HYPER_BEAM
+; Blastoise L73
+db RIVAL3, 4, 6, BLIZZARD, SURF, WITHDRAW, HYPER_BEAM
+
+; --- Champion rematch — Venusaur team (wTrainerNo 5) ---
+; Pidgeot L68
+db RIVAL3, 5, 1, DRILL_PECK, SKY_ATTACK, AGILITY, HYPER_BEAM
+; Alakazam L67
+db RIVAL3, 5, 2, PSYCHIC_M, RECOVER, REFLECT, PSYWAVE
+; Rhydon L69
+db RIVAL3, 5, 3, EARTHQUAKE, ROCK_SLIDE, SUCKER_PUNCH, TAIL_WHIP
+; Gyarados L69
+db RIVAL3, 5, 4, BLIZZARD, HYPER_BEAM, HYDRO_PUMP, DRAGON_RAGE
+; Arcanine L71
+db RIVAL3, 5, 5, FLAMETHROWER, BODY_SLAM, HYPER_BEAM, TAKE_DOWN
+; Venusaur L73
+db RIVAL3, 5, 6, SOLARBEAM, SLEEP_POWDER, MEGA_DRAIN, HYPER_BEAM
+
+; --- Champion rematch — Charizard team (wTrainerNo 6) ---
+; Pidgeot L68
+db RIVAL3, 6, 1, DRILL_PECK, SKY_ATTACK, AGILITY, HYPER_BEAM
+; Alakazam L67
+db RIVAL3, 6, 2, PSYCHIC_M, RECOVER, REFLECT, PSYWAVE
+; Rhydon L69
+db RIVAL3, 6, 3, EARTHQUAKE, ROCK_SLIDE, SUCKER_PUNCH, TAIL_WHIP
+; Exeggutor L69
+db RIVAL3, 6, 4, PSYCHIC_M, LEECH_SEED, EGG_BOMB, HYPER_BEAM
+; Gyarados L71
+db RIVAL3, 6, 5, BLIZZARD, HYPER_BEAM, HYDRO_PUMP, DRAGON_RAGE
+; Charizard L73
+db RIVAL3, 6, 6, FIRE_BLAST, SLASH, HYPER_BEAM, FLY
+
+
+; =============================================================================
+; Post-Champion rematches (wTrainerNo 2, except GIOVANNI wTrainerNo 4)
+; Placeholder moves — replace with real sets as needed.
+; =============================================================================
+
+; --- Brock rematch (BROCK, 2) ---
+; Golem L55
+db BROCK, 2, 1, ROCK_SLIDE, EARTHQUAKE, FIRE_BLAST, STRENGTH
+; Rhyperior L55
+db BROCK, 2, 2, ROCK_SLIDE, EARTHQUAKE, SURF, CRUNCH
+; Steelix L55
+db BROCK, 2, 3, ROCK_SLIDE, EARTHQUAKE, CRUNCH, IRON_TAIL
+; Omastar L55
+db BROCK, 2, 4, ROCK_SLIDE, EARTHQUAKE, SURF, BLIZZARD
+; Kabutops L55
+db BROCK, 2, 5, ROCK_SLIDE, EARTHQUAKE, SURF, MEGA_DRAIN
+; Aerodactyl L55
+db BROCK, 2, 6, ROCK_SLIDE, EARTHQUAKE, SKY_ATTACK, CRUNCH
+
+; --- Misty rematch (MISTY, 2) ---
+; Starmie L55
+db MISTY, 2, 1, SURF, PSYCHIC_M, BLIZZARD, RECOVER
+; Gyarados L55
+db MISTY, 2, 2, SURF, FLAMETHROWER, BLIZZARD, RAZOR_WIND
+; Lapras L55
+db MISTY, 2, 3, SURF, BODY_SLAM, BLIZZARD, THUNDERBOLT
+; Vaporeon L55
+db MISTY, 2, 4, SURF, ICE_BEAM, BLIZZARD, HYDRO_PUMP
+; Golduck L55
+db MISTY, 2, 5, SURF, PSYCHIC_M, BLIZZARD, AMNESIA
+; Tentacruel L55
+db MISTY, 2, 6, SURF, MEGA_DRAIN, BLIZZARD, SLUDGE_BOMB
+
+; --- Lt. Surge rematch (LT_SURGE, 2) ---
+; Raichu L55
+db LT_SURGE, 2, 1, THUNDERBOLT, THUNDER, SWIFT, LIGHT_SCREEN
+; Electivire L55
+db LT_SURGE, 2, 2, THUNDERBOLT, THUNDER, SWIFT, LIGHT_SCREEN
+; Jolteon L55
+db LT_SURGE, 2, 3, THUNDERBOLT, THUNDER, SWIFT, LIGHT_SCREEN
+; Magnezone L55
+db LT_SURGE, 2, 4, THUNDERBOLT, THUNDER, SWIFT, LIGHT_SCREEN
+; Electrode L55
+db LT_SURGE, 2, 5, THUNDERBOLT, THUNDER, SWIFT, LIGHT_SCREEN
+; Zapdos L55
+db LT_SURGE, 2, 6, THUNDERBOLT, THUNDER, SWIFT, LIGHT_SCREEN
+
+; --- Erika rematch (ERIKA, 2) ---
+; Vileplume L55
+db ERIKA, 2, 1, MEGA_DRAIN, SOLARBEAM, SLEEP_POWDER, HYPER_BEAM
+; Victreebel L55
+db ERIKA, 2, 2, MEGA_DRAIN, SOLARBEAM, SLEEP_POWDER, HYPER_BEAM
+; Exeggutor L55
+db ERIKA, 2, 3, MEGA_DRAIN, SOLARBEAM, SLEEP_POWDER, HYPER_BEAM
+; Tangela L55
+db ERIKA, 2, 4, MEGA_DRAIN, SOLARBEAM, SLEEP_POWDER, HYPER_BEAM
+; Parasect L55
+db ERIKA, 2, 5, MEGA_DRAIN, SOLARBEAM, SLEEP_POWDER, HYPER_BEAM
+; Venusaur L55
+db ERIKA, 2, 6, MEGA_DRAIN, SOLARBEAM, SLEEP_POWDER, HYPER_BEAM
+
+; --- Koga rematch (KOGA, 2) ---
+; Weezing L55
+db KOGA, 2, 1, SLUDGE, TOXIC, EXPLOSION, SMOKESCREEN
+; Muk L55
+db KOGA, 2, 2, SLUDGE, TOXIC, EXPLOSION, SMOKESCREEN
+; Venomoth L55
+db KOGA, 2, 3, SLUDGE, TOXIC, EXPLOSION, SMOKESCREEN
+; Tentacruel L55
+db KOGA, 2, 4, SLUDGE, TOXIC, EXPLOSION, SMOKESCREEN
+; Hypno L55
+db KOGA, 2, 5, SLUDGE, TOXIC, EXPLOSION, SMOKESCREEN
+; Arbok L55
+db KOGA, 2, 6, SLUDGE, TOXIC, EXPLOSION, SMOKESCREEN
+
+; --- Blaine rematch (BLAINE, 2) ---
+; Arcanine L55
+db BLAINE, 2, 1, FIRE_BLAST, SOLARBEAM, EARTHQUAKE, CRUNCH
+; Ninetales L55
+db BLAINE, 2, 2, FLAMETHROWER, FIRE_BLAST, FIRE_SPIN, SOLARBEAM
+; Rapidash L55
+db BLAINE, 2, 3, FLAMETHROWER, HYPNOSIS, FIRE_SPIN, BODY_SLAM
+; Typhlosion L55
+db BLAINE, 2, 4, SOLARBEAM, FIRE_BLAST, THUNDERPUNCH, EARTHQUAKE
+; Magmortar L55
+db BLAINE, 2, 5, CROSS_CHOP, FIRE_BLAST, SOLARBEAM, ROCK_SLIDE
+; Flareon L55
+db BLAINE, 2, 6, SHADOW_BALL, FIRE_BLAST, DIG, BODY_SLAM
+
+; --- Sabrina rematch (SABRINA, 2) ---
+; Alakazam L55
+db SABRINA, 2, 1, PSYCHIC_M, PSYBEAM, RECOVER, REFLECT
+; Hypno L55
+db SABRINA, 2, 2, PSYCHIC_M, PSYBEAM, RECOVER, REFLECT
+; Slowbro L55
+db SABRINA, 2, 3, PSYCHIC_M, PSYBEAM, RECOVER, REFLECT
+; Jynx L55
+db SABRINA, 2, 4, PSYCHIC_M, PSYBEAM, RECOVER, REFLECT
+; Mr. Mime L55
+db SABRINA, 2, 5, PSYCHIC_M, PSYBEAM, RECOVER, REFLECT
+; Gengar L55
+db SABRINA, 2, 6, PSYCHIC_M, PSYBEAM, RECOVER, REFLECT
+
+; --- Giovanni rematch Viridian (GIOVANNI, 4) ---
+; Rhyperior L55
+db GIOVANNI, 4, 1, EARTHQUAKE, ROCK_SLIDE, FISSURE, HYPER_BEAM
+; Nidoqueen L55
+db GIOVANNI, 4, 2, EARTHQUAKE, ROCK_SLIDE, FISSURE, HYPER_BEAM
+; Nidoking L55
+db GIOVANNI, 4, 3, EARTHQUAKE, ROCK_SLIDE, FISSURE, HYPER_BEAM
+; Persian L55
+db GIOVANNI, 4, 4, EARTHQUAKE, ROCK_SLIDE, FISSURE, HYPER_BEAM
+; Marowak L55
+db GIOVANNI, 4, 5, EARTHQUAKE, ROCK_SLIDE, FISSURE, HYPER_BEAM
+; Mewtwo L55
+db GIOVANNI, 4, 6, EARTHQUAKE, ROCK_SLIDE, FISSURE, HYPER_BEAM
+
+; --- Lorelei rematch (LORELEI, 2) ---
+; Lapras L58
+db LORELEI, 2, 1, BLIZZARD, ICE_BEAM, SURF, BODY_SLAM
+; Cloyster L58
+db LORELEI, 2, 2, BLIZZARD, ICE_BEAM, SURF, BODY_SLAM
+; Slowbro L58
+db LORELEI, 2, 3, BLIZZARD, ICE_BEAM, SURF, BODY_SLAM
+; Mesmeria L58
+db LORELEI, 2, 4, BLIZZARD, ICE_BEAM, SURF, BODY_SLAM
+; Dewgong L58
+db LORELEI, 2, 5, BLIZZARD, ICE_BEAM, SURF, BODY_SLAM
+; Glaceon L58
+db LORELEI, 2, 6, BLIZZARD, SHADOW_BALL, BUBBLEBEAM, TOXIC
+
+; --- Karen rematch (KAREN, 2) ---
+; Umbreon L58
+db KAREN, 2, 1, CRUNCH, DIG, CONFUSE_RAY, BODY_SLAM
+; Murkrow L58
+db KAREN, 2, 2, CRUNCH, RAZOR_WIND, SHADOW_BALL, HAZE
+; Sneasel L58
+db KAREN, 2, 3, CRUNCH, ICE_PUNCH, SLASH, QUICK_ATTACK
+; Tyranitar L58
+db KAREN, 2, 4, CRUNCH, ROCK_SLIDE, EARTHQUAKE, HYPER_BEAM
+; Honchkrow L58
+db KAREN, 2, 5, CRUNCH, WING_ATTACK, SUCKER_PUNCH, HYPER_BEAM
+; Weavile L58
+db KAREN, 2, 6, CRUNCH, ICE_PUNCH, SLASH, QUICK_ATTACK
+
+; --- Agatha rematch (AGATHA, 2) ---
+; Gengar L60
+db AGATHA, 2, 1, LICK, CONFUSE_RAY, NIGHT_SHADE, DREAM_EATER
+; Golbat L60
+db AGATHA, 2, 2, LICK, CONFUSE_RAY, NIGHT_SHADE, DREAM_EATER
+; Gengar L60
+db AGATHA, 2, 3, LICK, CONFUSE_RAY, NIGHT_SHADE, DREAM_EATER
+; Arbok L60
+db AGATHA, 2, 4, LICK, CONFUSE_RAY, NIGHT_SHADE, DREAM_EATER
+; Muk L60
+db AGATHA, 2, 5, LICK, CONFUSE_RAY, NIGHT_SHADE, DREAM_EATER
+; Tentacruel L60
+db AGATHA, 2, 6, LICK, CONFUSE_RAY, NIGHT_SHADE, DREAM_EATER
+
+; --- Lance rematch (LANCE, 2) ---
+; Dragonite L62
+db LANCE, 2, 1, DRAGON_RAGE, FLY, HYPER_BEAM, BLIZZARD
+; Dragonair L62
+db LANCE, 2, 2, DRAGON_RAGE, FLY, HYPER_BEAM, BLIZZARD
+; Charizard L62
+db LANCE, 2, 3, DRAGON_RAGE, FLY, HYPER_BEAM, BLIZZARD
+; Kingdra L62
+db LANCE, 2, 4, DRAGON_RAGE, FLY, HYPER_BEAM, BLIZZARD
+; Aerodactyl L62
+db LANCE, 2, 5, DRAGON_RAGE, FLY, HYPER_BEAM, BLIZZARD
+; Gyarados L62
+db LANCE, 2, 6, DRAGON_RAGE, FLY, HYPER_BEAM, BLIZZARD
+
+; --- Pallet final rival — Blastoise team (BLUE_CLOAK, wTrainerNo 1) ---
+; Pidgeot L100
+db BLUE_CLOAK, 1, 1, RAZOR_WIND, AGILITY, SKY_ATTACK, HYPER_BEAM
+; Rhyperior L100
+db BLUE_CLOAK, 1, 2, FIRE_BLAST, EARTHQUAKE, BODY_SLAM, ROCK_SLIDE
+; Golduck L100
+db BLUE_CLOAK, 1, 3, AMNESIA, SURF, BLIZZARD, PSYCHIC_M
+; Machamp L100
+db BLUE_CLOAK, 1, 4, CROSS_CHOP, ROCK_SLIDE, EARTHQUAKE, MACH_PUNCH
+; Scizor L100
+db BLUE_CLOAK, 1, 5, SLASH, SWORDS_DANCE, TWINEEDLE, STEEL_WING
+; Blastoise L100
+db BLUE_CLOAK, 1, 6, SKULL_BASH, BLIZZARD, BODY_SLAM, EARTHQUAKE
+
+; --- Pallet final rival — Venusaur team (BLUE_CLOAK, wTrainerNo 2) ---
+; Pidgeot L100
+db BLUE_CLOAK, 2, 1, RAZOR_WIND, AGILITY, SKY_ATTACK, HYPER_BEAM
+; Rhyperior L100
+db BLUE_CLOAK, 2, 2, FIRE_BLAST, EARTHQUAKE, BODY_SLAM, ROCK_SLIDE
+; Golduck L100
+db BLUE_CLOAK, 2, 3, AMNESIA, SURF, BLIZZARD, PSYCHIC_M
+; Machamp L100
+db BLUE_CLOAK, 2, 4, CROSS_CHOP, ROCK_SLIDE, EARTHQUAKE, MACH_PUNCH
+; Scizor L100
+db BLUE_CLOAK, 2, 5, SLASH, SWORDS_DANCE, TWINEEDLE, STEEL_WING
+; Venusaur L100
+db BLUE_CLOAK, 2, 6, RAZOR_LEAF, SLEEP_POWDER, LEECH_SEED, BODY_SLAM
+
+; --- Pallet final rival — Charizard team (BLUE_CLOAK, wTrainerNo 3) ---
+; Pidgeot L100
+db BLUE_CLOAK, 3, 1, RAZOR_WIND, AGILITY, SKY_ATTACK, HYPER_BEAM
+; Rhyperior L100
+db BLUE_CLOAK, 3, 2, FIRE_BLAST, EARTHQUAKE, BODY_SLAM, ROCK_SLIDE
+; Golduck L100
+db BLUE_CLOAK, 3, 3, AMNESIA, SURF, BLIZZARD, PSYCHIC_M
+; Machamp L100
+db BLUE_CLOAK, 3, 4, CROSS_CHOP, ROCK_SLIDE, EARTHQUAKE, MACH_PUNCH
+; Scizor L100
+db BLUE_CLOAK, 3, 5, SLASH, SWORDS_DANCE, TWINEEDLE, STEEL_WING
+; Charizard L100
+db BLUE_CLOAK, 3, 6, FLAMETHROWER, FIRE_SPIN, EARTHQUAKE, RAZOR_WIND
+
+; --- Chief — Silph boss fight (CHIEF, wTrainerNo 1) ---
+; Kangaskhan L72
+db CHIEF, 1, 1, BODY_SLAM, SUBMISSION, FIRE_BLAST, HYPER_BEAM
+; Rhydon L73
+db CHIEF, 1, 2, THUNDERBOLT, ROCK_SLIDE, SUBSTITUTE, EARTHQUAKE
+; Golduck L73
+db CHIEF, 1, 3, AMNESIA, BLIZZARD, SURF, PSYCHIC_M
+; Pinsir L74
+db CHIEF, 1, 4, SLASH, SWORDS_DANCE, TWINEEDLE, BODY_SLAM
+; Scyther L74
+db CHIEF, 1, 5, SWORDS_DANCE, SLASH, AGILITY, RAZOR_WIND
+; Tauros L76
+db CHIEF, 1, 6, HYPER_BEAM, DOUBLE_EDGE, STOMP, REST
+
+; --- Chief — MissingNo superboss (CHIEF, wTrainerNo 3) ---
+; MissingNo
+db CHIEF, 3, 1, LEECH_SEED, TOXIC, SUPER_FANG, NIGHT_SHADE
+; MissingNo
+db CHIEF, 3, 2, EARTHQUAKE, HYPER_BEAM, CONFUSE_RAY, SPORE
+; MissingNo
+db CHIEF, 3, 3, PSYCHIC_M, BLIZZARD, THUNDER_WAVE, REST
+
+; --- Route 5 Green (wTrainerNo 1–3; starter depends on player choice) ---
+
+; --- Green — final starter is Bulbasaur (wTrainerNo 1) ---
+; Jigglypuff L20
+db GREEN, 1, 1, TACKLE, SING, DEFENSE_CURL, DISABLE
+; Nidorina L20
+db GREEN, 1, 2, TACKLE, TAIL_WHIP, SCRATCH, POISON_STING
+; Eevee L20
+db GREEN, 1, 3, TACKLE, TAIL_WHIP, SAND_ATTACK, QUICK_ATTACK
+; Bulbasaur L20
+db GREEN, 1, 4, TACKLE, GROWL, LEECH_SEED, VINE_WHIP
+
+; --- Green — final starter is Charmander (wTrainerNo 2) ---
+; Jigglypuff L20
+db GREEN, 2, 1, TACKLE, SING, DEFENSE_CURL, DISABLE
+; Nidorina L20
+db GREEN, 2, 2, TACKLE, TAIL_WHIP, SCRATCH, POISON_STING
+; Eevee L20
+db GREEN, 2, 3, TACKLE, TAIL_WHIP, SAND_ATTACK, QUICK_ATTACK
+; Charmander L20
+db GREEN, 2, 4, TACKLE, GROWL, EMBER, SMOKESCREEN
+
+; --- Green — final starter is Squirtle (wTrainerNo 3) ---
+; Jigglypuff L20
+db GREEN, 3, 1, TACKLE, SING, DEFENSE_CURL, DISABLE
+; Nidorina L20
+db GREEN, 3, 2, TACKLE, TAIL_WHIP, SCRATCH, POISON_STING
+; Eevee L20
+db GREEN, 3, 3, TACKLE, TAIL_WHIP, SAND_ATTACK, QUICK_ATTACK
+; Squirtle L20
+db GREEN, 3, 4, TACKLE, TAIL_WHIP, BUBBLE, WATER_GUN
+
+; --- Route 10 Green — Ivysaur team (wTrainerNo 4) ---
+; Wigglytuff L23
+db GREEN, 4, 1, DOUBLESLAP, SING, BODY_SLAM, DEFENSE_CURL
+; Nidorina L22
+db GREEN, 4, 2, BITE, DOUBLE_KICK, POISON_STING, FURY_ATTACK
+; Umbreon L23
+db GREEN, 4, 3, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Jynx L23
+db GREEN, 4, 4, LOVELY_KISS, ICE_BEAM, PSYBEAM, BODY_SLAM
+; Ivysaur L23
+db GREEN, 4, 5, LEECH_SEED, VINE_WHIP, GROWTH, POISONPOWDER
+
+; --- Route 10 Green — Charmeleon team (wTrainerNo 5) ---
+; Wigglytuff L23
+db GREEN, 5, 1, DOUBLESLAP, SING, BODY_SLAM, DEFENSE_CURL
+; Nidorina L22
+db GREEN, 5, 2, BITE, DOUBLE_KICK, POISON_STING, FURY_ATTACK
+; Umbreon L23
+db GREEN, 5, 3, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Jynx L23
+db GREEN, 5, 4, LOVELY_KISS, ICE_BEAM, PSYBEAM, BODY_SLAM
+; Charmeleon L23
+db GREEN, 5, 5, EMBER, SMOKESCREEN, METAL_CLAW, DRAGON_RAGE
+
+; --- Route 10 Green — Wartortle team (wTrainerNo 6) ---
+; Wigglytuff L23
+db GREEN, 6, 1, DOUBLESLAP, SING, BODY_SLAM, DEFENSE_CURL
+; Nidorina L22
+db GREEN, 6, 2, BITE, DOUBLE_KICK, POISON_STING, FURY_ATTACK
+; Umbreon L23
+db GREEN, 6, 3, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Jynx L23
+db GREEN, 6, 4, LOVELY_KISS, ICE_BEAM, PSYBEAM, BODY_SLAM
+; Wartortle L23
+db GREEN, 6, 5, WATER_GUN, WITHDRAW, BUBBLEBEAM, BITE
+
+
+; --- Pokémon Mansion B1F — Venusaur team (wTrainerNo 7) ---
+; Wigglytuff L40
+db GREEN, 7, 1, BODY_SLAM, DOUBLESLAP, SING, DEFENSE_CURL
+; Nidoqueen L40
+db GREEN, 7, 2, EARTHQUAKE, BODY_SLAM, DOUBLE_KICK, POISON_STING
+; Umbreon L40
+db GREEN, 7, 3, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Mesmeria L40
+db GREEN, 7, 4, PSYCHIC_M, LOVELY_KISS, ICE_BEAM, BODY_SLAM
+; Venusaur L40
+db GREEN, 7, 5, RAZOR_LEAF, LEECH_SEED, GROWTH, POISONPOWDER
+; Rapidash L40
+db GREEN, 7, 6, FIRE_BLAST, STOMP, AGILITY, TAKE_DOWN
+
+; --- Pokémon Mansion B1F — Charizard team (wTrainerNo 8) ---
+; Wigglytuff L40
+db GREEN, 8, 1, BODY_SLAM, DOUBLESLAP, SING, DEFENSE_CURL
+; Nidoqueen L40
+db GREEN, 8, 2, EARTHQUAKE, BODY_SLAM, DOUBLE_KICK, POISON_STING
+; Umbreon L40
+db GREEN, 8, 3, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Mesmeria L40
+db GREEN, 8, 4, PSYCHIC_M, LOVELY_KISS, ICE_BEAM, BODY_SLAM
+; Charizard L40
+db GREEN, 8, 5, FLAMETHROWER, SLASH, SMOKESCREEN, DRAGON_RAGE
+; Kingdra L40
+db GREEN, 8, 6, SURF, DRAGON_RAGE, ICE_BEAM, SMOKESCREEN
+
+; --- Pokémon Mansion B1F — Blastoise team (wTrainerNo 9) ---
+; Wigglytuff L40
+db GREEN, 9, 1, BODY_SLAM, DOUBLESLAP, SING, DEFENSE_CURL
+; Nidoqueen L40
+db GREEN, 9, 2, EARTHQUAKE, BODY_SLAM, DOUBLE_KICK, POISON_STING
+; Umbreon L40
+db GREEN, 9, 3, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Mesmeria L40
+db GREEN, 9, 4, PSYCHIC_M, LOVELY_KISS, ICE_BEAM, BODY_SLAM
+; Blastoise L40
+db GREEN, 9, 5, SURF, BITE, BUBBLEBEAM, WITHDRAW
+; Victreebel L40
+db GREEN, 9, 6, RAZOR_LEAF, SLEEP_POWDER, BODY_SLAM, ACID
+
+; --- Route 25 postgame - Venusaur team (wTrainerNo 10) ---
+; Venusaur L65
+db GREEN, 10, 1, RAZOR_LEAF, SLEEP_POWDER, SOLARBEAM, GROWTH
+; Mesmeria L65
+db GREEN, 10, 2, PSYCHIC_M, ICE_BEAM, LOVELY_KISS, BODY_SLAM
+; Moltres L65
+db GREEN, 10, 3, FIRE_BLAST, FLY, AGILITY, HYPER_BEAM
+; Articuno L65
+db GREEN, 10, 4, ICE_BEAM, BLIZZARD, AGILITY, HYPER_BEAM
+; Zapdos L65
+db GREEN, 10, 5, THUNDERBOLT, DRILL_PECK, AGILITY, THUNDER_WAVE
+; Mew L65
+db GREEN, 10, 6, PSYCHIC_M, THUNDERBOLT, ICE_BEAM, SOFTBOILED
+
+; --- Route 25 postgame - Charizard team (wTrainerNo 11) ---
+; Charizard L65
+db GREEN, 11, 1, FLAMETHROWER, SLASH, FIRE_BLAST, HYPER_BEAM
+; Mesmeria L65
+db GREEN, 11, 2, PSYCHIC_M, ICE_BEAM, LOVELY_KISS, BODY_SLAM
+; Moltres L65
+db GREEN, 11, 3, FIRE_BLAST, FLY, AGILITY, HYPER_BEAM
+; Articuno L65
+db GREEN, 11, 4, ICE_BEAM, BLIZZARD, AGILITY, HYPER_BEAM
+; Zapdos L65
+db GREEN, 11, 5, THUNDERBOLT, DRILL_PECK, AGILITY, THUNDER_WAVE
+; Mew L65
+db GREEN, 11, 6, PSYCHIC_M, THUNDERBOLT, ICE_BEAM, SOFTBOILED
+
+; --- Route 25 postgame - Blastoise team (wTrainerNo 12) ---
+; Blastoise L65
+db GREEN, 12, 1, SURF, BLIZZARD, EARTHQUAKE, HYPER_BEAM
+; Mesmeria L65
+db GREEN, 12, 2, PSYCHIC_M, ICE_BEAM, LOVELY_KISS, BODY_SLAM
+; Moltres L65
+db GREEN, 12, 3, FIRE_BLAST, FLY, AGILITY, HYPER_BEAM
+; Articuno L65
+db GREEN, 12, 4, ICE_BEAM, BLIZZARD, AGILITY, HYPER_BEAM
+; Zapdos L65
+db GREEN, 12, 5, THUNDERBOLT, DRILL_PECK, AGILITY, THUNDER_WAVE
+; Mew L65
+db GREEN, 12, 6, PSYCHIC_M, THUNDERBOLT, ICE_BEAM, SOFTBOILED
+
+; --- Indigo Plateau Lobby first-run - Venusaur team (wTrainerNo 13) ---
+; Venusaur L65
+db GREEN, 13, 1, RAZOR_LEAF, SLEEP_POWDER, SOLARBEAM, GROWTH
+; Mesmeria L65
+db GREEN, 13, 2, PSYCHIC_M, ICE_BEAM, LOVELY_KISS, BODY_SLAM
+; Articuno L65
+db GREEN, 13, 3, ICE_BEAM, BLIZZARD, AGILITY, HYPER_BEAM
+; Moltres L65
+db GREEN, 13, 4, FIRE_BLAST, FLY, AGILITY, HYPER_BEAM
+; Zapdos L65
+db GREEN, 13, 5, THUNDERBOLT, DRILL_PECK, AGILITY, THUNDER_WAVE
+; Mew L65
+db GREEN, 13, 6, PSYCHIC_M, THUNDERBOLT, ICE_BEAM, SOFTBOILED
+
+; --- Indigo Plateau Lobby first-run - Charizard team (wTrainerNo 14) ---
+; Charizard L65
+db GREEN, 14, 1, FLAMETHROWER, SLASH, FIRE_BLAST, HYPER_BEAM
+; Mesmeria L65
+db GREEN, 14, 2, PSYCHIC_M, ICE_BEAM, LOVELY_KISS, BODY_SLAM
+; Articuno L65
+db GREEN, 14, 3, ICE_BEAM, BLIZZARD, AGILITY, HYPER_BEAM
+; Moltres L65
+db GREEN, 14, 4, FIRE_BLAST, FLY, AGILITY, HYPER_BEAM
+; Zapdos L65
+db GREEN, 14, 5, THUNDERBOLT, DRILL_PECK, AGILITY, THUNDER_WAVE
+; Mew L65
+db GREEN, 14, 6, PSYCHIC_M, THUNDERBOLT, ICE_BEAM, SOFTBOILED
+
+; --- Indigo Plateau Lobby first-run - Blastoise team (wTrainerNo 15) ---
+; Blastoise L65
+db GREEN, 15, 1, SURF, BLIZZARD, EARTHQUAKE, HYPER_BEAM
+; Mesmeria L65
+db GREEN, 15, 2, PSYCHIC_M, ICE_BEAM, LOVELY_KISS, BODY_SLAM
+; Articuno L65
+db GREEN, 15, 3, ICE_BEAM, BLIZZARD, AGILITY, HYPER_BEAM
+; Moltres L65
+db GREEN, 15, 4, FIRE_BLAST, FLY, AGILITY, HYPER_BEAM
+; Zapdos L65
+db GREEN, 15, 5, THUNDERBOLT, DRILL_PECK, AGILITY, THUNDER_WAVE
+; Mew L65
+db GREEN, 15, 6, PSYCHIC_M, THUNDERBOLT, ICE_BEAM, SOFTBOILED
+
+; --- Pallet Town postgame Green (GREEN, wTrainerNo 16) ---
+; Umbreon L75
+db GREEN, 16, 1, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Nidoqueen L75
+db GREEN, 16, 2, EARTHQUAKE, BODY_SLAM, BLIZZARD, THUNDERBOLT
+; Wigglytuff L75
+db GREEN, 16, 3, BODY_SLAM, SING, DOUBLE_EDGE, THUNDER_WAVE
+; Mesmeria L75
+db GREEN, 16, 4, PSYCHIC_M, LOVELY_KISS, ICE_BEAM, THUNDERBOLT
+; Zapdos L75
+db GREEN, 16, 5, THUNDERBOLT, DRILL_PECK, AGILITY, THUNDER_WAVE
+; Mew L75
+db GREEN, 16, 6, PSYCHIC_M, THUNDERBOLT, ICE_BEAM, SOFTBOILED
+
+; --- Rocket Hideout B2F — Bulbasaur team (GREEN_ROCKET, wTrainerNo 1) ---
+; Wigglytuff L30
+db GREEN_ROCKET, 1, 1, DOUBLESLAP, SING, BODY_SLAM, HYPER_BEAM
+; Umbreon L30
+db GREEN_ROCKET, 1, 2, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Nidoqueen L30
+db GREEN_ROCKET, 1, 3, EARTHQUAKE, THUNDERBOLT, BLIZZARD, BODY_SLAM
+; Jynx L30
+db GREEN_ROCKET, 1, 4, LOVELY_KISS, ICE_BEAM, PSYBEAM, BODY_SLAM
+; Bulbasaur L30
+db GREEN_ROCKET, 1, 5, LEECH_SEED, VINE_WHIP, GROWTH, POISONPOWDER
+
+; --- Rocket Hideout B2F — Charmander team (GREEN_ROCKET, wTrainerNo 2) ---
+; Wigglytuff L30
+db GREEN_ROCKET, 2, 1, DOUBLESLAP, SING, BODY_SLAM, HYPER_BEAM
+; Umbreon L30
+db GREEN_ROCKET, 2, 2, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Nidoqueen L30
+db GREEN_ROCKET, 2, 3, EARTHQUAKE, THUNDERBOLT, BLIZZARD, BODY_SLAM
+; Jynx L30
+db GREEN_ROCKET, 2, 4, LOVELY_KISS, ICE_BEAM, PSYBEAM, BODY_SLAM
+; Charmander L30
+db GREEN_ROCKET, 2, 5, EMBER, SMOKESCREEN, METAL_CLAW, DRAGON_RAGE
+
+; --- Rocket Hideout B2F — Squirtle team (GREEN_ROCKET, wTrainerNo 3) ---
+; Wigglytuff L30
+db GREEN_ROCKET, 3, 1, DOUBLESLAP, SING, BODY_SLAM, HYPER_BEAM
+; Umbreon L30
+db GREEN_ROCKET, 3, 2, BITE, CONFUSE_RAY, QUICK_ATTACK, TOXIC
+; Nidoqueen L30
+db GREEN_ROCKET, 3, 3, EARTHQUAKE, THUNDERBOLT, BLIZZARD, BODY_SLAM
+; Jynx L30
+db GREEN_ROCKET, 3, 4, LOVELY_KISS, ICE_BEAM, PSYBEAM, BODY_SLAM
+; Squirtle L30
+db GREEN_ROCKET, 3, 5, WATER_GUN, WITHDRAW, BUBBLEBEAM, BITE
+
+
+; --- Prof. Oak — Route 1 dex reward (PROF_OAK, wTrainerNo 1) ---
+; Tauros L75
+db PROF_OAK, 1, 1, STOMP, BODY_SLAM, EARTHQUAKE, HYPER_BEAM
+; Exeggutor L75
+db PROF_OAK, 1, 2, PSYCHIC_M, EXPLOSION, SLEEP_POWDER, MEGA_DRAIN
+; Cloyster L75
+db PROF_OAK, 1, 3, CLAMP, BLIZZARD, HYDRO_PUMP, EXPLOSION
+; Dragonite L75
+db PROF_OAK, 1, 4, THUNDER_WAVE, WRAP, AGILITY, HYPER_BEAM
+; Snorlax L75
+db PROF_OAK, 1, 5, AMNESIA, REST, BODY_SLAM, HYPER_BEAM
+; Charizard L75
+db PROF_OAK, 1, 6, FIRE_BLAST, EARTHQUAKE, SLASH, HYPER_BEAM
+
+; --- Petrel - Rocket Hideout B4F (PETREL, wTrainerNo 1) ---
+; Koffing L22
+db PETREL, 1, 1, TACKLE, SMOG, SMOKESCREEN, SELFDESTRUCT
+; Golbat L23
+db PETREL, 1, 2, BITE, SUPERSONIC, WING_ATTACK, CONFUSE_RAY
+; Weezing L24
+db PETREL, 1, 3, SLUDGE, SMOKESCREEN, SELFDESTRUCT, HAZE
+
+; --- Petrel - Silph Co. 1F (PETREL, wTrainerNo 2) ---
+; Koffing L27
+db PETREL, 2, 1, SMOG, SMOKESCREEN, SLUDGE, SELFDESTRUCT
+; Golbat L28
+db PETREL, 2, 2, BITE, SUPERSONIC, WING_ATTACK, CONFUSE_RAY
+; Raticate L28
+db PETREL, 2, 3, HYPER_FANG, QUICK_ATTACK, TAIL_WHIP, BITE
+; Hypno L29
+db PETREL, 2, 4, CONFUSION, HYPNOSIS, HEADBUTT, DISABLE
+; Weezing L30
+db PETREL, 2, 5, SLUDGE, SMOKESCREEN, SELFDESTRUCT, HAZE
+
+; --- Proton - Rocket Hideout B4F (PROTON, wTrainerNo 1) ---
+; Golbat L22
+db PROTON, 1, 1, BITE, SUPERSONIC, WING_ATTACK, HAZE
+; Koffing L23
+db PROTON, 1, 2, TACKLE, SMOG, SMOKESCREEN, SLUDGE
+; Arbok L24
+db PROTON, 1, 3, BITE, GLARE, ACID, WRAP
+
+; --- Proton - Silph Co. 2F (PROTON, wTrainerNo 2) ---
+; Golbat L28
+db PROTON, 2, 1, BITE, SUPERSONIC, WING_ATTACK, HAZE
+; Koffing L28
+db PROTON, 2, 2, SMOG, SMOKESCREEN, SLUDGE, SELFDESTRUCT
+; Arbok L29
+db PROTON, 2, 3, BITE, GLARE, ACID, WRAP
+; Persian L29
+db PROTON, 2, 4, BITE, SCREECH, FURY_SWIPES, SLASH
+; Weezing L30
+db PROTON, 2, 5, SLUDGE, SMOKESCREEN, SELFDESTRUCT, HAZE
+
+; --- Archer - Silph Co. 11F (ARCHER, wTrainerNo 1) ---
+; Crobat L31
+db ARCHER, 1, 1, CRUNCH, CONFUSE_RAY, WING_ATTACK, TOXIC
+; Electabuzz L31
+db ARCHER, 1, 2, THUNDERBOLT, ICE_PUNCH, FIRE_PUNCH, CROSS_CHOP
+; Persian L32
+db ARCHER, 1, 3, BITE, SCREECH, FURY_SWIPES, SLASH
+; Weezing L33
+db ARCHER, 1, 4, SLUDGE, SMOKESCREEN, SELFDESTRUCT, HAZE
+; Houndoom L35
+db ARCHER, 1, 5, FLAMETHROWER, SLUDGE_BOMB, CRUNCH, BODY_SLAM
+
+; --- Ariana - Silph Co. 11F (ARIANA, wTrainerNo 1) ---
+; Arbok L31
+db ARIANA, 1, 1, CRUNCH, GLARE, SLUDGE_BOMB, WRAP
+; Gloom L31
+db ARIANA, 1, 2, ACID, SLEEP_POWDER, STUN_SPORE, MEGA_DRAIN
+; Murkrow L32
+db ARIANA, 1, 3, PECK, NIGHT_SHADE, HAZE, WING_ATTACK
+; Ninetales L33
+db ARIANA, 1, 4, EMBER, CONFUSE_RAY, FIRE_BLAST, QUICK_ATTACK
+
+CustomTrainerMovesEnd:
+ASSERT (CustomTrainerMovesEnd - CustomTrainerMoves) % 7 == 0, \
+	"CustomTrainerMoves records must be 7 bytes: class, trainer no, slot, and 4 moves"
+db $ff

@@ -5,10 +5,13 @@
 ;   … then db $ff
 ; Use trainer class constants (BROCK, RIVAL1, …), not OPP_*.
 ;
-; Party data matches data/trainers/parties.asm. Moves were filled with Gen 1 level-up
-; sets (base_stats level-1 moves + evos_moves.asm), same rules as WriteMonMoves.
-; Edit any row; regenerate the table with: python tools/gen_custom_trainer_moves.py
-; (replace data/trainers/custom_trainer_moves_table.asm body from script output).
+; Party data matches the active version's party file:
+;   _RED  -> data/trainers/parties_red.asm
+;   _BLUE -> data/trainers/parties_blue.asm
+; Moves were filled with Gen 1 level-up sets (base_stats level-1 moves +
+; evos_moves.asm), same rules as WriteMonMoves. Edit the matching version table:
+;   data/trainers/custom_trainer_moves_table_red.asm
+;   data/trainers/custom_trainer_moves_table_blue.asm
 ;
 ; Note: These rows replace vanilla post-build patches, including Lorelei’s TeamMoves
 ; (e.g. Lapras slot-3 Blizzard) and the champion rival’s Sky Attack / starter TM slot.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate custom_trainer_moves.asm from base_stats + evos_moves (Gen 1 WriteMonMoves logic)."""
+"""Generate a custom trainer moves table from base_stats + evos_moves."""
 from __future__ import annotations
 
 import re
@@ -444,8 +444,9 @@ def main() -> int:
     )
 
     lines = [
-        "; Level-up moves (Gen 1 WriteMonMoves-style). Paste into data/trainers/custom_trainer_moves_table.asm",
-        "; (replace CustomTrainerMoves: … db \\$ff block).",
+        "; Level-up moves (Gen 1 WriteMonMoves-style). Paste into the matching",
+        "; data/trainers/custom_trainer_moves_table_red.asm or _blue.asm file.",
+        "; custom_trainer_moves_table.asm is only the version selector.",
         "",
         "CustomTrainerMoves:",
     ]
