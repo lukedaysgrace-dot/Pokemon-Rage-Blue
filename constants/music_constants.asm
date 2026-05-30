@@ -40,7 +40,6 @@ ENDM
 	; AUDIO_3
 	music_const MUSIC_TITLE_SCREEN,        Music_TitleScreen
 	music_const MUSIC_GREEN_THEME,         Music_GreenTheme
-	music_const MUSIC_CREDITS,             Music_Credits
 	music_const MUSIC_HALL_OF_FAME,        Music_HallOfFame
 	music_const MUSIC_OAKS_LAB,            Music_OaksLab
 	music_const MUSIC_JIGGLYPUFF_SONG,     Music_JigglypuffSong

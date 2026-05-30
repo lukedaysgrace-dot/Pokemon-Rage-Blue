@@ -29,8 +29,8 @@ CreditsRollOnly:
 	call EnableLCD
 	ld a, SFX_STOP_ALL_MUSIC
 	call PlaySoundWaitForCurrent
-	ld c, BANK(Music_Credits)
-	ld a, MUSIC_CREDITS
+	ld c, BANK(Music_HallOfFame)
+	ld a, MUSIC_HALL_OF_FAME
 	call PlayMusic
 	ld c, 128
 	call DelayFrames

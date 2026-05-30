@@ -5,16 +5,11 @@ Music_TitleScreen::
 	channel 3, Music_TitleScreen_Ch3
 
 Music_GreenTheme::
-	channel_count 3
-	channel 1, Music_Song_Ch1
-	channel 2, Music_Song_Ch2
-	channel 3, Music_Song_Ch3
-
-Music_Credits::
-	channel_count 3
-	channel 1, Music_Credits_Ch1
-	channel 2, Music_Credits_Ch2
-	channel 3, Music_Credits_Ch3
+	channel_count 4
+	channel 1, Music_Ronald_Ch1
+	channel 2, Music_Ronald_Ch2
+	channel 3, Music_Ronald_Ch3
+	channel 4, Music_Ronald_Ch4
 
 Music_HallOfFame::
 	channel_count 3
