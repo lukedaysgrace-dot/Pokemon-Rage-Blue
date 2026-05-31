@@ -288,13 +288,15 @@ ENDC
 	jp .writeTrainerStatExp
 
 .checkPalletGreenStatExp
-	; Pallet Town postgame Green is wTrainerNo 16: 0x6666 each stat.
+	; Pallet Town postgame Green is wTrainerNo 13-15: 0x6666 each stat.
 	ld a, [wTrainerClass]
 	cp GREEN
 	jp nz, .checkGreenOtherFightsStatExp
 	ld a, [wTrainerNo]
+	cp 13
+	jr c, .checkGreenOtherFightsStatExp
 	cp 16
-	jp nz, .checkGreenOtherFightsStatExp
+	jr nc, .checkGreenOtherFightsStatExp
 	ld b, $66
 	ld c, $66
 	jp .writeTrainerStatExp
@@ -302,19 +304,15 @@ ENDC
 .checkGreenOtherFightsStatExp
 	; Green fights:
 	; - Route 5 / Route 10 (wTrainerNo 1–6): 10% -> 0x199A (6554)
-	; - Cinnabar Mansion / Indigo Plateau (wTrainerNo 7–9, 13–15): 15% -> 0x2666 (9830)
-	; (Pallet Town is handled above as a special case wTrainerNo 16.)
+	; - Cinnabar Mansion / Indigo Plateau (wTrainerNo 7–12): 15% -> 0x2666 (9830)
+	; (Pallet Town is handled above as a special case wTrainerNo 13–15.)
 	ld a, [wTrainerClass]
 	cp GREEN
 	jr nz, .checkGreenRocketStatExp
 	ld a, [wTrainerNo]
 	cp 7
 	jr c, .setGreenTenPercent
-	cp 10
-	jr c, .setGreenFifteenPercent
 	cp 13
-	jp c, .maybeZeroTrainerStatExp
-	cp 16
 	jr c, .setGreenFifteenPercent
 	jp .maybeZeroTrainerStatExp
 .setGreenTenPercent

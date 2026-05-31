@@ -144,13 +144,13 @@ IndigoPlateauLobbyGreenApproachScript:
 	jr z, .pickedCharmander
 	cp STARTER2
 	jr z, .pickedSquirtle
-	ld a, 15 ; player picked Bulbasaur, Green has Blastoise line
+	ld a, 12 ; player picked Bulbasaur, Green has Blastoise line
 	jr .got_team
 .pickedCharmander
-	ld a, 13 ; player picked Charmander, Green has Venusaur line
+	ld a, 10 ; player picked Charmander, Green has Venusaur line
 	jr .got_team
 .pickedSquirtle
-	ld a, 14 ; player picked Squirtle, Green has Charizard line
+	ld a, 11 ; player picked Squirtle, Green has Charizard line
 .got_team
 	ld [wTrainerNo], a
 	ld hl, wStatusFlags4

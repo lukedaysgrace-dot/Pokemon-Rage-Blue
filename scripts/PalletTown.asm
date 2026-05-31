@@ -395,7 +395,19 @@ PalletTownGreenText:
 	call SaveEndBattleTextPointers
 	ld a, OPP_GREEN
 	ld [wCurOpponent], a
-	ld a, 16
+	ld a, [wPlayerStarter]
+	cp STARTER1
+	jr z, .pickedCharmander
+	cp STARTER2
+	jr z, .pickedSquirtle
+	ld a, 15 ; player picked Bulbasaur, Green has Blastoise
+	jr .gotTeam
+.pickedCharmander
+	ld a, 13 ; player picked Charmander, Green has Venusaur
+	jr .gotTeam
+.pickedSquirtle
+	ld a, 14 ; player picked Squirtle, Green has Charizard
+.gotTeam
 	ld [wTrainerNo], a
 	ld a, SCRIPT_PALLETTOWN_GREEN_AFTER_BATTLE
 	ld [wPalletTownCurScript], a
