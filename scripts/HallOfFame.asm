@@ -125,9 +125,6 @@ IF DEF(_RED)
 	ld [wToggleableObjectIndex], a
 	predef ShowObject
 ENDC
-	ld a, TOGGLE_CELADON_MART_5F_VITAMIN_CLERK
-	ld [wToggleableObjectIndex], a
-	predef ShowObject
 	ld a, SCRIPT_HALLOFFAME_RESET_EVENTS_AND_SAVE
 	ld [wHallOfFameCurScript], a
 	ret

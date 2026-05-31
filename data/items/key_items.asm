@@ -88,5 +88,4 @@ KeyItemFlags:
 	dbit TRUE  ; ARMOR_FOSSIL
 	dbit TRUE  ; CLAW_FOSSIL
 	dbit TRUE  ; ROOT_FOSSIL
-	dbit FALSE ; RAGE_CANDY
 	end_bit_array NUM_ITEMS

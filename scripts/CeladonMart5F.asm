@@ -1,30 +1,5 @@
 CeladonMart5F_Script:
-	call EnableAutoTextBoxDrawing
-	ld a, [wNumHoFTeams]
-	and a
-	jr nz, CeladonMart5FShowVitaminClerk
-	ld a, CELADONMART5F_CLERK2
-	swap a
-	ldh [hCurrentSpriteOffset], a
-	predef IsObjectHidden
-	ldh a, [hIsToggleableObjectOff]
-	and a
-	ret nz
-	ld a, TOGGLE_CELADON_MART_5F_VITAMIN_CLERK
-	ld [wToggleableObjectIndex], a
-	predef_jump HideObject
-
-CeladonMart5FShowVitaminClerk:
-	ld a, CELADONMART5F_CLERK2
-	swap a
-	ldh [hCurrentSpriteOffset], a
-	predef IsObjectHidden
-	ldh a, [hIsToggleableObjectOff]
-	and a
-	ret z
-	ld a, TOGGLE_CELADON_MART_5F_VITAMIN_CLERK
-	ld [wToggleableObjectIndex], a
-	predef_jump ShowObject
+	jp EnableAutoTextBoxDrawing
 
 CeladonMart5F_TextPointers:
 	def_text_pointers

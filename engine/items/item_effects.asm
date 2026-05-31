@@ -105,7 +105,6 @@ ItemUsePtrTable:
 	dw UnusableItem      ; ARMOR_FOSSIL
 	dw UnusableItem      ; CLAW_FOSSIL
 	dw UnusableItem      ; ROOT_FOSSIL
-	dw ItemUseVitamin    ; RAGE_CANDY
 
 ItemUseBall:
 
@@ -895,8 +894,6 @@ ItemUseMedicine:
 	jr z, ItemUseMedicine ; if so, force another choice
 .checkItemType
 	ld a, [wCurItem]
-	cp RAGE_CANDY
-	jp z, .useVitamin
 	cp REVIVE
 	jr nc, .healHP ; if it's a Revive or Max Revive
 	cp FULL_HEAL
@@ -1311,8 +1308,6 @@ ItemUseMedicine:
 	ld a, [wCurItem]
 	cp RARE_CANDY
 	jp z, .useRareCandy
-	cp RAGE_CANDY
-	jp z, .useRageCandy
 	push hl
 	sub HP_UP
 	add a
@@ -1378,16 +1373,7 @@ ItemUseMedicine:
 	add hl, bc ; hl now points to level
 	ld a, [hl] ; a = level
 	cp MAX_LEVEL
-	jr nc, .vitaminNoEffect ; can't raise level past the candy's level cap
-	jr .useLevelCandy
-.useRageCandy
-	push hl
-	ld bc, MON_LEVEL
-	add hl, bc ; hl now points to level
-	ld a, [hl] ; a = level
-	cp 50
-	jr nc, .vitaminNoEffect ; can't raise level past the candy's level cap
-.useLevelCandy
+	jr z, .vitaminNoEffect ; can't raise level above 100
 	inc a
 	ld [hl], a ; store incremented level
 	ld [wCurEnemyLevel], a

@@ -21,7 +21,6 @@ UsableItems_PartyMenu:
 	db CARBOS
 	db CALCIUM
 	db RARE_CANDY
-	db RAGE_CANDY
 	db LEAF_STONE
 	db METAL_COAT
 	db FULL_HEAL
