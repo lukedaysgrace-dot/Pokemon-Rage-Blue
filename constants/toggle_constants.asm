@@ -362,8 +362,8 @@ ENDM
 	const TOGGLE_SILPH_CO_11F_2                ; B9
 	const TOGGLE_SILPH_CO_11F_3                ; BA
 
-	toggle_consts_for UNUSED_MAP_F4
-	const TOGGLE_UNUSED_MAP_F4_1               ; BB XXX sprite doesn't exist
+	toggle_consts_for CELADON_MART_5F
+	const TOGGLE_CELADON_MART_5F_VITAMIN_CLERK ; BB
 
 	toggle_consts_for POKEMON_MANSION_2F
 	const TOGGLE_POKEMON_MANSION_2F_ITEM       ; BC X

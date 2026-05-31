@@ -88,6 +88,7 @@ ItemPrices::
 	bcd3 0     ; ARMOR_FOSSIL
 	bcd3 0     ; CLAW_FOSSIL
 	bcd3 0     ; ROOT_FOSSIL
+	bcd3 10    ; RAGE_CANDY
 	assert_table_length NUM_ITEMS
 	bcd3 0     ; FLOOR_B2F
 	bcd3 0     ; FLOOR_B1F
