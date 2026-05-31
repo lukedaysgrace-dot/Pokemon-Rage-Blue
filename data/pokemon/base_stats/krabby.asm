@@ -1,6 +1,6 @@
 	db DEX_KRABBY ; pokedex id
 
-	db  30, 105,  90,  50,  25
+	db  50, 85,  90,  50,  55
 	;   hp  atk  def  spd  spc
 
 	db WATER, WATER ; type
