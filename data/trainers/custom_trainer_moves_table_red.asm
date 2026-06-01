@@ -237,7 +237,7 @@ db RIVAL1, 7, 2, TELEPORT, COUNTER, CONFUSION, NO_MOVE
 ; Rattata L15
 db RIVAL1, 7, 3, TACKLE, TAIL_WHIP, QUICK_ATTACK, HYPER_FANG
 ; Wartortle L17
-db RIVAL1, 7, 4, TACKLE, TAIL_WHIP, BUBBLE, WATER_GUN
+db RIVAL1, 7, 4, TACKLE, TAIL_WHIP, BUBBLEBEAM, BITE
 
 ; --- Cerulean — Pidgeotto L18, Abra L15, Rattata L15, Ivysaur L17 (wTrainerNo 8) ---
 ; Pidgeotto L18

@@ -2290,8 +2290,8 @@ RaticateEvosMoves:
 	db 0
 ; Learnset
 	db 9, FURY_SWIPES
-	db 18, FOCUS_ENERGY
-	db 20, HYPER_FANG
+	db 16, HYPER_FANG
+	db 20, FOCUS_ENERGY
 	db 22, BITE
 	db 25, HEADBUTT
 	db 29, CRUNCH

@@ -2,7 +2,7 @@ Route4WildMons:
 IF DEF(_RED)
 	def_grass_wildmons 20 ; encounter rate
 	db  10, RATTATA
-	db  10, SPEAROW
+	db  10, MAGNEMITE
 	db   8, EKANS
 	db   6, SANDSHREW
 	db   8, MACHOP

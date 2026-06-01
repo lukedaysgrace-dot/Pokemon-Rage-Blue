@@ -333,106 +333,27 @@ BlueCloakTryGuardSpec:
 
 ; end of individual trainer AI routines
 
-DecrementAICount:
-	ld hl, wAICount
-	dec [hl]
-	scf
+AINoItems:
+	and a
 	ret
 
-AIPlayRestoringSFX:
-	ld a, SFX_HEAL_AILMENT
-	jp PlaySoundWaitForCurrent
-
 AIUseFullRestore:
-	call AICureStatus
-	ld a, FULL_RESTORE
-	ld [wAIItem], a
-	ld de, wHPBarOldHP
-	ld hl, wEnemyMonHP + 1
-	ld a, [hld]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	inc de
-	ld hl, wEnemyMonMaxHP + 1
-	ld a, [hld]
-	ld [de], a
-	inc de
-	ld [wHPBarMaxHP], a
-	ld [wEnemyMonHP + 1], a
-	ld a, [hl]
-	ld [de], a
-	ld [wHPBarMaxHP+1], a
-	ld [wEnemyMonHP], a
-	jr AIPrintItemUseAndUpdateHPBar
-
 AIUsePotion:
-; enemy trainer heals his monster with a potion
-	ld a, POTION
-	ld b, 20
-	jr AIRecoverHP
-
 AIUseSuperPotion:
-; enemy trainer heals his monster with a super potion
-	ld a, SUPER_POTION
-	ld b, 50
-	jr AIRecoverHP
-
 AIUseHyperPotion:
-; enemy trainer heals his monster with a hyper potion
-	ld a, HYPER_POTION
-	ld b, 200
-	; fallthrough
-
 AIRecoverHP:
-; heal b HP and print "trainer used $(a) on pokemon!"
-	ld [wAIItem], a
-	ld hl, wEnemyMonHP + 1
-	ld a, [hl]
-	ld [wHPBarOldHP], a
-	add b
-	ld [hld], a
-	ld [wHPBarNewHP], a
-	ld a, [hl]
-	ld [wHPBarOldHP+1], a
-	ld [wHPBarNewHP+1], a
-	jr nc, .next
-	inc a
-	ld [hl], a
-	ld [wHPBarNewHP+1], a
-.next
-	inc hl
-	ld a, [hld]
-	ld b, a
-	ld de, wEnemyMonMaxHP + 1
-	ld a, [de]
-	dec de
-	ld [wHPBarMaxHP], a
-	sub b
-	ld a, [hli]
-	ld b, a
-	ld a, [de]
-	ld [wHPBarMaxHP+1], a
-	sbc b
-	jr nc, AIPrintItemUseAndUpdateHPBar
-	inc de
-	ld a, [de]
-	dec de
-	ld [hld], a
-	ld [wHPBarNewHP], a
-	ld a, [de]
-	ld [hl], a
-	ld [wHPBarNewHP+1], a
-	; fallthrough
-
+AIUseFullHeal:
+AIUseXAccuracy:
+AIUseGuardSpec:
+AIUseDireHit:
+AIUseXAttack:
+AIUseXDefend:
+AIUseXSpeed:
+AIUseXSpecial:
+AIIncreaseStat:
+AIPrintItemUse:
 AIPrintItemUseAndUpdateHPBar:
-	call AIPrintItemUse_
-	hlcoord 2, 2
-	xor a
-	ld [wHPBarType], a
-	predef UpdateHPBar2
-	jp DecrementAICount
+	jp AINoItems
 
 AISwitchIfEnoughMons:
 ; enemy trainer switches if there are 2 or more unfainted mons in party
@@ -498,46 +419,6 @@ SwitchEnemyMon:
 AIBattleWithdrawText:
 	text_far _AIBattleWithdrawText
 	text_end
-
-AIUseFullHeal:
-	call AIPlayRestoringSFX
-	call AICureStatus
-	ld a, FULL_HEAL
-	jp AIPrintItemUse
-
-AICureStatus:
-; cures the status of enemy's active pokemon
-	ld a, [wEnemyMonPartyPos]
-	ld hl, wEnemyMon1Status
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	xor a
-	ld [hl], a ; clear status in enemy team roster
-	ld [wEnemyMonStatus], a ; clear status of active enemy
-	ld hl, wEnemyBattleStatus3
-	res BADLY_POISONED, [hl]
-	ret
-
-AIUseXAccuracy: ; unreferenced
-	call AIPlayRestoringSFX
-	ld hl, wEnemyBattleStatus2
-	set USING_X_ACCURACY, [hl]
-	ld a, X_ACCURACY
-	jp AIPrintItemUse
-
-AIUseGuardSpec:
-	call AIPlayRestoringSFX
-	ld hl, wEnemyBattleStatus2
-	set PROTECTED_BY_MIST, [hl]
-	ld a, GUARD_SPEC
-	jp AIPrintItemUse
-
-AIUseDireHit: ; unreferenced
-	call AIPlayRestoringSFX
-	ld hl, wEnemyBattleStatus2
-	set GETTING_PUMPED, [hl]
-	ld a, DIRE_HIT
-	jp AIPrintItemUse
 
 AICheckIfHPBelowFraction:
 ; return carry if enemy trainer's current HP is below 1 / a of the maximum
@@ -630,62 +511,3 @@ AICheckIfPlayerHPBelowFraction:
 	pop bc
 	pop hl
 	ret
-
-AIUseXAttack:
-	ld b, ATTACK_UP1_EFFECT
-	ld a, X_ATTACK
-	jr AIIncreaseStat
-
-AIUseXDefend:
-	ld b, DEFENSE_UP1_EFFECT
-	ld a, X_DEFEND
-	jr AIIncreaseStat
-
-AIUseXSpeed:
-	ld b, SPEED_UP1_EFFECT
-	ld a, X_SPEED
-	jr AIIncreaseStat
-
-AIUseXSpecial:
-	ld b, SPECIAL_UP1_EFFECT
-	ld a, X_SPECIAL
-	; fallthrough
-
-AIIncreaseStat:
-	ld [wAIItem], a
-	push bc
-	call AIPrintItemUse_
-	pop bc
-	ld hl, wEnemyMoveEffect
-	ld a, [hld]
-	push af
-	ld a, [hl]
-	push af
-	push hl
-	ld a, XSTATITEM_DUPLICATE_ANIM
-	ld [hli], a
-	ld [hl], b
-	callfar StatModifierUpEffect
-	pop hl
-	pop af
-	ld [hli], a
-	pop af
-	ld [hl], a
-	jp DecrementAICount
-
-AIPrintItemUse:
-	ld [wAIItem], a
-	call AIPrintItemUse_
-	jp DecrementAICount
-
-AIPrintItemUse_:
-; print "x used [wAIItem] on z!"
-	ld a, [wAIItem]
-	ld [wNamedObjectIndex], a
-	call GetItemName
-	ld hl, AIBattleUseItemText
-	jp PrintText
-
-AIBattleUseItemText:
-	text_far _AIBattleUseItemText
-	text_end
