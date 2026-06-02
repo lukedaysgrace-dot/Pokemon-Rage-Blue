@@ -1273,7 +1273,6 @@ DittoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 9, TACKLE
 	db 0
 MeowthEvosMoves:
 ; Evolutions

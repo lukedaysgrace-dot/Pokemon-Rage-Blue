@@ -18,6 +18,6 @@
 	     HYPER_BEAM,   RAGE,         MEGA_DRAIN,     DIG,           \
 	     MIMIC,        DOUBLE_TEAM,  BIDE,           SWIFT,         \
 	     SKULL_BASH,   REST,         SUBSTITUTE,     CUT,           \
-	     SURF,         STRENGTH,     FLASH
+	     SURF,         STRENGTH
 	db BANK(WimpodPicFront)
 	assert BANK(WimpodPicFront) == BANK(WimpodPicBack)
