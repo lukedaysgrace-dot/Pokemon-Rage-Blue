@@ -1040,7 +1040,7 @@ MankeyEvosMoves:
 	db 0
 ; Learnset
 	db 16, SEISMIC_TOSS
-	db 19, KARATE_CHOP
+	db 18, KARATE_CHOP
 	db 22, FOCUS_ENERGY
 	db 29, SCREECH
 	db 31, SUBMISSION
