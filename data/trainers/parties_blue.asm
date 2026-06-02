@@ -556,13 +556,13 @@ CooltrainerFData:
 
 ExileBrunoData:
 ; Cerulean Cave B1F ambush (wTrainerNo 1)
-	db $FF, 70, HITMONCHAN, 70, HITMONLEE, 70, MACHAMP, 70, PRIMEAPE, 70, LUCARIO, 70, HERACROSS, 0
+	db $FF, 70, HITMONCHAN, 70, HITMONLEE, 70, MACHAMP, 70, ANNIHILAPE, 70, LUCARIO, 70, HERACROSS, 0
 
 BrunoKarenData:
 ; Blue uses Karen in the shared BRUNO/KAREN trainer slot.
 	db $FF, 46, UMBREON, 47, HONCHKROW, 47, FERALIGATR, 47, TYRANITAR, 50, HOUNDOOM, 48, WEAVILE, 0
 ; Post-Champion rematch (wTrainerNo 2)
-	db $FF, 58, UMBREON, 58, MURKROW, 58, SNEASEL, 58, TYRANITAR, 58, HONCHKROW, 58, WEAVILE, 0
+	db $FF, 58, UMBREON, 58, HONCHKROW, 58, WEAVILE, 58, TYRANITAR, 58, FERALIGATR, 58, HOUNDOOM, 0
 BrockData:
 	db $FF, 12, OMANYTE, 13, KABUTO, 15, ONIX, 0
 ; Post-Champion rematch (wTrainerNo 2)
