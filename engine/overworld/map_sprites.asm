@@ -188,7 +188,7 @@ ENDC
 	jr nz, .skipFirstLoad ; if so, skip loading data into the lower half
 	ld a, b
 	ld b, 0
-	call FarCopyData2 ; load tile pattern data for sprite when standing still
+	call CopyMapSpriteTilePatternData ; load tile pattern data for sprite when standing still
 .skipFirstLoad
 	pop de
 	pop hl
@@ -214,7 +214,7 @@ ENDC
 	ld h, d
 	ld l, e
 	pop de
-	call FarCopyData2 ; load tile pattern data for sprite when walking
+	call CopyMapSpriteTilePatternData ; load tile pattern data for sprite when walking
 	jr .skipSecondLoad
 ; When reloading the upper half of tile patterns after displaying text, the LCD
 ; will be on, so CopyVideoData (which writes to VRAM only during V-blank) must
@@ -272,6 +272,21 @@ ReadSpriteSheetData:
 	ld b, a
 	ld a, [hli]
 	ret
+
+CopyMapSpriteTilePatternData:
+; Copy bc bytes from a:hl to de. If the LCD is on, copy during VBlank.
+	ldh [hROMBankTemp], a
+	ldh a, [rLCDC]
+	bit B_LCDC_ENABLE, a
+	ldh a, [hROMBankTemp]
+	jp z, FarCopyData2
+	ld b, a
+	swap c
+	push de
+	ld d, h
+	ld e, l
+	pop hl
+	jp CopyVideoData
 
 ; Loads sprite set for outside maps (cities and routes) and sets VRAM slots.
 ; sets carry if the map is a city or route, unsets carry if not

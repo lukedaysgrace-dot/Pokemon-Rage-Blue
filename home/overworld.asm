@@ -680,19 +680,16 @@ CheckMapConnections::
 	ld b, SET_PAL_OVERWORLD
 	call RunPaletteCommand
 ; InitMapSprites may replace the whole outdoor sprite set in VRAM. When the
-; previous map used a different set (e.g. Route 5 SAFFRON → Cerulean
-; PEWTER_CERULEAN), we must match LoadMapData: clear wSpriteSetID, keep the
-; LCD off during the copy, then restore the player sheet (not done on this path
-; otherwise).
-	call DisableLCD
+; previous map used a different set (e.g. Route 5 SAFFRON -> Cerulean
+; PEWTER_CERULEAN), clear wSpriteSetID so the new set is copied. The sprite
+; loader uses VBlank copies if the LCD is on, avoiding a white LCD-off blink.
+	call HideSprites
 	xor a
 	ld [wSpriteSetID], a
-; Since the sprite set shouldn't change, this will just update VRAM slots at
-; x#SPRITESTATEDATA2_IMAGEBASEOFFSET without loading any tile patterns.
 	farcall InitMapSprites
-	call EnableLCD
 	call LoadPlayerSpriteGraphics
 	call LoadTileBlockMap
+	call UpdateSprites
 	jp OverworldLoopLessDelay
 
 .didNotEnterConnectedMap
