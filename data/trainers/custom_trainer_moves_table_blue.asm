@@ -1,5 +1,5 @@
 ; Level-up moves (Gen 1 WriteMonMoves-style) for Blue version trainer parties.
-; This file is included by custom_trainer_moves_table.asm for _RED builds.
+; This file is included by custom_trainer_moves_table.asm for _BLUE builds.
 
 CustomTrainerMoves:
 

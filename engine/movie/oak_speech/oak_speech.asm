@@ -3,12 +3,10 @@ PrepareOakSpeech:
 	push af
 	ld a, [wOptions]
 	push af
-	; Retrieve BIT_DEBUG_MODE set in DebugMenu for StartNewGameDebug.
-	; BUG: StartNewGame carries over BIT_ALWAYS_ON_BIKE from previous save files,
-	; which causes CheckForceBikeOrSurf to not return.
-	; To fix this in debug builds, reset BIT_ALWAYS_ON_BIKE here or in StartNewGame.
-	; In non-debug builds, the instructions can be removed.
+	; Retrieve BIT_DEBUG_MODE set in DebugMenu for StartNewGameDebug, but never
+	; carry forced-bike state over from a previous save file.
 	ld a, [wStatusFlags6]
+	res BIT_ALWAYS_ON_BIKE, a
 	push af
 	ld hl, wPlayerName
 	ld bc, wBoxDataEnd - wPlayerName
@@ -196,7 +194,6 @@ OakSpeechText1:
 
 OakSpeechText2:
 	text_far _OakSpeechText2A
-	; BUG: The cry played does not match the sprite displayed.
 	sound_cry_nidorina
 	text_far _OakSpeechText2B
 	text_end
