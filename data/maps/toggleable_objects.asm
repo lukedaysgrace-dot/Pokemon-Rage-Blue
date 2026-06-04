@@ -153,13 +153,8 @@ ENDC
 
 	toggleable_objects_for MUSEUM_1F
 	toggle_object_state MUSEUM1F_OLD_AMBER, ON
-IF DEF(_BLUE)
-	toggle_object_state MUSEUM1F_GAMBLER,   ON
-	toggle_object_state MUSEUM1F_AXEW, ON
-ELSE
-	toggle_object_state MUSEUM1F_GAMBLER,   OFF
-	toggle_object_state MUSEUM1F_AXEW, OFF
-ENDC
+	toggle_object_state 0, ON ; removed Axew gift trainer slot
+	toggle_object_state 0, ON ; removed Axew overworld slot
 
 	toggleable_objects_for CERULEAN_CAVE_1F
 	toggle_object_state CERULEANCAVE1F_FULL_RESTORE, ON
@@ -242,6 +237,9 @@ ELSE
 	toggle_object_state CERULEANTRADEHOUSE_BULBASAUR, ON
 ENDC
 
+	toggleable_objects_for BIKE_SHOP
+	toggle_object_state 0, ON ; removed Porygon2 gift slot
+
 	toggleable_objects_for VERMILION_CITY
 IF DEF(_RED)
 	toggle_object_state VERMILIONCITY_GUARD,    OFF
@@ -250,6 +248,9 @@ ELSE
 	toggle_object_state VERMILIONCITY_GUARD,    ON
 	toggle_object_state VERMILIONCITY_SQUIRTLE, ON
 ENDC
+
+	toggleable_objects_for VERMILION_TRADE_HOUSE
+	toggle_object_state 0, ON ; removed Deino gift slot
 
 	toggleable_objects_for VICTORY_ROAD_2F
 	toggle_object_state VICTORYROAD2F_MOLTRES,       ON
@@ -499,20 +500,6 @@ ENDC
 
 	toggleable_objects_for FUCHSIA_GYM
 	toggle_object_state FUCHSIAGYM_JANINE, OFF
-
-	toggleable_objects_for BIKE_SHOP
-IF DEF(_BLUE)
-	toggle_object_state BIKESHOP_PORYGON2, ON
-ELSE
-	toggle_object_state BIKESHOP_PORYGON2, OFF
-ENDC
-
-	toggleable_objects_for VERMILION_TRADE_HOUSE
-IF DEF(_BLUE)
-	toggle_object_state VERMILIONTRADEHOUSE_DEINO, ON
-ELSE
-	toggle_object_state VERMILIONTRADEHOUSE_DEINO, OFF
-ENDC
 
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 

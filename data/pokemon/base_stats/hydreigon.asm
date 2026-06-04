@@ -1,6 +1,6 @@
 	db DEX_HYDREIGON ; pokedex id
 
-	db  92, 105,  90,  98, 125
+	db  92, 115,  90,  98, 105
 	;   hp  atk  def  spd  spc
 
 	db DARK, DRAGON ; type

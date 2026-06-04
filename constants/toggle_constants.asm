@@ -121,8 +121,7 @@ ENDM
 
 	toggle_consts_for MUSEUM_1F
 	const TOGGLE_OLD_AMBER                     ; 37
-	const TOGGLE_MUSEUM_1F_AXEW_TRAINER
-	const TOGGLE_MUSEUM_1F_AXEW
+	const_skip 2 ; removed Museum Axew gift trainer/Axew slots
 
 	toggle_consts_for CERULEAN_CAVE_1F
 	const TOGGLE_CERULEAN_CAVE_1F_ITEM_1       ; 38 X
@@ -200,9 +199,15 @@ ENDM
 	const TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR_TRAINER
 	const TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
 
+	toggle_consts_for BIKE_SHOP
+	const_skip ; removed Bike Shop Porygon2 gift slot
+
 	toggle_consts_for VERMILION_CITY
 	const TOGGLE_VERMILION_CITY_SQUIRTLE_TRAINER
 	const TOGGLE_VERMILION_CITY_SQUIRTLE
+
+	toggle_consts_for VERMILION_TRADE_HOUSE
+	const_skip ; removed Vermilion Trade House Deino gift slot
 
 	toggle_consts_for VICTORY_ROAD_2F
 	const TOGGLE_MOLTRES                       ; 5C X
@@ -452,11 +457,5 @@ ENDC
 
 	toggle_consts_for FUCHSIA_GYM
 	const TOGGLE_FUCHSIA_GYM_JANINE            ; E6
-
-	toggle_consts_for BIKE_SHOP
-	const TOGGLE_BIKE_SHOP_PORYGON2
-
-	toggle_consts_for VERMILION_TRADE_HOUSE
-	const TOGGLE_VERMILION_TRADE_HOUSE_DEINO
 
 DEF NUM_TOGGLEABLE_OBJECTS EQU const_value

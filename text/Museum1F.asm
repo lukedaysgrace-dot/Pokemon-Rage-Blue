@@ -52,45 +52,6 @@ _Museum1FScientist1TakePlentyOfTimeText::
 	line "time to look!"
 	done
 
-_Museum1FGamblerOfferText::
-	text "I found this poor"
-	line "AXEW out on"
-	cont "the road."
-
-	para "I've looked after"
-	line "it, but I'm too"
-	cont "old to raise a"
-	cont "#MON now."
-
-	para "Will you take"
-	line "care of it?"
-	done
-
-_Museum1FGamblerReceivedText::
-	text "Treat AXEW"
-	line "with kindness."
-	done
-
-_Museum1FGamblerAfterGiftText::
-	text "That AXEW"
-	line "looked lonely."
-
-	para "I'm glad it found"
-	line "a trainer."
-	done
-
-_Museum1FGamblerRefusedText::
-	text "I understand."
-
-	para "I'll keep looking"
-	line "after AXEW"
-	cont "for now."
-	done
-
-_Museum1FAxewText::
-	text "AXEW: Cynda!@"
-	text_end
-
 _Museum1FScientist2TakeThisToAPokemonLabText::
 	text "Ssh! I think that"
 	line "this chunk of"
