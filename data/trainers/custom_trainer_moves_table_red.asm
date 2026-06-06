@@ -300,39 +300,39 @@ db RIVAL2, 3, 4, RAGE, GROWL, FLAME_WHEEL, BITE
 
 
 ; --- Pokémon Tower — Wartortle team (wTrainerNo 4) ---
-; Pidgeotto L25
+; Pidgeotto L26
 db RIVAL2, 4, 1, WING_ATTACK, SAND_ATTACK, QUICK_ATTACK, BODY_SLAM
-; Growlithe L23
+; Growlithe L25
 db RIVAL2, 4, 2, BITE, QUICK_ATTACK, FLAME_WHEEL, DIG
-; Exeggcute L22
+; Exeggcute L25
 db RIVAL2, 4, 3, BARRAGE, HYPNOSIS, CONFUSION, NO_MOVE
-; Kadabra L20
+; Kadabra L26
 db RIVAL2, 4, 4, TELEPORT, PSYBEAM, DISABLE, NO_MOVE
-; Wartortle L25
+; Wartortle L28
 db RIVAL2, 4, 5, TAIL_WHIP, BUBBLEBEAM, WITHDRAW, BITE
 
 ; --- Pokémon Tower — Ivysaur team (wTrainerNo 5) ---
-; Pidgeotto L25
+; Pidgeotto L26
 db RIVAL2, 5, 1, WING_ATTACK, SAND_ATTACK, QUICK_ATTACK, BODY_SLAM
-; Gyarados L23
+; Gyarados L25
 db RIVAL2, 5, 2, BITE, SLAM, LEER, BUBBLEBEAM
-; Growlithe L22
+; Growlithe L25
 db RIVAL2, 5, 3, BITE, QUICK_ATTACK, FLAME_WHEEL, DIG
-; Kadabra L20
+; Kadabra L26
 db RIVAL2, 5, 4, TELEPORT, PSYBEAM, DISABLE, NO_MOVE
-; Ivysaur L25
+; Ivysaur L28
 db RIVAL2, 5, 5, ACID, LEECH_SEED, VINE_WHIP, POISONPOWDER
 
 ; --- Pokémon Tower — Charmeleon team (wTrainerNo 6) ---
-; Pidgeotto L25
+; Pidgeotto L26
 db RIVAL2, 6, 1, WING_ATTACK, SAND_ATTACK, QUICK_ATTACK, BODY_SLAM
-; Exeggcute L23
+; Exeggcute L25
 db RIVAL2, 6, 2, BARRAGE, HYPNOSIS, PSYBEAM, NO_MOVE
-; Gyarados L22
+; Gyarados L25
 db RIVAL2, 6, 3, BITE, SLAM, LEER, BUBBLEBEAM
-; Kadabra L20
+; Kadabra L26
 db RIVAL2, 6, 4, TELEPORT, CONFUSION, DISABLE, NO_MOVE
-; Charmeleon L25
+; Charmeleon L28
 db RIVAL2, 6, 5, RAGE, FLAME_WHEEL, LEER, BITE
 
 
