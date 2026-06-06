@@ -846,6 +846,7 @@ MachokeEvosMoves:
 	db 21, BIDE
 	db 24, MACH_PUNCH
 	db 28, SEISMIC_TOSS
+	db 32, ROLLING_KICK
 	db 36, CROSS_CHOP
 	db 41, DOUBLE_EDGE
 	db 0
@@ -988,9 +989,9 @@ ScraftyEvosMoves:
 	db 12, HEADBUTT
 	db 16, CRUNCH
 	db 20, SWIFT
-	db 23, HI_JUMP_KICK
 	db 31, SCREECH
 	db 38, ROCK_SLIDE
+	db 42, HI_JUMP_KICK
 	db 45, SUBMISSION
 	db 0
 ElectabuzzEvosMoves:
@@ -1800,6 +1801,7 @@ PrimeapeEvosMoves:
 	db 18, FOCUS_ENERGY
 	db 21, COUNTER
 	db 25, RAGE
+	db 28, ROLLING_KICK
 	db 31, SUBMISSION
 	db 32, SCREECH
 	db 44, HI_JUMP_KICK
@@ -2873,7 +2875,7 @@ RioluEvosMoves:
 	db 8, LOW_KICK
 	db 14, KARATE_CHOP
 	db 16, BITE
-	db 22, METAL_CLAW
+	db 20, METAL_CLAW
 	db 26, SCREECH
 	db 28, CRUNCH
 	db 31, SUBMISSION
@@ -2887,8 +2889,9 @@ LucarioEvosMoves:
 	db 17, METAL_CLAW
 	db 18, MACH_PUNCH
 	db 26, SCREECH
-	db 30, CRUNCH
-	db 31, SUBMISSION
+	db 28, ROLLING_KICK
+	db 32, CRUNCH
+	db 34, SUBMISSION
 	db 36, SWORDS_DANCE
 	db 40, IRON_TAIL
 	db 44, HI_JUMP_KICK
