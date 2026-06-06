@@ -20,7 +20,7 @@ ENDC
 IF DEF(_BLUE)
 	def_grass_wildmons 25 ; encounter rate
 	db   3, RATTATA
-	db   3, SPEAROW
+	db   3, SCRAGGY
 	db   4, EKANS
 	db   4, MANKEY
 	db   4, POLIWAG
