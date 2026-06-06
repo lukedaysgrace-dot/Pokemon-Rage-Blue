@@ -1,7 +1,7 @@
 MoveSoundTable:
 	table_width 3
 	; ID, pitch mod, tempo mod
-	db SFX_POUND,              $00, $80 ; TACKLE
+	db SFX_POUND,              $00, $80 ; TACKLE (slot 1; pokered POUND — unused by TackleAnim)
 	db SFX_BATTLE_0C,          $10, $80 ; KARATE_CHOP
 	db SFX_DOUBLESLAP,         $00, $80 ; DOUBLESLAP
 	db SFX_BATTLE_0B,          $01, $80 ; COMET_PUNCH
@@ -146,7 +146,7 @@ MoveSoundTable:
 	db SFX_BATTLE_25,          $48, $ff ; SKY_ATTACK
 	db SFX_FAINT_FALL,         $ff, $ff ; TRANSFORM
 	db SFX_BATTLE_24,          $ff, $10 ; BUBBLE
-	db SFX_FAINT_FALL,         $ff, $04 ; DIZZY_PUNCH
+	db SFX_BATTLE_0D,          $00, $40 ; DIZZY_PUNCH
 	db SFX_BATTLE_1C,          $01, $ff ; SPORE
 	db SFX_BATTLE_13,          $f8, $ff ; FLASH
 	db SFX_BATTLE_0C,          $f0, $f0 ; PSYWAVE

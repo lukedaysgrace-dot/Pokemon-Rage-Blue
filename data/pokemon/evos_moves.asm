@@ -326,6 +326,7 @@ ClefairyEvosMoves:
 	db 10, DOUBLESLAP
 	db 18, SING
 	db 19, MINIMIZE
+	db 24, DIZZY_PUNCH
 	db 25, HEADBUTT
 	db 26, ICE_PUNCH
 	db 27, FIRE_PUNCH
@@ -1565,6 +1566,7 @@ JigglypuffEvosMoves:
 	db 10, DOUBLESLAP
 	db 14, DISABLE
 	db 18, DEFENSE_CURL
+	db 24, DIZZY_PUNCH
 	db 25, HEADBUTT
 	db 26, ICE_PUNCH
 	db 27, FIRE_PUNCH
@@ -1577,6 +1579,7 @@ WigglytuffEvosMoves:
 	db 0
 ; Learnset
 	db 18, BIDE
+	db 23, DIZZY_PUNCH
 	db 24, MINIMIZE
 	db 25, HEADBUTT
 	db 26, ICE_PUNCH
@@ -1945,6 +1948,7 @@ SnorlaxEvosMoves:
 	db 9, TACKLE
 	db 20, HARDEN
 	db 22, BITE
+	db 24, DIZZY_PUNCH
 	db 25, STOMP
 	db 26, SCREECH
 	db 29, CRUNCH
@@ -2042,6 +2046,7 @@ ClefableEvosMoves:
 	db 6, GROWL
 	db 9, TACKLE
 	db 18, DEFENSE_CURL
+	db 24, DIZZY_PUNCH
 	db 25, HEADBUTT
 	db 26, ICE_PUNCH
 	db 27, FIRE_PUNCH
