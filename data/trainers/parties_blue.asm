@@ -376,7 +376,7 @@ TamerData:
 	db 44, PERSIAN, GOLDUCK, 0
 ; Silph Co. hired muscle — rosters 6–8 (2F / one pair on 3F / 6F)
 	db 34, RHYDON, TAUROS, 0
-	db 35, KANGASKHAN, MACHOKE, 0
+	db 35, KANGASKHAN, SCYTHER, 0
 	db 35, SNORLAX, TAUROS, 0
 BirdKeeperData:
 ; Route 13
@@ -732,11 +732,11 @@ GreenRocketData:
 
 NinjaData:
 ; Fuchsia Gym (former juggler/tamer teams)
-	db 36, VILEPLUME, GENGAR, VENOMOTH, 0
-	db 38, GOLEM, GOLEM, 0
+	db 36, VILEPLUME, SCYTHER, VENOMOTH, 0
+	db 38, GOLEM, CLOYSTER, 0
 	db 38, EXEGGCUTE, EXEGGUTOR, 0
 	db 36, SANDSLASH, ARBOK, 0
-	db 37, ARBOK, SANDSLASH, ARBOK, 0
+	db 37, ARBOK, SANDSLASH, BISHARP, 0
 
 JanineData:
 ; Fuchsia Gym
