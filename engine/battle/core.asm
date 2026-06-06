@@ -3452,15 +3452,14 @@ CheckPlayerStatusConditions:
 	call PlayMoveAnimation
 	ld hl, FastAsleepText
 	call PrintText
-	jr .sleepDone
-.WakeUp
-	ld hl, WokeUpText
-	call PrintText
-.sleepDone
 	xor a
 	ld [wPlayerUsedMove], a
 	ld hl, ExecutePlayerMoveDone ; player can't move this turn
 	jp .returnToHL
+.WakeUp
+	ld hl, WokeUpText
+	call PrintText
+	jp .FrozenCheck ; woke up — can act this turn
 
 .FrozenCheck
 	bit FRZ, [hl] ; frozen?
@@ -5897,15 +5896,14 @@ CheckEnemyStatusConditions:
 	ld [wAnimationType], a
 	ld a, SLP_ANIM
 	call PlayMoveAnimation
-	jr .sleepDone
-.wokeUp
-	ld hl, WokeUpText
-	call PrintText
-.sleepDone
 	xor a
 	ld [wEnemyUsedMove], a
 	ld hl, ExecuteEnemyMoveDone ; enemy can't move this turn
 	jp .enemyReturnToHL
+.wokeUp
+	ld hl, WokeUpText
+	call PrintText
+	jp .checkIfFrozen ; woke up — can act this turn
 .checkIfFrozen
 	bit FRZ, [hl]
 	jr z, .checkIfTrapped
