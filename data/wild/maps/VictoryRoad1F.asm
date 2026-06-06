@@ -22,16 +22,15 @@ IF DEF(_BLUE)
 	db  24, VICTREEBEL
 	db  33, GOLDUCK
 	db  22, LEAFEON
-	db  36, SCIZOR
-	db  39, MIMIKYU
-	db  42, FLAAFFY
+	db  36, SCYTHER
+	db  39, GRAVELER
+	db  42, SCIZOR
 	db  41, ANNIHILAPE
 	db  41, BLISSEY
-	db  42, DRAGONAIR
+	db  42, AMPHAROS
 	db  43, GOLETT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

@@ -7,10 +7,10 @@ IF DEF(_RED)
 	db  38, LICKITUNG
 	db  38, SHELLDER
 	db  38, HORSEA
-	db  41, NIDORINO
-	db   41, GROWLITHE
+	db  41, HITMONLEE
+	db   41, HITMONCHAN
 	db  41, POLIWHIRL
-	db   41, DRAGONAIR
+	db   41, GROWLITHE
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -25,13 +25,12 @@ IF DEF(_BLUE)
 	db  38, LICKITUNG
 	db  38, SHELLDER
 	db  38, HORSEA
-	db  41, NIDORINO
-	db   41, GROWLITHE
+	db  41, HITMONLEE
+	db   41, HITMONCHAN
 	db  41, POLIWHIRL
-	db   41, DRAGONAIR
+	db   41, GROWLITHE
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

@@ -22,16 +22,15 @@ IF DEF(_BLUE)
 	db   8, ZUBAT
 	db   7, GEODUDE
 	db   9, PARAS
-	db   8, JIGGLYPUFF
+	db   8, ZUBAT
 	db   8, CLEFAIRY
 	db  10, MACHOP
 	db  10, BAGON
-	db   8, GOLETT
-	db   9, SCRAFTY
+	db   8, GEODUDE
+	db   9, LARVITAR
 	db   8, LARVITAR
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

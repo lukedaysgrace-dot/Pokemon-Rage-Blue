@@ -7,9 +7,9 @@ IF DEF(_RED)
 	db  36, HYPNO
 	db  39, MAROWAK
 	db  42, GRAVELER
-	db  41, KADABRA
+	db  41, GRAVELER
 	db  40, MACHOKE
-	db  40, ZUBAT
+	db  40, GOLBAT
 	db  43, RHYDON
 	end_grass_wildmons
 
@@ -24,14 +24,13 @@ IF DEF(_BLUE)
 	db  38, EXCADRILL
 	db  36, POLIWHIRL
 	db  39, ARCANINE
-	db  42, KANGASKHAN
+	db  42, STEELIX
 	db  42, RHYDON
 	db  40, GOLEM
-	db  40, KADABRA
-	db   42, STEELIX
+	db  40, EXCADRILL
+	db   42, RHYDON
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

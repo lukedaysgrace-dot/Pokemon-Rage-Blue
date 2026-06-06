@@ -26,12 +26,11 @@ IF DEF(_BLUE)
 	db  17, RIOLU
 	db   17, DEINO
 	db   17, MACHOP
-	db   17, CUBONE
+	db   17, GEODUDE
 	db  13, ONIX
-	db   17, ZUBAT
+	db   17, DEINO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

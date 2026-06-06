@@ -3,10 +3,10 @@ IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
 	db  32, KOFFING
 	db  30, GRIMER
-	db   32, RATTATA
+	db   32, KOFFING
 	db  30, MAGMAR
 	db   32, KOFFING
-	db  32, RATICATE
+	db  32, GRIMER
 	db   32, GRIMER
 	db  28, GROWLITHE
 	db   32, VULPIX
@@ -21,10 +21,10 @@ IF DEF(_BLUE)
 	def_grass_wildmons 10 ; encounter rate
 	db  32, KOFFING
 	db  30, GRIMER
-	db   32, RATTATA
+	db   32, KOFFING
 	db  30, MAGMAR
 	db   32, KOFFING
-	db  32, RATICATE
+	db  32, GRIMER
 	db   32, GRIMER
 	db  28, GROWLITHE
 	db   32, VULPIX
@@ -34,4 +34,3 @@ IF DEF(_BLUE)
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

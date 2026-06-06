@@ -1,8 +1,8 @@
 Route21WildMons:
 IF DEF(_RED)
 	def_grass_wildmons 25 ; encounter rate
-	db  21, RATTATA
-	db  23, PIDGEY
+	db  21, PIDGEOTTO
+	db  23, TANGELA
 	db  30, MEOWTH
 	db  23, RATICATE
 	db  21, PIDGEOTTO
@@ -17,20 +17,20 @@ IF DEF(_RED)
 	db   5, TENTACOOL
 	db  10, HORSEA
 	db  15, KRABBY
-	db   5, SHELLDER
-	db  10, STARYU
+	db   5, TENTACOOL
+	db  10, HORSEA
 	db  30, TENTACRUEL
-	db  33, SEAKING
-	db  30, KINGLER
+	db  33, STARYU
+	db  30, STARYU
 	db   33, SEADRA
-	db   33, GYARADOS
+	db   33, SEADRA
 	end_water_wildmons
 ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 25 ; encounter rate
-	db  21, RATTATA
-	db  23, PIDGEY
+	db  21, PIDGEOTTO
+	db  23, TANGELA
 	db   25, MEOWTH
 	db  23, RATICATE
 	db  21, PIDGEOTTO
@@ -45,13 +45,12 @@ IF DEF(_BLUE)
 	db   5, TENTACOOL
 	db  10, HORSEA
 	db  15, KRABBY
-	db   5, SHELLDER
-	db  10, STARYU
+	db   5, TENTACOOL
+	db  10, HORSEA
 	db  30, TENTACRUEL
-	db  33, SEAKING
-	db  30, KINGLER
+	db  33, STARYU
+	db  30, STARYU
 	db   33, SEADRA
-	db   33, GYARADOS
+	db   33, SEADRA
 	end_water_wildmons
 ENDC
-

@@ -6,9 +6,9 @@ IF DEF(_RED)
 	db  25, DODUO
 	db   29, DODUO
 	db   29, PIDGEOTTO
-	db  26, RATTATA
+	db  26, RATICATE
 	db  28, FEAROW
-	db  29, SPEAROW
+	db  29, DODUO
 	db  27, RATICATE
 	db  29, DODUO
 	end_grass_wildmons
@@ -24,9 +24,9 @@ IF DEF(_BLUE)
 	db  25, DODUO
 	db   29, DODUO
 	db   29, PIDGEOTTO
-	db  26, RATTATA
+	db  26, RATICATE
 	db  28, FEAROW
-	db  29, SPEAROW
+	db  29, MURKROW
 	db  27, RATICATE
 	db   29, MURKROW
 	end_grass_wildmons
@@ -34,4 +34,3 @@ IF DEF(_BLUE)
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

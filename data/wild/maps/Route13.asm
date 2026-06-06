@@ -6,7 +6,7 @@ IF DEF(_RED)
 	db  27, GLOOM
 	db  24, DITTO
 	db  22, WEEPINBELL
-	db  26, PIDGEOTTO
+	db  26, DITTO
 	db  26, TANGELA
 	db   28, VENONAT
 	db  28, PARASECT
@@ -24,7 +24,7 @@ IF DEF(_BLUE)
 	db  27, GLOOM
 	db  24, DITTO
 	db  22, WEEPINBELL
-	db  26, PIDGEOTTO
+	db  26, DITTO
 	db   28, TANGELA
 	db   28, VENONAT
 	db  28, PARASECT
@@ -34,4 +34,3 @@ IF DEF(_BLUE)
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-
