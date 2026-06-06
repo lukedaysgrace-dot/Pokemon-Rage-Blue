@@ -5355,8 +5355,6 @@ AdjustDamageForMoveType:
 	ret
 
 ; function to tell how effective the type of an enemy attack is on the player's current pokemon
-; this doesn't take into account the effects that dual types can have
-; (e.g. 4x weakness / resistance, weaknesses and resistances canceling)
 ; the result is stored in [wTypeEffectiveness]
 ; as far is can tell, this is only used once in some AI code to help decide which move to use
 AIGetTypeEffectiveness:
@@ -5366,31 +5364,7 @@ AIGetTypeEffectiveness:
 	ld b, [hl]                 ; b = type 1 of player's pokemon
 	inc hl
 	ld c, [hl]                 ; c = type 2 of player's pokemon
-	; initialize to neutral effectiveness
-	ld a, EFFECTIVE
-	ld [wTypeEffectiveness], a
-	ld hl, TypeEffects
-.loop
-	ld a, [hli]
-	cp $ff
-	ret z
-	cp d                      ; match the type of the move
-	jr nz, .nextTypePair1
-	ld a, [hli]
-	cp b                      ; match with type 1 of pokemon
-	jr z, .done
-	cp c                      ; or match with type 2 of pokemon
-	jr z, .done
-	jr .nextTypePair2
-.nextTypePair1
-	inc hl
-.nextTypePair2
-	inc hl
-	jr .loop
-.done
-	ld a, [hl]
-	ld [wTypeEffectiveness], a ; store damage multiplier
-	ret
+	jr AIGetTypeEffectivenessCommon
 
 ; function to tell how effective the player's selected attack is on the enemy's
 ; current pokemon. Used by trainer AI to decide whether it should switch.
@@ -5401,6 +5375,9 @@ AIGetPlayerTypeEffectiveness:
 	ld b, [hl]                 ; b = type 1 of enemy pokemon
 	inc hl
 	ld c, [hl]                 ; c = type 2 of enemy pokemon
+	jr AIGetTypeEffectivenessCommon
+
+AIGetTypeEffectivenessCommon:
 	ld a, EFFECTIVE
 	ld [wTypeEffectiveness], a
 	ld hl, TypeEffects
@@ -5412,19 +5389,43 @@ AIGetPlayerTypeEffectiveness:
 	jr nz, .nextTypePair1
 	ld a, [hli]
 	cp b
-	jr z, .done
+	jr z, .matchingPairFound
 	cp c
-	jr z, .done
+	jr z, .matchingPairFound
 	jr .nextTypePair2
 .nextTypePair1
 	inc hl
 .nextTypePair2
 	inc hl
 	jr .loop
-.done
+.matchingPairFound
 	ld a, [hl]
+	and a
+	jr nz, .multiplyTypeEffectiveness
 	ld [wTypeEffectiveness], a
 	ret
+.multiplyTypeEffectiveness
+	push hl
+	push bc
+	push de
+	ldh [hMultiplier], a
+	ld a, [wTypeEffectiveness]
+	ldh [hMultiplicand + 2], a
+	xor a
+	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 1], a
+	call Multiply
+	ld a, 10
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 3]
+	ld [wTypeEffectiveness], a
+	pop de
+	pop bc
+	pop hl
+	inc hl
+	jr .loop
 
 INCLUDE "data/types/type_matchups.asm"
 
