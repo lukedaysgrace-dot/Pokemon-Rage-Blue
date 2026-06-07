@@ -48,6 +48,8 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
+	ld a, [wNewGameHardMode]
+	ld [wHardMode], a
 	ld hl, wNumBoxItems
 	ld a, POTION
 	ld [wCurItem], a
@@ -62,22 +64,6 @@ OakSpeech:
 	ld a, [wStatusFlags6]
 	bit BIT_DEBUG_MODE, a
 	jp nz, .skipSpeech
-	ld hl, HardModeText
-	call PrintText
-	call HardModeChoice
-	ld a, [wCurrentMenuItem]
-	and a
-	jr nz, .noHardMode
-	ld a, 1
-	ld [wHardMode], a
-	jr .hardModeDone
-.noHardMode
-	xor a
-	ld [wHardMode], a
-.hardModeDone
-	xor a
-	ld [wTwoOptionMenuID], a
-	call ClearScreen
 	; Boy or girl (before Oak's opening, like Yellow Legacy)
 	ld hl, BoyGirlText
 	call PrintText
@@ -229,28 +215,6 @@ OakSpeechText3:
 BoyGirlText:
 	text_far _BoyGirlText
 	text_end
-
-HardModeText:
-	text_far _HardModeText
-	text_end
-
-HardModeChoice:
-	call SaveScreenTilesToBuffer1
-	call InitHardModeTextBoxParameters
-	jr DisplayHardModeChoice
-
-InitHardModeTextBoxParameters:
-	xor a ; YES_NO_MENU
-	ld [wTwoOptionMenuID], a
-	hlcoord 14, 7
-	lb bc, 8, 15
-	ret
-
-DisplayHardModeChoice:
-	ld a, TWO_OPTION_MENU
-	ld [wTextBoxID], a
-	call DisplayTextBoxID
-	jp LoadScreenTilesFromBuffer1
 
 BoyGirlChoice:
 	call SaveScreenTilesToBuffer1

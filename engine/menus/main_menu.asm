@@ -43,7 +43,7 @@ MainMenu:
 	jr .next2
 .noSaveFile
 	hlcoord 0, 0
-	ld b, 4
+	ld b, 5
 	ld c, 13
 	call TextBoxBorder
 	hlcoord 2, 2
@@ -317,6 +317,14 @@ StartNewGame:
 	; Debug mode persists in saved games for both debug and non-debug builds, and is
 	; only reset here by the main menu.
 	res BIT_DEBUG_MODE, [hl]
+	xor a
+	ld [wNewGameHardMode], a
+	ldh a, [hJoyHeld]
+	bit B_PAD_SELECT, a
+	jr z, .hardModeOff
+	ld a, 1
+	ld [wNewGameHardMode], a
+.hardModeOff
 	; fallthrough
 StartNewGameDebug:
 	call OakSpeech
@@ -348,6 +356,7 @@ ContinueText:
 NewGameText:
 	db   "NEW GAME"
 	next "OPTION@"
+	next "(SELECT=HARD)@"
 
 CableClubOptionsText:
 	db   "TRADE CENTER"

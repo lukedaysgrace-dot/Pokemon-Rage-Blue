@@ -1698,12 +1698,6 @@ _BoyGirlText::
 	line "as a girl?"
 	done
 
-_HardModeText::
-	text "Enable HARD MODE?"
-	line "Level caps apply"
-	cont "per badge count."
-	done
-
 _OakSpeechText1::
 	text "Hello there!"
 	line "Welcome to the"
