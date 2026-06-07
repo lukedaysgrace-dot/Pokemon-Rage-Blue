@@ -48,8 +48,6 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
-	ld a, [wNewGameHardMode]
-	ld [wHardMode], a
 	ld hl, wNumBoxItems
 	ld a, POTION
 	ld [wCurItem], a

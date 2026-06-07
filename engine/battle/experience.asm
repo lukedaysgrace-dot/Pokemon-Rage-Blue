@@ -116,12 +116,7 @@ GainExperience:
 	ld a, [hl]
 	ld [wCurSpecies], a
 	call GetMonHeader
-	call GetHardModeLevelCap
-	ld a, d
-	and a
-	jr nz, .hardModeCap
 	ld d, MAX_LEVEL
-.hardModeCap
 	callfar CalcExperience ; get max exp
 ; compare max exp with current exp
 	ldh a, [hExperience]

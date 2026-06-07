@@ -13,8 +13,6 @@ AskName:
 	call GetMonName
 	ld hl, DoYouWantToNicknameText
 	call PrintText
-	xor a
-	ld [wTwoOptionMenuID], a
 	hlcoord 14, 7
 	lb bc, 8, 15
 	ld a, TWO_OPTION_MENU
@@ -43,24 +41,13 @@ AskName:
 	ld [wUpdateSpritesEnabled], a
 	ld a, [wStringBuffer]
 	cp '@'
-	jr nz, .doneNickname
+	ret nz
 .declinedNickname
 	ld d, h
 	ld e, l
 	ld hl, wNameBuffer
 	ld bc, NAME_LENGTH
-	call CopyData
-.doneNickname
-	call AskNameCloseTextBox
-	ret
-
-AskNameCloseTextBox:
-	ld a, $90
-	ldh [hWY], a
-	call DelayFrame
-	ld hl, wFontLoaded
-	res BIT_FONT_LOADED, [hl]
-	ret
+	jp CopyData
 
 DoYouWantToNicknameText:
 	text_far _DoYouWantToNicknameText
@@ -105,6 +92,26 @@ DisplayNamingScreen:
 	call RunPaletteCommand
 	call LoadHpBarAndStatusTilePatterns
 	call LoadEDTile
+	ld a, [wNamingScreenType]
+	cp NAME_MON_SCREEN
+	jr nz, .iconSpeciesReady
+	ld a, [wCurPartySpecies]
+	and a
+	jr nz, .iconFromCurSpecies
+	ld hl, wPartySpecies
+	ld a, [wWhichPokemon]
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	ld [wMonPartySpriteSpecies], a
+	jr .iconSpeciesDone
+.iconFromCurSpecies
+	ld [wMonPartySpriteSpecies], a
+.iconSpeciesReady:
+	xor a
+	ld [wMonPartySpriteSpecies], a
+.iconSpeciesDone:
 	farcall LoadMonPartySpriteGfx
 	hlcoord 0, 4
 	ld b, 9
@@ -182,11 +189,6 @@ DisplayNamingScreen:
 	ld [wAnimCounter], a
 	ld hl, wStatusFlags5
 	res BIT_NO_TEXT_DELAY, [hl]
-	ld a, $90
-	ldh [hWY], a
-	call DelayFrame
-	ld hl, wFontLoaded
-	res BIT_FONT_LOADED, [hl]
 	ld a, [wIsInBattle]
 	and a
 	jp z, LoadTextBoxTilePatterns

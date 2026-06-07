@@ -9,8 +9,8 @@ InitPlayerData2:
 	ldh a, [hRandomAdd]
 	ld [wPlayerID + 1], a
 
-	xor a
-	ld [wHardMode], a
+	ld a, $ff
+	ld [wUnusedPlayerDataByte], a
 
 	ld hl, wPartyCount
 	call InitializeEmptyList
