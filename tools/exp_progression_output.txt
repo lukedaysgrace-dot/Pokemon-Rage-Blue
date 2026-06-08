@@ -1,0 +1,49 @@
+=== EXP-based progression (Medium Slow, 4 mons sharing EXP) ===
+
+Start: L38 (47846 exp)
+
+silph_co: start L38 -> end L45 (+36285 exp, 39 fights)
+sabrina_gym: start L45 -> end L46 (+7792 exp, 8 fights)
+route_20_21: start L46 -> end L49 (+19110 exp, 19 fights)
+mansion: start L49 -> end L50 (+7316 exp, 7 fights)
+blaine_gym: start L50 -> end L51 (+9701 exp, 8 fights)
+viridian_gym: start L51 -> end L52 (+12102 exp, 9 fights)
+victory_road: start L52 -> end L54 (+15239 exp, 11 fights)
+elite_four: start L54 -> end L56 (+17130 exp, 5 fights)
+gym_rematch: start L56 -> end L59 (+27802 exp, 8 fights)
+e4_rematch: start L59 -> end L60 (+18752 exp, 5 fights)
+
+Final level after all fights: L60
+
+Updated parties_red.asm
+Updated parties_blue.asm
+
+Boss / milestone levels:
+  Petrel 1F: ace L41
+  Proton 2F: ace L42
+  Rival Silph: ace L45
+  Giovanni Silph: ace L47
+  Ariana: ace L47
+  Archer: ace L47
+  Sabrina: ace L49
+  Green Mansion: ace L52
+  Blaine: ace L54
+  Giovanni Viridian: ace L55
+  Lorelei: ace L57
+  Bruno/Karen: ace L57
+  Agatha: ace L58
+  Lance: ace L58
+  Champion: ace L58
+  Brock rematch: ace L59
+  Misty rematch: ace L59
+  Surge rematch: ace L60
+  Erika rematch: ace L60
+  Koga rematch: ace L60
+  Sabrina rematch: ace L61
+  Blaine rematch: ace L61
+  Giovanni rematch: ace L61
+  Lorelei rematch: ace L62
+  Bruno/Karen rematch: ace L62
+  Agatha rematch: ace L62
+  Lance rematch: ace L62
+  Champion rematch: ace L63
