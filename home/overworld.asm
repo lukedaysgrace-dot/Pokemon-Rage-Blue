@@ -39,9 +39,9 @@ EnterMap::
 	ld [wJoyIgnore], a
 
 OverworldLoop::
-	call DelayFrame
+	;call DelayFrame	; 60fps - no second delay; the overworld loop now runs every frame
 OverworldLoopLessDelay::
-	call DelayFrame
+	call CheckForSpinAndDelay	; 60fps - was "call DelayFrame"
 	call LoadGBPal
 	ld a, [wMovementFlags]
 	bit BIT_LEDGE_OR_FISHING, a
@@ -263,7 +263,7 @@ OverworldLoopLessDelay::
 	jp c, OverworldLoop
 
 .noCollision
-	ld a, $08
+	ld a, $10	; 60fps - walk counter doubled (was $08)
 	ld [wWalkCounter], a
 	jr .moveAhead2
 
@@ -1457,6 +1457,19 @@ LoadCurrentMapView::
 	ld [rROMB], a
 	ret
 
+; 60fps - checks if the spin frame is going to update for the spinning arrow tile state.
+; If so, do not delay a frame, because the update's CopyVideoData in
+; LoadSpinnerArrowTiles will burn a frame on its own.
+CheckForSpinAndDelay::
+	ld a, [wMovementFlags]
+	bit BIT_SPINNING, a
+	jr z, .noSpinning
+	ld a, [wSpinnerTileFrameCount]
+	dec a
+	ret z
+.noSpinning
+	jp DelayFrame
+
 AdvancePlayerSprite::
 	ld a, [wSpritePlayerStateData1YStepVector]
 	ld b, a
@@ -1474,7 +1487,7 @@ AdvancePlayerSprite::
 	ld [wXCoord], a
 .afterUpdateMapCoords
 	ld a, [wWalkCounter]
-	cp $07
+	cp $0F	; 60fps - counter is doubled (was $07)
 	jp nz, .scrollBackgroundAndSprites
 ; if this is the first iteration of the animation
 	ld a, c
@@ -1621,8 +1634,7 @@ AdvancePlayerSprite::
 	ld b, a
 	ld a, [wSpritePlayerStateData1XStepVector]
 	ld c, a
-	sla b
-	sla c
+	; 60fps - don't double the x & y deltas; scroll 1 pixel per frame
 	ldh a, [hSCY]
 	add b
 	ldh [hSCY], a ; update background scroll Y

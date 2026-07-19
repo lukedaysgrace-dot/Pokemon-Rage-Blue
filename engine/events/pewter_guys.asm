@@ -37,6 +37,16 @@ PewterGuys:
 	ret z
 	ld [de], a
 	inc de
+	; 60fps - double the $00 pause entries, since the overworld loop
+	; consumes simulated joypad states twice as fast
+	and a
+	jr nz, .noPauseDouble
+	ld [de], a
+	inc de
+	ld a, [wSimulatedJoypadStatesIndex]
+	inc a
+	ld [wSimulatedJoypadStatesIndex], a
+.noPauseDouble
 	ld a, [wSimulatedJoypadStatesIndex]
 	inc a
 	ld [wSimulatedJoypadStatesIndex], a

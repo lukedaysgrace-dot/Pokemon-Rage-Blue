@@ -510,6 +510,7 @@ _HandleMidJump::
 	ld a, [wPlayerJumpingYScreenCoordsIndex]
 	ld c, a
 	inc a
+	call Ledge60fps	; 60fps - only update every other tick
 	cp $10
 	jr nc, .finishedJump
 	ld [wPlayerJumpingYScreenCoordsIndex], a
@@ -536,6 +537,16 @@ _HandleMidJump::
 	res BIT_SCRIPTED_MOVEMENT_STATE, [hl]
 	xor a
 	ld [wJoyIgnore], a
+	ret
+
+; 60fps - subtracts the player sprite's frame parity byte from a so the jump
+; index only advances every other frame. The parity byte is already toggled
+; each frame during UpdatePlayerSprite (see sprite60fps), so it is only read here.
+Ledge60fps:
+	push hl
+	ld hl, wSpriteStateData2 + SPRITESTATEDATA2_0A
+	sub [hl]
+	pop hl
 	ret
 
 PlayerJumpingYScreenCoords:

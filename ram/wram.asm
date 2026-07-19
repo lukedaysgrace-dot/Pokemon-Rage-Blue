@@ -617,7 +617,8 @@ wUnusedOverrideSimulatedJoypadStatesIndex:: db
 ; XXX is it ever not 0?
 wOverrideSimulatedJoypadStatesMask:: db
 
-	ds 1
+; 60fps - counter for the spinner tiles out of battle
+wSpinnerTileFrameCount:: db
 
 ; This union spans 30 bytes.
 UNION

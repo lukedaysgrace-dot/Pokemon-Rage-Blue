@@ -1,4 +1,21 @@
 LoadSpinnerArrowTiles::
+; 60fps - This ties the spin frame update to an external counter.
+; It only updates every 4 overworld updates, and CopyVideoData only runs 1 time
+; per update, supplanting 1 DelayFrame in OverworldLoop (see CheckForSpinAndDelay).
+; Now there are no wasted frames when this runs, and spin movement is at full speed.
+	ld a, [wSpinnerTileFrameCount]
+	cp 5
+	jr nc, .resetCount	; out of range, reset
+	cp 1
+	jr nc, .countOK
+.resetCount
+	ld a, 4
+	ld [wSpinnerTileFrameCount], a
+.countOK
+	ld a, [wSpinnerTileFrameCount]
+	dec a
+	ld [wSpinnerTileFrameCount], a
+	ret nz
 	ld a, [wSpritePlayerStateData1ImageIndex]
 	srl a
 	srl a
