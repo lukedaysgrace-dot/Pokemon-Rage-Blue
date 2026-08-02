@@ -1,16 +1,16 @@
 Route12WildMons:
 IF DEF(_RED)
 	def_grass_wildmons 15 ; encounter rate
-	db  24, PIDGEOTTO
-	db  25, VENONAT
-	db  23, ODDISH
-	db  24, WEEPINBELL
-	db  22, GLOOM
-	db   26, PIDGEOTTO
-	db  26, TANGELA
-	db   26, VENONAT
-	db   26, WEEPINBELL
-	db   26, PARASECT
+	db  28, PIDGEOTTO
+	db  29, VENONAT
+	db  27, ODDISH
+	db  28, WEEPINBELL
+	db  27, GLOOM
+	db   30, PIDGEOTTO
+	db  30, TANGELA
+	db   30, VENONAT
+	db   30, WEEPINBELL
+	db   30, PARASECT
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 15 ; encounter rate
-	db  24, PIDGEOTTO
-	db  25, VENONAT
-	db  23, ODDISH
-	db  24, WEEPINBELL
-	db  22, GLOOM
-	db   26, PIDGEOTTO
-	db   26, TANGELA
-	db   26, VENONAT
-	db   26, WEEPINBELL
-	db   26, DROWZEE
+	db  28, PIDGEOTTO
+	db  29, VENONAT
+	db  27, ODDISH
+	db  28, WEEPINBELL
+	db  27, GLOOM
+	db   30, PIDGEOTTO
+	db   30, TANGELA
+	db   30, VENONAT
+	db   30, WEEPINBELL
+	db   30, DROWZEE
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

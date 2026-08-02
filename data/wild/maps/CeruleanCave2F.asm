@@ -1,16 +1,16 @@
 CeruleanCave2FWildMons:
 IF DEF(_RED)
 	def_grass_wildmons 15 ; encounter rate
-	db  55, DRAGONITE
-	db  51, RHYDON
-	db  51, DRAGONITE
-	db  52, SNORLAX
-	db  52, LAPRAS
-	db  55, DRAGONITE
-	db   55, EXEGGUTOR
-	db  54, POLIWRATH
-	db  55, MACHAMP
-	db   55, GYARADOS
+	db  62, DRAGONITE
+	db  58, RHYDON
+	db  58, DRAGONITE
+	db  59, SNORLAX
+	db  59, LAPRAS
+	db  62, DRAGONITE
+	db   62, EXEGGUTOR
+	db  61, POLIWRATH
+	db  62, MACHAMP
+	db   63, GYARADOS
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 15 ; encounter rate
-	db  55, TYRANITAR
-	db  51, RHYPERIOR
-	db  51, SALAMENCE
-	db  52, SNORLAX
-	db  52, LAPRAS
-	db  55, SCRAFTY
-	db  55, BISHARP
-	db  54, POLIWRATH
-	db  55, MACHAMP
-	db   55, GYARADOS
+	db  62, TYRANITAR
+	db  58, RHYPERIOR
+	db  58, SALAMENCE
+	db  59, SNORLAX
+	db  59, LAPRAS
+	db  62, SCRAFTY
+	db  62, BISHARP
+	db  61, POLIWRATH
+	db  62, MACHAMP
+	db   63, GYARADOS
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

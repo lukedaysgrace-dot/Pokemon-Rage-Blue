@@ -1,16 +1,16 @@
 VictoryRoad2FWildMons:
 IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
-	db  22, GOLBAT
-	db  28, MACHOKE
-	db  26, ONIX
-	db  36, HYPNO
-	db  39, MAROWAK
-	db  42, GRAVELER
-	db  41, GRAVELER
-	db  40, MACHOKE
-	db  40, GOLBAT
-	db  43, RHYDON
+	db  49, GOLBAT
+	db  50, MACHOKE
+	db  50, ONIX
+	db  50, HYPNO
+	db  51, MAROWAK
+	db  52, GRAVELER
+	db  52, GRAVELER
+	db  51, MACHOKE
+	db  51, GOLBAT
+	db  53, RHYDON
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 10 ; encounter rate
-	db  22, PORYGON
-	db  30, DRILBUR
-	db  38, EXCADRILL
-	db  36, POLIWHIRL
-	db  39, ARCANINE
-	db  42, STEELIX
-	db  42, RHYDON
-	db  40, GOLEM
-	db  40, EXCADRILL
-	db   42, RHYDON
+	db  49, PORYGON
+	db  50, DRILBUR
+	db  50, EXCADRILL
+	db  50, POLIWHIRL
+	db  51, ARCANINE
+	db  52, STEELIX
+	db  52, RHYDON
+	db  51, GOLEM
+	db  51, EXCADRILL
+	db   53, RHYDON
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

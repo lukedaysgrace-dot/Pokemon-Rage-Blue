@@ -1,16 +1,16 @@
 Route24WildMons:
 IF DEF(_RED)
 	def_grass_wildmons 25 ; encounter rate
-	db   7, WEEDLE
-	db   8, CATERPIE
-	db  13, ODDISH
-	db  10, ODDISH
-	db  14, BELLSPROUT
-	db  13, ABRA
-	db   14, BELLSPROUT
-	db  12, VENONAT
-	db  11, METAPOD
-	db   12, ABRA
+	db   13, WEEDLE
+	db   13, CATERPIE
+	db  15, ODDISH
+	db  14, ODDISH
+	db  15, BELLSPROUT
+	db  15, ABRA
+	db   15, BELLSPROUT
+	db  14, VENONAT
+	db  14, METAPOD
+	db   14, ABRA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 25 ; encounter rate
-	db   9, WIMPOD
-	db   9, VENIPEDE
-	db   11, WIMPOD
-	db  10, ODDISH
-	db   11, BELLSPROUT
-	db   11, ABRA
-	db   8, RALTS
-	db   11, VENONAT
-	db  11, VENIPEDE
-	db     9, RALTS
+	db   13, WIMPOD
+	db   13, VENIPEDE
+	db   15, WIMPOD
+	db  14, ODDISH
+	db   15, BELLSPROUT
+	db   15, ABRA
+	db   12, RALTS
+	db   15, VENONAT
+	db  15, VENIPEDE
+	db     13, RALTS
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

@@ -1,16 +1,16 @@
 SeafoamIslandsB3FWildMons:
 IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
-	db  34, DEWGONG
-	db  31, SEEL
-	db  33, GOLBAT
-	db  37, SLOWBRO
-	db  29, JYNX
-	db  34, DEWGONG
-	db  37, SLOWBRO
-	db  29, GOLBAT
-	db   37, SHELLDER
-	db  37, SEEL
+	db  43, DEWGONG
+	db  42, SEEL
+	db  42, GOLBAT
+	db  44, SLOWBRO
+	db  42, JYNX
+	db  43, DEWGONG
+	db  44, SLOWBRO
+	db  42, GOLBAT
+	db   44, SHELLDER
+	db  44, SEEL
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 10 ; encounter rate
-	db  34, DEWGONG
-	db  31, SEEL
-	db  33, GOLBAT
-	db  37, SLOWBRO
-	db  29, JYNX
-	db  34, DEWGONG
-	db  37, SLOWBRO
-	db  29, GOLBAT
-	db   37, SHELLDER
-	db  37, GLACEON
+	db  43, DEWGONG
+	db  42, SEEL
+	db  42, GOLBAT
+	db  44, SLOWBRO
+	db  42, JYNX
+	db  43, DEWGONG
+	db  44, SLOWBRO
+	db  42, GOLBAT
+	db   44, SHELLDER
+	db  44, GLACEON
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

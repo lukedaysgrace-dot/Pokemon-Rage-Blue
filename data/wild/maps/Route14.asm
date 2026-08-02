@@ -1,16 +1,16 @@
 Route14WildMons:
 IF DEF(_RED)
 	def_grass_wildmons 15 ; encounter rate
-	db  24, VENONAT
-	db  26, ODDISH
-	db  23, GLOOM
-	db   26, VILEPLUME
-	db  22, WEEPINBELL
-	db  26, VILEPLUME
-	db  26, TANGELA
-	db   26, VENONAT
-	db   26, DITTO
-	db   26, DITTO
+	db  30, VENONAT
+	db  32, ODDISH
+	db  30, GLOOM
+	db   32, VILEPLUME
+	db  30, WEEPINBELL
+	db  32, VILEPLUME
+	db  32, TANGELA
+	db   31, VENONAT
+	db   31, DITTO
+	db   31, DITTO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 15 ; encounter rate
-	db  24, VENONAT
-	db  26, ODDISH
-	db  23, GLOOM
-	db   26, VILEPLUME
-	db  22, WEEPINBELL
-	db  26, VILEPLUME
-	db   26, TANGELA
-	db   26, VENONAT
-	db   26, DITTO
-	db   26, DITTO
+	db  30, VENONAT
+	db  32, ODDISH
+	db  30, GLOOM
+	db   32, VILEPLUME
+	db  30, WEEPINBELL
+	db  32, VILEPLUME
+	db   32, TANGELA
+	db   31, VENONAT
+	db   31, DITTO
+	db   31, DITTO
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

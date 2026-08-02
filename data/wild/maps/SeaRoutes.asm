@@ -4,16 +4,16 @@ IF DEF(_RED)
 	end_grass_wildmons
 
 	def_water_wildmons 5 ; encounter rate
-	db  10, TENTACOOL
-	db  15, KRABBY
-	db  15, HORSEA
-	db   15, PSYDUCK
-	db  15, SHELLDER
-	db   15, MAGIKARP
-	db   15, GOLDEEN
-	db   15, GOLDEEN
-	db   15, TENTACOOL
-	db   15, MAGIKARP
+	db  37, TENTACOOL
+	db  39, KRABBY
+	db  39, HORSEA
+	db   40, PSYDUCK
+	db  39, SHELLDER
+	db   40, MAGIKARP
+	db   40, GOLDEEN
+	db   41, GOLDEEN
+	db   39, TENTACOOL
+	db   41, MAGIKARP
 	end_water_wildmons
 ENDC
 
@@ -22,16 +22,16 @@ IF DEF(_BLUE)
 	end_grass_wildmons
 
 	def_water_wildmons 5 ; encounter rate
-	db  10, TENTACOOL
-	db  15, KRABBY
-	db  15, HORSEA
-	db   15, PSYDUCK
-	db  15, SHELLDER
-	db   15, MAGIKARP
-	db   15, GOLDEEN
-	db   15, GOLDEEN
-	db   15, TENTACOOL
-	db   15, MAGIKARP
+	db  37, TENTACOOL
+	db  39, KRABBY
+	db  39, HORSEA
+	db   40, PSYDUCK
+	db  39, SHELLDER
+	db   40, MAGIKARP
+	db   40, GOLDEEN
+	db   41, GOLDEEN
+	db   39, TENTACOOL
+	db   41, MAGIKARP
 	end_water_wildmons
 ENDC
 

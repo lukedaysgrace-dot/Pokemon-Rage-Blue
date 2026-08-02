@@ -1,16 +1,16 @@
 PokemonMansionB1FWildMons:
 IF DEF(_RED)
 	def_grass_wildmons 10 ; encounter rate
-	db  33, GRIMER
-	db  31, KOFFING
-	db  35, RATICATE
-	db   35, GRIMER
-	db  35, WEEZING
-	db   35, VULPIX
-	db  34, MAGMAR
-	db   35, GRIMER
-	db   35, RATTATA
-	db   35, WEEZING
+	db  46, GRIMER
+	db  46, KOFFING
+	db  47, RATICATE
+	db   47, GRIMER
+	db  47, WEEZING
+	db   46, VULPIX
+	db  47, MAGMAR
+	db   48, GRIMER
+	db   47, RATTATA
+	db   48, WEEZING
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 10 ; encounter rate
-	db  33, GRIMER
-	db  31, KOFFING
-	db   35, GRIMER
-	db  35, WEEZING
-	db   35, VULPIX
-	db  34, MAGMAR
-	db   35, GRIMER
-	db   35, MAGMAR
-	db  35, RATICATE
-	db   35, RATTATA
+	db  46, GRIMER
+	db  46, KOFFING
+	db   47, GRIMER
+	db  47, WEEZING
+	db   47, VULPIX
+	db  46, MAGMAR
+	db   47, GRIMER
+	db   48, MAGMAR
+	db  47, RATICATE
+	db   48, RATTATA
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

@@ -36,66 +36,76 @@ IF DEF(_RED)
 	dbw CERULEAN_CAVE_1F,    .Group9R
 	db -1 ; end
 
+; Pallet / Viridian — pre-Brock
 .Group1R:
 	db 2
-	db   15, TENTACOOL
-	db   15, POLIWAG
+	db   10, TENTACOOL
+	db   10, POLIWAG
 
+; Route 22 — pre-Brock
 .Group2R:
 	db 2
-	db   15, GOLDEEN
-	db   15, POLIWAG
+	db   10, GOLDEEN
+	db   10, POLIWAG
 
+; Cerulean / Routes 4, 24, 25 — Misty era
 .Group3R:
 	db 3
 	db   15, PSYDUCK
 	db   15, GOLDEEN
-	db   15, KRABBY
+	db   16, KRABBY
 
+; Vermilion / Routes 6, 11 — Surge era
 .Group4R:
 	db 2
-	db   15, KRABBY
-	db   15, SHELLDER
+	db   17, KRABBY
+	db   17, SHELLDER
 
+; Celadon / Route 10 — Erika era
 .Group5R:
 	db 2
-	db    19, POLIWAG
-	db   15, SLOWPOKE
+	db    21, POLIWAG
+	db   20, SLOWPOKE
 
+; Safari Zone — Koga era
 .Group6R:
 	db 4
-	db   15, DRATINI
-	db   15, KRABBY
-	db   15, PSYDUCK
-	db   15, SLOWPOKE
+	db   34, DRATINI
+	db   36, KRABBY
+	db   36, PSYDUCK
+	db   36, SLOWPOKE
 
+; Routes 12, 13, 17, 18 — mid-game ramp
 .Group7R:
 	db 4
-	db     5, TENTACOOL
-	db   15, KRABBY
-	db   15, GOLDEEN
-	db    15, HORSEA
+	db     29, TENTACOOL
+	db   30, KRABBY
+	db   30, GOLDEEN
+	db    31, HORSEA
 
+; Cinnabar / Routes 19-21 / Seafoam — post-Surf
 .Group8R:
 	db 4
-	db   15, STARYU
-	db   15, HORSEA
-	db    19, SHELLDER
-	db    19, HORSEA
+	db   40, STARYU
+	db   40, HORSEA
+	db    41, SHELLDER
+	db    41, HORSEA
 
+; Route 23 / Cerulean Cave — endgame
 .Group9R:
 	db 4
-	db   37, SLOWBRO
-	db   33, SEAKING
-	db   28, KINGLER
-	db   23, SEADRA
+	db   52, SLOWBRO
+	db   51, SEAKING
+	db   50, KINGLER
+	db   50, SEADRA
 
+; Fuchsia — Koga era
 .Group10R:
 	db 4
-	db    19, GOLDEEN
-	db   15, KRABBY
-	db   15, GOLDEEN
-	db   15, MAGIKARP
+	db    35, GOLDEEN
+	db   34, KRABBY
+	db   34, GOLDEEN
+	db   34, MAGIKARP
 ENDC
 IF DEF(_BLUE)
 	dbw PALLET_TOWN,         .Group1B
@@ -133,64 +143,74 @@ IF DEF(_BLUE)
 	dbw CERULEAN_CAVE_1F,    .Group9B
 	db -1 ; end
 
+; Pallet / Viridian — pre-Brock
 .Group1B:
 	db 2
-	db   15, TENTACOOL
-	db   15, POLIWAG
+	db   10, TENTACOOL
+	db   10, POLIWAG
 
+; Route 22 — pre-Brock
 .Group2B:
 	db 2
-	db   15, GOLDEEN
-	db   15, POLIWAG
+	db   10, GOLDEEN
+	db   10, POLIWAG
 
+; Cerulean / Routes 4, 24, 25 — Misty era
 .Group3B:
 	db 3
 	db   15, PSYDUCK
 	db   15, GOLDEEN
-	db   15, KRABBY
+	db   16, KRABBY
 
+; Vermilion / Routes 6, 11 — Surge era
 .Group4B:
 	db 2
-	db   15, KRABBY
-	db   15, SHELLDER
+	db   17, KRABBY
+	db   17, SHELLDER
 
+; Celadon / Route 10 — Erika era
 .Group5B:
 	db 2
-	db    19, POLIWAG
-	db   15, SLOWPOKE
+	db    21, POLIWAG
+	db   20, SLOWPOKE
 
+; Safari Zone — Koga era
 .Group6B:
 	db 4
-	db   15, DRATINI
-	db   15, KRABBY
-	db   15, PSYDUCK
-	db    19, HORSEA
+	db   34, DRATINI
+	db   36, KRABBY
+	db   36, PSYDUCK
+	db    37, HORSEA
 
+; Routes 12, 13, 17, 18 — mid-game ramp
 .Group7B:
 	db 4
-	db     5, TENTACOOL
-	db   15, KRABBY
-	db   15, GOLDEEN
-	db    15, HORSEA
+	db     29, TENTACOOL
+	db   30, KRABBY
+	db   30, GOLDEEN
+	db    31, HORSEA
 
+; Cinnabar / Routes 19-21 / Seafoam — post-Surf
 .Group8B:
 	db 4
-	db   15, STARYU
-	db   15, HORSEA
-	db    19, SHELLDER
-	db    19, HORSEA
+	db   40, STARYU
+	db   40, HORSEA
+	db    41, SHELLDER
+	db    41, HORSEA
 
+; Route 23 / Cerulean Cave — endgame
 .Group9B:
 	db 4
-	db   37, SLOWBRO
-	db   33, SEAKING
-	db   28, KINGLER
-	db    37, SEADRA
+	db   52, SLOWBRO
+	db   51, SEAKING
+	db   50, KINGLER
+	db    52, SEADRA
 
+; Fuchsia — Koga era
 .Group10B:
 	db 4
-	db    19, GOLDEEN
-	db   15, KRABBY
-	db   15, GOLDEEN
-	db   15, MAGIKARP
+	db    35, GOLDEEN
+	db   34, KRABBY
+	db   34, GOLDEEN
+	db   34, MAGIKARP
 ENDC

@@ -1,16 +1,16 @@
 Route4WildMons:
 IF DEF(_RED)
 	def_grass_wildmons 20 ; encounter rate
-	db  10, MAGNEMITE
-	db  10, MAGNEMITE
-	db   8, MACHOP
-	db   6, FARFETCHD
-	db   8, MACHOP
-	db  10, FARFETCHD
-	db  12, PARAS
-	db  12, CLEFAIRY
-	db   8, PSYDUCK
-	db  12, CLEFAIRY
+	db  12, MAGNEMITE
+	db  12, MAGNEMITE
+	db  11, MACHOP
+	db  11, FARFETCHD
+	db  11, MACHOP
+	db  12, FARFETCHD
+	db  14, PARAS
+	db  14, CLEFAIRY
+	db  11, PSYDUCK
+	db  14, CLEFAIRY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 20 ; encounter rate
-	db  10, MAGNEMITE
-	db  10, MAGNEMITE
-	db   8, MACHOP
-	db   6, FARFETCHD
-	db   8, MACHOP
-	db  10, FARFETCHD
-	db  12, PARAS
-	db  12, CLEFAIRY
-	db   8, PSYDUCK
-	db  12, CLEFAIRY
+	db  12, MAGNEMITE
+	db  12, MAGNEMITE
+	db  11, MACHOP
+	db  11, FARFETCHD
+	db  11, MACHOP
+	db  12, FARFETCHD
+	db  14, PARAS
+	db  14, CLEFAIRY
+	db  11, PSYDUCK
+	db  14, CLEFAIRY
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

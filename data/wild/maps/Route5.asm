@@ -1,16 +1,16 @@
 Route5WildMons:
 IF DEF(_RED)
 	def_grass_wildmons 15 ; encounter rate
-	db  13, ODDISH
-	db  13, BELLSPROUT
 	db  15, ODDISH
-	db  16, BELLSPROUT
-	db  12, MEOWTH
-	db  15, MEOWTH
-	db  16, JIGGLYPUFF
+	db  15, BELLSPROUT
 	db  16, ODDISH
-	db  14, ABRA
-	db  16, JIGGLYPUFF
+	db  17, BELLSPROUT
+	db  14, MEOWTH
+	db  16, MEOWTH
+	db  17, JIGGLYPUFF
+	db  17, ODDISH
+	db  15, ABRA
+	db  17, JIGGLYPUFF
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 15 ; encounter rate
-	db  13, ODDISH
-	db  13, BELLSPROUT
 	db  15, ODDISH
-	db  16, BELLSPROUT
-	db  12, MEOWTH
-	db  15, MEOWTH
-	db  16, RALTS
-	db  16, RALTS
-	db  14, ABRA
+	db  15, BELLSPROUT
 	db  16, ODDISH
+	db  17, BELLSPROUT
+	db  14, MEOWTH
+	db  16, MEOWTH
+	db  17, RALTS
+	db  17, RALTS
+	db  15, ABRA
+	db  17, ODDISH
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

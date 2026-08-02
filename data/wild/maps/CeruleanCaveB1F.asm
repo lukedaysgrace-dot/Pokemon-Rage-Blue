@@ -1,16 +1,16 @@
 CeruleanCaveB1FWildMons:
 IF DEF(_RED)
 	def_grass_wildmons 25 ; encounter rate
-	db  55, EXEGGUTOR
-	db  55, VAPOREON
-	db  55, JOLTEON
-	db  64, FLAREON
-	db  64, ALAKAZAM
-	db  64, SEADRA
-	db  57, CLOYSTER
-	db  65, STARMIE
+	db  62, EXEGGUTOR
+	db  62, VAPOREON
+	db  62, JOLTEON
+	db  66, FLAREON
+	db  66, ALAKAZAM
+	db  66, SEADRA
 	db  63, CLOYSTER
-	db  67, DRAGONITE
+	db  67, STARMIE
+	db  65, CLOYSTER
+	db  68, DRAGONITE
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
@@ -19,16 +19,16 @@ ENDC
 
 IF DEF(_BLUE)
 	def_grass_wildmons 25 ; encounter rate
-	db  55, EEVEE
-	db  55, VAPOREON
-	db  55, JOLTEON
-	db  64, FLAREON
-	db  64, ESPEON
-	db  64, UMBREON
-	db  57, STARMIE
-	db  65, CLOYSTER
-	db  63, SEADRA
+	db  62, EEVEE
+	db  62, VAPOREON
+	db  62, JOLTEON
+	db  66, FLAREON
+	db  66, ESPEON
+	db  66, UMBREON
+	db  63, STARMIE
 	db  67, CLOYSTER
+	db  65, SEADRA
+	db  68, CLOYSTER
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate
