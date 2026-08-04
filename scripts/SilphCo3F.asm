@@ -53,8 +53,7 @@ SilphCo3F_EnforceProtonHiddenUnlessTriggered:
 	ld hl, SilphCo3F_ProtonTriggerCoords
 	call ArePlayerCoordsInArray
 	ret c
-	ld a, TOGGLE_SILPH_CO_3F_PROTON
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SILPH_CO_3F_PROTON
 	predef HideObject
 	ret
 
@@ -92,8 +91,7 @@ SilphCo3FDefaultScript:
 	ldh [hJoyHeld], a
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
-	ld a, TOGGLE_SILPH_CO_3F_PROTON
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SILPH_CO_3F_PROTON
 	predef ShowObject
 	call UpdateSprites
 	ld c, 12
@@ -118,8 +116,7 @@ SilphCo3FDefaultScript:
 	ld a, SCRIPT_SILPHCO3F_PROTON_BATTLE
 	jp SilphCo3FSetCurScript
 .hide_proton
-	ld a, TOGGLE_SILPH_CO_3F_PROTON
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SILPH_CO_3F_PROTON
 	predef HideObject
 	jp CheckFightingMapTrainers
 
@@ -204,8 +201,7 @@ SilphCo3FProtonAfterBattleScript:
 	jp SilphCo3FSetCurScript
 
 SilphCo3FProtonExitScript:
-	ld a, TOGGLE_SILPH_CO_3F_PROTON
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SILPH_CO_3F_PROTON
 	predef HideObject
 	xor a
 	ld [wJoyIgnore], a

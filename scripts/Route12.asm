@@ -34,8 +34,7 @@ Route12DefaultScript:
 	ld [wCurOpponent], a
 	ld a, 30
 	ld [wCurEnemyLevel], a
-	ld a, TOGGLE_ROUTE_12_SNORLAX
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_12_SNORLAX
 	predef HideObject
 	ld a, SCRIPT_ROUTE12_SNORLAX_POST_BATTLE
 	ld [wRoute12CurScript], a

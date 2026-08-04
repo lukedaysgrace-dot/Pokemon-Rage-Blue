@@ -328,9 +328,7 @@ wMenuWrappingEnabled:: db
 ; whether to check for 180-degree turn (0 = don't, 1 = do)
 wCheckFor180DegreeTurn:: db
 
-	ds 1
-
-wToggleableObjectIndex:: db
+	ds 2
 
 wPredefID:: db
 wPredefHL:: dw
@@ -1957,14 +1955,18 @@ wPlayerCoins:: dw ; BCD
 wToggleableObjectFlags:: flag_array NUM_TOGGLEABLE_OBJECTS
 wToggleableObjectFlagsEnd::
 
-	ds 6
+; base (global) toggleable object index of the current map's entries in
+; wToggleableObjectList; 16-bit because NUM_TOGGLEABLE_OBJECTS > 256
+wToggleableObjectBase:: dw
+
+	ds 4
 
 ; saved copy of SPRITESTATEDATA1_IMAGEINDEX (used for sprite facing/anim)
 wSavedSpriteImageIndex:: db
 
 ; each entry consists of 2 bytes
 ; * the sprite ID (depending on the current map)
-; * the toggleable object index (global, used for wToggleableObjectFlags)
+; * the toggleable object index, relative to wToggleableObjectBase
 ; terminated with $FF
 wToggleableObjectList:: ds 16 * 2 + 1
 

@@ -33,8 +33,7 @@ SSAnne2FDefaultScript:
 	call PlayMusic
 	ld a, [wCoordIndex]
 	ldh [hSavedCoordIndex], a
-	ld a, TOGGLE_SS_ANNE_2F_RIVAL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SS_ANNE_2F_RIVAL
 	predef ShowObject
 	call Delay3
 	ld a, SSANNE2F_RIVAL
@@ -169,8 +168,7 @@ SSAnne2FRivalExitScript:
 	ret nz
 	xor a
 	ld [wJoyIgnore], a
-	ld a, TOGGLE_SS_ANNE_2F_RIVAL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SS_ANNE_2F_RIVAL
 	predef HideObject
 	call PlayDefaultMusic
 	ld a, SCRIPT_SSANNE2F_NOOP

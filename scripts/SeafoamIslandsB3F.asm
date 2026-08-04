@@ -12,23 +12,17 @@ SeafoamIslandsB3F_Script:
 	cp $1
 	jr nz, .boulder2FellDownHole
 	SetEventReuseHL EVENT_SEAFOAM4_BOULDER1_DOWN_HOLE
-	ld a, TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_1
-	ld [wObjectToHide], a
-	ld a, TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_1
-	ld [wObjectToShow], a
+	ld de, TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_1 ; object to hide
+	ld bc, TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_1 ; object to show
 	jr .hideAndShowBoulderObjects
 .boulder2FellDownHole
 	SetEventAfterBranchReuseHL EVENT_SEAFOAM4_BOULDER2_DOWN_HOLE, EVENT_SEAFOAM4_BOULDER1_DOWN_HOLE
-	ld a, TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_2
-	ld [wObjectToHide], a
-	ld a, TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_2
-	ld [wObjectToShow], a
+	ld de, TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_2 ; object to hide
+	ld bc, TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_2 ; object to show
 .hideAndShowBoulderObjects
-	ld a, [wObjectToHide]
-	ld [wToggleableObjectIndex], a
+	push bc
 	predef HideObject
-	ld a, [wObjectToShow]
-	ld [wToggleableObjectIndex], a
+	pop de
 	predef ShowObject
 	jr .runCurrentMapScript
 .noBoulderWasPushed

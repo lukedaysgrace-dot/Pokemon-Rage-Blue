@@ -44,11 +44,9 @@ VictoryRoad3FDefaultScript:
 .handle_hole
 	CheckAndSetEvent EVENT_VICTORY_ROAD_3_BOULDER_ON_SWITCH2
 	jr nz, .check_switch_hole
-	ld a, TOGGLE_VICTORY_ROAD_3F_BOULDER
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_VICTORY_ROAD_3F_BOULDER
 	predef HideObject
-	ld a, TOGGLE_VICTORY_ROAD_2F_BOULDER
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_VICTORY_ROAD_2F_BOULDER
 	predef_jump ShowObject
 
 .SwitchOrHoleCoords:

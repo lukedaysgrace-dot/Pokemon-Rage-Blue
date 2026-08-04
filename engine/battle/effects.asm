@@ -607,8 +607,8 @@ StatModifierDownEffect:
 	sub ATTACK_DOWN_SIDE_EFFECT ; map each stat to 0-3
 	jr .decrementStatMod
 .speedDownSideEffect2
-	ld c, SPEED_DOWN_SIDE_EFFECT - ATTACK_DOWN_SIDE_EFFECT
-	ld b, $0
+; .decrementStatMod starts with `ld c, a`, so pass the offset in a, not c.
+	ld a, SPEED_DOWN_SIDE_EFFECT - ATTACK_DOWN_SIDE_EFFECT
 	jr .decrementStatMod
 .nonSideEffect ; non-side effects only
 	push hl

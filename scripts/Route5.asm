@@ -55,8 +55,7 @@ Route5GreenExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_ROUTE_5_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_5_GREEN
 	predef HideObject
 	call EndGreenEncounterMusic
 	jp Route5ResetScript

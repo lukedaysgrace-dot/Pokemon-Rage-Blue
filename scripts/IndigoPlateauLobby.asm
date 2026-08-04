@@ -24,8 +24,7 @@ IndigoPlateauLobbyHideGreen:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret nz
-	ld a, TOGGLE_INDIGO_PLATEAU_LOBBY_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_INDIGO_PLATEAU_LOBBY_GREEN
 	predef_jump HideObject
 
 IndigoPlateauLobby_ScriptPointers:
@@ -87,8 +86,7 @@ IndigoPlateauLobbyGreenAppearsScript:
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	call IndigoPlateauLobbySetGreenStartCoords
-	ld a, TOGGLE_INDIGO_PLATEAU_LOBBY_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_INDIGO_PLATEAU_LOBBY_GREEN
 	predef ShowObject
 	call IndigoPlateauLobbyGreenFacePlayer
 	call UpdateSprites
@@ -193,8 +191,7 @@ IndigoPlateauLobbyGreenExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_INDIGO_PLATEAU_LOBBY_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_INDIGO_PLATEAU_LOBBY_GREEN
 	predef HideObject
 	call EndGreenEncounterMusic
 	jp IndigoPlateauLobbyResetScript

@@ -41,8 +41,14 @@ MarkTownVisitedAndLoadToggleableObjects::
 	call Divide
 	ld a, [wCurMap]
 	ld b, a
+	; Divide leaves a 16-bit quotient in hQuotient+2 (high) / hQuotient+3 (low).
+	; There are more than 256 toggleable objects, so the map's base index must be
+	; kept as a 16-bit value; the list itself only stores map-local indexes.
 	ldh a, [hDividend+3]
-	ld c, a                    ; store global offset in c
+	ld [wToggleableObjectBase], a
+	ldh a, [hDividend+2]
+	ld [wToggleableObjectBase + 1], a
+	ld c, 0                    ; map-local index of the next list entry
 	ld de, wToggleableObjectList
 	pop hl
 .writeToggleableObjectsListLoop
@@ -57,7 +63,7 @@ MarkTownVisitedAndLoadToggleableObjects::
 	inc de
 	ld a, c
 	inc c
-	ld [de], a                 ; write (global) toggleable object index
+	ld [de], a                 ; write (map-local) toggleable object index
 	inc de
 	jr .writeToggleableObjectsListLoop
 .done
@@ -118,9 +124,7 @@ IsObjectHidden:
 	cp b
 	ld a, [hli]
 	jr nz, .loop
-	ld e, a
-	xor a
-	ld d, a
+	global_toggle_index
 	ld b, FLAG_TEST
 	ld hl, wToggleableObjectFlags
 	call ToggleableObjectFlagAction
@@ -134,40 +138,38 @@ IsObjectHidden:
 	ret
 
 ; adds toggleable object (items, leg. pokemon, etc.) to the map
-; [wToggleableObjectIndex]: index of the toggleable object to be added (global index)
+; de: index of the toggleable object to be added (global index)
 ShowObject:
 ShowObject2:
+	call GetPredefRegisters ; restore de (the global toggleable object index)
 	ld hl, wToggleableObjectFlags
-	ld a, [wToggleableObjectIndex]
-	ld e, a
-	xor a
-	ld d, a
 	ld b, FLAG_RESET
 	call ToggleableObjectFlagAction   ; reset "removed" flag
 	jp UpdateSprites
 
-; removes toggleable object (items, leg. pokemon, etc.) from the map
-; [wToggleableObjectIndex]: index of the toggleable object to be removed (global index)
-HideObject:
+; as HideObject, but takes the map-local index (as stored in
+; wToggleableObjectList) in e. Saves the caller the 16-bit conversion, which
+; matters for callers in the (nearly full) home bank.
+HideObjectLocal:
+	call GetPredefRegisters ; restore e (the map-local toggleable object index)
+	ld a, e
+	global_toggle_index
 	ld hl, wToggleableObjectFlags
-	ld a, [wToggleableObjectIndex]
-	ld e, a
-	xor a
-	ld d, a
+	ld b, FLAG_SET
+	call ToggleableObjectFlagAction   ; set "removed" flag
+	jp UpdateSprites
+
+; removes toggleable object (items, leg. pokemon, etc.) from the map
+; de: index of the toggleable object to be removed (global index)
+HideObject:
+	call GetPredefRegisters ; restore de (the global toggleable object index)
+	ld hl, wToggleableObjectFlags
 	ld b, FLAG_SET
 	call ToggleableObjectFlagAction   ; set "removed" flag
 	jp UpdateSprites
 
 ToggleableObjectFlagAction:
-; FlagAction variant: toggle index passed in DE (high byte unused when idx < $100).
-
-	push hl ; base address
-	push bc ; flag action is in B
-	push de ; toggle global index
-
-	pop de ; index
-	pop bc ; restored B = action code
-	pop hl ; restored base ptr
+; FlagAction variant: 16-bit toggle index passed in de (NUM_TOGGLEABLE_OBJECTS > 256).
 
 	push hl ; save base ptr while masking
 

@@ -79,17 +79,13 @@ RocketHideoutB4FBeatGiovanniScript:
 	ldh [hTextID], a
 	call DisplayTextID
 	call GBFadeOutToBlack
-	ld a, TOGGLE_ROCKET_HIDEOUT_B4F_GIOVANNI
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROCKET_HIDEOUT_B4F_GIOVANNI
 	predef HideObject
-	ld a, TOGGLE_ROCKET_HIDEOUT_B4F_PETREL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROCKET_HIDEOUT_B4F_PETREL
 	predef HideObject
-	ld a, TOGGLE_ROCKET_HIDEOUT_B4F_PROTON
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROCKET_HIDEOUT_B4F_PROTON
 	predef HideObject
-	ld a, TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_4
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_4
 	predef ShowObject
 	call UpdateSprites
 	call GBFadeInFromBlack
@@ -221,8 +217,7 @@ RocketHideoutB4FRocket3AfterBattleText:
 	call PrintText
 	CheckAndSetEvent EVENT_ROCKET_DROPPED_LIFT_KEY
 	jr nz, .done
-	ld a, TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_5
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROCKET_HIDEOUT_B4F_ITEM_5
 	predef ShowObject
 .done
 	jp TextScriptEnd

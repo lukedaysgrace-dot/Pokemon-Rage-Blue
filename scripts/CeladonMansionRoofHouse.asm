@@ -15,8 +15,7 @@ CeladonMansionRoofHouseEeveePokeballText:
 	lb bc, EEVEE, 25
 	call GivePokemon
 	jr nc, .party_full
-	ld a, TOGGLE_CELADON_MANSION_EEVEE_GIFT
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CELADON_MANSION_EEVEE_GIFT
 	predef HideObject
 .party_full
 	jp TextScriptEnd

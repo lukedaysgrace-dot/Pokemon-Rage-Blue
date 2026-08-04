@@ -101,28 +101,21 @@ HallOfFameOakCongratulationsScript:
 	ld a, [wNumHoFTeams]
 	and a
 	jr z, .skipCeruleanCaveGuy
-	ld a, TOGGLE_CERULEAN_CAVE_GUY
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_CAVE_GUY
 	predef HideObject
 .skipCeruleanCaveGuy
 IF DEF(_RED)
-	ld a, TOGGLE_ROUTE_24_CHARMANDER_TRAINER
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_24_CHARMANDER_TRAINER
 	predef ShowObject
-	ld a, TOGGLE_ROUTE_24_CHARMANDER
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_24_CHARMANDER
 	predef ShowObject
-	ld a, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR_TRAINER
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR_TRAINER
 	predef ShowObject
-	ld a, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
 	predef ShowObject
-	ld a, TOGGLE_VERMILION_CITY_SQUIRTLE_TRAINER
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_VERMILION_CITY_SQUIRTLE_TRAINER
 	predef ShowObject
-	ld a, TOGGLE_VERMILION_CITY_SQUIRTLE
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_VERMILION_CITY_SQUIRTLE
 	predef ShowObject
 ENDC
 	ld a, SCRIPT_HALLOFFAME_RESET_EVENTS_AND_SAVE

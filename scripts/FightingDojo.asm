@@ -246,8 +246,7 @@ FightingDojoHitmonleePokeBallText:
 	jr nc, .done
 
 	; once Poké Ball is taken, hide sprite
-	ld a, TOGGLE_FIGHTING_DOJO_GIFT_1
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_FIGHTING_DOJO_GIFT_1
 	predef HideObject
 	SetEvents EVENT_GOT_HITMONLEE, EVENT_DEFEATED_FIGHTING_DOJO
 .done
@@ -281,8 +280,7 @@ FightingDojoHitmonchanPokeBallText:
 	SetEvents EVENT_GOT_HITMONCHAN, EVENT_DEFEATED_FIGHTING_DOJO
 
 	; once Poké Ball is taken, hide sprite
-	ld a, TOGGLE_FIGHTING_DOJO_GIFT_2
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_FIGHTING_DOJO_GIFT_2
 	predef HideObject
 .done
 	jp TextScriptEnd

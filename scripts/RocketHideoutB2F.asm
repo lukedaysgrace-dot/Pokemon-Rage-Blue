@@ -40,8 +40,7 @@ RocketHideoutB2FDefaultScript:
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 ; Show Green before emotion bubble (bubble needs a visible sprite — Route 10 runs bubble after sprite exists).
-	ld a, TOGGLE_ROCKET_HIDEOUT_B2F_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROCKET_HIDEOUT_B2F_GREEN
 	predef ShowObject
 	call RocketHideoutB2FGreenFacePlayer
 	call UpdateSprites
@@ -453,8 +452,7 @@ RocketHideoutB2FGreenExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_ROCKET_HIDEOUT_B2F_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROCKET_HIDEOUT_B2F_GREEN
 	predef HideObject
 	xor a
 	ld [wJoyIgnore], a
@@ -594,7 +592,7 @@ RocketHideoutB2FTM07ShadowBallText:
 	jr nc, .BagFull
 
 	ldh a, [hToggleableObjectIndex]
-	ld [wToggleableObjectIndex], a
+	global_toggle_index
 	predef HideObject
 	ld a, 1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a

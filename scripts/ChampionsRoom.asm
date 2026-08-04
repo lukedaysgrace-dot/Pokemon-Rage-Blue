@@ -161,8 +161,7 @@ ChampionsRoomOakArrivesScript:
 	ld a, CHAMPIONSROOM_OAK
 	ldh [hSpriteIndex], a
 	call MoveSprite
-	ld a, TOGGLE_CHAMPIONS_ROOM_OAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CHAMPIONS_ROOM_OAK
 	predef ShowObject
 	ld a, SCRIPT_CHAMPIONSROOM_OAK_CONGRATULATES_PLAYER
 	ld [wChampionsRoomCurScript], a
@@ -238,8 +237,7 @@ ChampionsRoomOakExitsScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_CHAMPIONS_ROOM_OAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CHAMPIONS_ROOM_OAK
 	predef HideObject
 	ld a, SCRIPT_CHAMPIONSROOM_PLAYER_FOLLOWS_OAK
 	ld [wChampionsRoomCurScript], a

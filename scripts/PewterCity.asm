@@ -92,8 +92,7 @@ PewterCityHideSuperNerd1Script:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_MUSEUM_GUY
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_MUSEUM_GUY
 	predef HideObject
 	ld a, SCRIPT_PEWTERCITY_RESET_SUPER_NERD1
 	ld [wPewterCityCurScript], a
@@ -103,8 +102,7 @@ PewterCityResetSuperNerd1Script:
 	ld a, PEWTERCITY_SUPER_NERD1
 	ld [wSpriteIndex], a
 	call SetSpritePosition2
-	ld a, TOGGLE_MUSEUM_GUY
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_MUSEUM_GUY
 	predef ShowObject
 	xor a
 	ld [wJoyIgnore], a
@@ -161,8 +159,7 @@ PewterCityHideYoungsterScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_GYM_GUY
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_GYM_GUY
 	predef HideObject
 	ld a, SCRIPT_PEWTERCITY_RESET_YOUNGSTER
 	ld [wPewterCityCurScript], a
@@ -172,8 +169,7 @@ PewterCityResetYoungsterScript:
 	ld a, PEWTERCITY_YOUNGSTER
 	ld [wSpriteIndex], a
 	call SetSpritePosition2
-	ld a, TOGGLE_GYM_GUY
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_GYM_GUY
 	predef ShowObject
 	xor a
 	ld [wJoyIgnore], a

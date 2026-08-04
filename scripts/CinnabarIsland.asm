@@ -14,8 +14,7 @@ CinnabarIslandMaybeShowBlueCloak:
 	ret nz
 	CheckEvent EVENT_BEAT_ROUTE1_OAK
 	ret z
-	ld a, TOGGLE_CINNABAR_ISLAND_BLUE_CLOAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CINNABAR_ISLAND_BLUE_CLOAK
 	predef ShowObject
 	ret
 
@@ -53,8 +52,7 @@ CinnabarIslandBlueCloakAfterBattleScript:
 	ldh [hJoyReleased], a
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
-	ld a, TOGGLE_CINNABAR_ISLAND_BLUE_CLOAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CINNABAR_ISLAND_BLUE_CLOAK
 	predef HideObject
 	ld a, [wLetterPrintingDelayFlags]
 	push af
@@ -83,8 +81,7 @@ CinnabarIslandBlueCloakAfterBattleScript:
 	call WaitForTextScrollButtonPress
 	jp Init
 .blueCloakEndingAlreadyDone
-	ld a, TOGGLE_CINNABAR_ISLAND_BLUE_CLOAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CINNABAR_ISLAND_BLUE_CLOAK
 	predef HideObject
 	ld a, SCRIPT_CINNABARISLAND_DEFAULT
 	ld [wCinnabarIslandCurScript], a

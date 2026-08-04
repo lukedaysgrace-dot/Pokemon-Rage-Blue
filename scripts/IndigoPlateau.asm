@@ -131,8 +131,7 @@ IndigoPlateauUpdateGrampsVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret z
-	ld a, TOGGLE_INDIGO_PLATEAU_GRAMPS
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_INDIGO_PLATEAU_GRAMPS
 	predef_jump ShowObject
 
 IndigoPlateauHideGramps:
@@ -143,8 +142,7 @@ IndigoPlateauHideGramps:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret nz
-	ld a, TOGGLE_INDIGO_PLATEAU_GRAMPS
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_INDIGO_PLATEAU_GRAMPS
 	predef_jump HideObject
 
 IndigoPlateauShouldShowGramps:

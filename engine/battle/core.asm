@@ -3459,7 +3459,7 @@ CheckPlayerStatusConditions:
 .WakeUp
 	ld hl, WokeUpText
 	call PrintText
-	jp .FrozenCheck ; woke up — can act this turn
+	ld hl, wBattleMonStatus ; woke up — can act this turn; restore hl for .FrozenCheck
 
 .FrozenCheck
 	bit FRZ, [hl] ; frozen?
@@ -5903,7 +5903,7 @@ CheckEnemyStatusConditions:
 .wokeUp
 	ld hl, WokeUpText
 	call PrintText
-	jp .checkIfFrozen ; woke up — can act this turn
+	ld hl, wEnemyMonStatus ; woke up — can act this turn; restore hl for .checkIfFrozen
 .checkIfFrozen
 	bit FRZ, [hl]
 	jr z, .checkIfTrapped
@@ -6316,6 +6316,7 @@ ENDC
 	ld b, NUM_STATS * 2
 .checkPartyMonStatExp
 	ld a, [hli]
+	and a ; ld a, [hli] leaves flags untouched
 	jr nz, .partyMonHasStatExp
 	dec b
 	jr nz, .checkPartyMonStatExp

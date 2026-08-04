@@ -63,8 +63,7 @@ PalletTownOakHeyWaitScript:
 	call DisplayTextID
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
-	ld a, TOGGLE_PALLET_TOWN_OAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_PALLET_TOWN_OAK
 	predef ShowObject
 
 	; trigger the next script
@@ -148,11 +147,9 @@ PalletTownDaisyScript:
 	CheckBothEventsSet EVENT_GOT_TOWN_MAP, EVENT_ENTERED_BLUES_HOUSE, 1
 	jr nz, .next
 	SetEvent EVENT_DAISY_WALKING
-	ld a, TOGGLE_DAISY_SITTING
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_DAISY_SITTING
 	predef HideObject
-	ld a, TOGGLE_DAISY_WALKING
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_DAISY_WALKING
 	predef_jump ShowObject
 .next
 	CheckEvent EVENT_GOT_POKEBALLS_FROM_OAK
@@ -172,8 +169,7 @@ PalletTownGreenAfterBattleScript:
 	ld a, TEXT_PALLETTOWN_GREEN
 	ldh [hTextID], a
 	call DisplayTextID
-	ld a, TOGGLE_PALLET_TOWN_MEW
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_PALLET_TOWN_MEW
 	predef ShowObject
 	call UpdateSprites
 	ld a, TEXT_PALLETTOWN_MEW_CRY
@@ -182,8 +178,7 @@ PalletTownGreenAfterBattleScript:
 	ld a, MEW
 	call PlayCry
 	call WaitForSoundToFinish
-	ld a, TOGGLE_PALLET_TOWN_MEW
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_PALLET_TOWN_MEW
 	predef HideObject
 	call UpdateSprites
 	ld a, TEXT_PALLETTOWN_GREEN_AFTER_MEW
@@ -252,8 +247,7 @@ PalletTownGreenExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_PALLET_TOWN_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_PALLET_TOWN_GREEN
 	predef HideObject
 	call EndGreenEncounterMusic
 .reset
@@ -273,8 +267,7 @@ PalletTownUpdateGreenVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret z
-	ld a, TOGGLE_PALLET_TOWN_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_PALLET_TOWN_GREEN
 	predef_jump ShowObject
 .hideGreen
 	ld a, PALLETTOWN_GREEN
@@ -284,8 +277,7 @@ PalletTownUpdateGreenVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret nz
-	ld a, TOGGLE_PALLET_TOWN_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_PALLET_TOWN_GREEN
 	predef_jump HideObject
 
 PalletTownShouldShowGreen:

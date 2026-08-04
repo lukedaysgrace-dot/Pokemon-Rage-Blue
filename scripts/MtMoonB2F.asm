@@ -266,12 +266,11 @@ MtMoonB2FSuperNerdTakesOtherFossilScript:
 	call DisplayTextID
 	CheckEvent EVENT_GOT_DOME_FOSSIL
 	jr z, .got_dome_fossil
-	ld a, TOGGLE_MT_MOON_B2F_FOSSIL_2
+	ld de, TOGGLE_MT_MOON_B2F_FOSSIL_2
 	jr .continue
 .got_dome_fossil
-	ld a, TOGGLE_MT_MOON_B2F_FOSSIL_1
+	ld de, TOGGLE_MT_MOON_B2F_FOSSIL_1
 .continue
-	ld [wToggleableObjectIndex], a
 	predef HideObject
 	xor a
 	ld [wJoyIgnore], a
@@ -394,8 +393,7 @@ MtMoonB2FDomeFossilText:
 	call GiveItem
 	jp nc, MtMoonB2FYouHaveNoRoomText
 	call MtMoonB2FReceivedFossilText
-	ld a, TOGGLE_MT_MOON_B2F_FOSSIL_1
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_MT_MOON_B2F_FOSSIL_1
 	predef HideObject
 	SetEvent EVENT_GOT_DOME_FOSSIL
 	ld a, SCRIPT_MTMOONB2F_MOVE_SUPER_NERD
@@ -422,8 +420,7 @@ MtMoonB2FHelixFossilText:
 	call GiveItem
 	jp nc, MtMoonB2FYouHaveNoRoomText
 	call MtMoonB2FReceivedFossilText
-	ld a, TOGGLE_MT_MOON_B2F_FOSSIL_2
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_MT_MOON_B2F_FOSSIL_2
 	predef HideObject
 	SetEvent EVENT_GOT_HELIX_FOSSIL
 	ld a, SCRIPT_MTMOONB2F_MOVE_SUPER_NERD

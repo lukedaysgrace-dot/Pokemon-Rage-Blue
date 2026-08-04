@@ -186,8 +186,7 @@ Museum1FScientist2Text:
 	call GiveItem
 	jr nc, .bag_full
 	SetEvent EVENT_GOT_OLD_AMBER
-	ld a, TOGGLE_OLD_AMBER
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_OLD_AMBER
 	predef HideObject
 	ld hl, .ReceivedOldAmberText
 	jr .done

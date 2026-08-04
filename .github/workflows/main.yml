@@ -2,8 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main, master ]
   pull_request:
+  workflow_dispatch:
 
 env:
   rgbds_version: v1.0.1
@@ -47,7 +48,7 @@ jobs:
 
       - name: Checkout symbols
         if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
         with:
           path: symbols
           ref: symbols
@@ -59,7 +60,7 @@ jobs:
 
       - name: Update symbols
         if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           cwd: "./symbols"
           add: "*.sym *.map"

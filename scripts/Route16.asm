@@ -34,8 +34,7 @@ Route16DefaultScript:
 	ld [wCurOpponent], a
 	ld a, 30
 	ld [wCurEnemyLevel], a
-	ld a, TOGGLE_ROUTE_16_SNORLAX
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_16_SNORLAX
 	predef HideObject
 	call UpdateSprites
 	ld a, SCRIPT_ROUTE16_SNORLAX_POST_BATTLE

@@ -207,9 +207,8 @@ EndTrainerBattle::
 	ld a, [wSpriteIndex]
 	call IsInArray ; search for sprite ID
 	inc hl
-	ld a, [hl]
-	ld [wToggleableObjectIndex], a ; load corresponding toggleable object index and remove it
-	predef HideObject
+	ld e, [hl] ; corresponding map-local toggleable object index; remove it
+	predef HideObjectLocal
 .skipRemoveSprite
 	ld hl, wStatusFlags5
 	bit BIT_UNKNOWN_5_4, [hl]

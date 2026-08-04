@@ -18,8 +18,7 @@ SilphCo1FDefaultScript:
 	jr z, .check_petrel
 	CheckAndSetEvent EVENT_SILPH_CO_RECEPTIONIST_AT_DESK
 	jr nz, .check_petrel
-	ld a, TOGGLE_SILPH_CO_1F_RECEPTIONIST
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SILPH_CO_1F_RECEPTIONIST
 	predef ShowObject
 .check_petrel
 	CheckEvent EVENT_BEAT_SILPH_CO_1F_PETREL
@@ -52,8 +51,7 @@ SilphCo1FDefaultScript:
 	ld [wEmotionBubbleSpriteIndex], a ; player
 	ld [wWhichEmotionBubble], a ; EXCLAMATION_BUBBLE
 	predef EmotionBubble
-	ld a, TOGGLE_SILPH_CO_1F_PETREL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SILPH_CO_1F_PETREL
 	predef ShowObject
 	ld a, SILPHCO1F_PETREL
 	ldh [hSpriteIndex], a
@@ -67,8 +65,7 @@ SilphCo1FDefaultScript:
 	ld a, SCRIPT_SILPHCO1F_PETREL_BATTLE
 	jp SilphCo1FSetCurScript
 .hide_petrel
-	ld a, TOGGLE_SILPH_CO_1F_PETREL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SILPH_CO_1F_PETREL
 	predef_jump HideObject
 
 .PetrelTriggerCoords:
@@ -169,8 +166,7 @@ SilphCo1FPetrelExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_SILPH_CO_1F_PETREL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_SILPH_CO_1F_PETREL
 	predef HideObject
 	xor a
 	ld [wJoyIgnore], a

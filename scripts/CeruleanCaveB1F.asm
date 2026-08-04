@@ -32,8 +32,7 @@ CeruleanCaveB1FExileBrunoTriggerCoords:
 CeruleanCaveB1FExileBrunoAppearsScript:
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
-	ld a, TOGGLE_CERULEANCAVEB1F_EXILE_BRUNO
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEANCAVEB1F_EXILE_BRUNO
 	predef ShowObject
 	call UpdateSprites
 	ld c, 12
@@ -145,8 +144,7 @@ CeruleanCaveB1FExileBrunoExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_CERULEANCAVEB1F_EXILE_BRUNO
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEANCAVEB1F_EXILE_BRUNO
 	predef HideObject
 	xor a
 	ld [wJoyIgnore], a

@@ -180,8 +180,7 @@ Route10UpdateGreenVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret z
-	ld a, TOGGLE_ROUTE_10_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_10_GREEN
 	predef_jump ShowObject
 .hideGreen
 	ld a, ROUTE10_GREEN
@@ -191,8 +190,7 @@ Route10UpdateGreenVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret nz
-	ld a, TOGGLE_ROUTE_10_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_10_GREEN
 	predef_jump HideObject
 
 Route10ShouldShowGreen:
@@ -239,8 +237,7 @@ Route10GreenExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_ROUTE_10_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_10_GREEN
 	predef HideObject
 	call EndGreenEncounterMusic
 

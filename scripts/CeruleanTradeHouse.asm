@@ -36,8 +36,7 @@ CeruleanTradeHouseGirlText:
 	call GivePokemon
 	jr nc, .done
 	SetEvent EVENT_GOT_BULBASAUR_IN_CERULEAN
-	ld a, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
 	predef HideObject
 	ld hl, .ReceivedText
 	call PrintText

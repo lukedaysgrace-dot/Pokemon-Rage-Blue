@@ -17,8 +17,7 @@ CeruleanCityUpdateCaveGuyVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret z
-	ld a, TOGGLE_CERULEAN_CAVE_GUY
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_CAVE_GUY
 	predef_jump ShowObject
 .hideCaveGuy
 	ld a, CERULEANCITY_SUPER_NERD3
@@ -28,16 +27,14 @@ CeruleanCityUpdateCaveGuyVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret nz
-	ld a, TOGGLE_CERULEAN_CAVE_GUY
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_CAVE_GUY
 	predef_jump HideObject
 
 CeruleanCityClearScripts:
 	xor a ; SCRIPT_CERULEANCITY_DEFAULT
 	ld [wJoyIgnore], a
 	ld [wCeruleanCityCurScript], a
-	ld a, TOGGLE_CERULEAN_RIVAL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_RIVAL
 	predef_jump HideObject
 
 CeruleanCity_ScriptPointers:
@@ -118,8 +115,7 @@ ENDC
 	call GetPointerWithinSpriteStateData2
 	ld [hl], 25
 .playerOnRightSideOfBridge
-	ld a, TOGGLE_CERULEAN_RIVAL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_RIVAL
 	predef ShowObject
 	ld de, CeruleanCityMovement1
 	ld a, CERULEANCITY_RIVAL
@@ -250,8 +246,7 @@ CeruleanCityRivalCleanupScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_CERULEAN_RIVAL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_CERULEAN_RIVAL
 	predef HideObject
 	xor a
 	ld [wJoyIgnore], a

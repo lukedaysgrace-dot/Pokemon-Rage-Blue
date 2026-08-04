@@ -24,8 +24,7 @@ MaybeShowGiovanniForRematch:
 	ret z
 	CheckEvent EVENT_REMATCH_DEFEATED_GIOVANNI
 	ret nz
-	ld a, TOGGLE_VIRIDIAN_GYM_GIOVANNI
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_VIRIDIAN_GYM_GIOVANNI
 	predef ShowObject
 	ret
 
@@ -175,8 +174,7 @@ ViridianGymReceiveTM27:
 	; deactivate gym trainers
 	SetEventRange EVENT_BEAT_VIRIDIAN_GYM_TRAINER_0, EVENT_BEAT_VIRIDIAN_GYM_TRAINER_7
 
-	ld a, TOGGLE_ROUTE_22_RIVAL_2
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_22_RIVAL_2
 	predef ShowObject
 	SetEvents EVENT_2ND_ROUTE22_RIVAL_BATTLE, EVENT_ROUTE22_RIVAL_WANTS_BATTLE
 	jp ViridianGymResetScripts
@@ -285,8 +283,7 @@ ViridianGymGiovanniText:
 	ld hl, .PostBattleAdviceText
 	call PrintText
 	call GBFadeOutToBlack
-	ld a, TOGGLE_VIRIDIAN_GYM_GIOVANNI
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_VIRIDIAN_GYM_GIOVANNI
 	predef HideObject
 	call UpdateSprites
 	call Delay3

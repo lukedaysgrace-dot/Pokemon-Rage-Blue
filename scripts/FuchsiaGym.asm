@@ -32,8 +32,7 @@ FuchsiaGymMaybeRevealJanine:
 	call ArePlayerCoordsInArray
 	ret nc
 	SetEvent EVENT_FUCHSIA_JANINE_REVEALED
-	ld a, TOGGLE_FUCHSIA_GYM_JANINE
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_FUCHSIA_GYM_JANINE
 	predef ShowObject
 	ret
 .JanineRevealCoords:

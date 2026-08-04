@@ -257,8 +257,7 @@ VermilionCityGuardText:
 	call GivePokemon
 	jr nc, .done
 	SetEvent EVENT_GOT_SQUIRTLE_IN_VERMILION
-	ld a, TOGGLE_VERMILION_CITY_SQUIRTLE
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_VERMILION_CITY_SQUIRTLE
 	predef HideObject
 	ld hl, .ReceivedText
 	call PrintText

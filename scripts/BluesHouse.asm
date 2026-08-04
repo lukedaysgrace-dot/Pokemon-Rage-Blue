@@ -40,8 +40,7 @@ BluesHouseDaisySittingText:
 	lb bc, TOWN_MAP, 1
 	call GiveItem
 	jr nc, .bag_full
-	ld a, TOGGLE_TOWN_MAP
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_TOWN_MAP
 	predef HideObject
 	ld hl, GotMapText
 	call PrintText

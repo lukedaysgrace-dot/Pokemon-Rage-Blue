@@ -228,8 +228,7 @@ Route24CharmanderText:
 	call GivePokemon
 	jr nc, .done
 	SetEvent EVENT_GOT_CHARMANDER_ON_ROUTE24
-	ld a, TOGGLE_ROUTE_24_CHARMANDER
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_24_CHARMANDER
 	predef HideObject
 	ld hl, .ReceivedText
 	call PrintText

@@ -31,7 +31,7 @@ PickUpItem:
 	jr nc, .BagFull
 
 	ldh a, [hToggleableObjectIndex]
-	ld [wToggleableObjectIndex], a
+	global_toggle_index
 	predef HideObject
 	ld a, 1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a

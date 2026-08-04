@@ -12,14 +12,17 @@ Route20_Script:
 Route20BoulderScript:
 	CheckBothEventsSet EVENT_SEAFOAM3_BOULDER1_DOWN_HOLE, EVENT_SEAFOAM3_BOULDER2_DOWN_HOLE
 	jr z, .next_boulder_check
-	ld a, TOGGLE_SEAFOAM_ISLANDS_1F_BOULDER_1
+	ld de, TOGGLE_SEAFOAM_ISLANDS_1F_BOULDER_1
 	call Route20ShowObjectScript
-	ld a, TOGGLE_SEAFOAM_ISLANDS_1F_BOULDER_2
+	ld de, TOGGLE_SEAFOAM_ISLANDS_1F_BOULDER_2
 	call Route20ShowObjectScript
 	ld hl, .ToggleableObjectIDs
 .hide_toggleable_objects
 	ld a, [hli]
-	cp $ff
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	cp -1 ; sentinel high byte; real indexes never reach $ff00
 	jr z, .next_boulder_check
 	push hl
 	call Route20HideObjectScript
@@ -27,33 +30,33 @@ Route20BoulderScript:
 	jr .hide_toggleable_objects
 
 .ToggleableObjectIDs:
-	db TOGGLE_SEAFOAM_ISLANDS_B1F_BOULDER_1
-	db TOGGLE_SEAFOAM_ISLANDS_B1F_BOULDER_2
-	db TOGGLE_SEAFOAM_ISLANDS_B2F_BOULDER_1
-	db TOGGLE_SEAFOAM_ISLANDS_B2F_BOULDER_2
-	db TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_3
-	db TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_4
-	db -1 ; end
+	dw TOGGLE_SEAFOAM_ISLANDS_B1F_BOULDER_1
+	dw TOGGLE_SEAFOAM_ISLANDS_B1F_BOULDER_2
+	dw TOGGLE_SEAFOAM_ISLANDS_B2F_BOULDER_1
+	dw TOGGLE_SEAFOAM_ISLANDS_B2F_BOULDER_2
+	dw TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_3
+	dw TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_4
+	dw -1 ; end
 
 .next_boulder_check
 	CheckBothEventsSet EVENT_SEAFOAM4_BOULDER1_DOWN_HOLE, EVENT_SEAFOAM4_BOULDER2_DOWN_HOLE
 	ret z
-	ld a, TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_1
+	ld de, TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_1
 	call Route20ShowObjectScript
-	ld a, TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_2
+	ld de, TOGGLE_SEAFOAM_ISLANDS_B3F_BOULDER_2
 	call Route20ShowObjectScript
-	ld a, TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_1
+	ld de, TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_1
 	call Route20HideObjectScript
-	ld a, TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_2
+	ld de, TOGGLE_SEAFOAM_ISLANDS_B4F_BOULDER_2
 	call Route20HideObjectScript
 	ret
 
+; de = global toggleable object index
 Route20ShowObjectScript:
-	ld [wToggleableObjectIndex], a
 	predef_jump ShowObject
 
+; de = global toggleable object index
 Route20HideObjectScript:
-	ld [wToggleableObjectIndex], a
 	predef_jump HideObject
 
 Route20_ScriptPointers:

@@ -116,8 +116,7 @@ PokemonTower2FRivalExitsScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_POKEMON_TOWER_2F_RIVAL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_POKEMON_TOWER_2F_RIVAL
 	predef HideObject
 	xor a
 	ld [wJoyIgnore], a

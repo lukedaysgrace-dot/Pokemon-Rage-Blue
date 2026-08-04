@@ -20,8 +20,7 @@ Route13UpdateMewVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret z
-	ld a, TOGGLE_ROUTE_13_MEW
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_13_MEW
 	predef_jump ShowObject
 .hide
 	ld a, ROUTE13_MEW
@@ -31,8 +30,7 @@ Route13UpdateMewVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret nz
-	ld a, TOGGLE_ROUTE_13_MEW
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_13_MEW
 	predef_jump HideObject
 
 Route13_ScriptPointers:

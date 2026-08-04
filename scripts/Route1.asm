@@ -87,8 +87,7 @@ Route1OakExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_ROUTE_1_OAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_1_OAK
 	predef HideObject
 	jp Route1ResetScript
 
@@ -105,8 +104,7 @@ Route1UpdateOakVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret z
-	ld a, TOGGLE_ROUTE_1_OAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_1_OAK
 	predef_jump ShowObject
 .hideOak
 	ld a, ROUTE1_OAK
@@ -116,8 +114,7 @@ Route1UpdateOakVisibility:
 	ldh a, [hIsToggleableObjectOff]
 	and a
 	ret nz
-	ld a, TOGGLE_ROUTE_1_OAK
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_ROUTE_1_OAK
 	predef_jump HideObject
 
 ; Own all 151 Kanto dex entries (#1–#151), including MEW.

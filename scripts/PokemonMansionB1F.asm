@@ -136,8 +136,7 @@ PokemonMansionB1FGreenAppearsScript:
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	call PokemonMansionB1FSetGreenStartCoords
-	ld a, TOGGLE_POKEMON_MANSION_B1F_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_POKEMON_MANSION_B1F_GREEN
 	predef ShowObject
 	call UpdateSprites
 	ld c, 12
@@ -301,11 +300,9 @@ PokemonMansionB1FGreenReactsToMewScript:
 	call SetSpriteFacingDirectionAndDelay
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
-	ld a, TOGGLE_POKEMON_MANSION_B1F_MEW
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_POKEMON_MANSION_B1F_MEW
 	predef HideObject
-	ld a, TOGGLE_POKEMON_MANSION_B1F_BALL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_POKEMON_MANSION_B1F_BALL
 	predef ShowObject
 	call UpdateSprites
 	ld de, PokemonMansionB1FBallMovement
@@ -325,8 +322,7 @@ PokemonMansionB1FBallMovingScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_POKEMON_MANSION_B1F_BALL
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_POKEMON_MANSION_B1F_BALL
 	predef HideObject
 	call UpdateSprites
 	ld a, PAD_CTRL_PAD
@@ -351,8 +347,7 @@ PokemonMansionB1FBallMovingScript:
 	ldh [hSpriteIndex], a
 	call SetSpriteFacingDirectionAndDelay
 	call PokemonMansionB1FSetMewAndBallCaptureCoords
-	ld a, TOGGLE_POKEMON_MANSION_B1F_MEW
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_POKEMON_MANSION_B1F_MEW
 	predef ShowObject
 	call UpdateSprites
 	ld c, 12
@@ -373,8 +368,7 @@ PokemonMansionB1FGreenExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, TOGGLE_POKEMON_MANSION_B1F_GREEN
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_POKEMON_MANSION_B1F_GREEN
 	predef HideObject
 	xor a
 	ld [wJoyIgnore], a

@@ -18,21 +18,17 @@ Route25ToggleBillsScript:
 	CheckEventReuseHL EVENT_MET_BILL_2
 	jr nz, .met_bill
 	ResetEventReuseHL EVENT_BILL_SAID_USE_CELL_SEPARATOR
-	ld a, TOGGLE_BILL_POKEMON
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_BILL_POKEMON
 	predef_jump ShowObject
 .met_bill
 	CheckEventAfterBranchReuseHL EVENT_GOT_SS_TICKET, EVENT_MET_BILL_2
 	ret z
 	SetEventReuseHL EVENT_LEFT_BILLS_HOUSE_AFTER_HELPING
-	ld a, TOGGLE_NUGGET_BRIDGE_GUY
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_NUGGET_BRIDGE_GUY
 	predef HideObject
-	ld a, TOGGLE_BILL_1
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_BILL_1
 	predef HideObject
-	ld a, TOGGLE_BILL_2
-	ld [wToggleableObjectIndex], a
+	ld de, TOGGLE_BILL_2
 	predef_jump ShowObject
 
 Route25_ScriptPointers:
