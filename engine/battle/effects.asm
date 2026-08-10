@@ -96,6 +96,11 @@ PoisonEffect:
 	ld a, [hld]
 	cp POISON ; can't poison a poison-type target
 	jr z, .noEffect
+; steel-types can't be poisoned by poison-type moves (Twineedle etc. still can);
+; the check lives in another bank, and it returns hl = target's Type1 address
+; because callfar/Bankswitch clobbers hl
+	callfar CheckPoisonableTarget_
+	jp z, .noEffect
 	ld a, [de]
 	cp POISON_SIDE_EFFECT1
 	ld b, 20 percent + 1 ; chance of poisoning
@@ -1148,20 +1153,7 @@ MistEffect:
 	jpfar MistEffect_
 
 FocusEnergyEffect:
-	ld hl, wPlayerBattleStatus2
-	ldh a, [hWhoseTurn]
-	and a
-	jr z, .focusEnergyEffect
-	ld hl, wEnemyBattleStatus2
-.focusEnergyEffect
-	set GETTING_PUMPED, [hl]
-	call PlayCurrentMoveAnimation
-	ld hl, GettingPumpedText
-	jp PrintText
-
-GettingPumpedText:
-	text_far _GettingPumpedText
-	text_end
+	jpfar FocusEnergyEffect_
 
 RecoilEffect:
 	jpfar RecoilEffect_

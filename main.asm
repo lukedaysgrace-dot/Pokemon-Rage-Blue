@@ -269,6 +269,8 @@ INCLUDE "engine/events/hidden_events/indigo_plateau_hq.asm"
 SECTION "Battle Engine 9", ROMX
 
 INCLUDE "engine/battle/experience.asm"
+INCLUDE "engine/battle/move_effects/focus_energy.asm"
+INCLUDE "engine/battle/move_effects/check_poisonable.asm"
 
 
 SECTION "Diploma", ROMX
