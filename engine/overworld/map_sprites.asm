@@ -303,6 +303,7 @@ GetCurrentMapSpriteSetID::
 	ld a, [hl]
 	cp FIRST_SPLIT_SET - 1
 	call nc, GetSplitMapSpriteSetID
+	ld d, a ; Bankswitch preserves de, so farcall callers can safely read the ID
 	scf
 	ret
 

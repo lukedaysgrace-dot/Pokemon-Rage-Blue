@@ -23,15 +23,37 @@ void parse_args(int argc, char *argv[], bool *uncomp) {
 	}
 }
 
-uint8_t output[15 * 15 * 0x10];
+enum { MAX_WIDTH = 15, MAX_OUTPUT_SIZE = MAX_WIDTH * MAX_WIDTH * 0x10 };
+
+uint8_t *output;
+size_t output_capacity;
+size_t input_size;
 int cur_bit;
 int cur_byte;
+
+void ensure_output_capacity(size_t size) {
+	if (size <= output_capacity) {
+		return;
+	}
+
+	size_t new_capacity = output_capacity ? output_capacity : MAX_OUTPUT_SIZE;
+	while (new_capacity < size) {
+		if (new_capacity > SIZE_MAX / 2) {
+			error_exit("Compressed output is too large\n");
+		}
+		new_capacity *= 2;
+	}
+	output = xrealloc(output, new_capacity);
+	memset(output + output_capacity, 0, new_capacity - output_capacity);
+	output_capacity = new_capacity;
+}
 
 void write_bit(int bit) {
 	if (++cur_bit == 8) {
 		cur_byte++;
 		cur_bit = 0;
 	}
+	ensure_output_capacity((size_t)cur_byte + 1);
 	output[cur_byte] |= bit << (7 - cur_bit);
 }
 
@@ -39,6 +61,9 @@ int read_bit(uint8_t *data) {
 	if (cur_bit == -1) {
 		cur_byte++;
 		cur_bit = 7;
+	}
+	if (cur_byte < 0 || (size_t)cur_byte >= input_size) {
+		error_exit("Unexpected end of compressed data\n");
 	}
 	return (data[cur_byte] >> cur_bit--) & 1;
 }
@@ -126,7 +151,7 @@ int interpret_compress(uint8_t *planes[2], int mode, int order, int width) {
 	}
 	cur_bit = 7;
 	cur_byte = 0;
-	memset(output, 0, COUNTOF(output));
+	memset(output, 0, output_capacity);
 	output[0] = (width << 4) | width;
 	write_bit(order);
 	uint8_t bit_groups[15 * 4 * 15 * 8] = {0};
@@ -207,7 +232,8 @@ int compress(uint8_t *data, long filesize) {
 		planes[0][i] = data[i * 2];
 		planes[1][i] = data[i * 2 + 1];
 	}
-	uint8_t current[COUNTOF(output)] = {0};
+	uint8_t *current = NULL;
+	size_t current_size = 0;
 	int compressed_size = -1;
 	for (int mode = 0; mode < 3; mode++) {
 		for (int order = 0; order < 2; order++) {
@@ -217,16 +243,18 @@ int compress(uint8_t *data, long filesize) {
 			int new_size = interpret_compress(planes, mode, order, width);
 			if (compressed_size == -1 || new_size < compressed_size) {
 				compressed_size = new_size;
-				memset(current, 0, COUNTOF(current));
-				memcpy(current, output, compressed_size / 8);
+				current_size = (size_t)compressed_size / 8;
+				current = xrealloc(current, current_size);
+				memcpy(current, output, current_size);
 			}
 		}
 	}
-	memset(output, 0, COUNTOF(output));
-	memcpy(output, current, compressed_size / 8);
+	memset(output, 0, output_capacity);
+	memcpy(output, current, current_size);
+	free(current);
 	free(planes[0]);
 	free(planes[1]);
-	return compressed_size / 8;
+	return (int)current_size;
 }
 
 int read_int(uint8_t *data, int count) {
@@ -309,9 +337,14 @@ void uncompress_plane(uint8_t *plane, int width) {
 	}
 }
 
-int uncompress(uint8_t *data) {
+int uncompress(uint8_t *data, size_t input_bytes) {
+	input_size = input_bytes;
+	cur_byte = 0;
 	cur_bit = 7;
 	int width = read_int(data, 4);
+	if (width < 1 || width > MAX_WIDTH) {
+		error_exit("Invalid image width: %d\n", width);
+	}
 	if (read_int(data, 4) != width) {
 		error_exit("Image is not a square");
 	}
@@ -349,16 +382,19 @@ int main(int argc, char *argv[]) {
 
 	argc -= optind;
 	argv += optind;
-	if (argc < 1) {
+	if (argc != 2) {
 		usage_exit(1);
 	}
+	output_capacity = MAX_OUTPUT_SIZE;
+	output = xcalloc(output_capacity);
 
 	long filesize;
 	uint8_t *data = read_u8(argv[0], &filesize);
 
-	int output_size = uncomp ? uncompress(data) : compress(data, filesize);
+	int output_size = uncomp ? uncompress(data, (size_t)filesize) : compress(data, filesize);
 	write_u8(argv[1], output, output_size);
 
 	free(data);
+	free(output);
 	return 0;
 }

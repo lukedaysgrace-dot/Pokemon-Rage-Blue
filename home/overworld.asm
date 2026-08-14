@@ -684,7 +684,7 @@ CheckMapConnections::
 ; PEWTER_CERULEAN), reload the set. Matching sets skip the VBlank copy so
 ; same-set connections keep moving smoothly.
 	farcall GetCurrentMapSpriteSetID
-	ld b, a
+	ld b, d ; farcall/Bankswitch clobbers a but preserves d
 	ld a, [wFontLoaded]
 	bit BIT_FONT_LOADED, a
 	jr nz, .reloadMapSprites

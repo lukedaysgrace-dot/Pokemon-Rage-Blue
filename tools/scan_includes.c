@@ -25,7 +25,41 @@ void parse_args(int argc, char *argv[], bool *strict) {
 	}
 }
 
-void scan_file(const char *filename, bool strict) {
+struct IncludeStack {
+	const char *filename;
+	const struct IncludeStack *parent;
+};
+
+bool is_safe_dependency_path(const char *path) {
+	if (!*path) {
+		return false;
+	}
+	for (const unsigned char *ptr = (const unsigned char *)path; *ptr; ptr++) {
+		if (!((*ptr >= 'a' && *ptr <= 'z') ||
+		      (*ptr >= 'A' && *ptr <= 'Z') ||
+		      (*ptr >= '0' && *ptr <= '9') ||
+		      strchr("/._-", *ptr))) {
+			return false;
+		}
+	}
+	return true;
+}
+
+void print_dependency(const char *path, const char *filename) {
+	if (!is_safe_dependency_path(path)) {
+		error_exit("Unsafe or empty dependency path in \"%s\"\n", filename);
+	}
+	printf("%s ", path);
+}
+
+void scan_file(const char *filename, bool strict, const struct IncludeStack *stack) {
+	for (const struct IncludeStack *entry = stack; entry; entry = entry->parent) {
+		if (!strcmp(entry->filename, filename)) {
+			error_exit("Circular INCLUDE involving \"%s\"\n", filename);
+		}
+	}
+	const struct IncludeStack current = {filename, stack};
+
 	errno = 0;
 	FILE *f = fopen(filename, "rb");
 	if (!f) {
@@ -48,28 +82,33 @@ void scan_file(const char *filename, bool strict) {
 			break;
 		}
 		switch (*ptr) {
-		case ';':
+		case ';': {
 			// Skip comments until the end of the line
-			ptr += strcspn(ptr + 1, "\r\n");
-			if (*ptr) {
-				ptr++;
+			char *newline = strpbrk(ptr + 1, "\r\n");
+			if (!newline) {
+				ptr = contents + size - 1;
+			} else {
+				ptr = newline;
 			}
 			break;
+		}
 
-		case '"':
+		case '"': {
 			// Skip string literal until the closing quote
-			ptr += strcspn(ptr + 1, "\"");
-			if (*ptr) {
-				ptr++;
+			char *closing_quote = strchr(ptr + 1, '"');
+			if (!closing_quote) {
+				error_exit("Unterminated string literal in \"%s\"\n", filename);
 			}
+			ptr = closing_quote;
 			break;
+		}
 
 		case 'I':
 		case 'i':
 			/* empty statement between the label and the variable declaration */;
 			// Check that an INCLUDE/INCBIN starts as its own token
 			char before = ptr > contents ? *(ptr - 1) : '\n';
-			if (!isspace((unsigned)before) && before != ':') {
+			if (!isspace((unsigned char)before) && before != ':') {
 				break;
 			}
 			bool is_incbin = !strncmp(ptr, "INCBIN", 6) || !strncmp(ptr, "incbin", 6);
@@ -77,7 +116,7 @@ void scan_file(const char *filename, bool strict) {
 			if (is_incbin || is_include) {
 				// Check that an INCLUDE/INCBIN ends as its own token
 				ptr += is_include ? 7 : 6;
-				if (!isspace((unsigned)*ptr) && *ptr != '"') {
+				if (!isspace((unsigned char)*ptr) && *ptr != '"') {
 					break;
 				}
 				ptr += strspn(ptr, " \t");
@@ -85,13 +124,16 @@ void scan_file(const char *filename, bool strict) {
 					// Print the file path and recursively scan INCLUDEs
 					ptr++;
 					char *include_path = ptr;
-					size_t length = strcspn(ptr, "\"");
-					ptr += length + 1;
-					include_path[length] = '\0';
-					printf("%s ", include_path);
-					if (is_include) {
-						scan_file(include_path, strict);
+					char *closing_quote = strchr(ptr, '"');
+					if (!closing_quote) {
+						error_exit("Unterminated INC%s path in \"%s\"\n", is_include ? "LUDE" : "BIN", filename);
 					}
+					*closing_quote = '\0';
+					print_dependency(include_path, filename);
+					if (is_include) {
+						scan_file(include_path, strict, &current);
+					}
+					ptr = closing_quote;
 				} else {
 					fprintf(stderr, "%s: no file path after INC%s\n", filename, is_include ? "LUDE" : "BIN");
 					// Continue to process a comment
@@ -117,6 +159,6 @@ int main(int argc, char *argv[]) {
 		usage_exit(1);
 	}
 
-	scan_file(argv[0], strict);
+	scan_file(argv[0], strict, NULL);
 	return 0;
 }
