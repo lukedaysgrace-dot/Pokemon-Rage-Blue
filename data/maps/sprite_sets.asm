@@ -220,9 +220,11 @@ SpriteSets:
 	db SPRITE_GAMBLER
 	db SPRITE_SEEL
 	db SPRITE_OAK
+	db SPRITE_SWIMMER
+	; Slots 10-11 are the only two 4-tile ("still") VRAM slots. SPRITE_MEW was
+	; in slot 9, so it was assigned a 12-tile walking slot and rendered garbage.
 	db SPRITE_MEW
 	db SPRITE_POKE_BALL
-	db SPRITE_GAMBLER_ASLEEP
 
 ; SPRITESET_CERULEAN_CITY
 	db SPRITE_YOUNGSTER

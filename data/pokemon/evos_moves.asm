@@ -1317,7 +1317,7 @@ KrabbyEvosMoves:
 	db 20, BUBBLEBEAM
 	db 24, STOMP
 	db 28, CRABHAMMER
-	db 34,
+	db 34, BODY_SLAM
 	db 0
 MareepEvosMoves:
 ; Evolutions
