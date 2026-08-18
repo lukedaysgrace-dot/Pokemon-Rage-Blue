@@ -987,6 +987,11 @@ ENDC
 	ld c, 2
 	call DelayFrames
 
+; GbcPrepareVBlank runs from the LCD interrupt during those frames and leaves
+; rWBK at 0, so bank 2 has to be re-selected or this store lands in bank 1
+; (inside wEventFlags) and the palette refresh never gets signalled.
+	ld a, 2
+	ldh [rWBK], a
 	ld a, 1
 	ld [W2_ForceBGPUpdate], a ; Signal to update palettes
 	ldh [rWBK], a

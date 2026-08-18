@@ -362,7 +362,7 @@ wElevatorWarpMaps:: ds 11 * 2
 NEXTU
 ; List of bag items that has been filtered to a certain type of items,
 ; such as drinks or fossils.
-wFilteredBagItems:: ds 4
+wFilteredBagItems:: ds 8
 
 NEXTU
 ; Saved copy of OAM for the first frame of the animation to make it easy to

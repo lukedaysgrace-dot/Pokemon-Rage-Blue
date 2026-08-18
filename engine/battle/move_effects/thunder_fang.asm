@@ -1,4 +1,7 @@
 ThunderFangEffect_:
+	xor a
+	ld [wAnimationType], a ; as FreezeBurnParalyzeEffect does; else the hud shake
+	                       ; plays with the move's own animation type still set
 ; 10% chance to paralyze the target and an independent 10% chance to flinch.
 ; NOTE: this file lives outside the battle-core bank. Bankswitch (used by
 ; callfar) clobbers a, b, c, and hl on the way back, so a value returned in a

@@ -108,6 +108,7 @@ DisplayNamingScreen:
 	jr .iconSpeciesDone
 .iconFromCurSpecies
 	ld [wMonPartySpriteSpecies], a
+	jr .iconSpeciesDone
 .iconSpeciesReady:
 	xor a
 	ld [wMonPartySpriteSpecies], a

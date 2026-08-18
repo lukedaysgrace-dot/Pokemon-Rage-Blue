@@ -103,6 +103,10 @@ LoadMapSpriteTilePatterns:
 	cp SPRITE_UNUSED_GAMBLER_ASLEEP_2
 	jr c, .notFourTileSprite
 .checkPokemonRanges
+	; SPRITE_MEW sits inside the NINJA..CHARMANDER 12-tile range but its sheet
+	; is only 4 tiles, so it must be classified as a still sprite.
+	cp SPRITE_MEW
+	jr z, .checkStillCutoff
 	cp SPRITE_NINJA
 	jr c, .checkAddedPokemonRanges
 	cp SPRITE_CHARMANDER

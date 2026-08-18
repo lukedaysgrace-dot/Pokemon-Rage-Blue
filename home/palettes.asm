@@ -5,7 +5,11 @@ RestoreScreenTilesAndReloadTilePatterns::
 	call ReloadMapSpriteTilePatterns
 	call LoadScreenTilesFromBuffer2
 	call LoadTextBoxTilePatterns
-	call LoadTilesetTilePatternData
+; LoadTilesetTilePatternData ends in FarCopyData2 -> CopyData, an ungated
+; $600-byte VRAM write, and the LCD is back on by now (ReloadMapSpriteTilePatterns
+; re-enabled it). ReloadTilesetTilePatterns is the same load wrapped in
+; SwitchToMapRomBank + DisableLCD/EnableLCD, and costs no extra ROM0.
+	call ReloadTilesetTilePatterns
 	call RunDefaultPaletteCommand
 	jr Delay3
 

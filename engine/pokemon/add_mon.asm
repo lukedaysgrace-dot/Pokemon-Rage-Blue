@@ -624,10 +624,14 @@ _AddEnemyMonToPlayerParty::
 	ld a, PERFECT_DV_BYTE
 	ld [hli], a
 	ld [hl], a
-	ld h, b
-	ld l, c
-	ld bc, MON_HP_EXP - 1
+	; hl = base + MON_DVS + 1. Do NOT reload from bc here: bc was overwritten by
+	; the `ld bc, MON_DVS` above, so it no longer holds the struct base.
+	ld bc, MON_MAXHP - (MON_DVS + 1)
 	add hl, bc
+	ld d, h
+	ld e, l ; de = stat destination; CalcStats writes 10 bytes to [de]
+	ld bc, (MON_HP_EXP - 1) - MON_MAXHP
+	add hl, bc ; hl = base + MON_HP_EXP - 1
 	ld b, $0
 	call CalcStats
 	ld hl, wPartyMonOT

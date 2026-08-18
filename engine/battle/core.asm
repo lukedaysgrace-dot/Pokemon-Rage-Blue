@@ -6919,11 +6919,18 @@ SubThreeByteNum:
 	inc hl
 	ld [de], a
 	jr nc, .noCarry
+; Bytes are processed most-significant first, so a borrow has to be applied to
+; the bytes already written. Keep propagating while the byte being decremented
+; was itself 0, otherwise a borrow past a 00 byte is silently dropped.
+	push de
+.borrow
 	dec de
 	ld a, [de]
 	dec a
 	ld [de], a
-	inc de
+	inc a ; was the byte 0 before the dec?
+	jr z, .borrow
+	pop de
 .noCarry
 	inc de
 	ret

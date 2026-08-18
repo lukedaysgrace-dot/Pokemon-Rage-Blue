@@ -170,7 +170,7 @@ AIMoveChoiceModification1:
 	jr nz, .end_bothusedigorfly	;player is already in dig/fly invulnerability if nz, so move on
 	call StrCmpSpeed
 	jr z, .end_bothusedigorfly	;speeds equal if z, so move on
-	jr c, .end_bothusedigorfly	;speed is less than player if carry, so move on
+	jr nc, .end_bothusedigorfly	;carry clear = AI is slower than player, so move on
 	;else AI is faster than player
 	;discourage because AI will miss and player will hit
 	inc [hl]

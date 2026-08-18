@@ -236,7 +236,7 @@ TryPromptStopSurfingIfPossible::
 	cp b
 	jr z, .ask
 	cp $ff
-	ret nz
+	jr nz, .passLoop
 	ret
 .ask
 	call FieldHMBeforePrintText
@@ -488,8 +488,10 @@ CloseFieldHMAfterText::
 	call GBPalWhiteOutWithDelay3
 	ldh a, [hLoadedROMBank]
 	push af
-	ld a, [wCurMap]
-	call SwitchToMapRomBank
+; Do NOT call SwitchToMapRomBank here: this routine runs from ROMX, so remapping
+; $4000-$7fff makes its `ret` land in the map's bank and execute map data.
+; Nothing below needs the map bank - LoadCurrentMapView banks itself from
+; wTilesetBank, InitMapSprites is a farcall, and the rest is ROM0.
 	ld a, $90
 	ldh [hWY], a
 	call DelayFrame

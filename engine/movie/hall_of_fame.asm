@@ -212,8 +212,10 @@ HoFLoadPlayerPics:
 	ld a, BANK(RedPicBack)
 .hofBackPicBankReady
 	call UncompressSpriteFromDE
-	ld de, vBackPic
+; ScaleSpriteByTwo does not call GetPredefRegisters and overwrites de, so the
+; InterlaceMergeSpriteBuffers destination has to be loaded after it.
 	predef ScaleSpriteByTwo
+	ld de, vBackPic
 	jp InterlaceMergeSpriteBuffers
 
 HoFLoadMonPlayerPicTileIDs:
