@@ -143,7 +143,7 @@ ENDC
 	ld c, a
 	ld b, FLAG_TEST
 	ld hl, wPokedexOwned
-	call FlagAction
+	predef FlagActionPredef ; not a direct call: FlagAction is in another bank
 	ld a, c ; whether the mon was already flagged as owned
 	ld [wUnusedAlreadyOwnedFlag], a
 	ld a, [wPokedexNum]
@@ -151,10 +151,10 @@ ENDC
 	ld c, a
 	ld b, FLAG_SET
 	push bc
-	call FlagAction
+	predef FlagActionPredef ; not a direct call: FlagAction is in another bank
 	pop bc
 	ld hl, wPokedexSeen
-	call FlagAction
+	predef FlagActionPredef ; not a direct call: FlagAction is in another bank
 
 	pop hl
 	push hl
@@ -665,10 +665,10 @@ _AddEnemyMonToPlayerParty::
 	ld b, FLAG_SET
 	ld hl, wPokedexOwned
 	push bc
-	call FlagAction ; add to owned pokemon
+	predef FlagActionPredef ; add to owned pokemon (predef: FlagAction is in another bank)
 	pop bc
 	ld hl, wPokedexSeen
-	call FlagAction ; add to seen pokemon
+	predef FlagActionPredef ; add to seen pokemon
 	and a
 	ret                  ; return success
 
