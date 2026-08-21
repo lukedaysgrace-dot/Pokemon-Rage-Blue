@@ -9,7 +9,7 @@ TryEvolvingMon:
 	call Evolution_FlagAction
 
 ; this is only called after battle
-; it is supposed to do level up evolutions, though there is a bug that allows item evolutions to occur
+; item evolution entries are skipped in this path
 EvolutionAfterBattle:
 	ldh a, [hTileAnimations]
 	push af
@@ -94,9 +94,10 @@ Evolution_PartyMonLoop: ; loop over party mons
 	jr .doEvolution
 .checkItemEvo
 	ld a, [hli]
-	; Bug: Wild encounters can cause stone evolutions without
-	; having any stones available. This was fixed in Yellow.
 	ld b, a ; evolution item
+	ld a, [wForceEvolution]
+	and a
+	jp z, .nextEvoEntry1 ; stone evolutions only occur while using an item
 	ld a, [wCurItem] ; same as [wCurPartySpecies]
 	cp b ; was the evolution item in this entry used?
 	jp nz, .nextEvoEntry1 ; if not, go to the next evolution entry
