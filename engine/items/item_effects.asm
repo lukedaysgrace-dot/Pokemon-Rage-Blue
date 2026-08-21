@@ -473,15 +473,9 @@ ItemUseBall:
 
 	push hl
 
-; Bug: If the Pokémon is transformed, the Pokémon is assumed to be a Ditto.
-; This is a bug because a wild Pokémon could have used Transform via
-; Mirror Move even though the only wild Pokémon that knows Transform is Ditto.
 	ld hl, wEnemyBattleStatus3
 	bit TRANSFORMED, [hl]
-	jr z, .notTransformed
-	ld a, DITTO
-	ld [wEnemyMonSpecies2], a
-	jr .skip6
+	jr nz, .skip6 ; wEnemyMonSpecies2 still contains the original species
 
 .notTransformed
 ; If the Pokémon is not transformed, set the transformed bit and copy the
@@ -2096,7 +2090,6 @@ ItemUsePPRestore:
 	jr nz, .afterRestoringPP
 	jp .noEffect
 ; unsets zero flag if PP was restored, sets zero flag if not
-; however, this is bugged for Max Ethers and Max Elixirs (see below)
 .restorePP
 	xor a ; PLAYER_PARTY_DATA
 	ld [wMonDataLocation], a
@@ -2131,10 +2124,7 @@ ItemUsePPRestore:
 	ret
 .fullyRestorePP
 	ld a, [hl] ; move PP
-; Bug: This code doesn't mask out the upper two bits, which are used to count
-; how many PP Ups have been used on the move.
-; So, Max Ethers and Max Elixirs will not be detected as having no effect on
-; a move with full PP if the move has had any PP Ups used on it.
+	and PP_MASK
 	cp b ; does current PP equal max PP?
 	ret z
 	jr .storeNewAmount

@@ -738,14 +738,6 @@ db CHIEF, 1, 5, SWORDS_DANCE, SLASH, AGILITY, RAZOR_WIND
 ; Tauros L76
 db CHIEF, 1, 6, HYPER_BEAM, DOUBLE_EDGE, STOMP, REST
 
-; --- Chief — MissingNo superboss (CHIEF, wTrainerNo 3) ---
-; MissingNo
-db CHIEF, 3, 1, LEECH_SEED, TOXIC, SUPER_FANG, NIGHT_SHADE
-; MissingNo
-db CHIEF, 3, 2, EARTHQUAKE, HYPER_BEAM, CONFUSE_RAY, SPORE
-; MissingNo
-db CHIEF, 3, 3, PSYCHIC_M, BLIZZARD, THUNDER_WAVE, REST
-
 ; --- Route 5 Green (wTrainerNo 1–3; starter depends on player choice) ---
 
 ; --- Green — final starter is Bulbasaur (wTrainerNo 1) ---

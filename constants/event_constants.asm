@@ -806,7 +806,7 @@ DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 	const EVENT_SEAFOAM4_BOULDER2_DOWN_HOLE
 	const_skip 8
 	const EVENT_BEAT_ARTICUNO
-; Postgame: set when each rematch is won (gates Pallet final rival)
+; Postgame: set when each gym, Elite Four, and Champion rematch is won
 	const EVENT_REMATCH_DEFEATED_BROCK
 	const EVENT_REMATCH_DEFEATED_MISTY
 	const EVENT_REMATCH_DEFEATED_LT_SURGE

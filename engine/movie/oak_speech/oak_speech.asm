@@ -128,16 +128,8 @@ OakSpeech:
 	ld hl, OakSpeechText3
 	call PrintText
 .next
-	ldh a, [hLoadedROMBank]
-	push af
 	ld a, SFX_SHRINK
 	call PlaySound
-	pop af
-; bug: switching ROM Bank should not happen outside of Home Bank
-; This code does nothing, as PlaySound does all necessary Bank switch
-; It looks like a leftover from an early development stage
-	ldh [hLoadedROMBank], a
-	ld [rROMB], a
 	ld c, 4
 	call DelayFrames
 	ld de, RedSprite
@@ -160,8 +152,6 @@ OakSpeech:
 	lb bc, BANK(ShrinkPic2), $00
 	call IntroDisplayPicCenteredOrUpperRight
 	call ResetPlayerSpriteData
-	ldh a, [hLoadedROMBank]
-	push af
 	ld a, BANK(Music_PalletTown)
 	ld [wAudioROMBank], a
 	ld [wAudioSavedROMBank], a
@@ -170,10 +160,6 @@ OakSpeech:
 	ld a, SFX_STOP_ALL_MUSIC
 	ld [wNewSoundID], a
 	call PlaySound
-	pop af
-; bug: switching ROM Bank should not happen outside of Home Bank
-	ldh [hLoadedROMBank], a
-	ld [rROMB], a
 	ld c, 20
 	call DelayFrames
 	hlcoord 6, 5

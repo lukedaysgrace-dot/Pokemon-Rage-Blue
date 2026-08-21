@@ -1348,11 +1348,9 @@ AdjustOAMBlockYPos2:
 	ld a, [hl]
 	add b
 	cp 112
-	jr c, .skipSettingPreviousEntrysAttribute
-	dec hl
-	ld a, 160 ; bug, sets previous OAM entry's attribute
-	ld [hli], a
-.skipSettingPreviousEntrysAttribute
+	jr c, .storeY
+	ld a, 160
+.storeY
 	ld [hl], a
 	add hl, de
 	dec c
@@ -1842,10 +1840,7 @@ _AnimationSlideMonOff:
 .PlayerNextTile
 	ld a, [hl]
 	add 7
-; This is a bug. The lower right corner tile of the mon back pic is blanked
-; while the mon is sliding off the screen. It should compare with the max tile
-; plus one instead.
-	cp $61
+	cp $62
 	ret c
 	ld a, ' '
 	ret

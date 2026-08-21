@@ -44,6 +44,7 @@ jobs:
         if: ${{ github.repository_owner != 'pret' }}
         run: |
           make -j$(nproc)
+          make audit
           .github/checkdiff.sh
 
       - name: Checkout symbols
@@ -100,4 +101,5 @@ jobs:
         if: ${{ github.repository_owner != 'pret' }}
         run: |
           make -j$(sysctl -n hw.ncpu)
+          make audit
           .github/checkdiff.sh
