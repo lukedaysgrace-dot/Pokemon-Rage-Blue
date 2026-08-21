@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Calculate trainer EXP and derive level targets for late-game progression."""
+"""Model the current late-game EXP curve and derive optional level targets."""
 
 from __future__ import annotations
 
+import argparse
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -208,7 +209,7 @@ def parse_parties(text: str) -> dict[str, list[list[tuple[str, int]]]]:
     current_parties: list = []
 
     for line in text.splitlines():
-        stripped = line.strip()
+        stripped = line.split(";", 1)[0].strip()
         if not stripped or stripped.startswith(";"):
             continue
         m = re.match(r"^(\w+Data):", stripped)
@@ -257,7 +258,7 @@ def assign_party_levels(party: list[tuple[str, int]], anchor: int, boss: bool) -
         return [anchor - 1] * (n - 1) + [anchor + 1]
     if n == 2:
         return [anchor - 1, anchor]
-    return [anchor - 1, anchor, anchor, anchor + 1][:n]
+    return [anchor - 1] + [anchor] * (n - 2) + [anchor + 1]
 
 
 def fight_exp(party: list[tuple[str, int]], levels: list[int], base_exp: dict[str, int]) -> int:
@@ -276,6 +277,7 @@ class LevelAssignment:
     species: list[str]
     boss: bool
     section: str
+    anchor: int
 
 
 def propagate_starter_variants(
@@ -294,11 +296,17 @@ def propagate_starter_variants(
             if len(species) != len(base.levels):
                 continue
             assignments[(label, idx)] = LevelAssignment(
-                label, idx, list(base.levels), species, base.boss, base.section
+                label,
+                idx,
+                list(base.levels),
+                species,
+                base.boss,
+                base.section,
+                base.anchor,
             )
 
 
-def main() -> None:
+def main(*, apply: bool = False) -> None:
     base_exp = load_base_exp()
     parties_red = parse_parties(PARTIES_RED.read_text())
     assignments: dict[tuple[str, int], LevelAssignment] = {}
@@ -306,7 +314,7 @@ def main() -> None:
     player_exp = exp_for_level(38)
     player_level = 38
 
-    print("=== EXP-based progression (Medium Slow, 4 mons sharing EXP) ===\n")
+    print("=== Current EXP progression (Medium Slow, 4 mons sharing EXP) ===\n")
     print(f"Start: L{player_level} ({player_exp} exp)\n")
 
     for section in SECTION_ORDER:
@@ -319,7 +327,8 @@ def main() -> None:
             anchor = player_level + (BOSS_OFFSET if enc.boss else REGULAR_OFFSET)
             anchor = max(2, min(100, anchor))
             levels = assign_party_levels(party, anchor, enc.boss)
-            exp = fight_exp(party, levels, base_exp)
+            current_levels = [level for _, level in party]
+            exp = fight_exp(party, current_levels, base_exp)
             section_exp += exp
             player_exp += exp
             player_level = level_from_exp(player_exp)
@@ -334,6 +343,7 @@ def main() -> None:
                     [s for s, _ in party],
                     enc.boss,
                     enc.section,
+                    anchor,
                 )
 
         print(
@@ -344,19 +354,25 @@ def main() -> None:
     propagate_starter_variants(assignments, parties_red)
     print(f"\nFinal level after all fights: L{player_level}\n")
 
-    for path in (PARTIES_RED, PARTIES_BLUE):
-        apply_assignments(path, assignments)
-        print(f"Updated {path.name}")
+    if apply:
+        for path in (PARTIES_RED, PARTIES_BLUE):
+            apply_assignments(path, assignments)
+            print(f"Updated {path.name}")
+    else:
+        print("Dry run: no party files were changed (pass --apply to write the proposal).")
 
-    print("\nBoss / milestone levels:")
+    print("\nBoss / milestone levels (current -> proposal):")
     for enc in ENCOUNTERS:
         if enc.boss and enc.name:
             a = assignments[(enc.data_label, enc.party_index)]
-            print(f"  {enc.name}: ace L{a.levels[-1]}")
+            current = get_party(parties_red, enc.data_label, enc.party_index)
+            current_ace = max(level for _, level in current)
+            print(f"  {enc.name}: ace L{current_ace} -> L{max(a.levels)}")
 
 
 def apply_assignments(path: Path, assignments: dict[tuple[str, int], LevelAssignment]) -> None:
     text = path.read_text()
+    target_parties = parse_parties(text)
     lines = text.splitlines()
     out: list[str] = []
     current_label: str | None = None
@@ -376,13 +392,21 @@ def apply_assignments(path: Path, assignments: dict[tuple[str, int], LevelAssign
             key = (current_label, party_idx)
             if key in assignments:
                 a = assignments[key]
+                species = [
+                    mon_species
+                    for mon_species, _ in get_party(
+                        target_parties, current_label, party_idx
+                    )
+                ]
+                target_party = get_party(target_parties, current_label, party_idx)
+                target_levels = assign_party_levels(target_party, a.anchor, a.boss)
                 indent = line[: len(line) - len(line.lstrip())]
-                if len(a.levels) == 1:
-                    out.append(f"{indent}db {a.levels[0]}, {a.species[0]}, 0")
-                elif all(l == a.levels[0] for l in a.levels):
-                    out.append(f"{indent}db {a.levels[0]}, {', '.join(a.species)}, 0")
+                if len(target_levels) == 1:
+                    out.append(f"{indent}db {target_levels[0]}, {species[0]}, 0")
+                elif all(level == target_levels[0] for level in target_levels):
+                    out.append(f"{indent}db {target_levels[0]}, {', '.join(species)}, 0")
                 else:
-                    parts = [f"{lv}, {sp}" for sp, lv in zip(a.species, a.levels)]
+                    parts = [f"{level}, {mon}" for mon, level in zip(species, target_levels)]
                     out.append(f"{indent}db $FF, {', '.join(parts)}, 0")
                 continue
 
@@ -392,15 +416,12 @@ def apply_assignments(path: Path, assignments: dict[tuple[str, int], LevelAssign
 
 
 if __name__ == "__main__":
-    import sys
-
-    log_path = ROOT / "tools/exp_progression_output.txt"
-    with open(log_path, "w", encoding="utf-8") as log:
-        sys.stdout = log
-        try:
-            main()
-        except Exception:
-            import traceback
-
-            traceback.print_exc()
-            raise
+    parser = argparse.ArgumentParser(
+        description="Model late-game EXP and optionally apply the proposed trainer levels."
+    )
+    parser.add_argument(
+        "--apply",
+        action="store_true",
+        help="write the proposed levels to both trainer party files (default: dry run)",
+    )
+    main(apply=parser.parse_args().apply)
