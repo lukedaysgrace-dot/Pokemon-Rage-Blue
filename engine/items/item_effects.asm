@@ -1365,7 +1365,15 @@ ItemUseMedicine:
 	push hl
 	ld bc, MON_LEVEL
 	add hl, bc ; hl now points to level
+	; on hard mode the gym level cap also applies to Rare Candies
+	push hl
+	callfar GetLevelCap
+	pop hl
+	ld a, [wLevelCap]
+	ld b, a
 	ld a, [hl] ; a = level
+	cp b
+	jr nc, .vitaminNoEffect ; can't raise level above the hard mode cap
 	cp RARE_CANDY_MAX_LEVEL
 	jr nc, .vitaminNoEffect ; can't raise level above 60
 	inc a

@@ -1698,6 +1698,26 @@ _BoyGirlText::
 	line "as a girl?"
 	done
 
+_DifficultyText::
+	text "Choose a game"
+	line "mode."
+	done
+
+_NormalModeText::
+	text "Are you sure?"
+
+	para "Classic #MON"
+	line "rules."
+	done
+
+_HardModeText::
+	text "Are you sure?"
+
+	para "Set mode, no"
+	line "items in battle,"
+	cont "gym level caps."
+	done
+
 _OakSpeechText1::
 	text "Hello there!"
 	line "Welcome to the"
