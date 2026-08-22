@@ -1715,7 +1715,8 @@ _HardModeText::
 
 	para "Set mode, no"
 	line "items in battle,"
-	cont "gym level caps."
+	cont "gym level caps,"
+	cont "trainer Stat EXP."
 	done
 
 _OakSpeechText1::
