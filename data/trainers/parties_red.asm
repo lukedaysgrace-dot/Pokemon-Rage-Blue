@@ -105,6 +105,8 @@ JrTrainerFData:
 ; Route 6
 	db 16, RATTATA, PIKACHU, 0
 	db 16, PIDGEY, PIDGEY, SPEAROW, 0
+; Unused (wTrainerNo 4; retained so later trainer numbers stay aligned)
+	db 22, BULBASAUR, 0
 ; Route 9
 	db 18, ODDISH, BELLSPROUT, ODDISH, BELLSPROUT, 0
 	db 23, MEOWTH, 0
@@ -123,7 +125,6 @@ JrTrainerFData:
 	db 32, GOLDEEN, POLIWHIRL, SEADRA, 0
 ; Route 20
 	db 43, GOLDEEN, SEAKING, 0
-	db 42, TENTACRUEL, SEADRA, SEEL, 0
 ; Rock Tunnel 1F
 	db 22, WEEPINBELL, CLEFAIRY, 0
 	db 20, MEOWTH, ODDISH, PIDGEOTTO, 0
@@ -133,9 +134,8 @@ JrTrainerFData:
 	db 36, ELECTABUZZ, RAICHU, 0
 	db 36, CLEFABLE, 0
 	db 35, WEEPINBELL, GLOOM, TANGELA, 0
-
-; Unused
-	;db 22,BULBASAUR,0
+; Route 20
+	db 42, TENTACRUEL, SEADRA, SEEL, 0
 
 PokemaniacData:
 ; Route 10
@@ -440,6 +440,8 @@ ChiefData:
 ; Unused trainer class; no map or script selects OPP_CHIEF.
 	db $FF, 72, KANGASKHAN, 73, RHYPERIOR, 73, GOLDUCK, 74, PINSIR, 74, SCYTHER, 76, TAUROS, 0
 ScientistData:
+; Unused (wTrainerNo 1; retained so Silph Co. trainer numbers stay aligned)
+	db 34, KOFFING, VOLTORB, 0
 ; Silph Co. 2F
 	db 40, GRIMER, PORYGON, MAGNETON, 0
 	db $FF, 40, MAGNETON, 40, ELECTRODE, 41, MAGNETON, 0
@@ -463,7 +465,7 @@ ScientistData:
 	db $FF, 49, MAGNETON, 50, MAGNETON, 50, PORYGON, 0
 ; Mansion B1F
 	db $FF, 50, MAGNETON, 51, ELECTRODE, 0
-; Unused/joenote - restored and put in Mansion 1F
+; Mansion 1F
 	db $FF, 47, WEEZING, 48, ELECTRODE, 0
 GiovanniData:
 ; Rocket Hideout B4F
