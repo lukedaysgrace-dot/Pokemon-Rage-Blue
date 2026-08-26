@@ -447,3 +447,8 @@ INCLUDE "audio/music/jigglypuffsong.asm"
 INCLUDE "audio/music/halloffame.asm"
 INCLUDE "audio/music/green_compat.asm"
 INCLUDE "audio/music/green.asm"
+
+
+SECTION "Audio 3 Overflow", ROMX
+
+INCLUDE "audio/engine_3_overflow.asm"

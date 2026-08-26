@@ -12,6 +12,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PARTY_LENGTH = 6
 TOGGLEABLE_OBJECTS_PER_MAP = 16
+SPRITE_SET_LENGTH = 11
+WALKING_SPRITES_PER_SET = 9
 
 
 @dataclass(frozen=True)
@@ -28,6 +30,15 @@ def constants(path: Path, prefix: str = "const") -> list[str]:
         if match:
             result.append(match.group(1))
     return result
+
+
+def source_lines(path: Path) -> list[tuple[int, str]]:
+    """Return non-empty assembly source lines with comments removed."""
+    return [
+        (number, line)
+        for number, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1)
+        if (line := raw.split(";", 1)[0].strip())
+    ]
 
 
 def parse_parties(path: Path, species: set[str]) -> tuple[dict[str, list[list[Mon]]], list[str]]:
@@ -552,13 +563,377 @@ def validate_wild_data(species: set[str]) -> list[str]:
     return errors
 
 
+def validate_move_data(moves: list[str]) -> list[str]:
+    """Check move rows and every move reference in species data."""
+    errors: list[str] = []
+    path = ROOT / "data/moves/moves.asm"
+    effects = set(constants(ROOT / "constants/move_effect_constants.asm"))
+    types = set(constants(ROOT / "constants/type_constants.asm"))
+    row = re.compile(
+        r"^move\s+([A-Z][A-Z0-9_]*),\s*([A-Z][A-Z0-9_]*),\s*"
+        r"(\d+),\s*([A-Z][A-Z0-9_]*),\s*(\d+),\s*(\d+)\s*$"
+    )
+    parsed: list[str] = []
+    for number, line in source_lines(path):
+        if not line.startswith("move "):
+            continue
+        match = row.match(line)
+        if not match:
+            errors.append(f"{path.relative_to(ROOT)}:{number}: malformed move row")
+            continue
+        name, effect, power_text, move_type, accuracy_text, pp_text = match.groups()
+        power, accuracy, pp = int(power_text), int(accuracy_text), int(pp_text)
+        parsed.append(name)
+        if effect not in effects:
+            errors.append(f"{path.relative_to(ROOT)}:{number}: unknown effect {effect}")
+        if move_type not in types:
+            errors.append(f"{path.relative_to(ROOT)}:{number}: unknown type {move_type}")
+        if not 0 <= power <= 255:
+            errors.append(f"{path.relative_to(ROOT)}:{number}: power {power} is not a byte")
+        if not 1 <= accuracy <= 100:
+            errors.append(f"{path.relative_to(ROOT)}:{number}: invalid accuracy {accuracy}")
+        if not 1 <= pp <= 40:
+            errors.append(f"{path.relative_to(ROOT)}:{number}: invalid PP {pp}")
+    expected = moves[1 : moves.index("STRUGGLE") + 1]
+    if parsed != expected:
+        for index, (actual, wanted) in enumerate(zip(parsed, expected), 1):
+            if actual != wanted:
+                errors.append(
+                    f"{path.relative_to(ROOT)}: move row {index} is {actual}, expected {wanted}"
+                )
+                break
+        if len(parsed) != len(expected):
+            errors.append(
+                f"{path.relative_to(ROOT)}: has {len(parsed)} move rows, expected {len(expected)}"
+            )
+
+    move_set = set(moves)
+    for stats_path in sorted((ROOT / "data/pokemon/base_stats").glob("*.asm")):
+        raw_lines = stats_path.read_text(encoding="utf-8").splitlines()
+        for number, line in source_lines(stats_path):
+            if line.startswith("tmhm "):
+                referenced = re.findall(r"[A-Z][A-Z0-9_]*", line[5:])
+            elif "level 1 learnset" in raw_lines[number - 1]:
+                referenced = re.findall(r"[A-Z][A-Z0-9_]*", line[3:])
+            else:
+                continue
+            for move in referenced:
+                if move not in move_set:
+                    errors.append(
+                        f"{stats_path.relative_to(ROOT)}:{number}: unknown move {move}"
+                    )
+    return errors
+
+
+def validate_pokemon_data(species: set[str], moves: set[str]) -> list[str]:
+    """Validate National-Dex base rows and internal-ID evolution/learnset data."""
+    errors: list[str] = []
+    types = set(constants(ROOT / "constants/type_constants.asm"))
+    growth_rates = set(constants(ROOT / "constants/pokemon_data_constants.asm"))
+    dex_constants = constants(ROOT / "constants/pokedex_constants.asm")
+    dex_set = set(dex_constants)
+    include_path = ROOT / "data/pokemon/base_stats.asm"
+    includes = [
+        ROOT / match.group(1)
+        for _, line in source_lines(include_path)
+        if (match := re.match(r'^INCLUDE\s+"([^"]+)"$', line))
+    ]
+    if len(includes) != len(dex_constants):
+        errors.append(
+            f"{include_path.relative_to(ROOT)}: {len(includes)} base-stat includes, "
+            f"expected {len(dex_constants)}"
+        )
+    seen_dex: list[str] = []
+    first_stats = re.compile(r"^db\s+(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\s*$")
+    two_types = re.compile(r"^db\s+([A-Z][A-Z0-9_]*),\s*([A-Z][A-Z0-9_]*)\s*$")
+    for stats_path in includes:
+        if not stats_path.is_file():
+            errors.append(f"{include_path.relative_to(ROOT)}: missing {stats_path.relative_to(ROOT)}")
+            continue
+        lines = source_lines(stats_path)
+        dex_rows = [(n, m.group(1)) for n, line in lines if (m := re.match(r"^db\s+(DEX_[A-Z0-9_]+)$", line))]
+        if len(dex_rows) != 1:
+            errors.append(
+                f"{stats_path.relative_to(ROOT)}: expected one Pokédex ID row, found {len(dex_rows)}"
+            )
+        else:
+            number, dex_name = dex_rows[0]
+            seen_dex.append(dex_name)
+            if dex_name not in dex_set:
+                errors.append(f"{stats_path.relative_to(ROOT)}:{number}: unknown {dex_name}")
+        stat_rows = [(n, m) for n, line in lines if (m := first_stats.match(line))]
+        if len(stat_rows) != 1:
+            errors.append(
+                f"{stats_path.relative_to(ROOT)}: expected one five-stat row, found {len(stat_rows)}"
+            )
+        else:
+            number, match = stat_rows[0]
+            for value in map(int, match.groups()):
+                if not 1 <= value <= 255:
+                    errors.append(f"{stats_path.relative_to(ROOT)}:{number}: invalid base stat {value}")
+        type_rows = [(n, m) for n, line in lines if (m := two_types.match(line))]
+        if not 1 <= len(type_rows) <= 2:
+            errors.append(
+                f"{stats_path.relative_to(ROOT)}: expected one type row per version, "
+                f"found {len(type_rows)}"
+            )
+        else:
+            for number, match in type_rows:
+                for mon_type in match.groups():
+                    if mon_type not in types:
+                        errors.append(f"{stats_path.relative_to(ROOT)}:{number}: unknown type {mon_type}")
+        growth_rows = [
+            (n, m.group(1))
+            for n, line in lines
+            if (m := re.match(r"^db\s+(GROWTH_[A-Z0-9_]+)$", line))
+        ]
+        if len(growth_rows) != 1 or growth_rows[0][1] not in growth_rates:
+            errors.append(f"{stats_path.relative_to(ROOT)}: missing or unknown growth rate")
+        pic_rows = [
+            (n, ROOT / m.group(1))
+            for n, line in lines
+            if (m := re.match(r'^INCBIN\s+"([^"]+\.pic)",\s*0,\s*1$', line))
+        ]
+        if len(pic_rows) != 1 or not pic_rows[0][1].is_file():
+            errors.append(f"{stats_path.relative_to(ROOT)}: missing generated front-picture header")
+        else:
+            number, pic_path = pic_rows[0]
+            dimensions = pic_path.read_bytes()[0]
+            height, width = dimensions >> 4, dimensions & 0x0F
+            if not 1 <= height <= 7 or not 1 <= width <= 7:
+                errors.append(
+                    f"{stats_path.relative_to(ROOT)}:{number}: invalid sprite dimensions "
+                    f"{height}x{width} in {pic_path.relative_to(ROOT)}"
+                )
+    if seen_dex != dex_constants:
+        errors.append(
+            f"{include_path.relative_to(ROOT)}: base-stat include order does not match National Dex order"
+        )
+
+    # PokedexOrder bridges internal IDs to the National-Dex-ordered BaseStats table.
+    order_path = ROOT / "data/pokemon/dex_order.asm"
+    order = [
+        match.group(1)
+        for _, line in source_lines(order_path)
+        if (match := re.match(r"^db\s+(DEX_[A-Z0-9_]+|0)$", line))
+    ]
+    nonzero = [entry for entry in order if entry != "0"]
+    if len(nonzero) != len(set(nonzero)):
+        errors.append(f"{order_path.relative_to(ROOT)}: duplicate nonzero Pokédex IDs")
+    missing = dex_set - set(nonzero)
+    extra = set(nonzero) - dex_set
+    if missing or extra:
+        errors.append(
+            f"{order_path.relative_to(ROOT)}: Pokédex mapping mismatch "
+            f"(missing {sorted(missing)}, extra {sorted(extra)})"
+        )
+
+    evos_path = ROOT / "data/pokemon/evos_moves.asm"
+    current: str | None = None
+    in_learnset = False
+    previous_level = 0
+    for number, line in source_lines(evos_path):
+        label = re.match(r"^([A-Za-z][A-Za-z0-9_]*EvosMoves):$", line)
+        if label:
+            current = label.group(1)
+            in_learnset = False
+            previous_level = 0
+            continue
+        if current is None:
+            continue
+        if line == "db 0":
+            if not in_learnset:
+                in_learnset = True
+            else:
+                current = None
+            continue
+        if not line.startswith("db "):
+            continue
+        fields = [field.strip() for field in line[3:].split(",")]
+        if not in_learnset:
+            method = fields[0]
+            try:
+                if method == "EVOLVE_LEVEL" and len(fields) == 3:
+                    level, target = int(fields[1], 0), fields[2]
+                elif method == "EVOLVE_ITEM" and len(fields) == 4:
+                    level, target = int(fields[2], 0), fields[3]
+                elif method == "EVOLVE_TRADE" and len(fields) == 3:
+                    level, target = int(fields[1], 0), fields[2]
+                else:
+                    continue
+            except ValueError:
+                errors.append(f"{evos_path.relative_to(ROOT)}:{number}: malformed evolution")
+                continue
+            if not 1 <= level <= 100:
+                errors.append(f"{evos_path.relative_to(ROOT)}:{number}: invalid evolution level {level}")
+            if target not in species:
+                errors.append(f"{evos_path.relative_to(ROOT)}:{number}: unknown evolution {target}")
+        elif len(fields) == 2:
+            try:
+                level = int(fields[0], 0)
+            except ValueError:
+                continue
+            move = fields[1]
+            if not 1 <= level <= 100:
+                errors.append(f"{evos_path.relative_to(ROOT)}:{number}: invalid learn level {level}")
+            if level < previous_level:
+                errors.append(
+                    f"{evos_path.relative_to(ROOT)}:{number}: learnset level {level} "
+                    f"follows level {previous_level} in {current}"
+                )
+            previous_level = level
+            if move not in moves:
+                errors.append(f"{evos_path.relative_to(ROOT)}:{number}: unknown move {move}")
+    return errors
+
+
+def validate_sprite_sets() -> list[str]:
+    """Protect the unbounded outdoor sprite lookup and fixed VRAM slot layout."""
+    errors: list[str] = []
+    pointer_path = ROOT / "data/sprites/sprites.asm"
+    sprite_tiles: dict[str, int] = {}
+    sprite_labels: dict[str, str] = {}
+    pointer_row = re.compile(
+        r"^overworld_sprite\s+([A-Za-z][A-Za-z0-9_]*),\s*(\d+)\s*$"
+    )
+    for number, raw in enumerate(pointer_path.read_text(encoding="utf-8").splitlines(), 1):
+        line, _, comment = raw.partition(";")
+        match = pointer_row.match(line.strip())
+        sprite = re.search(r"\b(SPRITE_[A-Z0-9_]+)\b", comment)
+        if match and sprite:
+            label, tiles = match.groups()
+            sprite_tiles[sprite.group(1)] = int(tiles)
+            sprite_labels[sprite.group(1)] = label
+    if not sprite_tiles:
+        errors.append(f"{pointer_path.relative_to(ROOT)}: could not parse sprite pointer table")
+
+    gfx_path = ROOT / "gfx/sprites.asm"
+    gfx_rows: dict[str, Path] = {}
+    for asm_path in sorted((ROOT / "gfx").rglob("*.asm")):
+        for _, line in source_lines(asm_path):
+            match = re.match(
+                r'^([A-Za-z][A-Za-z0-9_]*):{1,2}\s+INCBIN\s+"([^"]+\.2bpp)"$',
+                line,
+            )
+            if match:
+                gfx_rows[match.group(1)] = ROOT / match.group(2)
+    for sprite, label in sprite_labels.items():
+        binary = gfx_rows.get(label)
+        if binary is None or not binary.is_file():
+            errors.append(f"{gfx_path.relative_to(ROOT)}: no generated graphics for {sprite} ({label})")
+            continue
+        tiles = sprite_tiles[sprite]
+        # The first block must always be present. Some 12-tile sheets belong to
+        # stationary NPCs and intentionally omit the optional walking block;
+        # some 4-tile PNGs harmlessly contain a second pose.
+        required_bytes = tiles * 16
+        if binary.stat().st_size < required_bytes:
+            errors.append(
+                f"{binary.relative_to(ROOT)}: {binary.stat().st_size} bytes for {sprite}, "
+                f"requires at least {required_bytes}"
+            )
+
+    set_path = ROOT / "data/maps/sprite_sets.asm"
+    raw_lines = set_path.read_text(encoding="utf-8").splitlines()
+    sprite_sets: dict[str, list[tuple[int, str]]] = {}
+    in_sets = False
+    current: str | None = None
+    for number, raw in enumerate(raw_lines, 1):
+        stripped = raw.strip()
+        if stripped == "SpriteSets:":
+            in_sets = True
+            continue
+        if not in_sets:
+            continue
+        label = re.match(r";\s*(SPRITESET_[A-Z0-9_]+)\s*$", stripped)
+        if label:
+            current = label.group(1)
+            sprite_sets[current] = []
+            continue
+        match = re.match(r"db\s+(SPRITE_[A-Z0-9_]+)\s*(?:;.*)?$", stripped)
+        if match and current:
+            sprite_sets[current].append((number, match.group(1)))
+    for set_name, entries in sprite_sets.items():
+        if len(entries) != SPRITE_SET_LENGTH:
+            errors.append(f"{set_path.relative_to(ROOT)}: {set_name} has {len(entries)} entries")
+            continue
+        names = [name for _, name in entries]
+        if len(names) != len(set(names)):
+            errors.append(f"{set_path.relative_to(ROOT)}: {set_name} contains duplicate sprite IDs")
+        for index, (number, sprite) in enumerate(entries):
+            wanted = 12 if index < WALKING_SPRITES_PER_SET else 4
+            actual = sprite_tiles.get(sprite)
+            if actual is None:
+                errors.append(f"{set_path.relative_to(ROOT)}:{number}: unknown {sprite}")
+            elif actual != wanted:
+                errors.append(
+                    f"{set_path.relative_to(ROOT)}:{number}: {sprite} uses {actual} tiles "
+                    f"in a {wanted}-tile slot of {set_name}"
+                )
+
+    map_sets: dict[str, list[str]] = {}
+    split_sets: dict[str, list[str]] = {}
+    section = ""
+    for raw in raw_lines:
+        stripped = raw.strip()
+        if stripped == "MapSpriteSets:":
+            section = "map"
+            continue
+        if stripped == "SplitMapSpriteSets:":
+            section = "split"
+            continue
+        if stripped == "SpriteSets:":
+            break
+        if section == "map":
+            match = re.match(r"db\s+([A-Z0-9_]+)\s*;\s*([A-Z0-9_]+)", stripped)
+            if match:
+                set_name, map_name = match.groups()
+                map_sets[re.sub(r"[^A-Z0-9]", "", map_name)] = [set_name]
+        elif section == "split":
+            match = re.match(
+                r"db\s+[A-Z_]+,\s*\d+,\s*(SPRITESET_[A-Z0-9_]+),\s*"
+                r"(SPRITESET_[A-Z0-9_]+)\s*;\s*(SPLITSET_[A-Z0-9_]+)",
+                stripped,
+            )
+            if match:
+                west, east, split_name = match.groups()
+                split_sets[split_name] = list(dict.fromkeys((west, east)))
+    for map_name, assigned in list(map_sets.items()):
+        if assigned[0].startswith("SPLITSET_"):
+            map_sets[map_name] = split_sets.get(assigned[0], [])
+
+    object_row = re.compile(
+        r"^object_event\s+[^,]+,\s*[^,]+,\s*(SPRITE_[A-Z0-9_]+)\s*,"
+    )
+    for object_path in sorted((ROOT / "data/maps/objects").glob("*.asm")):
+        normalized = re.sub(r"[^A-Z0-9]", "", object_path.stem.upper())
+        assigned = map_sets.get(normalized)
+        if assigned is None:
+            continue
+        for number, line in source_lines(object_path):
+            match = object_row.match(line)
+            if not match:
+                continue
+            sprite = match.group(1)
+            for set_name in assigned:
+                members = {name for _, name in sprite_sets.get(set_name, [])}
+                if sprite not in members:
+                    errors.append(
+                        f"{object_path.relative_to(ROOT)}:{number}: {sprite} is absent from "
+                        f"active {set_name}; engine lookup would run past wSpriteSet"
+                    )
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--progression", action="store_true", help="print the story-area level curve")
     args = parser.parse_args()
-    species = set(constants(ROOT / "constants/pokemon_constants.asm"))
+    species_list = constants(ROOT / "constants/pokemon_constants.asm")
+    species = set(species_list)
     species -= {"NO_MON"}
-    moves = set(constants(ROOT / "constants/move_constants.asm"))
+    moves_list = constants(ROOT / "constants/move_constants.asm")
+    moves = set(moves_list)
     errors: list[str] = []
     summaries: list[str] = []
     red_progression: tuple[dict[str, list[list[Mon]]], dict[str, str]] | None = None
@@ -592,6 +967,9 @@ def main() -> int:
     if "red" in version_parties and "blue" in version_parties:
         errors.extend(validate_version_parity(version_parties["red"], version_parties["blue"]))
     errors.extend(validate_wild_data(species))
+    errors.extend(validate_move_data(moves_list))
+    errors.extend(validate_pokemon_data(species, moves))
+    errors.extend(validate_sprite_sets())
     errors.extend(validate_toggleable_objects())
     errors.extend(validate_finale_gates())
     for summary in summaries:

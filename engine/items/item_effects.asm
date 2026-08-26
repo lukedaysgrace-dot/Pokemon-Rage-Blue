@@ -1589,13 +1589,13 @@ ItemUseXAccuracy:
 	set USING_X_ACCURACY, [hl] ; X Accuracy bit
 	jp PrintItemUseTextAndRemoveItem
 
-; This function is bugged and never works. It always jumps to ItemUseNotTime.
-; The Card Key is handled in a different way.
+; The Card Key is normally handled by the field-interaction code, but keep this
+; item handler correct for callers that dispatch it directly.
 ItemUseCardKey:
 	xor a
 	ld [wUnusedCardKeyGateID], a
 	call GetTileAndCoordsInFrontOfPlayer
-	ld a, [GetTileAndCoordsInFrontOfPlayer]
+	ld a, [wTileInFrontOfPlayer]
 	cp $18
 	jr nz, .next0
 	ld hl, CardKeyTable1

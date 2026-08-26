@@ -49,11 +49,14 @@ PokemonTower7FHideNPCScript:
 	ld b, a
 .toggleableObjectsListLoop
 	ld a, [hli]
+	cp -1
+	jr z, .toggleableObjectNotFound
 	cp b            ; search for sprite ID in toggleable objects list
 	ld a, [hli]
 	jr nz, .toggleableObjectsListLoop
 	global_toggle_index
 	predef HideObject
+.toggleableObjectNotFound
 	xor a
 	ld [wJoyIgnore], a
 	ld [wSpriteIndex], a
