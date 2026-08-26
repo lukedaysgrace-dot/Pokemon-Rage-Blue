@@ -15,7 +15,10 @@ SECTION "Save Data", SRAM
 
 sGameData::
 sPlayerName::  ds NAME_LENGTH
-sBagData::     ds wBagDataEnd - wBagDataStart
+; Reserved to preserve the save layout introduced with the 40-slot bag.
+; The authoritative bag is inside sMainData; older builds redundantly copied
+; it here as well.
+sLegacyBagPadding:: ds wBagDataEnd - wBagDataStart
 sMainData::    ds wMainDataEnd - wMainDataStart
 sSpriteData::  ds wSpriteDataEnd - wSpriteDataStart
 sPartyData::   ds wPartyDataEnd - wPartyDataStart

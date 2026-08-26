@@ -1,31 +1,40 @@
-# Pokémon Red and Blue [![Build Status][ci-badge]][ci]
+# Pokémon Rage Blue
 
-This is a disassembly of Pokémon Red and Blue.
+Pokémon Rage Blue is a Game Boy Color ROM hack built from the
+[pret/pokered](https://github.com/pret/pokered) disassembly. It expands the
+original game with a larger Pokédex, additional species, moves and types,
+reworked trainer and wild encounters, new story and postgame content, modern
+battle fixes, full-color presentation, and an optional hard mode.
 
-It builds the following ROMs:
+The repository builds three development ROMs:
 
-- Pokemon Red (UE) [S][!].gb `sha1: ea9bcae617fdf159b045185467ae58b2e4a48b9a`
-- Pokemon Blue (UE) [S][!].gb `sha1: d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`
-- BLUEMONS.GB (debug build) `sha1: 5b1456177671b79b263c614ea0e7cc9ac542e9c4`
-- dmgapae0.e69.patch `sha1: 0fb5f743696adfe1dbb2e062111f08f9bc5a293a`
-- dmgapee0.e68.patch `sha1: ed4be94dc29c64271942c87f2157bca9ca1019c7`
+- `pokered.gbc` — Red-version content
+- `pokeblue.gbc` — Blue-version content
+- `pokeblue_debug.gbc` — Blue debug build
 
-To set up the repository, see [**INSTALL.md**](INSTALL.md).
+These are modified builds and are not expected to match the hashes of the
+retail Pokémon Red or Blue ROMs.
 
+## Building
 
-## See also
+Install the prerequisites described in [INSTALL.md](INSTALL.md), then run:
 
-- [**Wiki**][wiki] (includes [tutorials][tutorials])
-- [**Symbols**][symbols]
-- [**Tools**][tools]
+```sh
+make
+```
 
-You can find us on [Discord (pret, #pokered)](https://discord.gg/d5dubZ3).
+Run the project integrity checks after changing game data or banked code:
 
-For other pret projects, see [pret.github.io](https://pret.github.io/).
+```sh
+make audit
+```
 
-[wiki]: https://github.com/pret/pokered/wiki
-[tutorials]: https://github.com/pret/pokered/wiki/Tutorials
-[symbols]: https://github.com/pret/pokered/tree/symbols
-[tools]: https://github.com/pret/gb-asm-tools
-[ci]: https://github.com/pret/pokered/actions
-[ci-badge]: https://github.com/pret/pokered/actions/workflows/main.yml/badge.svg
+The audit validates trainer parties and custom moves, encounters, Pokémon and
+move data, sprites, progression gates, toggleable objects, version parity, and
+cross-bank calls for all supported builds.
+
+## Upstream resources
+
+The original disassembly's [wiki](https://github.com/pret/pokered/wiki) and
+[installation documentation](INSTALL.md) remain useful references for RGBDS
+development and project structure.

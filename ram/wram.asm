@@ -1584,11 +1584,13 @@ wMonHeaderEnd::
 ; saved at the start of a battle and then written back at the end of the battle
 wSavedTileAnimations:: db
 
-	ds 2
+; Damage received by each side during the current turn. Counter reads these
+; records instead of move-menu cursor state and the shared wDamage scratch
+; value, which keeps link partners deterministic.
+wPlayerCounterDamage:: dw
+wEnemyCounterDamage:: dw
 
 wDamage:: dw
-
-	ds 2
 
 wRepelRemainingSteps:: db
 

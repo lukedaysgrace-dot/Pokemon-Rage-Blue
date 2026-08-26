@@ -61,10 +61,6 @@ LoadMainData:
 	ld de, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyData
-	ld hl, sBagData
-	ld de, wBagDataStart
-	ld bc, wBagDataEnd - wBagDataStart
-	call CopyData
 	ld hl, sMainData
 	ld de, wMainDataStart
 	ld bc, wMainDataEnd - wMainDataStart
@@ -221,10 +217,12 @@ SaveMainData:
 	ld de, sPlayerName
 	ld bc, NAME_LENGTH
 	call CopyData
-	ld hl, wBagDataStart
-	ld de, sBagData
+	; Keep the former duplicate-bag area deterministic while retaining its
+	; addresses so saves made by the previous format remain loadable.
+	ld hl, sLegacyBagPadding
 	ld bc, wBagDataEnd - wBagDataStart
-	call CopyData
+	xor a
+	call FillMemory
 	ld hl, wMainDataStart
 	ld de, sMainData
 	ld bc, wMainDataEnd - wMainDataStart

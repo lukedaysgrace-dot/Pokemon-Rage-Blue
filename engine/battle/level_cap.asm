@@ -1,7 +1,9 @@
 ; Hard mode gym level caps.
-; On hard mode the party level cap is the highest-level Pokémon of the next
-; gym leader still to be beaten. Once all 8 badges are obtained, the cap is
-; lifted entirely.
+; On hard mode the party level cap is the highest-level Pokémon of the first
+; unbeaten gym leader in the intended gym order. Looking at individual badge
+; bits instead of merely counting badges prevents an out-of-order badge from
+; advancing the cap past an earlier unbeaten leader. Once all 8 badges are
+; obtained, the cap is lifted entirely.
 ;
 ; OUTPUT:
 ; a = current level cap (MAX_LEVEL when no cap applies)
@@ -15,16 +17,20 @@ GetLevelCap::
 	and a
 	ld a, MAX_LEVEL
 	jr z, .done ; no level caps on normal mode
-	push de
-	ld hl, wObtainedBadges
-	ld b, 1
-	call CountSetBits
-	pop de
-	ld a, [wNumSetBits]
-	ld hl, HardModeLevelCaps
+	ld a, [wObtainedBadges]
 	ld c, a
-	ld b, 0
-	add hl, bc
+	ld hl, HardModeLevelCaps
+	ld b, 1 << BIT_BOULDERBADGE
+.findFirstUnbeatenGym
+	ld a, c
+	and b
+	jr z, .foundCap
+	inc hl
+	sla b
+	jr nz, .findFirstUnbeatenGym
+	ld a, MAX_LEVEL ; all eight badges obtained
+	jr .done
+.foundCap
 	ld a, [hl]
 .done
 	ld [wLevelCap], a
@@ -33,13 +39,14 @@ GetLevelCap::
 	ret
 
 HardModeLevelCaps:
-; number of badges -> level cap
-	db 15        ; 0 badges: Brock's Onix
-	db 22        ; 1 badge:  Misty's Starmie
-	db 25        ; 2 badges: Lt. Surge's Raichu
-	db 33        ; 3 badges: Erika's Exeggutor/Vileplume
-	db 43        ; 4 badges: Koga's Weezing
-	db 49        ; 5 badges: Sabrina's Gardevoir
-	db 54        ; 6 badges: Blaine's Flareon
-	db 55        ; 7 badges: Giovanni's Marowak
-	db MAX_LEVEL ; 8 badges: the cap goes away
+	table_width 1, HardModeLevelCaps
+; badge bit -> leader level cap
+	db 15 ; Boulder: Brock's Onix
+	db 22 ; Cascade: Misty's Starmie
+	db 25 ; Thunder: Lt. Surge's Raichu
+	db 33 ; Rainbow: Erika's Exeggutor/Vileplume
+	db 43 ; Soul: Koga's Weezing
+	db 49 ; Marsh: Sabrina's Gardevoir
+	db 54 ; Volcano: Blaine's Flareon
+	db 55 ; Earth: Giovanni's Marowak
+	assert_table_length NUM_BADGES

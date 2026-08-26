@@ -291,6 +291,14 @@ MainInBattleLoop:
 	ld a, [hli]
 	or [hl] ; is enemy mon HP 0?
 	jp z, HandleEnemyMonFainted ; if enemy mon HP is 0, jump
+	; Counter only reflects damage received during this turn. Clear both
+	; per-side records before either battler takes an action.
+	xor a
+	ld hl, wPlayerCounterDamage
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
 	call SaveScreenTilesToBuffer1
 	xor a
 	ld [wFirstMonsNotOutYet], a
@@ -364,9 +372,11 @@ MainInBattleLoop:
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	cp METRONOME ; a MIRROR MOVE check is missing, might lead to a desync in link battles
-	             ; when combined with multi-turn moves
+	cp METRONOME
+	jr z, .specialMoveUsed
+	cp MIRROR_MOVE
 	jr nz, .specialMoveNotUsed
+.specialMoveUsed
 	ld [wPlayerSelectedMove], a
 .specialMoveNotUsed
 	callfar SwitchEnemyMon
@@ -817,11 +827,7 @@ FaintEnemyPokemon:
 	jr .sfxplayed
 .wild_win
 	call EndLowHealthAlarm
-	ld a, MUSIC_DEFEATED_WILD_MON
-	call PlayBattleVictoryMusic
 .sfxplayed
-; In a simultaneous wild-battle KO, victory music starts before the player's
-; surviving party is checked. Reordering this costs scarce Battle Core space.
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	or [hl]
@@ -835,6 +841,12 @@ FaintEnemyPokemon:
 	ld a, d
 	and a
 	ret z
+	ld a, [wIsInBattle]
+	dec a
+	jr nz, .playerHasSurvivor
+	ld a, MUSIC_DEFEATED_WILD_MON
+	call PlayBattleVictoryMusic
+.playerHasSurvivor
 	ld hl, EnemyMonFaintedText
 	call PrintText
 	call PrintEmptyString
@@ -1216,7 +1228,6 @@ LinkBattleLostText:
 	text_end
 
 ; slides pic of fainted mon downwards until it disappears
-; bug: when this is called, [hAutoBGTransferEnabled] is non-zero, so there is screen tearing
 SlideDownFaintedMonPic:
 	ld a, [wStatusFlags5]
 	push af
@@ -1227,6 +1238,8 @@ SlideDownFaintedMonPic:
 	push bc
 	push de
 	push hl
+	xor a
+	ldh [hAutoBGTransferEnabled], a ; don't transfer a partially updated tilemap
 	ld b, PIC_HEIGHT - 1 ; number of rows
 .rowLoop
 	push bc
@@ -1252,6 +1265,8 @@ SlideDownFaintedMonPic:
 	add hl, bc
 	ld de, SevenSpacesText
 	call PlaceString
+	ld a, 1
+	ldh [hAutoBGTransferEnabled], a
 	ld c, 2
 	call DelayFrames
 	pop hl
@@ -1270,13 +1285,14 @@ SevenSpacesText:
 ; slides the player or enemy trainer off screen
 ; a is the number of tiles to slide it horizontally (always 9 for the player trainer or 8 for the enemy trainer)
 ; if a is 8, the slide is to the right, else it is to the left
-; bug: when this is called, [hAutoBGTransferEnabled] is non-zero, so there is screen tearing
 SlideTrainerPicOffScreen:
 	ldh [hSlideAmount], a
 	ld c, a
 .slideStepLoop ; each iteration, the trainer pic is slid one tile left/right
 	push bc
 	push hl
+	xor a
+	ldh [hAutoBGTransferEnabled], a ; don't transfer a partially updated tilemap
 	ld b, PIC_HEIGHT ; number of rows
 .rowLoop
 	push hl
@@ -1303,6 +1319,8 @@ SlideTrainerPicOffScreen:
 	add hl, de
 	dec b
 	jr nz, .rowLoop
+	ld a, 1
+	ldh [hAutoBGTransferEnabled], a
 	ld c, 2
 	call DelayFrames
 	pop hl
@@ -3257,7 +3275,7 @@ PlayerCalcMoveDamage:
 	call IsInArray
 	jr c, .moveHitTest ; SetDamageEffects moves (e.g. Seismic Toss and Super Fang) skip damage calculation
 	call CriticalHitTest
-	call HandleCounterMove
+	callfar HandleCounterMove
 	jr z, HandleIfPlayerMoveMissed
 	call GetDamageVarsForPlayerAttack
 	call CalculateDamage
@@ -4702,72 +4720,6 @@ CriticalHitTest:
 
 INCLUDE "data/battle/critical_hit_moves.asm"
 
-; function to determine if Counter hits and if so, how much damage it does
-HandleCounterMove:
-; The variables checked by Counter are updated whenever the cursor points to a new move in the battle selection menu.
-; This is irrelevant for the opponent's side outside of link battles, since the move selection is controlled by the AI.
-; However, in the scenario where the player switches out and the opponent uses Counter,
-; the outcome may be affected by the player's actions in the move selection menu prior to switching the Pokemon.
-; This might also lead to desync glitches in link battles.
-
-	ldh a, [hWhoseTurn] ; whose turn
-	and a
-; player's turn
-	ld hl, wEnemySelectedMove
-	ld de, wEnemyMovePower
-	ld a, [wPlayerSelectedMove]
-	jr z, .next
-; enemy's turn
-	ld hl, wPlayerSelectedMove
-	ld de, wPlayerMovePower
-	ld a, [wEnemySelectedMove]
-.next
-	cp COUNTER
-	ret nz ; return if not using Counter
-	ld a, $01
-	ld [wMoveMissed], a ; initialize the move missed variable to true (it is set to false below if the move hits)
-	ld a, [hl]
-	cp COUNTER
-	ret z ; miss if the opponent's last selected move is Counter.
-	ld a, [de]
-	and a
-	ret z ; miss if the opponent's last selected move's Base Power is 0.
-; check if the move the target last selected was Normal or Fighting type
-	inc de
-	ld a, [de]
-	and a ; normal type
-	jr z, .counterableType
-	cp FIGHTING
-	jr z, .counterableType
-; if the move wasn't Normal or Fighting type, miss
-	xor a
-	ret
-.counterableType
-	ld hl, wDamage
-	ld a, [hli]
-	or [hl]
-	ret z ; If we made it here, Counter still misses if the last move used in battle did no damage to its target.
-	      ; wDamage is shared by both players, so Counter may strike back damage dealt by the Counter user itself
-	      ; if the conditions meet, even though 99% of the times damage will come from the target.
-; if it did damage, double it
-	ld a, [hl]
-	add a
-	ld [hld], a
-	ld a, [hl]
-	adc a
-	ld [hl], a
-	jr nc, .noCarry
-; damage is capped at 0xFFFF
-	ld a, $ff
-	ld [hli], a
-	ld [hl], a
-.noCarry
-	xor a
-	ld [wMoveMissed], a
-	call MoveHitTest ; do the normal move hit test in addition to Counter's special rules
-	xor a
-	ret
-
 ApplyAttackToEnemyPokemon:
 	ld a, [wPlayerMoveEffect]
 	cp OHKO_EFFECT
@@ -4870,6 +4822,7 @@ ApplyDamageToEnemyPokemon:
 	ld [hli], a
 	ld [hl], a
 .animateHpBar
+	callfar RecordCounterableDamage
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
 	ld [wHPBarMaxHP+1], a
@@ -4993,6 +4946,7 @@ ApplyDamageToPlayerPokemon:
 	ld [hli], a
 	ld [hl], a
 .animateHpBar
+	callfar RecordCounterableDamage
 	ld hl, wBattleMonMaxHP
 	ld a, [hli]
 	ld [wHPBarMaxHP+1], a
@@ -5747,7 +5701,7 @@ EnemyCalcMoveDamage:
 	call IsInArray
 	jp c, EnemyMoveHitTest
 	call CriticalHitTest
-	call HandleCounterMove
+	callfar HandleCounterMove
 	jr z, HandleIfEnemyMoveMissed
 	call SwapPlayerAndEnemyLevels
 	call GetDamageVarsForEnemyAttack

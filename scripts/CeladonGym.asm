@@ -192,6 +192,7 @@ CeladonGymErikaText:
 
 .ReceivedRainbowBadgeText:
 	text_far _CeladonGymErikaReceivedRainbowBadgeText
+	sound_get_item_2 ; bank-stable badge fanfare
 	text_end
 
 .PostBattleAdviceText:
