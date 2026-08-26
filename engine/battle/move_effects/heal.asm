@@ -11,13 +11,14 @@ HealEffect_:
 .healEffect
 	ld b, a
 	ld a, [de]
-	cp [hl] ; most significant bytes comparison is ignored
-	        ; causes the move to miss if max HP is 255 or 511 points higher than the current HP
+	cp [hl] ; compare the most significant bytes first
 	inc de
 	inc hl
+	jr nz, .notFullHP
 	ld a, [de]
-	sbc [hl]
+	cp [hl]
 	jp z, .failed ; no effect if user's HP is already at its maximum
+.notFullHP
 	ld a, b
 	cp REST
 	jr nz, .healHP
@@ -33,8 +34,24 @@ HealEffect_:
 	ld hl, wEnemyMonStatus
 .restEffect
 	ld a, [hl]
-	and a
+	and a ; remember whether Rest cured an existing status for the message below
+	push af
 	ld [hl], 2 ; clear status and set number of turns asleep to 2
+	ld hl, wPlayerBattleStatus3
+	ld de, wPlayerToxicCounter
+	ldh a, [hWhoseTurn]
+	and a
+	jr z, .clearToxic
+	ld hl, wEnemyBattleStatus3
+	ld de, wEnemyToxicCounter
+.clearToxic
+	res BADLY_POISONED, [hl]
+	xor a
+	ld [de], a
+	ldh a, [hWhoseTurn] ; Rest replaces Burn/Paralysis with sleep, so undo their stat drops
+	ld [wCalculateWhoseStats], a
+	callfar RecalculateStatsAfterStatusCure
+	pop af
 	ld hl, StartedSleepingEffect ; if mon didn't have an status
 	jr z, .printRestText
 	ld hl, FellAsleepBecameHealthyText ; if mon had an status
