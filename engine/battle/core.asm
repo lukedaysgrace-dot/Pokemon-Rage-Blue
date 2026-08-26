@@ -4793,11 +4793,15 @@ ApplyDamageToEnemyPokemon:
 	ld a, [hl]
 	or b
 	jr z, ApplyAttackToEnemyPokemonDone ; we're done if damage is 0
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .damageEnemyPokemon ; self-inflicted damage ignores the user's own Substitute
 	ld a, [wEnemyBattleStatus2]
 	bit HAS_SUBSTITUTE_UP, a ; does the enemy have a substitute?
 	jp nz, AttackSubstitute
 ; subtract the damage from the pokemon's current HP
 ; also, save the current HP at wHPBarOldHP
+.damageEnemyPokemon
 	ld a, [hld]
 	ld b, a
 	ld a, [wEnemyMonHP + 1]
@@ -4913,11 +4917,15 @@ ApplyDamageToPlayerPokemon:
 	ld a, [hl]
 	or b
 	jr z, ApplyAttackToPlayerPokemonDone ; we're done if damage is 0
+	ldh a, [hWhoseTurn]
+	and a
+	jr z, .damagePlayerPokemon ; self-inflicted damage ignores the user's own Substitute
 	ld a, [wPlayerBattleStatus2]
 	bit HAS_SUBSTITUTE_UP, a ; does the player have a substitute?
 	jp nz, AttackSubstitute
 ; subtract the damage from the pokemon's current HP
 ; also, save the current HP at wHPBarOldHP and the new HP at wHPBarNewHP
+.damagePlayerPokemon
 	ld a, [hld]
 	ld b, a
 	ld a, [wBattleMonHP + 1]
@@ -4960,13 +4968,12 @@ ApplyAttackToPlayerPokemonDone:
 	jp DrawHUDsAndHPBars
 
 AttackSubstitute:
-; Unlike the two ApplyAttackToPokemon functions, Attack Substitute is shared by player and enemy.
-; Self-confusion damage as well as Hi-Jump Kick and Jump Kick recoil cause a momentary turn swap before being applied.
-; If the user has a Substitute up and would take damage because of that,
-; damage will be applied to the other player's Substitute.
-; Normal recoil such as from Double-Edge isn't affected by this glitch,
-; because this function is never called in that case.
-
+; Unlike the two ApplyAttackToPokemon functions, AttackSubstitute is shared by player and enemy.
+; Self-confusion damage as well as Hi-Jump Kick and Jump Kick recoil are applied during a
+; momentary turn swap. In the original game that made this function send such damage to the
+; *other* side's Substitute. The ApplyDamageTo*Pokemon functions now detect that case by
+; comparing the victim with hWhoseTurn and skip the Substitute check, so this function is
+; only reached by regular attacks aimed at the opposing Pokemon.
 	ld hl, SubstituteTookDamageText
 	call PrintText
 ; values for player turn

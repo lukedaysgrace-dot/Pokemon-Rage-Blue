@@ -32,6 +32,8 @@ HazeEffect_:
 
 .cureVolatileStatuses
 	xor a
+	ld [wPlayerToxicCounter], a
+	ld [wEnemyToxicCounter], a
 	ld [wPlayerDisabledMove], a
 	ld [wEnemyDisabledMove], a
 	ld hl, wPlayerDisabledMoveNumber

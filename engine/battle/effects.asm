@@ -300,7 +300,7 @@ FreezeBurnParalyzeEffect:
 	ld hl, BurnedText
 	jp PrintText
 .freeze2
-; hyper beam bits aren't reset for opponent's side
+	call ClearHyperBeam ; reset the player's recharge condition too
 	ld a, 1 << FRZ
 	ld [wBattleMonStatus], a
 	ld hl, FrozenText
@@ -506,9 +506,11 @@ UpdateStatDone:
 	ld hl, MonsStatsRoseText
 	call PrintText
 
-; these shouldn't be here
-	call QuarterSpeedDueToParalysis ; apply speed penalty to the player whose turn is not, if it's paralyzed
-	jp HalveAttackDueToBurn ; apply attack penalty to the player whose turn is not, if it's burned
+; Recalculating the stat above wiped the user's own Burn/Paralysis penalty, so put it
+; back. The original game aimed these at the battler whose turn it is NOT, which both
+; let a stat-up move cure the user's penalty and re-applied the opponent's on top of
+; itself every time, stacking the reduction.
+	farjp ReapplyBurnAndParalysisPenaltiesToUser
 
 RestoreOriginalStatModifier:
 	pop hl

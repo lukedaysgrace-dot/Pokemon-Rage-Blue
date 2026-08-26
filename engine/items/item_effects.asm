@@ -942,6 +942,11 @@ ItemUseMedicine:
 	ld bc, NUM_STATS * 2
 	call CopyData ; copy party stats to in-battle stat data
 	predef DoubleOrHalveSelectedStats
+; the copy above throws away the mon's stat stages along with the Burn/Paralysis
+; penalties, so rebuild the stats and keep the stages
+	xor a ; the player's active mon
+	ld [wCalculateWhoseStats], a
+	call RecalculateStatsAfterStatusCure
 	jp .doneHealing
 .healHP
 	inc hl ; hl = address of current HP
@@ -1206,6 +1211,11 @@ ItemUseMedicine:
 	jr nz, .calculateHPBarCoords
 	xor a
 	ld [wBattleMonStatus], a ; remove the status ailment in the in-battle pokemon data
+	ld hl, wPlayerBattleStatus3
+	res BADLY_POISONED, [hl] ; heal Toxic status
+	xor a ; the player's active mon
+	ld [wCalculateWhoseStats], a
+	call RecalculateStatsAfterStatusCure ; undo the Burn/Paralysis stat drops
 .calculateHPBarCoords
 	hlcoord 4, -1
 	ld bc, 2 * SCREEN_WIDTH
@@ -3004,4 +3014,37 @@ CheckMapForMon:
 	dec b
 	jr nz, .loop
 	dec hl
+	ret
+
+RecalculateStatsAfterStatusCure:
+; Rebuild a battler's in-battle stats from its unmodified stats and its current stat
+; stages. Call this right after a status ailment is cured, so that the Attack drop from
+; Burn and the Speed drop from Paralysis are undone the way status healing works from
+; Generation II onwards. Stat stages survive, and so do the stats a Transformed mon
+; copied, since Transform updates the unmodified stats as well.
+; Input: wCalculateWhoseStats = 0 for the player's active mon, nonzero for the enemy's.
+; The battler is passed in memory rather than in a register because Bankswitch clobbers
+; a and bc on the way into a far call. hl, de and bc are preserved.
+	push hl
+	push de
+	push bc
+	callfar CalculateModifiedStats
+	pop bc
+	pop de
+	pop hl
+	ret
+
+ReapplyBurnAndParalysisPenaltiesToUser:
+; QuarterSpeedDueToParalysis and HalveAttackDueToBurn act on the battler whose turn it
+; is NOT, so flip hWhoseTurn to aim them at the user of the move being executed instead.
+; Both are no-ops unless that battler is actually paralysed or burned.
+; hWhoseTurn is restored before returning.
+	ldh a, [hWhoseTurn]
+	push af
+	xor 1
+	ldh [hWhoseTurn], a
+	callfar QuarterSpeedDueToParalysis
+	callfar HalveAttackDueToBurn
+	pop af
+	ldh [hWhoseTurn], a
 	ret
