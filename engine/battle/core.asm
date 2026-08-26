@@ -1417,6 +1417,8 @@ EnemySendOutFirstMon:
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jr z, .next4
+	call CheckHardModeTrainerBattle
+	jr nz, .next4 ; hard mode forces SET battle style
 	ld a, [wOptions]
 	bit BIT_BATTLE_SHIFT, a
 	jr nz, .next4
@@ -1770,7 +1772,7 @@ SendOutMon:
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	or [hl] ; is enemy mon HP zero?
-	jp z, .skipDrawingEnemyHUDAndHPBar ; if HP is zero, skip drawing the HUD and HP bar
+	jr z, .skipDrawingEnemyHUDAndHPBar ; if HP is zero, skip drawing the HUD and HP bar
 	call DrawEnemyHUDAndHPBar
 .skipDrawingEnemyHUDAndHPBar
 	call DrawPlayerHUDAndHPBar
@@ -2051,6 +2053,16 @@ CenterMonName:
 	pop de
 	ret
 
+; OUTPUT:
+; nz if hard mode is on and the current battle is a trainer battle
+CheckHardModeTrainerBattle:
+	ld a, [wDifficulty]
+	and a
+	ret z
+	ld a, [wIsInBattle]
+	dec a ; z: wild battle, nz: trainer battle
+	ret
+
 DisplayBattleMenu::
 	call LoadScreenTilesFromBuffer1 ; restore saved screen
 	ld a, [wBattleType]
@@ -2072,7 +2084,7 @@ DisplayBattleMenu::
 	ld a, [wBattleType]
 	ASSERT BATTLE_TYPE_OLD_MAN == 1
 	dec a
-	jp nz, .handleBattleMenuInput
+	jr nz, .handleBattleMenuInput
 ; the following happens for the old man tutorial
 	; Temporarily save the player name in wLinkEnemyTrainerName.
 	; Since wLinkEnemyTrainerName == wGrassRate, this affects wild encounters.
@@ -2228,6 +2240,7 @@ DisplayBattleMenu::
 	jr nz, .notLinkBattle
 
 ; can't use items in link battles
+.itemsCantBeUsed
 	ld hl, ItemsCantBeUsedHereText
 	call PrintText
 	jp DisplayBattleMenu
@@ -2252,6 +2265,9 @@ BagWasSelected:
 ; normal battle
 	call DrawHUDsAndHPBars
 .next
+; on hard mode, items can't be used during trainer battles
+	call CheckHardModeTrainerBattle
+	jp nz, DisplayBattleMenu.itemsCantBeUsed
 	ld a, [wBattleType]
 	dec a ; is it the old man tutorial?
 	jr nz, DisplayPlayerBag ; no, it is a normal battle
@@ -2370,7 +2386,7 @@ PartyMenuOrRockOrRun:
 	ld [wMenuItemToSwap], a
 	call DisplayPartyMenu
 .checkIfPartyMonWasSelected
-	jp nc, .partyMonWasSelected ; if a party mon was selected, jump, else we quit the party menu
+	jr nc, .partyMonWasSelected ; if a party mon was selected, jump, else we quit the party menu
 .quitPartyMenu
 	call ClearSprites
 	call GBPalWhiteOut
@@ -3239,7 +3255,7 @@ PlayerCalcMoveDamage:
 	ld hl, SetDamageEffects
 	ld de, 1
 	call IsInArray
-	jp c, .moveHitTest ; SetDamageEffects moves (e.g. Seismic Toss and Super Fang) skip damage calculation
+	jr c, .moveHitTest ; SetDamageEffects moves (e.g. Seismic Toss and Super Fang) skip damage calculation
 	call CriticalHitTest
 	call HandleCounterMove
 	jr z, HandleIfPlayerMoveMissed
@@ -3467,7 +3483,7 @@ CheckPlayerStatusConditions:
 .HeldInPlaceCheck
 	ld a, [wEnemyBattleStatus1]
 	bit USING_TRAPPING_MOVE, a ; is enemy using a multi-turn move like wrap?
-	jp z, .FlinchedCheck
+	jr z, .FlinchedCheck
 	ld hl, CantMoveText
 	call PrintText
 	ld hl, ExecutePlayerMoveDone ; player can't move this turn
@@ -3476,7 +3492,7 @@ CheckPlayerStatusConditions:
 .FlinchedCheck
 	ld hl, wPlayerBattleStatus1
 	bit FLINCHED, [hl]
-	jp z, .HyperBeamCheck
+	jr z, .HyperBeamCheck
 	res FLINCHED, [hl] ; reset player's flinch status
 	ld hl, FlinchedText
 	call PrintText
@@ -3650,11 +3666,11 @@ CheckPlayerStatusConditions:
 	inc a ; confused for 2-5 turns
 	ld [wPlayerConfusedCounter], a
 	pop hl ; skip DecrementPP
-	jp .returnToHL
+	jr .returnToHL
 
 .MultiturnMoveCheck
 	bit USING_TRAPPING_MOVE, [hl] ; is mon using multi-turn move?
-	jp z, .RageCheck
+	jr z, .RageCheck
 	ld hl, AttackContinuesText
 	call PrintText
 	ld a, [wPlayerNumAttacksLeft]
@@ -3662,14 +3678,14 @@ CheckPlayerStatusConditions:
 	ld [wPlayerNumAttacksLeft], a
 	ld hl, GetPlayerAnimationType ; skip damage calculation (deal damage equal to last hit),
 	                              ; DecrementPP and MoveHitTest
-	jp nz, .returnToHL  ; redundant leftover code, the case wEnemyNumAttacksLeft == 0
+	jr nz, .returnToHL  ; redundant leftover code, the case wEnemyNumAttacksLeft == 0
 						; is handled within CheckNumAttacksLeft
-	jp .returnToHL
+	jr .returnToHL
 
 .RageCheck
 	ld a, [wPlayerBattleStatus2]
 	bit USING_RAGE, a ; is mon using rage?
-	jp z, .checkPlayerStatusConditionsDone ; if we made it this far, mon can move normally this turn
+	jr z, .checkPlayerStatusConditionsDone ; if we made it this far, mon can move normally this turn
 	ld a, RAGE
 	ld [wNamedObjectIndex], a
 	call GetMoveName
@@ -3677,7 +3693,7 @@ CheckPlayerStatusConditions:
 	xor a
 	ld [wPlayerMoveEffect], a
 	ld hl, PlayerCanExecuteMove
-	jp .returnToHL
+	jr .returnToHL
 
 .returnToHL
 	xor a
@@ -4601,7 +4617,8 @@ JumpToOHKOMoveEffect:
 	dec a
 	ret
 
-INCLUDE "data/battle/unused_critical_hit_moves.asm"
+; UnusedHighCriticalMoves was removed to free space in this bank
+; (data/battle/unused_critical_hit_moves.asm, referenced by nothing)
 
 ; determines if attack is a critical hit
 ; Azure Heights claims "the fastest pokémon (who are, not coincidentally,
@@ -5502,7 +5519,7 @@ MoveHitTest:
 ; similar to enemy mist check
 	ld a, [wPlayerBattleStatus2]
 	bit PROTECTED_BY_MIST, a ; is mon protected by mist?
-	jp nz, .moveMissed
+	jr nz, .moveMissed
 .skipPlayerMistCheck
 	ld a, [wEnemyBattleStatus2]
 	bit USING_X_ACCURACY, a ; is the enemy using X Accuracy?
@@ -5597,7 +5614,7 @@ CalcHitChance:
 	ld b, a
 	ldh a, [hQuotient + 2]
 	or b
-	jp nz, .nextCalculation
+	jr nz, .nextCalculation
 ; make sure the result is always at least one
 	ldh [hQuotient + 2], a
 	ld a, $01
@@ -5910,7 +5927,7 @@ CheckEnemyStatusConditions:
 .checkIfTrapped
 	ld a, [wPlayerBattleStatus1]
 	bit USING_TRAPPING_MOVE, a ; is the player using a multi-turn attack like warp
-	jp z, .checkIfFlinched
+	jr z, .checkIfFlinched
 	ld hl, CantMoveText
 	call PrintText
 	ld hl, ExecuteEnemyMoveDone ; enemy can't move this turn
@@ -5918,7 +5935,7 @@ CheckEnemyStatusConditions:
 .checkIfFlinched
 	ld hl, wEnemyBattleStatus1
 	bit FLINCHED, [hl] ; check if enemy mon flinched
-	jp z, .checkIfMustRecharge
+	jr z, .checkIfMustRecharge
 	res FLINCHED, [hl]
 	ld hl, FlinchedText
 	call PrintText
@@ -6123,23 +6140,23 @@ CheckEnemyStatusConditions:
 	inc a ; confused for 2-5 turns
 	ld [wEnemyConfusedCounter], a
 	pop hl ; skip DecrementPP
-	jp .enemyReturnToHL
+	jr .enemyReturnToHL
 .checkIfUsingMultiturnMove
 	bit USING_TRAPPING_MOVE, [hl] ; is mon using multi-turn move?
-	jp z, .checkIfUsingRage
+	jr z, .checkIfUsingRage
 	ld hl, AttackContinuesText
 	call PrintText
 	ld hl, wEnemyNumAttacksLeft
 	dec [hl]
 	ld hl, GetEnemyAnimationType ; skip damage calculation (deal damage equal to last hit),
 	                             ; DecrementPP and MoveHitTest
-	jp nz, .enemyReturnToHL ; redundant leftover code, the case wEnemyNumAttacksLeft == 0
+	jr nz, .enemyReturnToHL ; redundant leftover code, the case wEnemyNumAttacksLeft == 0
 							; is handled within CheckNumAttacksLeft
-	jp .enemyReturnToHL
+	jr .enemyReturnToHL
 .checkIfUsingRage
 	ld a, [wEnemyBattleStatus2]
 	bit USING_RAGE, a ; is mon using rage?
-	jp z, .checkEnemyStatusConditionsDone ; if we made it this far, mon can move normally this turn
+	jr z, .checkEnemyStatusConditionsDone ; if we made it this far, mon can move normally this turn
 	ld a, RAGE
 	ld [wNamedObjectIndex], a
 	call GetMoveName
@@ -6147,7 +6164,7 @@ CheckEnemyStatusConditions:
 	xor a
 	ld [wEnemyMoveEffect], a
 	ld hl, EnemyCanExecuteMove
-	jp .enemyReturnToHL
+	jr .enemyReturnToHL
 .enemyReturnToHL
 	xor a ; set Z flag
 	ret
@@ -6159,7 +6176,7 @@ CheckEnemyStatusConditions:
 GetCurrentMove:
 	ldh a, [hWhoseTurn]
 	and a
-	jp z, .player
+	jr z, .player
 	ld de, wEnemyMoveNum
 	ld a, [wEnemySelectedMove]
 	jr .selected
@@ -6732,7 +6749,7 @@ CalculateModifiedStat:
 	sub LOW(MAX_STAT_VALUE)
 	ldh a, [hDividend + 2]
 	sbc HIGH(MAX_STAT_VALUE)
-	jp c, .storeNewStatValue
+	jr c, .storeNewStatValue
 ; cap the stat at MAX_STAT_VALUE (999)
 	ld a, HIGH(MAX_STAT_VALUE)
 	ldh [hDividend + 2], a

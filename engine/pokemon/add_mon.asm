@@ -276,6 +276,11 @@ ENDC
 	ld a, [wMonDataLocation]
 	and $f
 	jp z, .zeroStatExp
+	; Enemy trainer Stat EXP is a hard mode feature: on normal mode
+	; every trainer's Pokémon have zero Stat EXP.
+	ld a, [wDifficulty]
+	and a
+	jp z, .zeroStatExp
 	; Enemy trainer Stat EXP presets.
 	; Default: 0 (vanilla behavior). Specific trainer classes/rows override.
 	xor a

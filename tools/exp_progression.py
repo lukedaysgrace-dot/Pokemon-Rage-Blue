@@ -109,7 +109,7 @@ ENCOUNTERS: list[Encounter] = [
     Encounter("route_20_21", "SwimmerData", 15),
     Encounter("route_20_21", "FisherData", 8),
     Encounter("route_20_21", "FisherData", 10),
-    Encounter("mansion", "ScientistData", 4),
+    Encounter("mansion", "ScientistData", 14),
     Encounter("mansion", "BurglarData", 7),
     Encounter("mansion", "BurglarData", 8),
     Encounter("mansion", "ScientistData", 12),
@@ -334,7 +334,7 @@ def main(*, apply: bool = False) -> None:
             player_level = level_from_exp(player_exp)
 
             key = (enc.data_label, enc.party_index)
-            # Shared party slots (e.g. Scientist 3F + Mansion 1F) keep the first level set.
+            # Shared party slots keep the first level set.
             if key not in assignments:
                 assignments[key] = LevelAssignment(
                     enc.data_label,
