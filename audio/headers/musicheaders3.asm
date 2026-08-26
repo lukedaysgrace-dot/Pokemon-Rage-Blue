@@ -1,8 +1,9 @@
 Music_TitleScreen::
-	channel_count 3
+	channel_count 4
 	channel 1, Music_TitleScreen_Ch1
 	channel 2, Music_TitleScreen_Ch2
 	channel 3, Music_TitleScreen_Ch3
+	channel 4, Music_TitleScreen_Ch4
 
 Music_GreenTheme::
 	channel_count 4

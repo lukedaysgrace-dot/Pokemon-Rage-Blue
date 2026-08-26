@@ -1248,14 +1248,9 @@ Audio2_InitPitchSlideVars:
 	ld a, [hl]
 	sub e
 	ld e, a
-
-; Bug. Instead of borrowing from the high byte of the target frequency as it
-; should, it borrows from the high byte of the current frequency instead.
-; This means that the result will be 0x200 greater than it should be if the
-; low byte of the current frequency is greater than the low byte of the
-; target frequency.
+	; Preserve the low-byte borrow before add hl, bc changes carry.
 	ld a, d
-	sbc b
+	adc b ; b is 0: current high byte + borrow
 	ld d, a
 
 	ld hl, wChannelPitchSlideTargetFrequencyHighBytes

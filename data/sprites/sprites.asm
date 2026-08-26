@@ -120,7 +120,7 @@ SpriteSheetPointerTable::
 	overworld_sprite PsyduckSprite, 12          ; SPRITE_PSYDUCK
 	overworld_sprite ClefairySprite, 12         ; SPRITE_CLEFAIRY
 	overworld_sprite JigglypuffSprite, 12       ; SPRITE_JIGGLYPUFF
-	overworld_sprite WigglytuffSprite, 12       ; SPRITE_WIGGLYTUFF
+	overworld_sprite WigglytuffSprite, 4        ; SPRITE_WIGGLYTUFF
 	overworld_sprite KangaskhanSprite, 12       ; SPRITE_KANGASKHAN
 	overworld_sprite SlowpokeSprite, 12         ; SPRITE_SLOWPOKE
 	overworld_sprite SlowbroSprite, 4           ; SPRITE_SLOWBRO

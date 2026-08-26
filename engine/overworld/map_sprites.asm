@@ -112,6 +112,10 @@ LoadMapSpriteTilePatterns:
 	cp SPRITE_CHARMANDER
 	jr c, .notFourTileSprite
 .checkAddedPokemonRanges
+	; Wigglytuff's asset is a single 4-tile still pose despite sitting inside
+	; the Pidgey..Slowbro walking-sprite ID range.
+	cp SPRITE_WIGGLYTUFF
+	jr z, .checkStillCutoff
 	cp SPRITE_PIDGEY
 	jr c, .checkStillCutoff
 	cp SPRITE_SLOWBRO
@@ -410,7 +414,18 @@ InitOutsideMapSprites:
 	ld a, [de]
 	inc de
 	cp b ; does the picture ID match?
-	jr nz, .getPictureIndexLoop
+	jr z, .pictureIndexFound
+	ld a, c
+	cp SPRITE_SET_LENGTH
+	jr c, .getPictureIndexLoop
+	; A malformed spriteset used to search past wSpriteSet without a bound,
+	; eventually assigning an arbitrary VRAM slot. Hide the invalid object;
+	; tools/audit_game_data.py reports the bad map entry at build time.
+	xor a
+	ld [hl], a
+	ld c, a
+	jr .skipGettingPictureIndex
+.pictureIndexFound
 	inc c
 .skipGettingPictureIndex
 	push hl

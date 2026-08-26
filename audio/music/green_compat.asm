@@ -115,6 +115,17 @@ MACRO music_ret
 	sound_ret
 ENDM
 
+; Audio engine 3 accepts one-byte drum commands for instruments 1-10.
+PURGE drum_note
+MACRO drum_note
+	IF \1 > 10
+		db drum_note_cmd | (\2 - 1)
+		db \1
+	ELSE
+		dn \1, \2 - 1
+	ENDC
+ENDM
+
 MACRO bass
 	drum_note 4, \1
 ENDM

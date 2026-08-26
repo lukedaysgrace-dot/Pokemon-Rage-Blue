@@ -579,6 +579,7 @@ Audio3_sfx_note:
 	ld a, c
 	cp CHAN4 ; is this a noise or sfx channel?
 	jr c, Audio3_pitch_sweep ; no
+	jr z, Audio3_note ; compact one-byte drum instrument 2 on music channel 4
 	ld b, 0
 	ld hl, wChannelFlags2
 	add hl, bc
@@ -1185,14 +1186,9 @@ Audio3_InitPitchSlideVars:
 	ld a, [hl]
 	sub e
 	ld e, a
-
-; Bug. Instead of borrowing from the high byte of the target frequency as it
-; should, it borrows from the high byte of the current frequency instead.
-; This means that the result will be 0x200 greater than it should be if the
-; low byte of the current frequency is greater than the low byte of the
-; target frequency.
+	; Preserve the low-byte borrow before add hl, bc changes carry.
 	ld a, d
-	sbc b
+	adc b ; b is 0: current high byte + borrow
 	ld d, a
 
 	ld hl, wChannelPitchSlideTargetFrequencyHighBytes
@@ -1341,76 +1337,12 @@ Audio3_PlaySound::
 	jp nc, .playSfx
 
 .playMusic
-	xor a
-	ld [wUnusedMusicByte], a
-	ld [wDisableChannelOutputWhenSfxEnds], a
-	ld [wMusicTempo + 1], a
-	ld [wMusicWaveInstrument], a
-	ld [wSfxWaveInstrument], a
-	ld d, NUM_CHANNELS
-	ld hl, wChannelReturnAddresses
-	call .FillMem
-	ld hl, wChannelCommandPointers
-	call .FillMem
-	ld d, NUM_MUSIC_CHANS
-	ld hl, wChannelSoundIDs
-	call .FillMem
-	ld hl, wChannelFlags1
-	call .FillMem
-	ld hl, wChannelDutyCycles
-	call .FillMem
-	ld hl, wChannelDutyCyclePatterns
-	call .FillMem
-	ld hl, wChannelVibratoDelayCounters
-	call .FillMem
-	ld hl, wChannelVibratoExtents
-	call .FillMem
-	ld hl, wChannelVibratoRates
-	call .FillMem
-	ld hl, wChannelFrequencyLowBytes
-	call .FillMem
-	ld hl, wChannelVibratoDelayCounterReloadValues
-	call .FillMem
-	ld hl, wChannelFlags2
-	call .FillMem
-	ld hl, wChannelPitchSlideLengthModifiers
-	call .FillMem
-	ld hl, wChannelPitchSlideFrequencySteps
-	call .FillMem
-	ld hl, wChannelPitchSlideFrequencyStepsFractionalPart
-	call .FillMem
-	ld hl, wChannelPitchSlideCurrentFrequencyFractionalPart
-	call .FillMem
-	ld hl, wChannelPitchSlideCurrentFrequencyHighBytes
-	call .FillMem
-	ld hl, wChannelPitchSlideCurrentFrequencyLowBytes
-	call .FillMem
-	ld hl, wChannelPitchSlideTargetFrequencyHighBytes
-	call .FillMem
-	ld hl, wChannelPitchSlideTargetFrequencyLowBytes
-	call .FillMem
-	ld a, $1
-	ld hl, wChannelLoopCounters
-	call .FillMem
-	ld hl, wChannelNoteDelayCounters
-	call .FillMem
-	ld hl, wChannelNoteSpeeds
-	call .FillMem
-	ld [wMusicTempo], a
-	ld a, $ff
-	ld [wStereoPanning], a
-	xor a
-	ldh [rAUDVOL], a
-	ld a, AUD1SWEEP_DOWN
-	ldh [rAUD1SWEEP], a
-	ld a, 0
-	ldh [rAUDTERM], a
-	xor a
-	ldh [rAUD3ENA], a
-	ld a, AUD3ENA_ON
-	ldh [rAUD3ENA], a
-	ld a, $77
-	ldh [rAUDVOL], a
+	; Keep the packed audio-data bank available for the original title drums.
+	; This initialization touches only RAM and hardware, so run it from the
+	; existing overflow bank and return before reading the music header.
+	ld hl, Audio3_InitMusic
+	ld b, BANK(Audio3_InitMusic)
+	call Bankswitch
 	jp .playSoundCommon
 
 .playSfx

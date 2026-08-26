@@ -452,8 +452,19 @@ Music_TitleScreen_Ch3::
 	rest 5
 	sound_ret
 
-IF DEF(_TITLE_SCREEN_NOISE_CHANNEL)
 Music_TitleScreen_Ch4::
+	; Audio engine 3 supports a one-byte encoding for noise instruments 1
+	; through 10. Use it here so the original percussion fits alongside
+	; the added Green theme without changing any notes or timing.
+	PURGE drum_note
+	MACRO drum_note
+		IF \1 > 10
+			db drum_note_cmd | (\2 - 1)
+			db \1
+		ELSE
+			dn \1, \2 - 1
+		ENDC
+	ENDM
 	drum_speed 6
 	rest 4
 	drum_note 3, 1
@@ -482,14 +493,7 @@ Music_TitleScreen_Ch4::
 	drum_note 1, 2
 .mainloop:
 	drum_speed 12
-	drum_note 2, 1
-	rest 3
-	drum_note 2, 1
-	rest 5
-	drum_note 2, 1
-	drum_note 2, 1
-	drum_note 3, 1
-	rest 3
+	sound_call .sub1
 	sound_call .sub1
 	sound_call .sub1
 	drum_note 2, 1
@@ -503,24 +507,12 @@ Music_TitleScreen_Ch4::
 	drum_note 3, 1
 	drum_note 2, 1
 	sound_call .sub2
-	drum_note 2, 1
-	rest 3
-	drum_note 2, 1
-	rest 5
-	drum_note 2, 1
-	drum_note 3, 1
-	drum_note 2, 1
+	sound_call .sub1Prefix
 	rest 1
 	drum_note 2, 1
 	rest 1
 	sound_call .sub2
-	drum_note 2, 1
-	rest 3
-	drum_note 2, 1
-	rest 5
-	drum_note 2, 1
-	drum_note 3, 1
-	drum_note 2, 1
+	sound_call .sub1Prefix
 	rest 1
 	drum_speed 6
 	drum_note 3, 1
@@ -530,33 +522,14 @@ Music_TitleScreen_Ch4::
 	drum_speed 12
 	sound_call .sub1
 	sound_call .sub2
-	drum_note 2, 1
-	rest 3
-	drum_note 2, 1
-	rest 5
-	drum_note 2, 1
-	drum_note 3, 1
-	drum_note 2, 1
-	rest 3
-	drum_note 2, 1
-	rest 3
-	drum_note 2, 1
-	rest 5
-	drum_note 3, 1
-	drum_note 2, 1
-	drum_note 2, 1
+	sound_call .sub1
+	sound_call .sub2Prefix
 	rest 1
 	drum_note 3, 1
 	drum_note 2, 1
 	sound_call .sub1
 	sound_call .sub2
-	drum_note 2, 1
-	rest 3
-	drum_note 2, 1
-	rest 5
-	drum_note 3, 1
-	drum_note 2, 1
-	drum_note 2, 1
+	sound_call .sub2Prefix
 	rest 1
 	drum_note 4, 1
 	drum_note 3, 1
@@ -648,17 +621,26 @@ Music_TitleScreen_Ch4::
 	sound_loop 0, .mainloop
 
 .sub1:
-	drum_note 2, 1
-	rest 3
-	drum_note 2, 1
-	rest 5
-	drum_note 2, 1
-	drum_note 3, 1
-	drum_note 2, 1
+	sound_call .sub1Prefix
 	rest 3
 	sound_ret
 
+.sub1Prefix:
+	drum_note 2, 1
+	rest 3
+	drum_note 2, 1
+	rest 5
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 2, 1
+	sound_ret
+
 .sub2:
+	sound_call .sub2Prefix
+	rest 3
+	sound_ret
+
+.sub2Prefix:
 	drum_note 2, 1
 	rest 3
 	drum_note 2, 1
@@ -666,6 +648,11 @@ Music_TitleScreen_Ch4::
 	drum_note 3, 1
 	drum_note 2, 1
 	drum_note 2, 1
-	rest 3
 	sound_ret
-ENDC
+
+; Restore the standard encoding for the music files included after this one.
+PURGE drum_note
+MACRO drum_note
+	db drum_note_cmd | (\2 - 1)
+	db \1
+ENDM

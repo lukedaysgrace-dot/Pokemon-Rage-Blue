@@ -209,6 +209,7 @@ ROMX $32
 	"NPC Sprites 2 Overflow"
 	"Blue Cloak OW Sprite"
 	"Trainer Class OW Sprites 1"
+	"Audio 3 Overflow"
 ROMX $33
 	"Trainer Class OW Sprites 2"
 	"Trainer Pics Overflow"
