@@ -67,12 +67,18 @@ DaycareGentlemanText:
 	ld [wMonDataLocation], a
 	call LoadMonData
 	callfar CalcLevelFromExperience
+	; on hard mode the gym level cap also applies to the daycare
+	callfar GetLevelCap
+	ld a, [wLevelCap]
+	ld b, a
 	ld a, d
-	cp MAX_LEVEL
+	cp b
 	jr c, .skipCalcExp
 
-	ld d, MAX_LEVEL
+	ld d, b
+	push bc
 	callfar CalcExperience
+	pop bc
 	ld hl, wDayCareMonExp
 	ldh a, [hExperience]
 	ld [hli], a
@@ -80,7 +86,7 @@ DaycareGentlemanText:
 	ld [hli], a
 	ldh a, [hExperience + 2]
 	ld [hl], a
-	ld d, MAX_LEVEL
+	ld d, b
 
 .skipCalcExp
 	xor a

@@ -2094,7 +2094,13 @@ wGameProgressFlagsEnd::
 
 ; $00 = male, $01 = female
 wPlayerGender:: db
-	ds 55
+
+; $00 = normal, $01 = hard
+wDifficulty:: db
+
+; current hard mode level cap, set by GetLevelCap
+wLevelCap:: db
+	ds 53
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 

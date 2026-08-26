@@ -16,6 +16,7 @@ TwoOptionMenuStrings:
 	two_option_menu 7, 4, TRUE,  .HealCancelMenu
 	two_option_menu 4, 3, FALSE, .NoYesMenu
 	two_option_menu 5, 3, FALSE, .BoyGirlMenu
+	two_option_menu 7, 3, FALSE, .NormalHardMenu
 	assert_table_length NUM_TWO_OPTION_MENUS
 
 .NoYesMenu:
@@ -49,3 +50,7 @@ TwoOptionMenuStrings:
 .BoyGirlMenu:
 	db   "BOY"
 	next "GIRL@"
+
+.NormalHardMenu:
+	db   "NORMAL"
+	next "HARD@"

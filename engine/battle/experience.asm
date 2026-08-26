@@ -116,7 +116,9 @@ GainExperience:
 	ld a, [hl]
 	ld [wCurSpecies], a
 	call GetMonHeader
-	ld d, MAX_LEVEL
+	; on hard mode the max level is capped by gym badges (MAX_LEVEL otherwise)
+	call GetLevelCap
+	ld d, a
 	callfar CalcExperience ; get max exp
 ; compare max exp with current exp
 	ldh a, [hExperience]

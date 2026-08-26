@@ -62,6 +62,29 @@ OakSpeech:
 	ld a, [wStatusFlags6]
 	bit BIT_DEBUG_MODE, a
 	jp nz, .skipSpeech
+	; Normal or hard mode (like Yellow Legacy)
+.difficultyMenuLoop
+	ld hl, DifficultyText
+	call PrintText
+	call DifficultyChoice
+	ld a, [wCurrentMenuItem]
+	and $1
+	ld [wDifficulty], a
+	and a
+	jr z, .selectedNormalMode
+	ld hl, HardModeText
+	jr .confirmDifficulty
+.selectedNormalMode
+	ld hl, NormalModeText
+.confirmDifficulty
+	; give the player a brief description of the mode and make sure
+	; that's what they want
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .difficultyMenuLoop ; if the player said no, choose again
+	call ClearScreen
 	; Boy or girl (before Oak's opening, like Yellow Legacy)
 	ld hl, BoyGirlText
 	call PrintText
@@ -199,6 +222,36 @@ OakSpeechText3:
 BoyGirlText:
 	text_far _BoyGirlText
 	text_end
+
+DifficultyText:
+	text_far _DifficultyText
+	text_end
+
+NormalModeText:
+	text_far _NormalModeText
+	text_end
+
+HardModeText:
+	text_far _HardModeText
+	text_end
+
+DifficultyChoice:
+	call SaveScreenTilesToBuffer1
+	call InitDifficultyTextBoxParameters
+	jr DisplayDifficultyChoice
+
+InitDifficultyTextBoxParameters:
+	ld a, NORMAL_HARD_MENU
+	ld [wTwoOptionMenuID], a
+	coord hl, 6, 5
+	ld bc, $607
+	ret
+
+DisplayDifficultyChoice:
+	ld a, TWO_OPTION_MENU
+	ld [wTextBoxID], a
+	call DisplayTextBoxID
+	jp LoadScreenTilesFromBuffer1
 
 BoyGirlChoice:
 	call SaveScreenTilesToBuffer1

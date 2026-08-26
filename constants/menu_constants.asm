@@ -43,6 +43,7 @@ DEF PC_ITEM_CAPACITY  EQU 50
 	const HEAL_CANCEL_MENU  ; 6
 	const NO_YES_MENU       ; 7
 	const BOY_GIRL_MENU     ; 8
+	const NORMAL_HARD_MENU  ; 9
 DEF NUM_TWO_OPTION_MENUS EQU const_value
 
 ; wTwoOptionMenuID
