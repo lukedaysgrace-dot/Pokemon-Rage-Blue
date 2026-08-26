@@ -289,7 +289,9 @@ ReviveText:
 
 RareCandyText:
 	text_far _RareCandyText
-	sound_get_item_1 ; probably supposed to play SFX_LEVEL_UP but the wrong music bank is loaded
+	; GET_ITEM_2 occupies the same slot in every audio bank, so this reward
+	; fanfare is safe whether Rare Candy is used in or out of battle.
+	sound_get_item_2
 	text_promptbutton
 	text_end
 

@@ -1714,7 +1714,8 @@ _HardModeText::
 	text "Are you sure?"
 
 	para "Set mode, no"
-	line "items in battle,"
+	line "items in trainer"
+	cont "battles, ordered"
 	cont "gym level caps,"
 	cont "trainer Stat EXP."
 	done

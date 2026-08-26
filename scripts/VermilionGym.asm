@@ -232,6 +232,7 @@ VermilionGymLTSurgeTM24NoRoomText:
 
 VermilionGymLTSurgeReceivedThunderBadgeText:
 	text_far _VermilionGymLTSurgeReceivedThunderBadgeText
+	sound_get_item_2 ; bank-stable badge fanfare
 	text_end
 
 VermilionGymSoldier1Text:

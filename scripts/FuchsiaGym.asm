@@ -209,6 +209,7 @@ FuchsiaGymKogaText:
 
 .ReceivedSoulBadgeText:
 	text_far _FuchsiaGymKogaReceivedSoulBadgeText
+	sound_get_item_2 ; bank-stable badge fanfare
 	text_end
 
 .PostBattleAdviceText:
