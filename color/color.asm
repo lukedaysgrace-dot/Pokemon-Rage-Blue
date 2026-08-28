@@ -696,9 +696,11 @@ SetPal_Overworld:
 
 	; Clear sprite palette map, except for exclamation marks above people's heads
 	CALL_INDIRECT ClearSpritePaletteMap
-	; Make exclamation mark bubble black & white. (Note: it's possible that other
-	; sprites may use these tiles for different purposes...)
-	ld a, 5
+	; Make exclamation mark bubble black & white. Palette slot 5 (PAL_OW_EMOTE)
+	; is reserved for this: color 1 = white, color 3 = black, like GSC's silver
+	; palette. (Note: it's possible that other sprites may use these tiles for
+	; different purposes...)
+	ld a, 5 ; SPR_PAL_EMOJI
 	ld hl, W2_SpritePaletteMap + $f8
 	ld [hli], a
 	ld [hli], a
