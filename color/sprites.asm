@@ -17,8 +17,8 @@ DEF SPR_PAL_BLUE    EQU 1
 DEF SPR_PAL_GREEN   EQU 2
 DEF SPR_PAL_BROWN   EQU 3
 DEF SPR_PAL_PURPLE  EQU 4
-DEF SPR_PAL_EMOJI   EQU 5
-DEF SPR_PAL_OW_DEEP_BLUE EQU 5 ; slot 5 = PAL_OW_MINT peach + blue + black (female Mint)
+DEF SPR_PAL_EMOJI   EQU 5 ; slot 5 = PAL_OW_EMOTE: white + black, reserved for emote bubbles
+DEF SPR_PAL_OW_DEEP_BLUE EQU 1 ; slot 1 = PAL_OW_BLUE peach + deep blue + black (female Mint)
 DEF SPR_PAL_TREE    EQU 6
 DEF SPR_PAL_ROCK    EQU 7
 DEF SPR_PAL_RANDOM  EQU 8
@@ -100,7 +100,8 @@ ColorOverworldSprite::
 	ld a, [de] ; Get the picture ID's palette
 	ld c, a
 
-	; Female Mint player: deep blue OW palette (slot 5), not orange (Red).
+	; Female Mint player: deep blue OW palette (slot 1), not orange (Red).
+	; (Slot 5 is reserved for the white emote palette, so she can't live there.)
 	ldh a, [hSpriteOffset2]
 	and a
 	jr nz, .notMintPlayerOW
