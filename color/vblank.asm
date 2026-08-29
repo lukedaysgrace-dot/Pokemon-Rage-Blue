@@ -80,6 +80,16 @@ RefreshPalettesPreVBlank:
 	ld [W2_SprPaletteDataModified], a
 
 	ld hl, W2_SprPaletteDataBuffer
+	ld a, [W2_UseOBP1]
+	and a
+	ld c, a ; nonzero: object palettes 4-7 follow OBP1 instead of OBP0
+	jr z, .obpShortcuts
+	ldh a, [rOBP0]
+	ld b, a
+	ldh a, [rOBP1]
+	cp b
+	jr nz, .objPalFromWram ; the shortcuts below only look at OBP0
+.obpShortcuts
 	ldh a, [rOBP0]
 	and a
 	jr nz, .obpNotWhite
@@ -91,18 +101,40 @@ RefreshPalettesPreVBlank:
 	call SetBlackColor
 	jr .end
 .objPalFromWram
-	; W2_SprPaletteData already holds 8 CGB object palettes. Do not build them from
-	; rOBP0/rOBP1: that only produces two 4-color mappings and is duplicated to all
-	; eight slots, so every OAM palette index looks the same (e.g. all NPCs match Red).
-	ld hl, W2_SprPaletteData
-	ld de, W2_SprPaletteDataBuffer
-	ld c, 64
-.objPalCopy
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .objPalCopy
+	; Map each of the 8 stored object palettes through OBP0 (or OBP1 for palettes
+	; 4-7 when W2_UseOBP1 is set), exactly as the BGP loop above does for the
+	; background. Do NOT build the colors from the register alone: that produces a
+	; single 4-color mapping duplicated to all eight slots, so every OAM palette
+	; index ends up identical (e.g. all NPCs match Red). SetColor reads color
+	; (a & 3) out of palette b's own stored colors, and because it only hardcodes
+	; the high byte of W2_BgPaletteData, b = 8-15 addresses W2_SprPaletteData.
+	; Without this, writes to OBP0/OBP1 have no visible effect: sprites do not
+	; fade with the background, and the OBP1 effects (Pokecenter healing flash,
+	; the Cut animation, the ghost/Marowak reveal) never render.
+	ld b, 8
+.doNextObjPal
+	bit 2, b ; object palettes 4-7?
+	jr z, .useObp0
+	ld a, c
+	and a
+	jr z, .useObp0
+	ldh a, [rOBP1]
+	jr .gotObp
+.useObp0
+	ldh a, [rOBP0]
+.gotObp
+	ld d, a
+	ld e, 4
+.doNextObjColor
+	ld a, d
+	call SetColor
+	srl d
+	srl d
+	dec e
+	jr nz, .doNextObjColor
+	inc b
+	bit 4, b ; b >= 16?
+	jr z, .doNextObjPal
 
 .end
 	ldh a, [rBGP]
