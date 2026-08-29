@@ -88,3 +88,7 @@ IF DEF(_BLUE)
 	trainer_const EXILE_BRUNO    ; $3b (Blue only)
 ENDC
 DEF NUM_TRAINERS EQU const_value - 1
+; wCurOpponent / wEngagedTrainerClass are single bytes holding OPP_ID_OFFSET + class.
+; Adding a class past this point silently wraps them instead of failing the build.
+ASSERT OPP_ID_OFFSET + NUM_TRAINERS <= 255, \
+	"OPP_ID_OFFSET + NUM_TRAINERS exceeds 255: wCurOpponent would wrap"

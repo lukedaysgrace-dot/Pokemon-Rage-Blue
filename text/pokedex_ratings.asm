@@ -110,7 +110,31 @@ _DexRatingText_Own140To149::
 	cont "authority now!"
 	done
 
-_DexRatingText_Own150To151::
+_DexRatingText_Own150To169::
+	text "Incredible! You've"
+	line "passed what any"
+	cont "trainer had done!"
+	done
+
+_DexRatingText_Own170To189::
+	text "Astounding! Few"
+	line "will ever see a"
+	cont "#DEX like this!"
+	done
+
+_DexRatingText_Own190To209::
+	text "Magnificent! The"
+	line "rarest #MON are"
+	cont "in your hands!"
+	done
+
+_DexRatingText_Own210To229::
+	text "Almost there! A"
+	line "handful of #MON"
+	cont "still elude you!"
+	done
+
+_DexRatingText_DexComplete::
 	text "Your #DEX is"
 	line "entirely complete!"
 	cont "Congratulations!"
