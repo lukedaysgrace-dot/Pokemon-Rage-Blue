@@ -6458,8 +6458,8 @@ LoadPlayerBackPic:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .loadRedBackPicHD
-	ld de, MintPicBackHD
-	ld a, BANK(MintPicBackHD)
+	ld de, YellowPicBackHD
+	ld a, BANK(YellowPicBackHD)
 	jr .loadBackPicHD
 .loadRedBackPicHD
 	ld de, RedPicBackHD
@@ -6476,8 +6476,8 @@ LoadPlayerBackPic:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .regularBackPicBankMale
-	ld de, MintPicBack
-	ld a, BANK(MintPicBack)
+	ld de, YellowPicBack
+	ld a, BANK(YellowPicBack)
 	jr .backPicBankReady
 .regularBackPicBankMale
 	ld a, BANK(RedPicBack)

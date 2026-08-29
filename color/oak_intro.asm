@@ -14,7 +14,7 @@ GetRedPalID:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .maleIntroHeroPal
-	ld a, PAL_MINT_HERO
+	ld a, PAL_YELLOW_HERO
 	jr GotPalID
 .maleIntroHeroPal:
 IF GEN_2_GRAPHICS

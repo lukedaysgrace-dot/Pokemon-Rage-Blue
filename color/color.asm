@@ -141,7 +141,7 @@ SetPal_Battle_Common:
 	ld a, PAL_REDMON
 	jr .introTrainerPaletteInB
 .introTrainerFemaleHeroPalette
-	ld a, PAL_MINT_HERO
+	ld a, PAL_YELLOW_HERO
 .introTrainerPaletteInB
 	ld b, a
 
@@ -937,7 +937,7 @@ SetPal_TrainerCard:
 
 	; Trainer card portrait palette is version-based.
 IF DEF(_BLUE)
-	ld d, PAL_MINT_HERO
+	ld d, PAL_YELLOW_HERO
 ELSE
 IF GEN_2_GRAPHICS
 	ld d, PAL_HERO

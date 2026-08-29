@@ -8,8 +8,8 @@ _LoadWalkingPlayerSpriteGraphics::
 	ld b, BANK(RedSprite)
 	jr _LoadPlayerSpriteGraphicsCommonBC
 .walkingGirl
-	ld de, MintSprite
-	ld b, BANK(MintSprite)
+	ld de, YellowSprite
+	ld b, BANK(YellowSprite)
 	jr _LoadPlayerSpriteGraphicsCommonBC
 
 _LoadSurfingPlayerSpriteGraphics::
@@ -30,8 +30,8 @@ _LoadBikePlayerSpriteGraphics::
 	ld b, BANK(RedBikeSprite)
 	jr _LoadPlayerSpriteGraphicsCommonBC
 .bikeGirl
-	ld de, MintBikeSprite
-	ld b, BANK(MintBikeSprite)
+	ld de, YellowBikeSprite
+	ld b, BANK(YellowBikeSprite)
 	jr _LoadPlayerSpriteGraphicsCommonBC
 .skateboard
 	ld a, [wPlayerGender]
@@ -41,8 +41,8 @@ _LoadBikePlayerSpriteGraphics::
 	ld b, BANK(RedSkateboardSprite)
 	jr _LoadPlayerSpriteGraphicsCommonBC
 .skateGirl
-	ld de, MintSkateboardSprite
-	ld b, BANK(MintSkateboardSprite)
+	ld de, YellowSkateboardSprite
+	ld b, BANK(YellowSkateboardSprite)
 
 _LoadPlayerSpriteGraphicsCommonBC::
 	push de

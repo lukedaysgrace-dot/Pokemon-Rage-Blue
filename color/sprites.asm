@@ -18,7 +18,7 @@ DEF SPR_PAL_GREEN   EQU 2
 DEF SPR_PAL_BROWN   EQU 3
 DEF SPR_PAL_PURPLE  EQU 4
 DEF SPR_PAL_EMOJI   EQU 5 ; slot 5 = PAL_OW_EMOTE: white + black, reserved for emote bubbles
-DEF SPR_PAL_OW_DEEP_BLUE EQU 1 ; slot 1 = PAL_OW_BLUE peach + deep blue + black (female Mint)
+DEF SPR_PAL_OW_GOLD EQU 3 ; slot 3 = PAL_OW_BROWN peach + gold-brown + black (female Yellow)
 DEF SPR_PAL_TREE    EQU 6
 DEF SPR_PAL_ROCK    EQU 7
 DEF SPR_PAL_RANDOM  EQU 8
@@ -100,19 +100,20 @@ ColorOverworldSprite::
 	ld a, [de] ; Get the picture ID's palette
 	ld c, a
 
-	; Female Mint player: deep blue OW palette (slot 1), not orange (Red).
-	; (Slot 5 is reserved for the white emote palette, so she can't live there.)
+	; Female Yellow player: gold-brown OW palette (slot 3), not orange (Red).
+	; (The GBC only has 8 object palettes and all are assigned, so she shares
+	; PAL_OW_BROWN — the closest available tone to her gold hair and outfit.)
 	ldh a, [hSpriteOffset2]
 	and a
-	jr nz, .notMintPlayerOW
+	jr nz, .notYellowPlayerOW
 	ld a, [wPlayerGender]
 	and a
-	jr z, .notMintPlayerOW
+	jr z, .notYellowPlayerOW
 	ld a, c
 	cp SPR_PAL_ORANGE
-	jr nz, .notMintPlayerOW
-	ld c, SPR_PAL_OW_DEEP_BLUE
-.notMintPlayerOW:
+	jr nz, .notYellowPlayerOW
+	ld c, SPR_PAL_OW_GOLD
+.notYellowPlayerOW:
 	ld a, c
 
 	; If it's 8, that means no particular palette is assigned
