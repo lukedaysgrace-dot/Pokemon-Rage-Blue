@@ -129,7 +129,7 @@ ENDC
 
 	toggleable_objects_for ROUTE_25
 	toggle_object_state ROUTE25_TM_SEISMIC_TOSS, ON
-	toggle_object_state ROUTE25_TM_SEISMIC_TOSS, ON
+	toggle_object_state 0, ON ; reserved: was a second copy of the TM row
 
 	toggleable_objects_for BLUES_HOUSE
 	toggle_object_state BLUESHOUSE_DAISY1,   ON

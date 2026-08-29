@@ -97,7 +97,7 @@ ENDM
 
 	toggle_consts_for ROUTE_25
 	const TOGGLE_ROUTE_25_ITEM                 ; 29 X
-	const TOGGLE_ROUTE_25_GREEN                ; 2A
+	const TOGGLE_ROUTE_25_GREEN                ; 2A (reserved; no object yet)
 
 	toggle_consts_for BLUES_HOUSE
 	const TOGGLE_DAISY_SITTING                 ; 2B

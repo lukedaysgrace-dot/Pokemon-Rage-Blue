@@ -59,7 +59,7 @@ TrainerClassMoveChoiceModifications:
 	move_choices 1, 3, 4    ; CHANNELER
 	move_choices 1, 3, 4    ; AGATHA
 	move_choices 1, 3, 4    ; LANCE
-	move_choices 1, 3, 4    ; BLUE_CLOAK
+	move_choices 1, 2, 3, 4 ; BLUE_CLOAK
 	move_choices 1, 2, 3, 4 ; GREEN
 	move_choices 1, 2, 3, 4 ; GREEN_ROCKET
 	move_choices 1, 2, 3, 4 ; NINJA

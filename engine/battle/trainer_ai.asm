@@ -263,14 +263,6 @@ Rival3AI:
 	ret nc
 	jp AIUseFullRestore
 
-BlueCloakAI:
-	call Random
-	cp 30 percent
-	ret nc
-	call BlueCloakTryDireHit
-	ret c
-	jp BlueCloakTryGuardSpec
-
 EliteFourAI:
 	and a ; use smart move scoring only; no items or voluntary switches
 	ret
@@ -308,27 +300,6 @@ LanceAI:
 
 GenericAI:
 	and a ; clear carry
-	ret
-
-BlueCloakTryDireHit:
-	ld a, [wEnemyBattleStatus2]
-	bit GETTING_PUMPED, a
-	jr nz, .noAction
-	ld a, [wEnemyMovePower]
-	and a
-	ret z
-	jp AIUseDireHit
-.noAction
-	and a
-	ret
-
-BlueCloakTryGuardSpec:
-	ld a, [wEnemyBattleStatus2]
-	bit PROTECTED_BY_MIST, a
-	jr nz, .noAction
-	jp AIUseGuardSpec
-.noAction
-	and a
 	ret
 
 ; end of individual trainer AI routines
