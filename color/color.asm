@@ -872,7 +872,7 @@ SetPal_GameFreakIntro:
 	ldh [rWBK], a
 
 	; Load "INTRO_GRAY" palette from map_palettes.asm
-	ld hl, MapPalettes + INTRO_GRAY * 4
+	ld hl, MapPalettes + INTRO_GRAY * 8
 	ld a, BANK(MapPalettes)
 	ld de, W2_BgPaletteData
 	ld bc, $08

@@ -329,20 +329,22 @@ InitOutsideMapSprites:
 	ld a, b
 	ld [wSpriteSetID], a
 	dec a
-	ld b, a
-	sla a
-	ld c, a
-	sla a
-	sla a
-	add c
-	add b ; a = (spriteSetID - 1) * SPRITE_SET_LENGTH
+; de = SpriteSets + (spriteSetID - 1) * SPRITE_SET_LENGTH
+; computed in 16 bits: the product exceeds a byte for the last sprite sets
+	ld l, a
+	ld h, 0
+	ld d, h
+	ld e, l
+	add hl, hl ; *2
+	add hl, hl ; *4
+	add hl, hl ; *8
+	add hl, de ; *9
+	add hl, de ; *10
+	add hl, de ; *11 == SPRITE_SET_LENGTH
 	ld de, SpriteSets
-; add a to de to get offset of sprite set
-	add e
-	ld e, a
-	jr nc, .noCarry2
-	inc d
-.noCarry2
+	add hl, de
+	ld d, h
+	ld e, l
 	ld hl, wSpritePlayerStateData2PictureID
 	ld a, SPRITE_RED
 	ld [hl], a

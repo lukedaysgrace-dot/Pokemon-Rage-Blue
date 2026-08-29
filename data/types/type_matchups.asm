@@ -113,5 +113,4 @@ TypeEffects:
 	db ROCK,         STEEL,        NOT_VERY_EFFECTIVE
 	db GHOST,        STEEL,        NOT_VERY_EFFECTIVE
 	db DRAGON,       STEEL,        NOT_VERY_EFFECTIVE
-	db DARK,         STEEL,        NOT_VERY_EFFECTIVE
 	db -1 ; end

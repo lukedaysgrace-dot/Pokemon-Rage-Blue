@@ -564,11 +564,13 @@ AttackUpSideEffect:
 	ld de, wEnemyMoveEffect
 .patchEffect
 	ld a, [de]
+	push de ; StatModifierUpEffect reassigns de; keep the move-effect pointer
 	push af
 	ld a, ATTACK_UP1_EFFECT
 	ld [de], a
 	call StatModifierUpEffect
 	pop af
+	pop de
 	ld [de], a
 	ret
 

@@ -637,8 +637,41 @@ _AddEnemyMonToPlayerParty::
 	ld e, l ; de = stat destination; CalcStats writes 10 bytes to [de]
 	ld bc, (MON_HP_EXP - 1) - MON_MAXHP
 	add hl, bc ; hl = base + MON_HP_EXP - 1
+	ld a, [wLoadedMon + MON_LEVEL]
+	ld [wCurEnemyLevel], a ; CalcStat reads the level from here
 	ld b, $0
 	call CalcStats
+; Max HP was just recalculated but current HP was copied verbatim from the
+; traded mon, so it can now exceed the new maximum. Clamp it.
+	ld hl, wPartyMons
+	ld a, [wPartyCount]
+	dec a
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	push hl
+	ld bc, MON_MAXHP
+	add hl, bc
+	ld a, [hli]
+	ld d, a
+	ld e, [hl] ; de = new max HP
+	pop hl
+	ld bc, MON_HP
+	add hl, bc ; hl = current HP
+	ld a, [hl]
+	cp d
+	jr c, .currentHpOk
+	jr nz, .clampCurrentHp
+	inc hl
+	ld a, [hl]
+	dec hl
+	cp e
+	jr c, .currentHpOk
+	jr z, .currentHpOk
+.clampCurrentHp
+	ld [hl], d
+	inc hl
+	ld [hl], e
+.currentHpOk
 	ld hl, wPartyMonOT
 	ld a, [wPartyCount]
 	dec a
