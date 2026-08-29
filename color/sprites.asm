@@ -18,7 +18,6 @@ DEF SPR_PAL_GREEN   EQU 2
 DEF SPR_PAL_BROWN   EQU 3
 DEF SPR_PAL_PURPLE  EQU 4
 DEF SPR_PAL_EMOJI   EQU 5 ; slot 5 = PAL_OW_EMOTE: white + black, reserved for emote bubbles
-DEF SPR_PAL_OW_GOLD EQU 3 ; slot 3 = PAL_OW_BROWN peach + gold-brown + black (female Yellow)
 DEF SPR_PAL_TREE    EQU 6
 DEF SPR_PAL_ROCK    EQU 7
 DEF SPR_PAL_RANDOM  EQU 8
@@ -97,24 +96,10 @@ ColorOverworldSprite::
 	jr nc, .noCarry
 	inc d
 .noCarry
-	ld a, [de] ; Get the picture ID's palette
-	ld c, a
-
-	; Female Yellow player: gold-brown OW palette (slot 3), not orange (Red).
-	; (The GBC only has 8 object palettes and all are assigned, so she shares
-	; PAL_OW_BROWN — the closest available tone to her gold hair and outfit.)
-	ldh a, [hSpriteOffset2]
-	and a
-	jr nz, .notYellowPlayerOW
-	ld a, [wPlayerGender]
-	and a
-	jr z, .notYellowPlayerOW
-	ld a, c
-	cp SPR_PAL_ORANGE
-	jr nz, .notYellowPlayerOW
-	ld c, SPR_PAL_OW_GOLD
-.notYellowPlayerOW:
-	ld a, c
+	; Get the picture ID's palette. The female Yellow player keeps the default
+	; SPR_PAL_ORANGE slot (PAL_OW_RED: peach skin + orange + black), the same
+	; overworld palette Red uses — no gender override.
+	ld a, [de]
 
 	; If it's 8, that means no particular palette is assigned
 	cp SPR_PAL_RANDOM
