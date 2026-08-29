@@ -636,7 +636,7 @@ ItemUseTownMap:
 	jr nc, .townMapViewOnly
 	ld a, [wWalkBikeSurfState]
 	cp 2
-	jp z, ItemUseNotTime
+	jr z, .townMapViewOnly ; can't Fly while surfing, but the map still opens
 	call CheckIfInOutsideMap
 	jr nz, .townMapViewOnly
 	ld hl, wStatusFlags4

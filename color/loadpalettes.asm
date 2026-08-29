@@ -144,8 +144,10 @@ LoadTilesetPalette:
 
 	ld a, c
 	and a ; Check whether tileset 0 is loaded
+	push bc ; LoadTownPalette clobbers bc
 	call z, LoadTownPalette
-	ld a, c ; LoadTownPalette returns a = restored wram bank, not the tileset
+	pop bc
+	ld a, c
 	cp PLATEAU ; tileset 0 isn't the only outside tileset
 	call z, LoadTownPalette
 

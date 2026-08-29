@@ -33,6 +33,8 @@ BikeShopClerkText:
 	bit B_PAD_B, a
 	jp nz, .Done
 	ld a, [wCurrentMenuItem]
+	cp 2 ; CANCEL
+	jp z, .Done
 	and a
 	ld a, BICYCLE
 	jr z, .gotVoucherChoice

@@ -4197,7 +4197,9 @@ GetDamageVarsForPlayerAttack:
 	cp 7
 	jr c, .keepEnemyDefense
 	ld c, STAT_DEFENSE
+	push hl ; GetEnemyMonStat clobbers hl, which still points at the attacking stat
 	call GetEnemyMonStat
+	pop hl
 	ldh a, [hProduct + 2]
 	ld b, a
 	ldh a, [hProduct + 3]
@@ -4236,7 +4238,9 @@ GetDamageVarsForPlayerAttack:
 	cp 7
 	jr c, .keepEnemySpecial
 	ld c, STAT_SPECIAL
+	push hl ; GetEnemyMonStat clobbers hl, which still points at the attacking stat
 	call GetEnemyMonStat
+	pop hl
 	ldh a, [hProduct + 2]
 	ld b, a
 	ldh a, [hProduct + 3]
@@ -4324,6 +4328,7 @@ GetDamageVarsForEnemyAttack:
 	ld a, [wPlayerMonDefenseMod]
 	cp 7
 	jr c, .keepPlayerDefense
+	push hl ; hl still points at the attacking stat
 	ld hl, wPartyMon1Defense
 	ld a, [wPlayerMonNumber]
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -4331,6 +4336,7 @@ GetDamageVarsForEnemyAttack:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+	pop hl
 .keepPlayerDefense
 	ld a, [wEnemyMonAttackMod]
 	cp 8
@@ -4363,6 +4369,7 @@ GetDamageVarsForEnemyAttack:
 	ld a, [wPlayerMonSpecialMod]
 	cp 7
 	jr c, .keepPlayerSpecial
+	push hl ; hl still points at the attacking stat
 	ld hl, wPartyMon1Special
 	ld a, [wPlayerMonNumber]
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -4370,6 +4377,7 @@ GetDamageVarsForEnemyAttack:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+	pop hl
 .keepPlayerSpecial
 	ld a, [wEnemyMonSpecialMod]
 	cp 8
@@ -4414,7 +4422,6 @@ GetDamageVarsForEnemyAttack:
 	sla e ; double level if it was a critical hit
 .done
 	ld a, $1
-	and a
 	and a
 	ret
 
@@ -4826,6 +4833,7 @@ ApplyDamageToEnemyPokemon:
 	ld [hli], a
 	ld [hl], a
 .animateHpBar
+	ld e, $1 ; the enemy's Pokemon took this damage
 	callfar RecordCounterableDamage
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
@@ -4954,6 +4962,7 @@ ApplyDamageToPlayerPokemon:
 	ld [hli], a
 	ld [hl], a
 .animateHpBar
+	ld e, $0 ; the player's Pokemon took this damage
 	callfar RecordCounterableDamage
 	ld hl, wBattleMonMaxHP
 	ld a, [hli]
