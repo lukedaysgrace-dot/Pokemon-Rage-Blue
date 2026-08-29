@@ -1,3 +1,8 @@
+; Testing aid: start a new game with the BICYCLE and SKATEBOARD already in the
+; bag, so both riding sprites can be checked without playing to the BIKE SHOP.
+; Set this to 0 (or delete the block at the end of InitPlayerData) for normal play.
+DEF DEBUG_START_WITH_RIDES EQU 1
+
 InitPlayerData:
 InitPlayerData2:
 
@@ -49,6 +54,27 @@ DEF START_MONEY EQU $3000
 	ResetEvent EVENT_GOT_BICYCLE
 	ResetEvent EVENT_GOT_SKATEBOARD_FROM_BIKE_SHOP
 	ResetEvent EVENT_GOT_BIKE_VOUCHER
+
+IF DEBUG_START_WITH_RIDES
+	; Overwrite the empty bag with BICYCLE + SKATEBOARD, and flag both as
+	; already obtained so the BIKE SHOP scripts stay consistent.
+	ld hl, wNumBagItems
+	ld a, 2 ; item count
+	ld [hli], a
+	ld a, BICYCLE
+	ld [hli], a
+	ld a, 1 ; quantity
+	ld [hli], a
+	ld a, SKATEBOARD
+	ld [hli], a
+	ld a, 1 ; quantity
+	ld [hli], a
+	ld a, -1 ; list terminator
+	ld [hl], a
+
+	SetEvent EVENT_GOT_BICYCLE
+	SetEvent EVENT_GOT_SKATEBOARD_FROM_BIKE_SHOP
+ENDC
 
 	jp InitializeToggleableObjectsFlags
 
