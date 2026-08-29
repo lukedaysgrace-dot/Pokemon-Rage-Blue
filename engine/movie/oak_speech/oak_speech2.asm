@@ -39,8 +39,8 @@ ChoosePlayerName:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .customPicNotGirl
-	ld de, MintPicFront
-	ld b, BANK(MintPicFront)
+	ld de, YellowPicFront
+	ld b, BANK(YellowPicFront)
 .customPicNotGirl
 	call IntroDisplayPicCenteredOrUpperRight
 .done

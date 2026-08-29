@@ -268,7 +268,7 @@ IF GEN_2_GRAPHICS
 	const PAL_PETREL        ; $ED
 	const PAL_PROTON        ; $EE
 	const PAL_HERO          ; $EF
-	const PAL_MINT_HERO     ; $F0 (female Mint; deep blue)
+	const PAL_YELLOW_HERO   ; $F0 (female Yellow; gold)
 	const PAL_SCOLMON       ; Scolipede custom (red / cyan / white / black)
 	const PAL_WHIRLMON      ; Whirlipede custom (purple / teal / white / black)
 	const PAL_VENMON        ; Venipede custom (dusty rose / forest green / white / black)
@@ -327,7 +327,7 @@ IF !GEN_2_GRAPHICS
 	const PAL_PROTON        ; $57
 	const PAL_HERO          ; $58
 	const PAL_SOLDIER       ; $59
-	const PAL_MINT_HERO     ; $5A (female Mint; GEN_2_GRAPHICS off build)
+	const PAL_YELLOW_HERO   ; $5A (female Yellow; GEN_2_GRAPHICS off build)
 	const PAL_SCOLMON
 	const PAL_WHIRLMON
 	const PAL_VENMON

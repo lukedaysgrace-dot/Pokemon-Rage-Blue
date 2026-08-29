@@ -87,7 +87,7 @@ IF 1 ; Trainers are given individualized palettes
 	ld a, [wPlayerGender]
 	and a
 	jr z, .linkMaleHeroPal
-	ld a, PAL_MINT_HERO
+	ld a, PAL_YELLOW_HERO
 	ret
 .linkMaleHeroPal:
 	ld a, PAL_HERO
@@ -124,7 +124,7 @@ DetermineBackSpritePaletteID:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .maleTrainerBackPal
-	ld a, PAL_MINT_HERO
+	ld a, PAL_YELLOW_HERO
 	ret
 .maleTrainerBackPal:
 IF GEN_2_GRAPHICS

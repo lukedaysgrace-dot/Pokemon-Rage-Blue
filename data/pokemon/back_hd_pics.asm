@@ -1,7 +1,7 @@
 SECTION "Pokemon Back HD", ROMX
 
-RedPicBackHD::  INCBIN "gfx/pokemon/backhd/redb.pic"
-MintPicBackHD:: INCBIN "gfx/pokemon/backhd/mintb.pic"
+RedPicBackHD::    INCBIN "gfx/pokemon/backhd/redb.pic"
+YellowPicBackHD:: INCBIN "gfx/pokemon/backhd/yellowb.pic"
 
 LoadMonBackPic:
 ; Reload header for the back pic. In battle, use the party slot's species (source of truth)

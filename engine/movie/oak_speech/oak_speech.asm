@@ -116,7 +116,7 @@ OakSpeech:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .introPlayerNotGirl
-	ld de, MintPicFront
+	ld de, YellowPicFront
 .introPlayerNotGirl
 	lb bc, BANK(RedPicFront), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -140,7 +140,7 @@ OakSpeech:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .shrinkIntroNotGirl
-	ld de, MintPicFront
+	ld de, YellowPicFront
 .shrinkIntroNotGirl
 	lb bc, BANK(RedPicFront), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -160,8 +160,8 @@ OakSpeech:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .shrinkSpriteCopy
-	ld de, MintSprite
-	ld b, BANK(MintSprite)
+	ld de, YellowSprite
+	ld b, BANK(YellowSprite)
 .shrinkSpriteCopy
 	ld hl, vSprites
 	ld c, $0C

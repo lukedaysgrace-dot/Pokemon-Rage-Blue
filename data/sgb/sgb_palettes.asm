@@ -257,8 +257,8 @@ IF GEN_2_GRAPHICS
 	RGB 31,31,31, 28,21,10, 11,06,17, 00,00,00 ; PAL_PETREL
 	RGB 31,31,31, 28,21,10, 04,11,05, 00,00,00 ; PAL_PROTON
 	RGB 31,31,31, 28,18,17, 22,07,08, 00,00,00 ; PAL_HERO
-	; Mint: rival Blue skin; clothes ~#66C5B3 seafoam GBC≈12,24,22; black
-	RGB 31,31,31, 31,19,10, 12,24,22, 00,00,00 ; PAL_MINT_HERO
+	; Yellow: rival Blue skin; clothes/hair ~#FFD642 gold GBC≈31,26,08; black
+	RGB 31,31,31, 31,19,10, 31,26,08, 00,00,00 ; PAL_YELLOW_HERO
 	; ~#B50000 / #63D6D6 (middle colors swapped vs prior — match sprite color indices)
 	RGB 31,31,31, 12,26,26, 22,00,00, 00,00,00 ; PAL_SCOLMON
 	; purple shell, seafoam markings (Whirlipede reference)
@@ -319,7 +319,7 @@ ELSE
 	RGB 31,31,31, 28,21,10, 04,11,05, 00,00,00 ; PAL_PROTON
 	RGB 31,31,31, 28,18,17, 22,07,08, 00,00,00 ; PAL_HERO
 	RGB 31,31,31, 22,31,12, 05,14,06, 00,00,00 ; PAL_SOLDIER (military greens)
-	RGB 31,31,31, 31,19,10, 12,24,22, 00,00,00 ; PAL_MINT_HERO (same mint as GEN 2 row)
+	RGB 31,31,31, 31,19,10, 31,26,08, 00,00,00 ; PAL_YELLOW_HERO (same gold as GEN 2 row)
 	RGB 31,31,31, 12,26,26, 22,00,00, 00,00,00 ; PAL_SCOLMON
 	RGB 31,31,31, 18,06,20, 07,25,23, 00,00,00 ; PAL_WHIRLMON
 	RGB 31,31,31, 10,17,10, 24,12,12, 00,00,00 ; PAL_VENMON

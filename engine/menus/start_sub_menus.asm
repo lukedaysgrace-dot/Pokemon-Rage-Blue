@@ -485,7 +485,7 @@ DrawTrainerInfo:
 	ld a, [wPlayerGender]
 	and a
 	jr z, .trainerCardNotGirl
-	ld de, MintPicFront
+	ld de, YellowPicFront
 .trainerCardNotGirl
 	lb bc, BANK(RedPicFront), $01
 	predef DisplayPicCenteredOrUpperRight

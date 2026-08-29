@@ -29,7 +29,7 @@ GetTrainerInformation::
 	ld a, [wPlayerGender]
 	and a
 	jr z, .linkMalePic
-	ld de, MintPicFront
+	ld de, YellowPicFront
 .linkMalePic
 	ld [hl], e
 	inc hl

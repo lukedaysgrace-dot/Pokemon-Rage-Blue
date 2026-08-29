@@ -1,18 +1,18 @@
 ; Extra graphics in ROM bank $2C (same bank as custom trainer moves) to avoid overflowing
 ; "Blue Cloak OW Sprite" (bank $1), etc.
-SECTION "Mint Fishing Tiles", ROMX
+SECTION "Yellow Fishing Tiles", ROMX
 
-MintFishingTilesFront:: INCBIN "gfx/overworld/mint_fish_front.2bpp"
-MintFishingTilesBack::  INCBIN "gfx/overworld/mint_fish_back.2bpp"
-MintFishingTilesSide::  INCBIN "gfx/overworld/mint_fish_side.2bpp"
+YellowFishingTilesFront:: INCBIN "gfx/overworld/mint_fish_front.2bpp"
+YellowFishingTilesBack::  INCBIN "gfx/overworld/mint_fish_back.2bpp"
+YellowFishingTilesSide::  INCBIN "gfx/overworld/mint_fish_side.2bpp"
 
 
 SECTION "Green Player OW Sprites", ROMX
 
-GreenSprite::           INCBIN "gfx/sprites/green.2bpp"
-MintSprite::            INCBIN "gfx/sprites/mint.2bpp"
-MintBikeSprite::        INCBIN "gfx/sprites/mint_bike.2bpp"
-MintSkateboardSprite::   INCBIN "gfx/sprites/mint_skateboard.2bpp"
+GreenSprite::            INCBIN "gfx/sprites/green.2bpp"
+YellowSprite::           INCBIN "gfx/sprites/yellow.2bpp"
+YellowBikeSprite::       INCBIN "gfx/sprites/yellow_bike.2bpp"
+YellowSkateboardSprite:: INCBIN "gfx/sprites/yellow_skateboard.2bpp"
 
 
 SECTION "Green Rocket OW Sprite", ROMX
@@ -25,9 +25,9 @@ SECTION "Green Pic Back", ROMX
 GreenPicBack:: INCBIN "gfx/player/greenb.pic"
 
 
-SECTION "Mint Pic Back", ROMX
+SECTION "Yellow Pic Back", ROMX
 
-MintPicBack:: INCBIN "gfx/player/mintb.pic"
+YellowPicBack:: INCBIN "gfx/player/yellowb.pic"
 
 
 SECTION "Green Rocket Trainer Pic", ROMX
