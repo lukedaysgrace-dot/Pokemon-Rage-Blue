@@ -2,9 +2,9 @@
 ; "Blue Cloak OW Sprite" (bank $1), etc.
 SECTION "Yellow Fishing Tiles", ROMX
 
-YellowFishingTilesFront:: INCBIN "gfx/overworld/mint_fish_front.2bpp"
-YellowFishingTilesBack::  INCBIN "gfx/overworld/mint_fish_back.2bpp"
-YellowFishingTilesSide::  INCBIN "gfx/overworld/mint_fish_side.2bpp"
+YellowFishingTilesFront:: INCBIN "gfx/overworld/yellow_fish_front.2bpp"
+YellowFishingTilesBack::  INCBIN "gfx/overworld/yellow_fish_back.2bpp"
+YellowFishingTilesSide::  INCBIN "gfx/overworld/yellow_fish_side.2bpp"
 
 
 SECTION "Green Player OW Sprites", ROMX
