@@ -21,7 +21,7 @@ IF DEF(_BLUE)
 	def_grass_wildmons 10 ; encounter rate
 	db  43, DEWGONG
 	db  42, GOLBAT
-	db   43, SLOWPOKE
+	db   43, AMAURA
 	db  43, JYNX
 	db  42, SEEL
 	db  42, JYNX
@@ -34,4 +34,3 @@ IF DEF(_BLUE)
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

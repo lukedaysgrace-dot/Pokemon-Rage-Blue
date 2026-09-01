@@ -23,7 +23,7 @@ IF DEF(_BLUE)
 	db  21, GEODUDE
 	db  21, MACHOP
 	db  19, RHYHORN
-	db  20, RIOLU
+	db  20, TYRUNT
 	db   21, DEINO
 	db   21, MACHOP
 	db   21, GEODUDE

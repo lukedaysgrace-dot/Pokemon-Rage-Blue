@@ -234,5 +234,20 @@
 	const DEX_CRADILY    ; 228
 	const DEX_ANORITH    ; 229
 	const DEX_ARMALDO    ; 230
+	const DEX_HIPPOPOTAS ; 231
+	const DEX_HIPPOWDON  ; 232
+	const DEX_SWINUB     ; 233
+	const DEX_PILOSWINE  ; 234
+	const DEX_MAMOSWINE  ; 235
+	const DEX_BUNEARY    ; 236
+	const DEX_LOPUNNY    ; 237
+	const DEX_HITMONTOP  ; 238
+	const DEX_LICKILICKY ; 239
+	const DEX_TYRUNT     ; 240
+	const DEX_TYRANTRUM  ; 241
+	const DEX_AMAURA     ; 242
+	const DEX_AURORUS    ; 243
+	const DEX_CROAGUNK   ; 244
+	const DEX_TOXICROAK  ; 245
 
 DEF NUM_POKEMON EQU const_value - 1

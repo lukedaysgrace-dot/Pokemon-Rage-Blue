@@ -27,7 +27,7 @@ IF DEF(_BLUE)
 	db   4, MURKROW
 	db   3, NIDORAN_F
 	db   5, DODUO
-	db   3, MANKEY
+	db   3, BUNEARY
 	db   4, RIOLU
 	end_grass_wildmons
 

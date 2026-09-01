@@ -229,5 +229,20 @@ MonPartyData:
 	db ICON_CRADILY       ; Cradily
 	db ICON_ANORITH       ; Anorith
 	db ICON_ARMALDO       ; Armaldo
+	db ICON_HIPPOPOTAS    ; Hippopotas
+	db ICON_HIPPOWDON     ; Hippowdon
+	db ICON_SWINUB        ; Swinub
+	db ICON_PILOSWINE     ; Piloswine
+	db ICON_MAMOSWINE     ; Mamoswine
+	db ICON_BUNEARY       ; Buneary
+	db ICON_LOPUNNY       ; Lopunny
+	db ICON_HITMONTOP     ; Hitmontop
+	db ICON_LICKILICKY    ; Lickilicky
+	db ICON_TYRUNT        ; Tyrunt
+	db ICON_TYRANTRUM     ; Tyrantrum
+	db ICON_AMAURA        ; Amaura
+	db ICON_AURORUS       ; Aurorus
+	db ICON_CROAGUNK      ; Croagunk
+	db ICON_TOXICROAK     ; Toxicroak
 
 ASSERT @ - MonPartyData == NUM_POKEMON

@@ -61,14 +61,14 @@ PokedexEntryPointers:
 	dw DiglettDexEntry
 	dw TaurosDexEntry
 	dw BisharpDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw HippopotasDexEntry
+	dw HippowdonDexEntry
 	dw FarfetchdDexEntry
 	dw VenonatDexEntry
 	dw DragoniteDexEntry
 	dw ShieldonDexEntry
 	dw BastiodonDexEntry
-	dw MissingNoDexEntry
+	dw SwinubDexEntry
 	dw DoduoDexEntry
 	dw PoliwagDexEntry
 	dw JynxDexEntry
@@ -80,7 +80,7 @@ PokedexEntryPointers:
 	dw KrabbyDexEntry
 	dw MareepDexEntry
 	dw FlaaffyDexEntry
-	dw MissingNoDexEntry
+	dw PiloswineDexEntry
 	dw VulpixDexEntry
 	dw NinetalesDexEntry
 	dw PikachuDexEntry
@@ -93,8 +93,8 @@ PokedexEntryPointers:
 	dw KabutopsDexEntry
 	dw HorseaDexEntry
 	dw SeadraDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw MamoswineDexEntry
+	dw BunearyDexEntry
 	dw SandshrewDexEntry
 	dw SandslashDexEntry
 	dw OmanyteDexEntry
@@ -114,38 +114,38 @@ PokedexEntryPointers:
 	dw WeedleDexEntry
 	dw KakunaDexEntry
 	dw BeedrillDexEntry
-	dw MissingNoDexEntry
+	dw LopunnyDexEntry
 	dw DodrioDexEntry
 	dw PrimeapeDexEntry
 	dw DugtrioDexEntry
 	dw VenomothDexEntry
 	dw DewgongDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw HitmontopDexEntry
+	dw LickilickyDexEntry
 	dw CaterpieDexEntry
 	dw MetapodDexEntry
 	dw ButterfreeDexEntry
 	dw MachampDexEntry
-	dw MissingNoDexEntry
+	dw TyruntDexEntry
 	dw GolduckDexEntry
 	dw HypnoDexEntry
 	dw GolbatDexEntry
 	dw MewtwoDexEntry
 	dw SnorlaxDexEntry
 	dw MagikarpDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw TyrantrumDexEntry
+	dw AmauraDexEntry
 	dw MukDexEntry
-	dw MissingNoDexEntry
+	dw AurorusDexEntry
 	dw KinglerDexEntry
 	dw CloysterDexEntry
-	dw MissingNoDexEntry
+	dw CroagunkDexEntry
 	dw ElectrodeDexEntry
 	dw ClefableDexEntry
 	dw WeezingDexEntry
 	dw PersianDexEntry
 	dw MarowakDexEntry
-	dw MissingNoDexEntry
+	dw ToxicroakDexEntry
 	dw HaunterDexEntry
 	dw AbraDexEntry
 	dw AlakazamDexEntry
@@ -1868,6 +1868,112 @@ BisharpDexEntry:
 	dw 1543
 	text_far _BisharpDexEntry
 	text_end
+
+HippopotasDexEntry:
+	db "HIPPO@"
+	db 2,7
+	dw 1091
+	text_far _HippopotasDexEntry
+	text_end
+
+HippowdonDexEntry:
+	db "HEAVYWEIGHT@"
+	db 6,7
+	dw 6614
+	text_far _HippowdonDexEntry
+	text_end
+
+SwinubDexEntry:
+	db "PIG@"
+	db 1,4
+	dw 143
+	text_far _SwinubDexEntry
+	text_end
+
+PiloswineDexEntry:
+	db "SWINE@"
+	db 3,7
+	dw 1230
+	text_far _PiloswineDexEntry
+	text_end
+
+MamoswineDexEntry:
+	db "TWIN TUSK@"
+	db 8,2
+	dw 6415
+	text_far _MamoswineDexEntry
+	text_end
+
+BunearyDexEntry:
+	db "RABBIT@"
+	db 1,4
+	dw 121
+	text_far _BunearyDexEntry
+	text_end
+
+LopunnyDexEntry:
+	db "RABBIT@"
+	db 3,11
+	dw 734
+	text_far _LopunnyDexEntry
+	text_end
+
+HitmontopDexEntry:
+	db "HANDSTAND@"
+	db 4,7
+	dw 1058
+	text_far _HitmontopDexEntry
+	text_end
+
+LickilickyDexEntry:
+	db "LICKING@"
+	db 5,7
+	dw 3086
+	text_far _LickilickyDexEntry
+	text_end
+
+TyruntDexEntry:
+	db "ROYAL HEIR@"
+	db 2,7
+	dw 573
+	text_far _TyruntDexEntry
+	text_end
+
+TyrantrumDexEntry:
+	db "DESPOT@"
+	db 8,2
+	dw 5952
+	text_far _TyrantrumDexEntry
+	text_end
+
+AmauraDexEntry:
+	db "TUNDRA@"
+	db 4,3
+	dw 556
+	text_far _AmauraDexEntry
+	text_end
+
+AurorusDexEntry:
+	db "TUNDRA@"
+	db 8,10
+	dw 4960
+	text_far _AurorusDexEntry
+	text_end
+
+CroagunkDexEntry:
+	db "TOXIC MOUTH@"
+	db 2,4
+	dw 507
+	text_far _CroagunkDexEntry
+	text_end
+
+ToxicroakDexEntry:
+	db "TOXIC MOUTH@"
+	db 4,3
+	dw 979
+	text_far _ToxicroakDexEntry
+	text_end
+
 MissingNoDexEntry:
 	db "???@"
 	db 10 ; 1.0 m
