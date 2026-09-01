@@ -148,17 +148,14 @@ PokemonBackHDPicPointers::
 	dba DiglettBackHDPic
 	dba TaurosBackHDPic
 	dba BisharpBackHDPic
-	db 0
-	dw 0
-	db 0
-	dw 0
+	dba HippopotasBackHDPic
+	dba HippowdonBackHDPic
 	dba FarfetchdBackHDPic
 	dba VenonatBackHDPic
 	dba DragoniteBackHDPic
 	dba ShieldonBackHDPic
 	dba BastiodonBackHDPic
-	db 0
-	dw 0
+	dba SwinubBackHDPic
 	dba DoduoBackHDPic
 	dba PoliwagBackHDPic
 	dba JynxBackHDPic
@@ -170,8 +167,7 @@ PokemonBackHDPicPointers::
 	dba KrabbyBackHDPic
 	dba MareepBackHDPic
 	dba FlaaffyBackHDPic
-	db 0
-	dw 0
+	dba PiloswineBackHDPic
 	dba VulpixBackHDPic
 	dba NinetalesBackHDPic
 	dba PikachuBackHDPic
@@ -184,10 +180,8 @@ PokemonBackHDPicPointers::
 	dba KabutopsBackHDPic
 	dba HorseaBackHDPic
 	dba SeadraBackHDPic
-	db 0
-	dw 0
-	db 0
-	dw 0
+	dba MamoswineBackHDPic
+	dba BunearyBackHDPic
 	dba SandshrewBackHDPic
 	dba SandslashBackHDPic
 	dba OmanyteBackHDPic
@@ -207,8 +201,7 @@ PokemonBackHDPicPointers::
 	dba WeedleBackHDPic
 	dba KakunaBackHDPic
 	dba BeedrillBackHDPic
-	db 0
-	dw 0
+	dba LopunnyBackHDPic
 	dba DodrioBackHDPic
 	dba PrimeapeBackHDPic
 	dba DugtrioBackHDPic
@@ -216,38 +209,31 @@ PokemonBackHDPicPointers::
 	dba DewgongBackHDPic
 	db 0
 	dw 0
-	db 0
-	dw 0
+	dba LickilickyBackHDPic
 	dba CaterpieBackHDPic
 	dba MetapodBackHDPic
 	dba ButterfreeBackHDPic
 	dba MachampBackHDPic
-	db 0
-	dw 0
+	dba TyruntBackHDPic
 	dba GolduckBackHDPic
 	dba HypnoBackHDPic
 	dba GolbatBackHDPic
 	dba MewtwoBackHDPic
 	dba SnorlaxBackHDPic
 	dba MagikarpBackHDPic
-	db 0
-	dw 0
-	db 0
-	dw 0
+	dba TyrantrumBackHDPic
+	dba AmauraBackHDPic
 	dba MukBackHDPic
-	db 0
-	dw 0
+	dba AurorusBackHDPic
 	dba KinglerBackHDPic
 	dba CloysterBackHDPic
-	db 0
-	dw 0
+	dba CroagunkBackHDPic
 	dba ElectrodeBackHDPic
 	dba ClefableBackHDPic
 	dba WeezingBackHDPic
 	dba PersianBackHDPic
 	dba MarowakBackHDPic
-	db 0
-	dw 0
+	dba ToxicroakBackHDPic
 	dba HaunterBackHDPic
 	dba AbraBackHDPic
 	dba AlakazamBackHDPic
@@ -639,3 +625,23 @@ PhanpyBackHDPic:: INCBIN "gfx/pokemon/backhd/phanpyb.pic"
 DonphanBackHDPic:: INCBIN "gfx/pokemon/backhd/donphanb.pic"
 HoundourBackHDPic:: INCBIN "gfx/pokemon/backhd/houndourb.pic"
 HoundoomBackHDPic:: INCBIN "gfx/pokemon/backhd/houndoomb.pic"
+
+SECTION "Pokemon Back HD Pics 16", ROMX
+
+HippopotasBackHDPic:: INCBIN "gfx/pokemon/backhd/hippopotasb.pic"
+HippowdonBackHDPic:: INCBIN "gfx/pokemon/backhd/hippowdonb.pic"
+SwinubBackHDPic:: INCBIN "gfx/pokemon/backhd/swinubb.pic"
+PiloswineBackHDPic:: INCBIN "gfx/pokemon/backhd/piloswineb.pic"
+MamoswineBackHDPic:: INCBIN "gfx/pokemon/backhd/mamoswineb.pic"
+BunearyBackHDPic:: INCBIN "gfx/pokemon/backhd/bunearyb.pic"
+LopunnyBackHDPic:: INCBIN "gfx/pokemon/backhd/lopunnyb.pic"
+LickilickyBackHDPic:: INCBIN "gfx/pokemon/backhd/lickilickyb.pic"
+
+SECTION "Pokemon Back HD Pics 17", ROMX
+
+TyruntBackHDPic:: INCBIN "gfx/pokemon/backhd/tyruntb.pic"
+TyrantrumBackHDPic:: INCBIN "gfx/pokemon/backhd/tyrantrumb.pic"
+AmauraBackHDPic:: INCBIN "gfx/pokemon/backhd/amaurab.pic"
+AurorusBackHDPic:: INCBIN "gfx/pokemon/backhd/aurorusb.pic"
+CroagunkBackHDPic:: INCBIN "gfx/pokemon/backhd/croagunkb.pic"
+ToxicroakBackHDPic:: INCBIN "gfx/pokemon/backhd/toxicroakb.pic"

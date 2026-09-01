@@ -26,7 +26,7 @@ IF DEF(_BLUE)
 	db  27, GLOOM
 	db   30, PIDGEOTTO
 	db   30, TANGELA
-	db   30, VENONAT
+	db   30, CROAGUNK
 	db   30, WEEPINBELL
 	db   30, DROWZEE
 	end_grass_wildmons

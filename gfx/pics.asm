@@ -500,6 +500,42 @@ PawniardPicBack::         INCBIN "gfx/pokemon/back/pawniardb.pic"
 BisharpPicFront::   INCBIN "gfx/pokemon/front/bisharp.pic"
 BisharpPicBack::    INCBIN "gfx/pokemon/back/bisharpb.pic"
 
+SECTION "Pics 10", ROMX
+
+HippopotasPicFront:: INCBIN "gfx/pokemon/front/hippopotas.pic"
+HippopotasPicBack::  INCBIN "gfx/pokemon/back/hippopotasb.pic"
+HippowdonPicFront::  INCBIN "gfx/pokemon/front/hippowdon.pic"
+HippowdonPicBack::   INCBIN "gfx/pokemon/back/hippowdonb.pic"
+SwinubPicFront::     INCBIN "gfx/pokemon/front/swinub.pic"
+SwinubPicBack::      INCBIN "gfx/pokemon/back/swinubb.pic"
+PiloswinePicFront::  INCBIN "gfx/pokemon/front/piloswine.pic"
+PiloswinePicBack::   INCBIN "gfx/pokemon/back/piloswineb.pic"
+MamoswinePicFront::  INCBIN "gfx/pokemon/front/mamoswine.pic"
+MamoswinePicBack::   INCBIN "gfx/pokemon/back/mamoswineb.pic"
+BunearyPicFront::    INCBIN "gfx/pokemon/front/buneary.pic"
+BunearyPicBack::     INCBIN "gfx/pokemon/back/bunearyb.pic"
+LopunnyPicFront::    INCBIN "gfx/pokemon/front/lopunny.pic"
+LopunnyPicBack::     INCBIN "gfx/pokemon/back/lopunnyb.pic"
+HitmontopPicFront::  INCBIN "gfx/pokemon/front/hitmontop.pic"
+HitmontopPicBack::   INCBIN "gfx/pokemon/back/hitmontopb.pic"
+
+SECTION "Pics 11", ROMX
+
+LickilickyPicFront:: INCBIN "gfx/pokemon/front/lickilicky.pic"
+LickilickyPicBack::  INCBIN "gfx/pokemon/back/lickilickyb.pic"
+TyruntPicFront::     INCBIN "gfx/pokemon/front/tyrunt.pic"
+TyruntPicBack::      INCBIN "gfx/pokemon/back/tyruntb.pic"
+TyrantrumPicFront::  INCBIN "gfx/pokemon/front/tyrantrum.pic"
+TyrantrumPicBack::   INCBIN "gfx/pokemon/back/tyrantrumb.pic"
+AmauraPicFront::     INCBIN "gfx/pokemon/front/amaura.pic"
+AmauraPicBack::      INCBIN "gfx/pokemon/back/amaurab.pic"
+AurorusPicFront::    INCBIN "gfx/pokemon/front/aurorus.pic"
+AurorusPicBack::     INCBIN "gfx/pokemon/back/aurorusb.pic"
+CroagunkPicFront::   INCBIN "gfx/pokemon/front/croagunk.pic"
+CroagunkPicBack::    INCBIN "gfx/pokemon/back/croagunkb.pic"
+ToxicroakPicFront::  INCBIN "gfx/pokemon/front/toxicroak.pic"
+ToxicroakPicBack::   INCBIN "gfx/pokemon/back/toxicroakb.pic"
+
 SECTION "Trainer Pics", ROMX
 
 YoungsterPic::     INCBIN "gfx/trainers/youngster.pic"

@@ -27,7 +27,7 @@ IF DEF(_BLUE)
 	db  52, STEELIX
 	db  52, RHYDON
 	db  51, GOLEM
-	db  51, EXCADRILL
+	db  51, HITMONTOP
 	db   53, RHYDON
 	end_grass_wildmons
 

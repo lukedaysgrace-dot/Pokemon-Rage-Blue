@@ -2240,3 +2240,153 @@ _BisharpDexEntry::
 	next "with a single"
 	next "clean slash."
 	dex
+
+_HippopotasDexEntry::
+	text "It shuts its"
+	next "nostrils tight"
+	next "when crossing sand"
+
+	page "It travels through"
+	next "the desert without"
+	next "opening its mouth."
+	dex
+
+_HippowdonDexEntry::
+	text "It blasts stored"
+	next "sand from ports"
+	next "along its body"
+
+	page "Its huge mouth can"
+	next "crush an auto"
+	next "with ease."
+	dex
+
+_SwinubDexEntry::
+	text "It rubs its snout"
+	next "against the ground"
+	next "to find food"
+
+	page "Mushrooms hidden"
+	next "beneath grass are"
+	next "favorite meal."
+	dex
+
+_PiloswineDexEntry::
+	text "Its shaggy coat"
+	next "keeps it warm in"
+	next "freezing weather"
+
+	page "Its tusks grow"
+	next "longer when snow"
+	next "and ice persist."
+	dex
+
+_MamoswineDexEntry::
+	text "Its impressive"
+	next "tusks are made of"
+	next "solid ice"
+
+	page "This ancient #MON"
+	next "endured a long ice"
+	next "age unharmed."
+	dex
+
+_BunearyDexEntry::
+	text "It can strike hard"
+	next "by uncoiling its"
+	next "rolled-up ears"
+
+	page "If both ears are"
+	next "rolled, it needs"
+	next "careful attention."
+	dex
+
+_LopunnyDexEntry::
+	text "It is extremely"
+	next "cautious and fast"
+	next "senses danger"
+
+	page "Its soft ears can"
+	next "deliver powerful"
+	next "defensive strikes."
+	dex
+
+_HitmontopDexEntry::
+	text "It spins on its"
+	next "head and launches"
+	next "graceful kicks"
+
+	page "Its spinning kicks"
+	next "can bore straight"
+	next "through concrete."
+	dex
+
+_LickilickyDexEntry::
+	text "Its long tongue is"
+	next "always coated with"
+	next "sticky saliva"
+
+	page "Its tongue reaches"
+	next "twice its body"
+	next "in length."
+	dex
+
+_TyruntDexEntry::
+	text "Its enormous jaws"
+	next "can crunch through"
+	next "an automobile"
+
+	page "It is playful but"
+	next "often unaware of"
+	next "its own strength."
+	dex
+
+_TyrantrumDexEntry::
+	text "Its powerful jaws"
+	next "made it invincible"
+	next "in the old world."
+
+	page "It ruled as king"
+	next "over all it could"
+	next "survey."
+	dex
+
+_AmauraDexEntry::
+	text "This ancient #MON"
+	next "lived in a land"
+	next "without predators"
+
+	page "Its body crystals"
+	next "can create"
+	next "frigid air."
+	dex
+
+_AurorusDexEntry::
+	text "It makes ice walls"
+	next "with air chilled"
+	next "minus 240 degrees"
+
+	page "Its diamond-shaped"
+	next "crystals glow like"
+	next "an aurora."
+	dex
+
+_CroagunkDexEntry::
+	text "Its cheeks hold"
+	next "poison sacs that"
+	next "make eerie sounds"
+
+	page "It strikes as foes"
+	next "are distracted by"
+	next "the strange noise."
+	dex
+
+_ToxicroakDexEntry::
+	text "Its knuckle claws"
+	next "secrete a toxin"
+	next "can prove fatal"
+
+	page "It fights unfairly"
+	next "and never ignores"
+	next "an easy opening."
+	dex

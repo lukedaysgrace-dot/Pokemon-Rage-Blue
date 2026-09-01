@@ -21,7 +21,7 @@ IF DEF(_BLUE)
 	def_grass_wildmons 30 ; encounter rate
 	db  35, EXEGGCUTE
 	db  37, PARAS
-	db  35, PARASECT
+	db  35, HIPPOPOTAS
 	db  36, VENONAT
 	db   38, KANGASKHAN
 	db  34, NIDORINO
@@ -34,4 +34,3 @@ IF DEF(_BLUE)
 	def_water_wildmons 0 ; encounter rate
 	end_water_wildmons
 ENDC
-

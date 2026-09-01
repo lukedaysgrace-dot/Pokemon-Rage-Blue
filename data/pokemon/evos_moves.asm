@@ -83,14 +83,14 @@ EvosMovesPointerTable:
 	dw DiglettEvosMoves
 	dw TaurosEvosMoves
 	dw BisharpEvosMoves
-	dw MissingNo3EEvosMoves
-	dw MissingNo3FEvosMoves
+	dw HippopotasEvosMoves
+	dw HippowdonEvosMoves
 	dw FarfetchdEvosMoves
 	dw VenonatEvosMoves
 	dw DragoniteEvosMoves
 	dw ShieldonEvosMoves
 	dw BastiodonEvosMoves
-	dw MissingNo45EvosMoves
+	dw SwinubEvosMoves
 	dw DoduoEvosMoves
 	dw PoliwagEvosMoves
 	dw JynxEvosMoves
@@ -102,7 +102,7 @@ EvosMovesPointerTable:
 	dw KrabbyEvosMoves
 	dw MareepEvosMoves
 	dw FlaaffyEvosMoves
-	dw MissingNo51EvosMoves
+	dw PiloswineEvosMoves
 	dw VulpixEvosMoves
 	dw NinetalesEvosMoves
 	dw PikachuEvosMoves
@@ -115,8 +115,8 @@ EvosMovesPointerTable:
 	dw KabutopsEvosMoves
 	dw HorseaEvosMoves
 	dw SeadraEvosMoves
-	dw MissingNo5EEvosMoves
-	dw MissingNo5FEvosMoves
+	dw MamoswineEvosMoves
+	dw BunearyEvosMoves
 	dw SandshrewEvosMoves
 	dw SandslashEvosMoves
 	dw OmanyteEvosMoves
@@ -136,38 +136,38 @@ EvosMovesPointerTable:
 	dw WeedleEvosMoves
 	dw KakunaEvosMoves
 	dw BeedrillEvosMoves
-	dw MissingNo73EvosMoves
+	dw LopunnyEvosMoves
 	dw DodrioEvosMoves
 	dw PrimeapeEvosMoves
 	dw DugtrioEvosMoves
 	dw VenomothEvosMoves
 	dw DewgongEvosMoves
-	dw MissingNo79EvosMoves
-	dw MissingNo7AEvosMoves
+	dw HitmontopEvosMoves
+	dw LickilickyEvosMoves
 	dw CaterpieEvosMoves
 	dw MetapodEvosMoves
 	dw ButterfreeEvosMoves
 	dw MachampEvosMoves
-	dw MissingNo7FEvosMoves
+	dw TyruntEvosMoves
 	dw GolduckEvosMoves
 	dw HypnoEvosMoves
 	dw GolbatEvosMoves
 	dw MewtwoEvosMoves
 	dw SnorlaxEvosMoves
 	dw MagikarpEvosMoves
-	dw MissingNo86EvosMoves
-	dw MissingNo87EvosMoves
+	dw TyrantrumEvosMoves
+	dw AmauraEvosMoves
 	dw MukEvosMoves
-	dw MissingNo8AEvosMoves
+	dw AurorusEvosMoves
 	dw KinglerEvosMoves
 	dw CloysterEvosMoves
-	dw MissingNo8CEvosMoves
+	dw CroagunkEvosMoves
 	dw ElectrodeEvosMoves
 	dw ClefableEvosMoves
 	dw WeezingEvosMoves
 	dw PersianEvosMoves
 	dw MarowakEvosMoves
-	dw MissingNo92EvosMoves
+	dw ToxicroakEvosMoves
 	dw HaunterEvosMoves
 	dw AbraEvosMoves
 	dw AlakazamEvosMoves
@@ -421,6 +421,7 @@ ExeggutorEvosMoves:
 	db 0
 LickitungEvosMoves:
 ; Evolutions
+	blue_evolve_level 37, LICKILICKY
 	db 0
 ; Learnset
 	db 7, LICK
@@ -3429,4 +3430,158 @@ ArmaldoEvosMoves:
 	db 42, X_SCISSOR
 	db 48, SWORDS_DANCE
 	db 54, STONE_EDGE
+	db 0
+
+HippopotasEvosMoves:
+	blue_evolve_level 34, HIPPOWDON
+	db 0
+	db 7, SAND_ATTACK
+	db 13, BITE
+	db 19, DIG
+	db 25, TAKE_DOWN
+	db 31, CRUNCH
+	db 37, EARTHQUAKE
+	db 0
+HippowdonEvosMoves:
+	db 0
+	db 7, SAND_ATTACK
+	db 13, BITE
+	db 19, DIG
+	db 25, TAKE_DOWN
+	db 31, CRUNCH
+	db 40, EARTHQUAKE
+	db 48, DOUBLE_EDGE
+	db 0
+SwinubEvosMoves:
+	blue_evolve_level 33, PILOSWINE
+	db 0
+	db 8, POWDER_SNOW
+	db 13, DEFENSE_CURL
+	db 18, ICE_SHARD
+	db 24, TAKE_DOWN
+	db 29, DIG
+	db 35, BLIZZARD
+	db 0
+PiloswineEvosMoves:
+	blue_evolve_level 42, MAMOSWINE
+	db 0
+	db 8, POWDER_SNOW
+	db 18, ICE_SHARD
+	db 24, HORN_ATTACK
+	db 30, TAKE_DOWN
+	db 36, EARTHQUAKE
+	db 42, BLIZZARD
+	db 0
+MamoswineEvosMoves:
+	db 0
+	db 8, POWDER_SNOW
+	db 18, ICE_SHARD
+	db 24, HORN_ATTACK
+	db 30, TAKE_DOWN
+	db 36, EARTHQUAKE
+	db 44, BLIZZARD
+	db 52, DOUBLE_EDGE
+	db 0
+BunearyEvosMoves:
+	blue_evolve_level 25, LOPUNNY
+	db 0
+	db 6, DEFENSE_CURL
+	db 10, QUICK_ATTACK
+	db 16, DOUBLE_KICK
+	db 22, HEADBUTT
+	db 28, DIZZY_PUNCH
+	db 36, DOUBLE_EDGE
+	db 0
+LopunnyEvosMoves:
+	db 0
+	db 6, DEFENSE_CURL
+	db 10, QUICK_ATTACK
+	db 16, DOUBLE_KICK
+	db 25, HEADBUTT
+	db 32, DIZZY_PUNCH
+	db 40, BODY_SLAM
+	db 48, DOUBLE_EDGE
+	db 0
+HitmontopEvosMoves:
+	db 0
+	db 7, FOCUS_ENERGY
+	db 12, ROLLING_KICK
+	db 18, QUICK_ATTACK
+	db 24, DOUBLE_KICK
+	db 31, COUNTER
+	db 38, SUBMISSION
+	db 46, HI_JUMP_KICK
+	db 0
+LickilickyEvosMoves:
+	db 0
+	db 7, LICK
+	db 11, WRAP
+	db 17, DISABLE
+	db 27, STOMP
+	db 34, BODY_SLAM
+	db 40, SLAM
+	db 48, DOUBLE_EDGE
+	db 0
+TyruntEvosMoves:
+	blue_evolve_level 39, TYRANTRUM
+	db 0
+	db 8, BITE
+	db 12, ROCK_THROW
+	db 18, LEER
+	db 24, DRAGON_CLAW
+	db 30, CRUNCH
+	db 35, ROCK_SLIDE
+	db 42, THRASH
+	db 0
+TyrantrumEvosMoves:
+	db 0
+	db 8, BITE
+	db 12, ROCK_THROW
+	db 24, DRAGON_CLAW
+	db 30, CRUNCH
+	db 39, ROCK_SLIDE
+	db 46, THRASH
+	db 54, STONE_EDGE
+	db 0
+AmauraEvosMoves:
+	blue_evolve_level 39, AURORUS
+	db 0
+	db 8, POWDER_SNOW
+	db 12, ROCK_THROW
+	db 18, AURORA_BEAM
+	db 24, THUNDER_WAVE
+	db 31, ICE_BEAM
+	db 38, ROCK_SLIDE
+	db 0
+AurorusEvosMoves:
+	db 0
+	db 8, POWDER_SNOW
+	db 12, ROCK_THROW
+	db 18, AURORA_BEAM
+	db 24, THUNDER_WAVE
+	db 31, ICE_BEAM
+	db 39, ROCK_SLIDE
+	db 47, BLIZZARD
+	db 0
+CroagunkEvosMoves:
+	blue_evolve_level 37, TOXICROAK
+	db 0
+	db 8, POISON_STING
+	db 12, SAND_ATTACK
+	db 17, LOW_KICK
+	db 23, ACID
+	db 29, SUCKER_PUNCH
+	db 35, SLUDGE_BOMB
+	db 41, SUBMISSION
+	db 0
+ToxicroakEvosMoves:
+	db 0
+	db 8, POISON_STING
+	db 12, SAND_ATTACK
+	db 17, LOW_KICK
+	db 23, ACID
+	db 29, SUCKER_PUNCH
+	db 37, SLUDGE_BOMB
+	db 45, SUBMISSION
+	db 53, HYPER_BEAM
 	db 0
