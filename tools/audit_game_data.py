@@ -14,6 +14,8 @@ PARTY_LENGTH = 6
 TOGGLEABLE_OBJECTS_PER_MAP = 16
 SPRITE_SET_LENGTH = 11
 WALKING_SPRITES_PER_SET = 9
+POKEDEX_CATEGORY_WIDTH = 10
+POKEDEX_TEXT_WIDTH = 18
 
 
 @dataclass(frozen=True)
@@ -563,6 +565,98 @@ def validate_wild_data(species: set[str]) -> list[str]:
     return errors
 
 
+def pokedex_display_width(text: str) -> int:
+    """Return the number of tiles a literal occupies on the Pokédex screen."""
+    # The # control character expands to the four-tile string "POKé" at runtime.
+    return len(text) + 3 * text.count("#")
+
+
+def validate_pokedex_text() -> list[str]:
+    """Keep Pokédex categories and description lines inside their screen fields."""
+    errors: list[str] = []
+
+    category_path = ROOT / "data/pokemon/dex_entries.asm"
+    current: str | None = None
+    for number, line in source_lines(category_path):
+        label = re.match(r"^([A-Za-z0-9]+DexEntry):$", line)
+        if label:
+            current = label.group(1)
+            continue
+        category = re.match(r'^db\s+"([^"]*)@"$', line)
+        if current and category:
+            text = category.group(1)
+            width = pokedex_display_width(text)
+            if width > POKEDEX_CATEGORY_WIDTH:
+                errors.append(
+                    f"{category_path.relative_to(ROOT)}:{number}: {current} category "
+                    f'"{text}" is {width} tiles (maximum {POKEDEX_CATEGORY_WIDTH})'
+                )
+            current = None
+
+    text_path = ROOT / "data/pokemon/dex_text.asm"
+    current = None
+    page = 1
+    page_lines = 0
+    last_line: tuple[int, str, int] | None = None
+    command = re.compile(r'^(text|next|page)\s+"([^"]*)"$')
+    for number, line in source_lines(text_path):
+        label = re.match(r"^_([A-Za-z0-9]+DexEntry)::$", line)
+        if label:
+            current = label.group(1)
+            page = 1
+            page_lines = 0
+            last_line = None
+            continue
+        if current is None:
+            continue
+        match = command.match(line)
+        if match:
+            kind, text = match.groups()
+            if kind == "page":
+                if page_lines > 3:
+                    errors.append(
+                        f"{text_path.relative_to(ROOT)}:{number}: {current} page {page} "
+                        f"has {page_lines} lines (maximum 3)"
+                    )
+                page += 1
+                page_lines = 1
+            else:
+                page_lines += 1
+            width = pokedex_display_width(text)
+            if width > POKEDEX_TEXT_WIDTH:
+                errors.append(
+                    f"{text_path.relative_to(ROOT)}:{number}: {current} line "
+                    f'"{text}" is {width} tiles (maximum {POKEDEX_TEXT_WIDTH})'
+                )
+            last_line = number, text, width
+            continue
+        if line != "dex":
+            continue
+        if page_lines > 3:
+            errors.append(
+                f"{text_path.relative_to(ROOT)}:{number}: {current} page {page} "
+                f"has {page_lines} lines (maximum 3)"
+            )
+        if last_line is None:
+            errors.append(f"{text_path.relative_to(ROOT)}:{number}: {current} has no text")
+        else:
+            last_number, text, width = last_line
+            # The dex command appends a period after the final literal.
+            if width + 1 > POKEDEX_TEXT_WIDTH:
+                errors.append(
+                    f"{text_path.relative_to(ROOT)}:{last_number}: {current} final line "
+                    f'"{text}" uses {width + 1} tiles with its automatic period '
+                    f"(maximum {POKEDEX_TEXT_WIDTH})"
+                )
+            if text.endswith((".", "!", "?")):
+                errors.append(
+                    f"{text_path.relative_to(ROOT)}:{last_number}: {current} final line "
+                    "already has punctuation before the automatic Pokédex period"
+                )
+        current = None
+    return errors
+
+
 def validate_move_data(moves: list[str]) -> list[str]:
     """Check move rows and every move reference in species data."""
     errors: list[str] = []
@@ -967,6 +1061,7 @@ def main() -> int:
     if "red" in version_parties and "blue" in version_parties:
         errors.extend(validate_version_parity(version_parties["red"], version_parties["blue"]))
     errors.extend(validate_wild_data(species))
+    errors.extend(validate_pokedex_text())
     errors.extend(validate_move_data(moves_list))
     errors.extend(validate_pokemon_data(species, moves))
     errors.extend(validate_sprite_sets())
