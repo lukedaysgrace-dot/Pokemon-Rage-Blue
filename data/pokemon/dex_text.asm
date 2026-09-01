@@ -1571,7 +1571,7 @@ _Porygon2DexEntry::
 	next "move by itself"
 
 	page "Its code keeps on"
-	next "learning new tasks"
+	next "learning tasks"
 	dex
 
 _PorygonZDexEntry::
@@ -1634,7 +1634,7 @@ _ChinchouDexEntry::
 	next "lights to hunt"
 
 	page "for prey in the"
-	next "deep, dark sea."
+	next "deep, dark sea"
 	dex
 
 _LanturnDexEntry::
@@ -1643,7 +1643,7 @@ _LanturnDexEntry::
 	next "fish from the"
 
 	page "dark ocean floor"
-	next "near its light."
+	next "near its light"
 	dex
 
 _GorochuDexEntry::
@@ -1652,7 +1652,7 @@ _GorochuDexEntry::
 	next "dusk air hums"
 
 	page "It tests rivals"
-	next "during storms."
+	next "during storms"
 	dex
 
 _LarvitarDexEntry::
@@ -1724,7 +1724,7 @@ _LucarioDexEntry::
 	next "distances"
 
 	page "Metal on its limbs"
-	next "focus aura strikes"
+	next "focus aura blows"
 	dex
 
 _BagonDexEntry::
@@ -1788,7 +1788,7 @@ _GolettDexEntry::
 	next "to obey orders"
 
 	page "It guards ruins"
-	next "without rest."
+	next "without rest"
 	dex
 
 _GolurkDexEntry::
@@ -1815,7 +1815,7 @@ _AnnihilapeDexEntry::
 	next "spirit fights on"
 
 	page "It attacks with"
-	next "ruthless power."
+	next "ruthless power"
 	dex
 
 _BlisseyDexEntry::
@@ -2031,7 +2031,7 @@ _MesmeriaDexEntry::
 	next "then freezes them"
 
 	page "with a cold, sly"
-	next "smile."
+	next "smile"
 	dex
 
 _SnoruntDexEntry::
@@ -2041,7 +2041,7 @@ _SnoruntDexEntry::
 
 	page "It shakes when"
 	next "foes draw near,"
-	next "then startles them"
+	next "then scares them"
 	dex
 
 _FroslassDexEntry::
@@ -2050,7 +2050,7 @@ _FroslassDexEntry::
 	next "then wraps them in"
 
 	page "icy cold that can"
-	next "freeze them fast."
+	next "freeze them fast"
 	dex
 
 
@@ -2060,7 +2060,7 @@ _PhanpyDexEntry::
 	next "buried deep below"
 
 	page "the ground, even"
-	next "through dry rock."
+	next "through dry rock"
 	dex
 
 _DonphanDexEntry::
@@ -2069,7 +2069,7 @@ _DonphanDexEntry::
 	next "through houses and"
 
 	page "flatten roads in"
-	next "a single charge."
+	next "a single charge"
 	dex
 
 _HoundourDexEntry::
@@ -2108,7 +2108,7 @@ _RampardosDexEntry::
 
 	page "charges straight"
 	next "through obstacles"
-	next "like nothing."
+	next "like nothing"
 	dex
 
 _ShieldonDexEntry::
@@ -2117,7 +2117,7 @@ _ShieldonDexEntry::
 	next "It feeds on plants"
 
 	page "and roams old"
-	next "woods for berries."
+	next "woods for berries"
 	dex
 
 _BastiodonDexEntry::
@@ -2126,7 +2126,7 @@ _BastiodonDexEntry::
 	next "shield-like faces"
 
 	page "to protect herds"
-	next "from attacks."
+	next "from attacks"
 	dex
 
 _MareepDexEntry::
@@ -2135,7 +2135,7 @@ _MareepDexEntry::
 	next "cannot move well."
 
 	page "It grazes in"
-	next "fields at dawn."
+	next "fields at dawn"
 	dex
 
 _FlaaffyDexEntry::
@@ -2145,7 +2145,7 @@ _FlaaffyDexEntry::
 
 	page "in cold weather."
 	next "It leaps away"
-	next "if scared."
+	next "if scared"
 	dex
 
 _WimpodDexEntry::
@@ -2154,7 +2154,7 @@ _WimpodDexEntry::
 	next "runs away"
 
 	page "It hides among"
-	next "damp rocks."
+	next "damp rocks"
 	dex
 
 _GolisopodDexEntry::
@@ -2164,7 +2164,7 @@ _GolisopodDexEntry::
 
 	page "It sharpens them"
 	next "against hard"
-	next "rocks."
+	next "rocks"
 	dex
 
 _LileepDexEntry::
@@ -2173,7 +2173,7 @@ _LileepDexEntry::
 	next "and snared prey"
 
 	page "Its feelers wave"
-	next "like seaweed."
+	next "like seaweed"
 	dex
 
 _CradilyDexEntry::
@@ -2183,7 +2183,7 @@ _CradilyDexEntry::
 
 	page "Then it ends"
 	next "fights with"
-	next "strong acid."
+	next "strong acid"
 	dex
 
 _AnorithDexEntry::
@@ -2192,7 +2192,7 @@ _AnorithDexEntry::
 	next "to seize prey"
 
 	page "in warm, shallow"
-	next "seas long ago."
+	next "seas long ago"
 	dex
 
 _ArmaldoDexEntry::
@@ -2201,7 +2201,7 @@ _ArmaldoDexEntry::
 	next "It tore apart prey"
 
 	page "with huge claws"
-	next "on the seafloor."
+	next "on the seafloor"
 	dex
 
 _AmpharosDexEntry::
@@ -2210,7 +2210,7 @@ _AmpharosDexEntry::
 	next "bright enough to"
 
 	page "be seen from afar"
-	next "on dark nights."
+	next "on dark nights"
 	dex
 
 _ScraftyDexEntry::
@@ -2219,7 +2219,7 @@ _ScraftyDexEntry::
 	next "where it waits"
 
 	page "to lurk, then"
-	next "bite at prey."
+	next "bite at prey"
 	dex
 
 _PawniardDexEntry::
@@ -2228,7 +2228,7 @@ _PawniardDexEntry::
 	next "BISHARP's orders"
 
 	page "It cuts foes down"
-	next "without mercy."
+	next "without mercy"
 	dex
 
 _BisharpDexEntry::
@@ -2238,7 +2238,7 @@ _BisharpDexEntry::
 
 	page "It finishes foes"
 	next "with a single"
-	next "clean slash."
+	next "clean slash"
 	dex
 
 _HippopotasDexEntry::
@@ -2248,7 +2248,7 @@ _HippopotasDexEntry::
 
 	page "It travels through"
 	next "the desert without"
-	next "opening its mouth."
+	next "opening its mouth"
 	dex
 
 _HippowdonDexEntry::
@@ -2258,7 +2258,7 @@ _HippowdonDexEntry::
 
 	page "Its huge mouth can"
 	next "crush an auto"
-	next "with ease."
+	next "with ease"
 	dex
 
 _SwinubDexEntry::
@@ -2268,7 +2268,7 @@ _SwinubDexEntry::
 
 	page "Mushrooms hidden"
 	next "beneath grass are"
-	next "favorite meal."
+	next "favorite meal"
 	dex
 
 _PiloswineDexEntry::
@@ -2278,7 +2278,7 @@ _PiloswineDexEntry::
 
 	page "Its tusks grow"
 	next "longer when snow"
-	next "and ice persist."
+	next "and ice persist"
 	dex
 
 _MamoswineDexEntry::
@@ -2286,9 +2286,9 @@ _MamoswineDexEntry::
 	next "tusks are made of"
 	next "solid ice"
 
-	page "This ancient #MON"
+	page "An ancient #MON"
 	next "endured a long ice"
-	next "age unharmed."
+	next "age unharmed"
 	dex
 
 _BunearyDexEntry::
@@ -2298,7 +2298,7 @@ _BunearyDexEntry::
 
 	page "If both ears are"
 	next "rolled, it needs"
-	next "careful attention."
+	next "careful attention"
 	dex
 
 _LopunnyDexEntry::
@@ -2308,7 +2308,7 @@ _LopunnyDexEntry::
 
 	page "Its soft ears can"
 	next "deliver powerful"
-	next "defensive strikes."
+	next "defensive strikes"
 	dex
 
 _HitmontopDexEntry::
@@ -2318,7 +2318,7 @@ _HitmontopDexEntry::
 
 	page "Its spinning kicks"
 	next "can bore straight"
-	next "through concrete."
+	next "through concrete"
 	dex
 
 _LickilickyDexEntry::
@@ -2328,7 +2328,7 @@ _LickilickyDexEntry::
 
 	page "Its tongue reaches"
 	next "twice its body"
-	next "in length."
+	next "in length"
 	dex
 
 _TyruntDexEntry::
@@ -2338,7 +2338,7 @@ _TyruntDexEntry::
 
 	page "It is playful but"
 	next "often unaware of"
-	next "its own strength."
+	next "its own strength"
 	dex
 
 _TyrantrumDexEntry::
@@ -2348,17 +2348,17 @@ _TyrantrumDexEntry::
 
 	page "It ruled as king"
 	next "over all it could"
-	next "survey."
+	next "survey"
 	dex
 
 _AmauraDexEntry::
-	text "This ancient #MON"
+	text "An ancient #MON"
 	next "lived in a land"
 	next "without predators"
 
 	page "Its body crystals"
 	next "can create"
-	next "frigid air."
+	next "frigid air"
 	dex
 
 _AurorusDexEntry::
@@ -2368,7 +2368,7 @@ _AurorusDexEntry::
 
 	page "Its diamond-shaped"
 	next "crystals glow like"
-	next "an aurora."
+	next "an aurora"
 	dex
 
 _CroagunkDexEntry::
@@ -2378,7 +2378,7 @@ _CroagunkDexEntry::
 
 	page "It strikes as foes"
 	next "are distracted by"
-	next "the strange noise."
+	next "the strange noise"
 	dex
 
 _ToxicroakDexEntry::
@@ -2388,5 +2388,5 @@ _ToxicroakDexEntry::
 
 	page "It fights unfairly"
 	next "and never ignores"
-	next "an easy opening."
+	next "an easy opening"
 	dex
