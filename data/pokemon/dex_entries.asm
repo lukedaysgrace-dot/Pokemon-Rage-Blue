@@ -1569,7 +1569,7 @@ CrobatDexEntry:
 	text_end
 
 ElectivireDexEntry:
-	db "THUNDERBOLT@"
+	db "THUNDER@"
 	db 5,11
 	dw 3042
 	text_far _ElectivireDexEntry
@@ -1618,7 +1618,7 @@ MagmortarDexEntry:
 	text_end
 
 MagnezoneDexEntry:
-	db "MAGNET AREA@"
+	db "MAGNETIC@"
 	db 3,11
 	dw 3968
 	text_far _MagnezoneDexEntry
@@ -1877,7 +1877,7 @@ HippopotasDexEntry:
 	text_end
 
 HippowdonDexEntry:
-	db "HEAVYWEIGHT@"
+	db "HEAVY@"
 	db 6,7
 	dw 6614
 	text_far _HippowdonDexEntry
@@ -1961,14 +1961,14 @@ AurorusDexEntry:
 	text_end
 
 CroagunkDexEntry:
-	db "TOXIC MOUTH@"
+	db "TOXIC MAW@"
 	db 2,4
 	dw 507
 	text_far _CroagunkDexEntry
 	text_end
 
 ToxicroakDexEntry:
-	db "TOXIC MOUTH@"
+	db "TOXIC MAW@"
 	db 4,3
 	dw 979
 	text_far _ToxicroakDexEntry
