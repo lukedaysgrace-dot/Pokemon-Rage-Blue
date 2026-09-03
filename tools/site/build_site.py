@@ -620,75 +620,6 @@ def parse_super_rod():
 
 
 # --------------------------------------------------------------------------
-# trainers
-# --------------------------------------------------------------------------
-
-def parse_trainers():
-    names = [title_name(n) for n in parse_string_list("data/trainers/names.asm", ("li",))]
-    ptr = []
-    for ln in apply_conditionals(strip_macros(read("data/trainers/parties.asm"))):
-        m = re.match(r"^\s*dw\s+(\w+Data)$", uncomment(ln))
-        if m:
-            ptr.append(m.group(1))
-        elif ptr and uncomment(ln).startswith("INCLUDE"):
-            break
-    label_names = {}
-    for i, label in enumerate(ptr):
-        nm = names[i] if i < len(names) else title_name(label.replace("Data", ""))
-        label_names.setdefault(label, []).append(nm)
-
-    lines = apply_conditionals(strip_macros(read("data/trainers/parties_blue.asm")))
-    blocks, cur, note = {}, None, ""
-    for ln in lines:
-        m = re.match(r"^(\w+Data):", ln)
-        if m:
-            cur = m.group(1)
-            blocks[cur] = []
-            note = ""
-            continue
-        if cur is None:
-            continue
-        stripped = ln.strip()
-        if stripped.startswith(";"):
-            note = stripped.lstrip("; ").strip()
-            continue
-        s = uncomment(ln)
-        if not s.startswith("db"):
-            continue
-        args = [a.strip() for a in s[2:].split(",") if a.strip()]
-        if args and args[-1] == "0":
-            args = args[:-1]
-        if not args:
-            continue
-        party = []
-        if args[0] == "$FF":
-            rest = args[1:]
-            for i in range(0, len(rest) - 1, 2):
-                party.append((int(rest[i]), rest[i + 1]))
-        else:
-            try:
-                lvl = int(args[0])
-            except ValueError:
-                continue
-            for mon in args[1:]:
-                party.append((lvl, mon))
-        if party:
-            blocks[cur].append({"where": note, "party": party})
-    out = []
-    for label, parties in blocks.items():
-        nm = label_names.get(label) or [title_name(label.replace("Data", ""))]
-        out.append({
-            "label": label,
-            "names": nm,
-            "title": " / ".join(dict.fromkeys(nm)),
-            "slug": slugify(label.replace("Data", "")),
-            "parties": parties,
-        })
-    out.sort(key=lambda t: t["title"])
-    return out
-
-
-# --------------------------------------------------------------------------
 # sprites: recolour the 4-shade source art with each species' in-game palette
 # --------------------------------------------------------------------------
 
@@ -757,8 +688,11 @@ def build_sprites(mons):
         return made
     for slug, mon in mons.items():
         palette, _ = palette_for_dex(mon["dex"])
-        for kind, rel in (("front", "gfx/pokemon/front/%s.png" % slug),
-                          ("back", "gfx/pokemon/back/%sb.png" % slug)):
+        # the art files are named after the INCBIN path, which does not always
+        # match the base_stats filename (mrmime -> mr.mime, porygonz -> porygon_z)
+        art = Path(mon["front"]).stem if mon.get("front") else slug
+        for kind, rel in (("front", "gfx/pokemon/front/%s.png" % art),
+                          ("back", "gfx/pokemon/back/%sb.png" % art)):
             src = ROOT / rel
             if not src.exists():
                 continue
@@ -776,8 +710,7 @@ def build_sprites(mons):
 # --------------------------------------------------------------------------
 
 NAV = [("pokedex.html", "Pokédex"), ("moves.html", "Moves"),
-       ("encounters.html", "Encounters"), ("locations.html", "Locations"),
-       ("trainers.html", "Trainers")]
+       ("encounters.html", "Encounters"), ("locations.html", "Locations")]
 
 
 def page(path, title, body, depth=0):
@@ -823,7 +756,6 @@ def build():
     super_rod = parse_super_rod()
     old_rod = parse_rod("data/wild/old_rod.asm", "OldRodMons")
     good_rod = parse_rod("data/wild/good_rod.asm", "GoodRodMons")
-    trainers = parse_trainers()
 
     # ---- assemble the pokemon records -----------------------------------
     mons = {}          # const -> record
@@ -909,8 +841,7 @@ def build():
                 rec["locations"].append(({"title": "Any fishable water",
                                           "slug": None}, name, lvl))
 
-    render_all(mons, ordered, moves, tmhm_num, locations, trainers,
-               old_rod, good_rod)
+    render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod)
 
 
 SEARCH_JS = """
@@ -964,24 +895,23 @@ def mon_card(rec, up=""):
                 "".join(type_badge(t) for t in dict.fromkeys(rec["types"]))))
 
 
-def render_all(mons, ordered, moves, tmhm_num, locations, trainers, old_rod, good_rod):
+def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
     all_types = sorted({type_name(t) for r in ordered for t in r["types"]})
     move_types = sorted({type_name(m["type"]) for m in moves.values()})
 
     # ---------- home ------------------------------------------------------
     preview = "".join(mon_card(r) for r in ordered[:36])
     slots = sum(len(l["grass"]) + len(l["water"]) + len(l["super_rod"]) for l in locations)
-    parties = sum(len(t["parties"]) for t in trainers)
     body = (
         '<section class="hero"><div><p class="eyebrow">GAME BOY COLOR ROM HACK</p>'
         '<h1>Rage Blue</h1><p>%s</p>'
         '<a class="button" href="pokedex.html">Explore the Pokédex</a></div>'
         '<div class="gem">◆</div></section>'
         '<section class="counts"><div><b>%d</b> Pokémon</div><div><b>%d</b> Moves</div>'
-        '<div><b>%d</b> Encounter slots</div><div><b>%d</b> Trainer parties</div></section>'
+        '<div><b>%d</b> Encounter slots</div></section>'
         '<h2>Pokédex preview</h2><div class="grid">%s</div>'
         '<p class="more"><a class="button" href="pokedex.html">See all %d Pokémon</a></p>'
-    ) % (esc(TAGLINE), len(ordered), len(moves), slots, parties, preview, len(ordered))
+    ) % (esc(TAGLINE), len(ordered), len(moves), slots, preview, len(ordered))
     page("index.html", "Home", body)
 
     # ---------- pokedex ---------------------------------------------------
@@ -1044,8 +974,6 @@ def render_all(mons, ordered, moves, tmhm_num, locations, trainers, old_rod, goo
     # ---------- encounters ------------------------------------------------
     render_encounters(locations, mons, old_rod, good_rod)
 
-    # ---------- trainers --------------------------------------------------
-    render_trainers(trainers, mons)
 
 
 def render_mon(rec, mons, moves, tmhm_num):
@@ -1217,43 +1145,14 @@ def render_encounters(locations, mons, old_rod, good_rod):
     page("encounters.html", "Encounters", body)
 
 
-def render_trainers(trainers, mons):
-    cards = []
-    for t in trainers:
-        if not t["parties"]:
-            continue
-        cards.append('<a class="location-card" href="trainer/%s.html" data-search="%s">'
-                     '<h3>%s</h3><p>%d parties</p></a>' % (
-                         t["slug"], esc(t["title"].lower()), esc(t["title"]), len(t["parties"])))
-    body = ('<div class="head"><h1>Trainers</h1><p class="muted">%d trainer classes.</p></div>'
-            '<div class="toolbar"><input id="q" placeholder="Search trainers..." autocomplete="off">'
-            '</div><p class="muted" id="count"></p><div class="location-grid">%s</div>%s') % (
-        len(cards), "".join(cards), SEARCH_JS)
-    page("trainers.html", "Trainers", body)
-
-    up = "../"
-    for t in trainers:
-        if not t["parties"]:
-            continue
-        panels = []
-        for i, p in enumerate(t["parties"], start=1):
-            rows = []
-            for lvl, mon in p["party"]:
-                rec = mons.get(mon)
-                rows.append('<div class="location-row">%s<span>%s</span><span>Lv %d</span></div>' % (
-                    mon_link(rec, up) if rec else esc(title_name(mon)),
-                    "".join(type_badge(x) for x in dict.fromkeys(rec["types"])) if rec else "",
-                    lvl))
-            where = p["where"] or "Party %d" % i
-            panels.append('<div class="panel"><h2>%s <em>%d Pokémon</em></h2>%s</div>' % (
-                esc(where), len(p["party"]), "".join(rows)))
-        body = ('<p><a class="back" href="%strainers.html">← Trainers</a></p>'
-                '<div class="head"><h1>%s</h1><p class="muted">%d parties in the Blue build.</p>'
-                '</div>%s') % (up, esc(t["title"]), len(t["parties"]), "".join(panels))
-        page("trainer/%s.html" % t["slug"], t["title"], body, depth=1)
-
-
 def main():
+    # docs/ is entirely generated: clear it so removed pages never linger
+    if OUT.exists():
+        for child in OUT.iterdir():
+            try:
+                shutil.rmtree(child) if child.is_dir() else child.unlink()
+            except OSError as exc:
+                print("  ! could not remove %s: %s" % (child, exc), file=sys.stderr)
     OUT.mkdir(parents=True, exist_ok=True)
     css_src = Path(__file__).with_name("style.css")
     (OUT / "assets").mkdir(parents=True, exist_ok=True)

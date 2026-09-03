@@ -35,9 +35,9 @@ cross-bank calls for all supported builds.
 
 ## Website
 
-A browsable guide to the game — Pokédex, moves, wild encounters, locations and
-trainers — is generated straight from the source data in this repo and served
-from `docs/` by GitHub Pages:
+A browsable guide to the game — Pokédex, moves, wild encounters and locations —
+is generated straight from the source data in this repo and served from `docs/`
+by GitHub Pages:
 
 <https://lukedaysgrace-dot.github.io/Pokemon-Rage-Blue/>
 
@@ -62,7 +62,7 @@ make site                          # same as --build
 
 The generator itself is `tools/site/build_site.py` (Python 3 + Pillow) and the
 theme is `tools/site/style.css`. Nothing is hand-written in `docs/` — it is
-entirely generated output, safe to delete and rebuild.
+entirely generated output, cleared and rebuilt on every run.
 
 ## Upstream resources
 

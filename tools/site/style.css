@@ -60,7 +60,7 @@ main { max-width: 1160px; margin: auto; padding: 46px 24px 90px; }
 .more { text-align: center; margin-top: 30px; }
 
 .counts {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
   background: var(--line); border: 1px solid var(--line);
   border-radius: 16px; overflow: hidden; margin: 30px 0 60px;
 }
@@ -199,7 +199,6 @@ footer a { color: var(--blue2); }
 [hidden] { display: none !important; }
 
 @media (max-width: 860px) {
-  .counts { grid-template-columns: repeat(2, 1fr); }
   .twocol { grid-template-columns: 1fr; }
 }
 @media (max-width: 740px) {
