@@ -33,6 +33,37 @@ The audit validates trainer parties and custom moves, encounters, Pokémon and
 move data, sprites, progression gates, toggleable objects, version parity, and
 cross-bank calls for all supported builds.
 
+## Website
+
+A browsable guide to the game — Pokédex, moves, wild encounters, locations and
+trainers — is generated straight from the source data in this repo and served
+from `docs/` by GitHub Pages:
+
+<https://lukedaysgrace-dot.github.io/Pokemon-Rage-Blue/>
+
+Sprites are recoloured at build time using each species' actual in-game SGB
+palette (`data/pokemon/palettes.asm` + `data/sgb/sgb_palettes.asm`), so the site
+shows the same colours the game does rather than the raw greyscale art.
+Everything reflects the `_BLUE` build.
+
+To rebuild and publish after changing game data, from WSL:
+
+```sh
+./tools/site.sh
+```
+
+That regenerates `docs/`, commits it and pushes. Useful variants:
+
+```sh
+./tools/site.sh --build            # rebuild only, no git
+./tools/site.sh -m "Add Route 9 encounters"
+make site                          # same as --build
+```
+
+The generator itself is `tools/site/build_site.py` (Python 3 + Pillow) and the
+theme is `tools/site/style.css`. Nothing is hand-written in `docs/` — it is
+entirely generated output, safe to delete and rebuild.
+
 ## Upstream resources
 
 The original disassembly's [wiki](https://github.com/pret/pokered/wiki) and

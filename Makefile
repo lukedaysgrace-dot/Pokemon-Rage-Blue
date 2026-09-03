@@ -33,6 +33,7 @@ SHA1 := sha1sum
 endif
 
 RGBDS ?=
+PYTHON  ?= python3
 RGBASM  ?= $(RGBDS)rgbasm
 RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
@@ -61,6 +62,7 @@ RGBGFXFLAGS  ?= -Weverything
 	clean \
 	tidy \
 	compare \
+	site \
 	tools
 
 all: $(roms)
@@ -69,6 +71,10 @@ blue:       pokeblue.gbc
 blue_debug: pokeblue_debug.gbc
 red_vc:     pokered.patch
 blue_vc:    pokeblue.patch
+
+# Regenerate the docs/ website from the game source.
+site:
+	$(PYTHON) tools/site/build_site.py
 
 clean: tidy
 	find gfx \
