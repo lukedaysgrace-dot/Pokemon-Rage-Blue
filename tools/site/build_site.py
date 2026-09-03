@@ -630,9 +630,25 @@ except ImportError:
     HAVE_PIL = False
 
 
-def shade_index(rgb):
-    lum = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) // 1000
-    return min(3, max(0, int(round((255 - lum) / 85.0))))
+def luminance(rgb):
+    return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) // 1000
+
+
+def shade_map(colors):
+    """Map an image's source colours onto GB colour indices 0-3.
+
+    The art is 4-colour but does not always use the exact 0/85/170/255 ramp
+    (Salamence's front sprite, for instance, uses 254/110/100/0). rgbgfx ranks
+    the colours by luminance when it builds the .2bpp tiles, so rank them the
+    same way here instead of quantising by absolute brightness - otherwise two
+    near-identical greys collapse onto one palette colour and a whole shade of
+    the mon's palette never gets used.
+    """
+    order = sorted(colors, key=lambda c: -luminance(c))
+    if len(order) == 4:
+        return {c: i for i, c in enumerate(order)}
+    # unusual art with fewer shades: fall back to the nearest DMG grey
+    return {c: min(3, max(0, int(round((255 - luminance(c)) / 85.0)))) for c in order}
 
 
 def colorize(src, dst, palette):
@@ -641,7 +657,8 @@ def colorize(src, dst, palette):
     w, h = im.size
     raw = im.tobytes()
     px = [tuple(raw[i:i + 3]) for i in range(0, len(raw), 3)]
-    shades = [shade_index(p) for p in px]
+    lookup = shade_map(set(px))
+    shades = [lookup[p] for p in px]
 
     # flood fill the outside background (shade 0) so it becomes transparent
     outside = bytearray(w * h)
