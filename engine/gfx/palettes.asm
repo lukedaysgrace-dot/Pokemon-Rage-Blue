@@ -74,8 +74,12 @@ DeterminePaletteID:
 
 	ld a, [wPokedexNum]
 	ld hl, MonsterPalettes
-	and a
-	jr nz, .skipDexNumConversion ; Check if trainer?
+	; A real species always uses MonsterPalettes, including the MissingNo-class
+	; internal IDs (fossil pics, GHOST) whose PokedexOrder entry is 0 - those
+	; take MonsterPalettes[0], as in vanilla. Only species 0 means "no mon", and
+	; that is already handled above; falling through to the trainer table here
+	; would index TrainerPalettes with a stale wTrainerClass.
+	jr .skipDexNumConversion
 
 .trainerPalette:
 IF 1 ; Trainers are given individualized palettes
@@ -117,8 +121,9 @@ DetermineBackSpritePaletteID:
 
 	ld a, [wPokedexNum]
 	ld hl, MonsterPalettes
-	and a
-	jr nz, .getPaletteID ; Check if trainer?
+	; See DeterminePaletteID: species 0 is handled above, so anything reaching
+	; here is a real species and belongs in MonsterPalettes.
+	jr .getPaletteID
 
 .trainerBackSprite:
 	ld a, [wPlayerGender]
