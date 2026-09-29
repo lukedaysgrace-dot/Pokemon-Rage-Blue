@@ -243,8 +243,7 @@ PokemonBackHDPicPointers::
 	dba BulbasaurBackHDPic
 	dba VenusaurBackHDPic
 	dba TentacruelBackHDPic
-	db 0
-	dw 0
+	dba GlalieBackHDPic
 	dba GoldeenBackHDPic
 	dba SeakingBackHDPic
 	dba LileepBackHDPic
@@ -260,24 +259,20 @@ PokemonBackHDPicPointers::
 	dba GeodudeBackHDPic
 	dba PorygonBackHDPic
 	dba AerodactylBackHDPic
-	db 0
-	dw 0
+	dba SirfetchdBackHDPic
 	dba MagnemiteBackHDPic
-	db 0
-	dw 0
-	db 0
-	dw 0
+	dba SandileBackHDPic
+	dba KrokorokBackHDPic
 	dba CharmanderBackHDPic
 	dba SquirtleBackHDPic
 	dba CharmeleonBackHDPic
 	dba WartortleBackHDPic
 	dba CharizardBackHDPic
+	dba KrookodileBackHDPic
 	db 0
-	dw 0
+	dw 0 ; Aron uses its low-definition back sprite
 	db 0
-	dw 0
-	db 0
-	dw 0
+	dw 0 ; Lairon uses its low-definition back sprite
 	db 0
 	dw 0
 	dba OddishBackHDPic
@@ -349,6 +344,8 @@ PokemonBackHDPicPointers::
 	dba DonphanBackHDPic
 	dba HoundourBackHDPic
 	dba HoundoomBackHDPic
+	db 0
+	dw 0 ; Aggron uses its low-definition back sprite
 	assert_table_length NUM_POKEMON_INDEXES
 
 SECTION "Pokemon Back HD Pics 1", ROMX
@@ -645,3 +642,11 @@ AmauraBackHDPic:: INCBIN "gfx/pokemon/backhd/amaurab.pic"
 AurorusBackHDPic:: INCBIN "gfx/pokemon/backhd/aurorusb.pic"
 CroagunkBackHDPic:: INCBIN "gfx/pokemon/backhd/croagunkb.pic"
 ToxicroakBackHDPic:: INCBIN "gfx/pokemon/backhd/toxicroakb.pic"
+
+SECTION "Pokemon Back HD Pics 18", ROMX
+
+GlalieBackHDPic:: INCBIN "gfx/pokemon/backhd/glalieb.pic"
+SirfetchdBackHDPic:: INCBIN "gfx/pokemon/backhd/sirfetchdb.pic"
+SandileBackHDPic:: INCBIN "gfx/pokemon/backhd/sandileb.pic"
+KrokorokBackHDPic:: INCBIN "gfx/pokemon/backhd/krokorokb.pic"
+KrookodileBackHDPic:: INCBIN "gfx/pokemon/backhd/krookodileb.pic"

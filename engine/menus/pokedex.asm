@@ -199,7 +199,9 @@ HandlePokedexListMenu:
 	call PlaceString
 ; find the highest pokedex number among the pokemon the player has seen
 	ld hl, wPokedexSeenEnd - 1
-	ld b, (wPokedexSeenEnd - wPokedexSeen) * 8 + 1
+	; The bitfield holds 256 entries, so its one-past-end value is $101.
+	; Start at zero (the wrapped low byte) and correct the result when found.
+	ld b, 0
 .maxSeenPokemonLoop
 	ld a, [hld]
 	ld c, 8
@@ -212,6 +214,7 @@ HandlePokedexListMenu:
 	jr .maxSeenPokemonLoop
 
 .storeMaxSeenPokemon
+	inc b
 	ld a, b
 	cp NUM_POKEMON + 1
 	jr c, .storeClampedMaxSeenPokemon

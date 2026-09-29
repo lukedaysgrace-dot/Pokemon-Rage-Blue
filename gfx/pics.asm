@@ -536,6 +536,25 @@ CroagunkPicBack::    INCBIN "gfx/pokemon/back/croagunkb.pic"
 ToxicroakPicFront::  INCBIN "gfx/pokemon/front/toxicroak.pic"
 ToxicroakPicBack::   INCBIN "gfx/pokemon/back/toxicroakb.pic"
 
+SECTION "Pics 12", ROMX
+
+GlaliePicFront::     INCBIN "gfx/pokemon/front/glalie.pic"
+GlaliePicBack::      INCBIN "gfx/pokemon/back/glalieb.pic"
+SirfetchdPicFront::  INCBIN "gfx/pokemon/front/sirfetchd.pic"
+SirfetchdPicBack::   INCBIN "gfx/pokemon/back/sirfetchdb.pic"
+SandilePicFront::    INCBIN "gfx/pokemon/front/sandile.pic"
+SandilePicBack::     INCBIN "gfx/pokemon/back/sandileb.pic"
+KrokorokPicFront::   INCBIN "gfx/pokemon/front/krokorok.pic"
+KrokorokPicBack::    INCBIN "gfx/pokemon/back/krokorokb.pic"
+KrookodilePicFront:: INCBIN "gfx/pokemon/front/krookodile.pic"
+KrookodilePicBack::  INCBIN "gfx/pokemon/back/krookodileb.pic"
+AronPicFront::       INCBIN "gfx/pokemon/front/aron.pic"
+AronPicBack::        INCBIN "gfx/pokemon/back/aron.pic"
+LaironPicFront::     INCBIN "gfx/pokemon/front/lairon.pic"
+LaironPicBack::      INCBIN "gfx/pokemon/back/lairon.pic"
+AggronPicFront::     INCBIN "gfx/pokemon/front/aggron.pic"
+AggronPicBack::      INCBIN "gfx/pokemon/back/aggron.pic"
+
 SECTION "Trainer Pics", ROMX
 
 YoungsterPic::     INCBIN "gfx/trainers/youngster.pic"

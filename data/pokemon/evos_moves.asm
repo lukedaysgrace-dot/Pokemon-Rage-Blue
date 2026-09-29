@@ -177,7 +177,7 @@ EvosMovesPointerTable:
 	dw BulbasaurEvosMoves
 	dw VenusaurEvosMoves
 	dw TentacruelEvosMoves
-	dw MissingNo9CEvosMoves
+	dw GlalieEvosMoves
 	dw GoldeenEvosMoves
 	dw SeakingEvosMoves
 	dw LileepEvosMoves
@@ -193,18 +193,18 @@ EvosMovesPointerTable:
 	dw GeodudeEvosMoves
 	dw PorygonEvosMoves
 	dw AerodactylEvosMoves
-	dw MissingNoACEvosMoves
+	dw SirfetchdEvosMoves
 	dw MagnemiteEvosMoves
-	dw MissingNoAEEvosMoves
-	dw MissingNoAFEvosMoves
+	dw SandileEvosMoves
+	dw KrokorokEvosMoves
 	dw CharmanderEvosMoves
 	dw SquirtleEvosMoves
 	dw CharmeleonEvosMoves
 	dw WartortleEvosMoves
 	dw CharizardEvosMoves
-	dw MissingNoB5EvosMoves
-	dw FossilKabutopsEvosMoves
-	dw FossilAerodactylEvosMoves
+	dw KrookodileEvosMoves
+	dw AronEvosMoves
+	dw LaironEvosMoves
 	dw MonGhostEvosMoves
 	dw OddishEvosMoves
 	dw GloomEvosMoves
@@ -275,6 +275,7 @@ EvosMovesPointerTable:
 	dw DonphanEvosMoves
 	dw HoundourEvosMoves
 	dw HoundoomEvosMoves
+	dw AggronEvosMoves
 	assert_table_length NUM_POKEMON_INDEXES
 
 RhydonEvosMoves:
@@ -1130,6 +1131,7 @@ MissingNo3FEvosMoves:
 	db 0
 FarfetchdEvosMoves:
 ; Evolutions
+	blue_evolve_level 35, SIRFETCHD
 	db 0
 ; Learnset
 	db 6, LEER
@@ -2235,10 +2237,16 @@ TentacruelEvosMoves:
 	db 41, SURF
 	db 46, HYDRO_PUMP
 	db 0
-MissingNo9CEvosMoves:
+GlalieEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 14, LICK
+	db 22, AURORA_BEAM
+	db 30, CRUNCH
+	db 34, ICE_BEAM
+	db 42, BLIZZARD
+	db 48, EXPLOSION
 	db 0
 GoldeenEvosMoves:
 ; Evolutions
@@ -2411,10 +2419,18 @@ AerodactylEvosMoves:
 	db 33, FLY
 	db 52, STONE_EDGE
 	db 0
-MissingNoACEvosMoves:
+SirfetchdEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 13, FOCUS_ENERGY
+	db 20, KARATE_CHOP
+	db 24, RAZOR_LEAF
+	db 30, SLASH
+	db 34, SWORDS_DANCE
+	db 37, DRILL_PECK
+	db 43, SKY_ATTACK
+	db 50, DOUBLE_EDGE
 	db 0
 MagnemiteEvosMoves:
 ; Evolutions
@@ -2429,15 +2445,32 @@ MagnemiteEvosMoves:
 	db 37, THUNDERBOLT
 	db 44, THUNDER
 	db 0
-MissingNoAEEvosMoves:
+SandileEvosMoves:
 ; Evolutions
+	blue_evolve_level 29, KROKOROK
 	db 0
 ; Learnset
+	db 6, SAND_ATTACK
+	db 12, BITE
+	db 18, HEADBUTT
+	db 24, DIG
+	db 30, CRUNCH
+	db 36, EARTHQUAKE
+	db 42, THRASH
 	db 0
-MissingNoAFEvosMoves:
+KrokorokEvosMoves:
 ; Evolutions
+	blue_evolve_level 40, KROOKODILE
 	db 0
 ; Learnset
+	db 6, SAND_ATTACK
+	db 12, BITE
+	db 18, HEADBUTT
+	db 24, DIG
+	db 31, CRUNCH
+	db 39, ROCK_SLIDE
+	db 43, EARTHQUAKE
+	db 47, THRASH
 	db 0
 CharmanderEvosMoves:
 ; Evolutions
@@ -2505,20 +2538,46 @@ CharizardEvosMoves:
 	db 50, SKY_ATTACK
 	db 55, BLAST_BURN
 	db 0
-MissingNoB5EvosMoves:
+KrookodileEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 12, BITE
+	db 18, HEADBUTT
+	db 24, DIG
+	db 31, CRUNCH
+	db 39, ROCK_SLIDE
+	db 44, EARTHQUAKE
+	db 49, THRASH
+	db 54, OUTRAGE
 	db 0
-FossilKabutopsEvosMoves:
+AronEvosMoves:
 ; Evolutions
+	blue_evolve_level 32, LAIRON
 	db 0
 ; Learnset
+	db 6, HEADBUTT
+	db 9, METAL_CLAW
+	db 12, ROCK_THROW
+	db 18, TAKE_DOWN
+	db 24, IRON_TAIL
+	db 27, ROCK_SLIDE
+	db 36, HARDEN
+	db 45, DOUBLE_EDGE
 	db 0
-FossilAerodactylEvosMoves:
+LaironEvosMoves:
 ; Evolutions
+	blue_evolve_level 42, AGGRON
 	db 0
 ; Learnset
+	db 9, METAL_CLAW
+	db 12, ROCK_THROW
+	db 18, TAKE_DOWN
+	db 24, IRON_TAIL
+	db 27, ROCK_SLIDE
+	db 38, HARDEN
+	db 46, STONE_EDGE
+	db 50, DOUBLE_EDGE
 	db 0
 MonGhostEvosMoves:
 ; Evolutions
@@ -3310,7 +3369,8 @@ MesmeriaEvosMoves:
 	db 0
 SnoruntEvosMoves:
 ; Evolutions
-	blue_evolve_level 30, FROSLASS
+	blue_evolve_item ICE_STONE, 1, FROSLASS
+	blue_evolve_level 30, GLALIE
 	db 0
 ; Learnset
 	db 9, POWDER_SNOW
@@ -3378,6 +3438,21 @@ HoundoomEvosMoves:
 	db 34, CRUNCH
 	db 37, FLAMETHROWER
 	db 42, FIRE_BLAST
+	db 0
+AggronEvosMoves:
+; Evolutions
+	db 0
+; Learnset
+	db 9, METAL_CLAW
+	db 12, ROCK_THROW
+	db 18, TAKE_DOWN
+	db 24, IRON_TAIL
+	db 27, ROCK_SLIDE
+	db 38, HARDEN
+	db 43, EARTHQUAKE
+	db 48, STONE_EDGE
+	db 53, DOUBLE_EDGE
+	db 58, HYPER_BEAM
 	db 0
 LileepEvosMoves:
 	blue_evolve_level 30, CRADILY

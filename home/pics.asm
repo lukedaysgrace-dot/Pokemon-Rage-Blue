@@ -2,7 +2,7 @@
 ; assumes the corresponding mon header is already loaded
 ; hl contains offset to sprite pointer ($b for front or $d for back)
 ; Banks come from ROM in each species' base_stats (BASE_PIC_BANK / wMonHPicBank).
-; Fossil kabutops, fossil aerodactyl, ghost share one ROM section (.RecallBank).
+; The ghost uses a special sprite outside the regular pokemon pic banks.
 UncompressMonSprite::
 	ld bc, wMonHeader
 	add hl, bc
@@ -12,16 +12,12 @@ UncompressMonSprite::
 	ld [wSpriteInputPtr+1], a
 
 	ld a, [wCurPartySpecies]
-	cp FOSSIL_KABUTOPS
-	jr z, .RecallBank
-	cp FOSSIL_AERODACTYL
-	jr z, .RecallBank
 	cp MON_GHOST
 	jr z, .RecallBank
 	ld a, [wMonHPicBank]
 	jr .GotBank
 .RecallBank
-	ld a, BANK(FossilKabutopsPic)
+	ld a, BANK(GhostPic)
 .GotBank
 	jp UncompressSpriteData
 

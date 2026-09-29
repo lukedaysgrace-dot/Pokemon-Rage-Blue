@@ -2390,3 +2390,83 @@ _ToxicroakDexEntry::
 	next "and never ignores"
 	next "an easy opening"
 	dex
+
+_GlalieDexEntry::
+	text "It freezes the air"
+	next "in the air into"
+	next "armor for its body"
+
+	page "It can instantly"
+	next "freeze almost any"
+	next "opponent solid"
+	dex
+
+_SirfetchdDexEntry::
+	text "Only FARFETCH'D"
+	next "that survive many"
+	next "battles evolve"
+
+	page "It fights fairly"
+	next "with its prized"
+	next "leek as a lance"
+	dex
+
+_SandileDexEntry::
+	text "It hides beneath"
+	next "hot desert sand to"
+	next "stay warm"
+
+	page "Only its eyes and"
+	next "nose remain above"
+	next "the sandy surface"
+	dex
+
+_KrokorokDexEntry::
+	text "A special membrane"
+	next "over its eyes can"
+	next "sense heat"
+
+	page "This lets it hunt"
+	next "even in complete"
+	next "darkness"
+	dex
+
+_KrookodileDexEntry::
+	text "It swims through"
+	next "desert sand as if"
+	next "it were water"
+
+	page "Its powerful jaws"
+	next "can crush an auto"
+	next "without effort"
+	dex
+
+_AronDexEntry::
+	text "It lives deep in"
+	next "the mountains and"
+	next "feeds on iron ore"
+
+	page "When hungry it may"
+	next "eat rails and"
+	next "steel objects"
+	dex
+
+_LaironDexEntry::
+	text "It shows its power"
+	next "by smashing its"
+	next "iron body on rocks"
+
+	page "Sparks fly when it"
+	next "fights rivals over"
+	next "rich iron ore"
+	dex
+
+_AggronDexEntry::
+	text "It claims a whole"
+	next "mountain as its"
+	next "territory"
+
+	page "Its horns of iron"
+	next "grow longer with"
+	next "age and strength"
+	dex

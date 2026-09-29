@@ -51,12 +51,12 @@ _MtMoonB2FSuperNerdTheresAPokemonLabText::
 	cont "moved to"
 	cont "CERULEAN CITY."
 
-	para "Bring me ARMOR,"
-	line "CLAW, SKULL,"
-	cont "and ROOT FOSSIL,"
-	cont "then I'll hand"
-	cont "over the one I"
-	cont "kept."
+	para "Bring me SAIL,"
+	line "ARMOR, CLAW,"
+	cont "SKULL, JAW, and"
+	cont "ROOT FOSSIL and"
+	cont "I'll hand over"
+	cont "the one I kept."
 	done
 
 _MtMoonB2FSuperNerdFoundThemAllText::
@@ -85,7 +85,7 @@ _MtMoonB2FSuperNerdThenThisIsMineText::
 IF DEF(_RED)
 _MtMoonB2FSuperNerdFourFossilsText::
 	text "Hey! If you find"
-	line "all 4 of the"
+	line "all 6 of the"
 	cont "fossils around"
 	cont "MT.MOON, I'll let"
 	cont "you have the"

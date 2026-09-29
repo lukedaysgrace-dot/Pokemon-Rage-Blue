@@ -244,5 +244,13 @@ MonPartyData:
 	db ICON_AURORUS       ; Aurorus
 	db ICON_CROAGUNK      ; Croagunk
 	db ICON_TOXICROAK     ; Toxicroak
+	db ICON_GLALIE        ; Glalie
+	db ICON_SIRFETCHD     ; Sirfetch'd
+	db ICON_SANDILE       ; Sandile
+	db ICON_KROKOROK      ; Krokorok
+	db ICON_KROOKODILE    ; Krookodile
+	db ICON_ARON          ; Aron
+	db ICON_LAIRON        ; Lairon
+	db ICON_AGGRON        ; Aggron
 
 ASSERT @ - MonPartyData == NUM_POKEMON

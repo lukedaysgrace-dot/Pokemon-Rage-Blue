@@ -155,7 +155,7 @@ PokedexEntryPointers:
 	dw BulbasaurDexEntry
 	dw VenusaurDexEntry
 	dw TentacruelDexEntry
-	dw MissingNoDexEntry
+	dw GlalieDexEntry
 	dw GoldeenDexEntry
 	dw SeakingDexEntry
 	dw LileepDexEntry
@@ -171,18 +171,18 @@ PokedexEntryPointers:
 	dw GeodudeDexEntry
 	dw PorygonDexEntry
 	dw AerodactylDexEntry
-	dw MissingNoDexEntry
+	dw SirfetchdDexEntry
 	dw MagnemiteDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw SandileDexEntry
+	dw KrokorokDexEntry
 	dw CharmanderDexEntry
 	dw SquirtleDexEntry
 	dw CharmeleonDexEntry
 	dw WartortleDexEntry
 	dw CharizardDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
-	dw MissingNoDexEntry
+	dw KrookodileDexEntry
+	dw AronDexEntry
+	dw LaironDexEntry
 	dw MissingNoDexEntry
 	dw OddishDexEntry
 	dw GloomDexEntry
@@ -253,6 +253,7 @@ PokedexEntryPointers:
 	dw DonphanDexEntry
 	dw HoundourDexEntry
 	dw HoundoomDexEntry
+	dw AggronDexEntry
 	assert_table_length NUM_POKEMON_INDEXES
 
 ; string: species name
@@ -1972,6 +1973,62 @@ ToxicroakDexEntry:
 	db 4,3
 	dw 979
 	text_far _ToxicroakDexEntry
+	text_end
+
+GlalieDexEntry:
+	db "FACE@"
+	db 4,11
+	dw 5655
+	text_far _GlalieDexEntry
+	text_end
+
+SirfetchdDexEntry:
+	db "WILD DUCK@"
+	db 2,7
+	dw 2579
+	text_far _SirfetchdDexEntry
+	text_end
+
+SandileDexEntry:
+	db "SAND CROC@"
+	db 2,4
+	dw 335
+	text_far _SandileDexEntry
+	text_end
+
+KrokorokDexEntry:
+	db "SAND CROC@"
+	db 3,3
+	dw 736
+	text_far _KrokorokDexEntry
+	text_end
+
+KrookodileDexEntry:
+	db "INTIMIDATE@"
+	db 4,11
+	dw 2123
+	text_far _KrookodileDexEntry
+	text_end
+
+AronDexEntry:
+	db "IRON ARMOR@"
+	db 1,4
+	dw 1323
+	text_far _AronDexEntry
+	text_end
+
+LaironDexEntry:
+	db "IRON ARMOR@"
+	db 2,11
+	dw 2646
+	text_far _LaironDexEntry
+	text_end
+
+AggronDexEntry:
+	db "IRON ARMOR@"
+	db 6,11
+	dw 7937
+	text_far _AggronDexEntry
 	text_end
 
 MissingNoDexEntry:

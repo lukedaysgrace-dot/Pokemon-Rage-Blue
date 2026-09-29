@@ -8,7 +8,6 @@ INCLUDE "engine/movie/title.asm"
 INCLUDE "engine/pokemon/load_mon_data.asm"
 INCLUDE "data/items/prices.asm"
 INCLUDE "data/items/names.asm"
-INCLUDE "data/text/unused_names.asm"
 INCLUDE "engine/gfx/sprite_oam.asm"
 INCLUDE "engine/gfx/oam_dma.asm"
 INCLUDE "engine/link/print_waiting_text.asm"
@@ -323,6 +322,11 @@ INCLUDE "engine/events/hidden_events/gym_statues.asm"
 INCLUDE "engine/events/hidden_events/bench_guys.asm"
 INCLUDE "engine/events/hidden_events/blues_room.asm"
 INCLUDE "engine/events/hidden_events/pokecenter_pc.asm"
+
+
+SECTION "Unused Names", ROMX
+
+INCLUDE "data/text/unused_names.asm"
 
 
 SECTION "Battle Engine 11", ROMX

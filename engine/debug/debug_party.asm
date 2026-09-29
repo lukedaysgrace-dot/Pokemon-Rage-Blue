@@ -132,7 +132,7 @@ DebugSetPokedexEntries:
 	ld [hli], a
 	dec b
 	jr nz, .loop
-	ld [hl], %00111111
+	ld [hl], (1 << (NUM_POKEMON % 8)) - 1
 	ret
 
 DebugNewGameItemsList:

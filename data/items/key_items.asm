@@ -88,4 +88,6 @@ KeyItemFlags:
 	dbit TRUE  ; ARMOR_FOSSIL
 	dbit TRUE  ; CLAW_FOSSIL
 	dbit TRUE  ; ROOT_FOSSIL
+	dbit TRUE  ; JAW_FOSSIL
+	dbit TRUE  ; SAIL_FOSSIL
 	end_bit_array NUM_ITEMS

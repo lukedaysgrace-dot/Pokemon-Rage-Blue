@@ -28,7 +28,7 @@ IF DEF(_BLUE)
 	db  19, PAWNIARD
 	db  21, ONIX
 	db  22, DEINO
-	db  19, DEINO
+	db  19, ARON
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

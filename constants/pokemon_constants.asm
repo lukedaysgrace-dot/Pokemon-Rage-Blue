@@ -162,7 +162,7 @@
 	const BULBASAUR          ; $99
 	const VENUSAUR           ; $9A
 	const TENTACRUEL         ; $9B
-	const_skip               ; $9C
+	const GLALIE             ; $9C
 	const GOLDEEN            ; $9D
 	const SEAKING            ; $9E
 	const LILEEP             ; $9F
@@ -178,18 +178,18 @@
 	const GEODUDE            ; $A9
 	const PORYGON            ; $AA
 	const AERODACTYL         ; $AB
-	const_skip               ; $AC
+	const SIRFETCHD          ; $AC
 	const MAGNEMITE          ; $AD
-	const_skip               ; $AE
-	const_skip               ; $AF
+	const SANDILE            ; $AE
+	const KROKOROK           ; $AF
 	const CHARMANDER         ; $B0
 	const SQUIRTLE           ; $B1
 	const CHARMELEON         ; $B2
 	const WARTORTLE          ; $B3
 	const CHARIZARD          ; $B4
-	const_skip               ; $B5
-	const FOSSIL_KABUTOPS    ; $B6
-	const FOSSIL_AERODACTYL  ; $B7
+	const KROOKODILE         ; $B5
+	const ARON               ; $B6
+	const LAIRON             ; $B7
 	const MON_GHOST          ; $B8
 	const ODDISH             ; $B9
 	const GLOOM              ; $BA
@@ -260,6 +260,7 @@
 	const DONPHAN            ; $FB
 	const HOUNDOUR           ; $FC
 	const HOUNDOOM           ; $FD
+	const AGGRON             ; $FE
 
 ; Species-indexed tables (EvosMovesPointerTable, CryData, names.asm, dex_order.asm,
 ; dex_entries PokedexEntryPointers) must stay in sync with this internal-id order. MonPartyData and

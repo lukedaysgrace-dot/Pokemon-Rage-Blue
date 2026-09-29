@@ -161,7 +161,7 @@ CryData::
 	mon_cry SFX_CRY_0F, $80, $01 ; Bulbasaur
 	mon_cry SFX_CRY_0F, $00, $C0 ; Venusaur
 	mon_cry SFX_CRY_1A, $EE, $FF ; Tentacruel
-	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
+	mon_cry SFX_CRY_1C, $50, $80 ; Glalie
 	mon_cry SFX_CRY_16, $80, $40 ; Goldeen
 	mon_cry SFX_CRY_16, $10, $FF ; Seaking
 	mon_cry SFX_CRY_12, $90, $80 ; Lileep
@@ -177,18 +177,18 @@ CryData::
 	mon_cry SFX_CRY_24, $F0, $10 ; Geodude
 	mon_cry SFX_CRY_25, $AA, $FF ; Porygon
 	mon_cry SFX_CRY_23, $20, $F0 ; Aerodactyl
-	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
+	mon_cry SFX_CRY_10, $60, $A0 ; Sirfetch'd
 	mon_cry SFX_CRY_1C, $80, $60 ; Magnemite
-	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
-	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
+	mon_cry SFX_CRY_22, $B0, $30 ; Sandile
+	mon_cry SFX_CRY_22, $70, $70 ; Krokorok
 	mon_cry SFX_CRY_04, $60, $40 ; Charmander
 	mon_cry SFX_CRY_1D, $60, $40 ; Squirtle
 	mon_cry SFX_CRY_04, $20, $40 ; Charmeleon
 	mon_cry SFX_CRY_1D, $20, $40 ; Wartortle
 	mon_cry SFX_CRY_04, $00, $80 ; Charizard
-	mon_cry SFX_CRY_1D, $00, $80 ; MissingNo.
-	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
-	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
+	mon_cry SFX_CRY_08, $20, $D0 ; Krookodile
+	mon_cry SFX_CRY_24, $A0, $30 ; Aron
+	mon_cry SFX_CRY_24, $60, $80 ; Lairon
 	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
 	mon_cry SFX_CRY_08, $DD, $01 ; Oddish
 	mon_cry SFX_CRY_08, $AA, $40 ; Gloom
@@ -259,4 +259,5 @@ CryData::
 	mon_cry SFX_CRY_13, $30, $D0 ; Donphan
 	mon_cry SFX_CRY_1F, $30, $60 ; Houndour
 	mon_cry SFX_CRY_15, $10, $B0 ; Houndoom
+	mon_cry SFX_CRY_17, $10, $E0 ; Aggron
 	assert_table_length NUM_POKEMON_INDEXES

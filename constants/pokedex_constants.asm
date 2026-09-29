@@ -249,5 +249,13 @@
 	const DEX_AURORUS    ; 243
 	const DEX_CROAGUNK   ; 244
 	const DEX_TOXICROAK  ; 245
+	const DEX_GLALIE     ; 246
+	const DEX_SIRFETCHD  ; 247
+	const DEX_SANDILE    ; 248
+	const DEX_KROKOROK   ; 249
+	const DEX_KROOKODILE ; 250
+	const DEX_ARON       ; 251
+	const DEX_LAIRON     ; 252
+	const DEX_AGGRON     ; 253
 
 DEF NUM_POKEMON EQU const_value - 1
