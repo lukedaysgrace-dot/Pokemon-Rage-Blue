@@ -26,7 +26,7 @@ IF DEF(_BLUE)
 	db   5, MAREEP
 	db   4, JIGGLYPUFF
 	db   5, PHANPY
-	db   3, PIDGEY
+	db   5, SANDILE
 	db   4, SPEAROW
 	db   5, MAREEP
 	end_grass_wildmons

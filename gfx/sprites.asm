@@ -126,6 +126,13 @@ DoduoSprite::            INCBIN "gfx/sprites/doduo.2bpp"
 PidgeotSprite::          INCBIN "gfx/sprites/pidgeot.2bpp"
 ChanseySprite::          INCBIN "gfx/sprites/chansey.2bpp"
 PikachuSprite::          INCBIN "gfx/sprites/pikachu.2bpp"
+; Surf source: pret/pokeyellow, gfx/sprites/surfing_pikachu.png.
+SurfingPikachuSprite::   INCBIN "gfx/sprites/surfing_pikachu.2bpp"
+SurfingPikachuSpriteEnd::
+	assert SurfingPikachuSpriteEnd - SurfingPikachuSprite == 24 * TILE_SIZE
+PikachuFlySprite::       INCBIN "gfx/sprites/pikachu_fly.2bpp"
+PikachuFlySpriteEnd::
+	assert PikachuFlySpriteEnd - PikachuFlySprite == 8 * TILE_SIZE
 LaprasSprite::           INCBIN "gfx/sprites/lapras.2bpp"
 
 SECTION "Pokemon OW Sprites 2", ROMX

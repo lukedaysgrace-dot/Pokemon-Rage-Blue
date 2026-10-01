@@ -14,6 +14,16 @@ TryTownMapFlyEligibility::
 	jr z, .no
 	ld a, HM02_MOVE
 	call PartyAnyCanLearnMove
+	ret nc
+; Town Map Fly uses the first compatible party member.
+	call FindFirstPartyMonIndexCanLearnMove
+	ld e, a
+	ld d, 0
+	ld hl, wPartySpecies
+	add hl, de
+	ld a, [hl]
+	ld [wFlyMonSpecies], a
+	scf
 	ret
 .no
 	and a
@@ -76,6 +86,58 @@ FindFirstPartyMonIndexCanLearnMove::
 	ret
 .found
 	ld a, b
+	ret
+
+RememberFlyMonFromParty::
+	call GetSelectedFieldMoveSpecies
+	ld [wFlyMonSpecies], a
+	ret
+
+RememberSurfMonFromParty::
+	call GetSelectedFieldMoveSpecies
+	ld [wSurfMonSpecies], a
+	ret
+
+GetSelectedFieldMoveSpecies:
+; Read the selected species, rather than CanLearnTM's last checked species.
+	ld a, [wPartyCount]
+	ld b, a
+	ld a, [wWhichPokemon]
+	cp b
+	jr nc, .none
+	ld e, a
+	ld d, 0
+	ld hl, wPartySpecies
+	add hl, de
+	ld a, [hl]
+	ret
+.none
+	xor a
+	ret
+
+IsFlyMonPikachuFamily::
+	ld a, [wFlyMonSpecies]
+	jr IsPikachuFamily
+
+IsSurfMonPikachuFamily::
+	ld a, [wSurfMonSpecies]
+
+IsPikachuFamily:
+; Carry if this species uses the shared Pikachu field-move graphics.
+IF DEF(PICHU)
+	cp PICHU
+	jr z, .yes
+ENDC
+	cp PIKACHU
+	jr z, .yes
+	cp RAICHU
+	jr z, .yes
+	cp GOROCHU
+	jr z, .yes
+	and a
+	ret
+.yes
+	scf
 	ret
 
 VerifyCutAllowFromPartyMenu::

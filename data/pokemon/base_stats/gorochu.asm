@@ -16,6 +16,6 @@
 	tmhm MEGA_PUNCH   , MEGA_KICK    , TOXIC        , BODY_SLAM    , TAKE_DOWN    , \
 	     DOUBLE_EDGE  , HYPER_BEAM   , SEISMIC_TOSS , THUNDERBOLT  , THUNDER      , \
 	     MIMIC        , DOUBLE_TEAM  , REFLECT      , SWIFT        , REST         , \
-	     THUNDER_WAVE , SUBSTITUTE   , FLY          , FLASH
+	     THUNDER_WAVE , SUBSTITUTE   , FLY          , SURF         , FLASH
 	db BANK(GorochuPicFront)
 	assert BANK(GorochuPicFront) == BANK(GorochuPicBack)

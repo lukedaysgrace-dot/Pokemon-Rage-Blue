@@ -713,6 +713,7 @@ ItemUseSurfboard:
 ; Surfing graphics overwrite font VRAM if wWalkBikeSurfState is already 2.
 	ld hl, SurfingGotOnText
 	call PrintText
+	farcall RememberSurfMonFromParty
 	ld a, 2
 	ld [wWalkBikeSurfState], a ; change player state to surfing
 	call PlayDefaultMusic ; play surfing music

@@ -892,7 +892,9 @@ wRightGBMonSpecies:: db
 
 wMiscFlags:: db
 
-	ds 9
+; Species using Fly, preserved across the departure and arrival maps.
+wFlyMonSpecies:: db
+	ds 8
 
 ; This has overlapping related uses.
 ; When the player tries to use an item or use certain field moves, 0 is stored
@@ -2148,7 +2150,8 @@ wLastBlackoutMap:: db
 ; destination map (for certain types of special warps, not ordinary walking)
 wDestinationMap:: db
 
-; initialized to $ff, but nothing ever reads it
+; Surf user, saved with the player so sprite reloads and save/load keep it.
+wSurfMonSpecies::
 wUnusedPlayerDataByte:: db
 
 ; used to store the tile in front of the boulder when trying to push a boulder

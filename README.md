@@ -15,6 +15,18 @@ The repository builds three development ROMs:
 These are modified builds and are not expected to match the hashes of the
 retail Pokémon Red or Blue ROMs.
 
+## Recent gameplay updates
+
+- In the Blue build, Route 2 now has level 5 Sandile in the slot previously
+  occupied by level 3 Pidgey. Safari Zone East now has level 37 Paras in the
+  slot previously occupied by level 35 Sandile.
+- Gorochu can now learn HM03 Surf, alongside its existing Fly compatibility.
+- Pikachu, Raichu and Gorochu share Pikachu graphics when using Surf or Fly.
+  Town Map Fly uses the first compatible Pokémon in your party and requires
+  HM02 in your bag and the Thunder Badge.
+- Glalie's front and back sprites and Sirfetch'd's back sprite have been
+  refreshed in the website's Pokédex.
+
 ## Building
 
 Install the prerequisites described in [INSTALL.md](INSTALL.md), then run:
@@ -58,6 +70,12 @@ That regenerates `docs/`, commits it and pushes. Useful variants:
 ./tools/site.sh --build            # rebuild only, no git
 ./tools/site.sh -m "Add Route 9 encounters"
 make site                          # same as --build
+```
+
+To rebuild only from Windows, with Python 3 and Pillow installed:
+
+```powershell
+python tools/site/build_site.py
 ```
 
 The generator itself is `tools/site/build_site.py` (Python 3 + Pillow) and the

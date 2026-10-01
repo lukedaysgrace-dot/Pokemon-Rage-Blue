@@ -141,6 +141,7 @@ StartMenu_Pokemon::
 	call PrintText
 	jp .loop
 .canFly
+	farcall RememberFlyMonFromParty
 	call ChooseFlyDestination
 	ld a, [wStatusFlags6]
 	bit BIT_FLY_WARP, a

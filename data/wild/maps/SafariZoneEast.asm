@@ -20,7 +20,7 @@ ENDC
 IF DEF(_BLUE)
 	def_grass_wildmons 30 ; encounter rate
 	db  35, EXEGGCUTE
-	db  35, SANDILE
+	db  37, PARAS
 	db  35, HIPPOPOTAS
 	db  36, VENONAT
 	db   38, KANGASKHAN

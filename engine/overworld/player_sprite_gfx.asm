@@ -13,9 +13,16 @@ _LoadWalkingPlayerSpriteGraphics::
 	jr _LoadPlayerSpriteGraphicsCommonBC
 
 _LoadSurfingPlayerSpriteGraphics::
+	farcall IsSurfMonPikachuFamily
+	jr c, .pikachu
 	ld de, SeelSprite
 	ld hl, vNPCSprites
 	ld b, BANK(SeelSprite)
+	jr _LoadPlayerSpriteGraphicsCommonBC
+.pikachu
+	ld de, SurfingPikachuSprite
+	ld hl, vNPCSprites
+	ld b, BANK(SurfingPikachuSprite)
 	jr _LoadPlayerSpriteGraphicsCommonBC
 
 _LoadBikePlayerSpriteGraphics::

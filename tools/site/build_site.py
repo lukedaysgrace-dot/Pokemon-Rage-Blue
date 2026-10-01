@@ -926,6 +926,13 @@ def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
         '<div class="gem">◆</div></section>'
         '<section class="counts"><div><b>%d</b> Pokémon</div><div><b>%d</b> Moves</div>'
         '<div><b>%d</b> Encounter slots</div></section>'
+        '<section class="panel"><h2>Pikachu-family field moves</h2>'
+        '<p><a class="back" href="pokemon/pikachu.html">Pikachu</a>, '
+        '<a class="back" href="pokemon/raichu.html">Raichu</a> and '
+        '<a class="back" href="pokemon/gorochu.html">Gorochu</a> use shared '
+        'Pikachu graphics when using Surf or Fly. Gorochu can now learn HM03 Surf.</p>'
+        '<p class="muted">Town Map Fly uses the first compatible Pokémon in your party. '
+        'You need HM02 in your bag and the Thunder Badge.</p></section>'
         '<h2>Pokédex preview</h2><div class="grid">%s</div>'
         '<p class="more"><a class="button" href="pokedex.html">See all %d Pokémon</a></p>'
     ) % (esc(TAGLINE), len(ordered), len(moves), slots, preview, len(ordered))

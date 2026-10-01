@@ -89,6 +89,12 @@ CheckForceBikeOrSurf::
 	inc hl
 	jr .loop
 .forceSurfing
+	ld a, [wWalkBikeSurfState]
+	cp 2
+	jr z, .setForcedSurfState
+	xor a
+	ld [wSurfMonSpecies], a ; forced currents do not choose a party Surf user
+.setForcedSurfState
 	ld a, $2
 	ld [wWalkBikeSurfState], a
 	ld [wWalkBikeSurfStateCopy], a

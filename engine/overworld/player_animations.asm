@@ -45,10 +45,6 @@ EnterMapAnim::
 	jr .done
 .flyAnimation
 	pop hl
-	ld de, BirdSprite
-	ld hl, vNPCSprites
-	lb bc, BANK(BirdSprite), $0c
-	call CopyVideoData
 	call LoadBirdSpriteGraphics
 	ld a, SFX_FLY
 	call PlaySound
@@ -248,6 +244,8 @@ DoFlyAnimation:
 	ret
 
 LoadBirdSpriteGraphics:
+	farcall IsFlyMonPikachuFamily
+	jr c, .pikachu
 	ld de, BirdSprite
 	ld hl, vNPCSprites
 	lb bc, BANK(BirdSprite), 12
@@ -255,6 +253,17 @@ LoadBirdSpriteGraphics:
 	ld de, BirdSprite tile 12 ; moving animation sprite
 	ld hl, vNPCSprites2
 	lb bc, BANK(BirdSprite), 12
+	jp CopyVideoData
+.pikachu
+; Both flight directions use the side-facing tiles; OAM mirrors them for right.
+; The supplied sheet has two 16x16 frames, one for each animation tile bank.
+	ld de, PikachuFlySprite
+	ld hl, vNPCSprites tile 8
+	lb bc, BANK(PikachuFlySprite), 4
+	call CopyVideoData
+	ld de, PikachuFlySprite tile 4
+	ld hl, vNPCSprites2 tile 8
+	lb bc, BANK(PikachuFlySprite), 4
 	jp CopyVideoData
 
 InitFacingDirectionList:
