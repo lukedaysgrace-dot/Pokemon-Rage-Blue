@@ -119,6 +119,19 @@ GainExperience:
 	; on hard mode the max level is capped by gym badges (MAX_LEVEL otherwise)
 	call GetLevelCap
 	ld d, a
+	; A mon already above the cap (traded, gift, caught) keeps its level rather
+	; than having its EXP cut down, which would make it lose levels.
+	push hl
+	ld a, [wWhichPokemon]
+	ld hl, wPartyMon1Level
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	ld a, [hl]
+	pop hl
+	cp d
+	jr c, .gotMaxLevel
+	ld d, a
+.gotMaxLevel
 	callfar CalcExperience ; get max exp
 ; compare max exp with current exp
 	ldh a, [hExperience]

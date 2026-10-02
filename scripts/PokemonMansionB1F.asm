@@ -370,9 +370,9 @@ PokemonMansionB1FGreenExitScript:
 	ret nz
 	ld de, TOGGLE_POKEMON_MANSION_B1F_GREEN
 	predef HideObject
-	xor a
-	ld [wJoyIgnore], a
 	call EndGreenEncounterMusic
+	xor a ; EndGreenEncounterMusic leaves garbage in a
+	ld [wJoyIgnore], a
 	ld [wPokemonMansionB1FCurScript], a
 	ld [wCurMapScript], a
 	ret

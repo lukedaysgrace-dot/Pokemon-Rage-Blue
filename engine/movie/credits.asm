@@ -1,9 +1,14 @@
 HallOfFamePC:
 	farcall AnimateHallOfFame
+	call ClearSprites
 	jp CreditsRollOnly
 
 ; Entry for scripts that want scrolling credits only (no Hall of Fame party sequence).
+; Keep Cinnabar's player sprite during the introduction; Credits hides it
+; when the credit words begin.
 CreditsRollOnly:
+	ld a, $ff ; $ff freezes the OAM buffer as is (0 would hide every sprite)
+	ld [wUpdateSpritesEnabled], a
 	call ClearScreen
 	ld c, 100
 	call DelayFrames
@@ -36,6 +41,23 @@ CreditsRollOnly:
 	ld [wUnusedCreditsByte], a ; not read
 	ld [wNumCreditsMonsDisplayed], a
 	jp Credits
+
+; Cinnabar Island ending: keep only the player's sprite for the introduction,
+; preserving its overworld screen position and facing after the battle.
+CreditsKeepPlayerSprite::
+	call UpdateSprites
+	call DelayFrame
+	ld a, $ff ; freeze the OAM buffer: no more overworld sprite updates
+	ld [wUpdateSpritesEnabled], a
+; hide every OBJ except the player's four (wShadowOAMSprite00-03)
+	xor a
+	ld hl, wShadowOAMSprite04
+	ld b, (OAM_COUNT - 4) * OBJ_SIZE
+.clearLoop
+	ld [hli], a
+	dec b
+	jr nz, .clearLoop
+	ret
 
 PlayCreditsMusic:
 ; Music IDs are full, so initialize bank 2 with a 3-channel song ID,
@@ -138,7 +160,10 @@ ScrollCreditsMonLeft:
 	ld l, $20
 	call ScrollCreditsMonLeft_SetSCX
 	ld h, $0
-	ld l, $70
+; Reset SCX below the mon (pic rows end at line 103). The vanilla split line $70
+; falls inside the GBC color code's LYC=$6E interrupt (lines ~110-115), so the
+; exact-LY wait in ScrollCreditsMonLeft_SetSCX never saw it and the credits hung.
+	ld l, $68
 	call ScrollCreditsMonLeft_SetSCX
 	ld a, b
 	add $8
@@ -198,6 +223,10 @@ FillMiddleOfScreenWithWhite:
 	jp FillMemory
 
 Credits:
+	call ClearSprites
+	farcall SetPal_Credits
+	ld hl, vBGMap0
+	call CreditsCopyTileMapToVRAM
 	ld de, CreditsOrder
 	push de
 .nextCreditsScreen

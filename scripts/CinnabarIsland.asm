@@ -54,6 +54,7 @@ CinnabarIslandBlueCloakAfterBattleScript:
 	ld [wJoyIgnore], a
 	ld de, TOGGLE_CINNABAR_ISLAND_BLUE_CLOAK
 	predef HideObject
+	farcall CreditsKeepPlayerSprite
 	ld a, [wLetterPrintingDelayFlags]
 	push af
 	predef CreditsRollOnly
@@ -70,7 +71,7 @@ CinnabarIslandBlueCloakAfterBattleScript:
 	ld hl, wStatusFlags6
 	set BIT_FLY_OR_DUNGEON_WARP, [hl]
 	farcall PrepareForSpecialWarp
-	homecall LoadMapHeader
+	farcall LoadMapHeader
 	farcall SaveGameData
 	ld b, 5
 .blueCloakCreditsDelayLoop
@@ -78,6 +79,8 @@ CinnabarIslandBlueCloakAfterBattleScript:
 	call DelayFrames
 	dec b
 	jr nz, .blueCloakCreditsDelayLoop
+	ld a, PAD_CTRL_PAD
+	ld [wJoyIgnore], a
 	call WaitForTextScrollButtonPress
 	jp Init
 .blueCloakEndingAlreadyDone

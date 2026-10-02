@@ -178,9 +178,6 @@ pokeblue_vc.gbc:    RGBFIXFLAGS += -p 0x00 -t "POKEMON BLUE"
 
 ### Misc file-specific graphics rules
 
-gfx/overworld/green_fish_front.png gfx/overworld/green_fish_back.png gfx/overworld/green_fish_side.png: gfx/overworld/green_fishing_strip.png tools/split_green_fishing_strip.py
-	python3 tools/split_green_fishing_strip.py
-
 # Yellow fishing: standalone yellow_fish_front/back/side.png → .2bpp via %.2bpp: %.png (no strip required).
 
 gfx/battle/move_anim_0.2bpp: tools/gfx += --trim-whitespace

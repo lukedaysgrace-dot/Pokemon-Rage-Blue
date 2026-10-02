@@ -18,5 +18,16 @@
 *.gz binary
 *.zip binary
 
+# Other binary files. Without these, the "* text eol=lf" rule above treats them
+# as text and rewrites CR LF byte pairs inside them. color/data/*.bin is ROM data.
+*.bin binary
+*.dll binary
+*.exe binary
+*.xz binary
+*.mid binary
+*.vgm binary
+*.gbc binary
+*.sav binary
+
 # Declare files that will always have CRLF line endings on checkout.
 *.patch.template text eol=crlf linguist-language=INI

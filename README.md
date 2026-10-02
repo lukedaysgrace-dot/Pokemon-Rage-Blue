@@ -29,7 +29,8 @@ retail Pokémon Red or Blue ROMs.
 
 ## Building
 
-Install the prerequisites described in [INSTALL.md](INSTALL.md), then run:
+Install RGBDS 1.0.1 (see `.rgbds-version`), GNU Make, GCC, and Python 3,
+then run from Linux or WSL:
 
 ```sh
 make
@@ -84,6 +85,5 @@ entirely generated output, cleared and rebuilt on every run.
 
 ## Upstream resources
 
-The original disassembly's [wiki](https://github.com/pret/pokered/wiki) and
-[installation documentation](INSTALL.md) remain useful references for RGBDS
-development and project structure.
+The original disassembly's [wiki](https://github.com/pret/pokered/wiki)
+remains a useful reference for RGBDS development and project structure.

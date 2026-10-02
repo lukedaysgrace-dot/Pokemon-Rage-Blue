@@ -657,6 +657,36 @@ ENDC
 	ldh [rWBK], a
 	ret
 
+; The credits load Pokemon pictures into tile IDs formerly used by the map.
+; Give every credits tile the same neutral palette instead of terrain colors.
+SetPal_Credits:
+	ldh a, [rWBK]
+	push af
+	ld a, 2
+	ldh [rWBK], a
+	ld hl, .palette
+	ld de, W2_BgPaletteData
+	ld bc, 8
+	call CopyData
+	ld hl, W2_TilesetPaletteMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	xor a
+	call FillMemory
+	ld [W2_TileBasedPalettes], a
+	ld a, 3
+	ld [W2_StaticPaletteMapChanged], a
+	ld a, 1
+	ld [W2_ForceBGPUpdate], a
+	pop af
+	ldh [rWBK], a
+	ret
+
+.palette
+	RGB 31,31,31
+	RGB 21,21,21
+	RGB 12,12,12
+	RGB 0,0,0
+
 ; used mostly for menus and the Oak intro, pokedex screen
 SetPal_Generic:
 	ld a, 2

@@ -71,6 +71,13 @@ DaycareGentlemanText:
 	callfar GetLevelCap
 	ld a, [wLevelCap]
 	ld b, a
+	; Never lower a mon that was deposited above the cap: that would de-level it
+	; and make wDayCareNumLevelsGrown wrap around (huge fee).
+	ld a, [wDayCareMonBoxLevel]
+	cp b
+	jr c, .gotMaxLevel
+	ld b, a
+.gotMaxLevel
 	ld a, d
 	cp b
 	jr c, .skipCalcExp

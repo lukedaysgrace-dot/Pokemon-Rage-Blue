@@ -29,3 +29,22 @@
 *.sn*
 *.sa*
 *.sg1
+
+# Emulator debug files
+*.cheats
+*.state
+
+# Temporary reports and caches
+*.log
+__pycache__/
+.pytest_cache/
+.DS_Store
+Thumbs.db
+/_to_delete/
+/Claude outputs/
+/_audit_snapshot.tar.gz
+
+# Install RGBDS outside the source tree
+/tools/rgbds-*/
+/tools/rgbds-*.zip
+/tools/rgbds-*.tar.*

@@ -454,9 +454,9 @@ RocketHideoutB2FGreenExitScript:
 	ret nz
 	ld de, TOGGLE_ROCKET_HIDEOUT_B2F_GREEN
 	predef HideObject
-	xor a
-	ld [wJoyIgnore], a
 	call EndGreenEncounterMusic
+	xor a ; EndGreenEncounterMusic leaves garbage in a
+	ld [wJoyIgnore], a
 	ld [wRocketHideoutB2FCurScript], a
 	ld [wCurMapScript], a
 	ret

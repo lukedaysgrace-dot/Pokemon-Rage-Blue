@@ -551,26 +551,32 @@ AttackUpSideEffect:
 	ldh a, [hWhoseTurn]
 	and a
 	ld hl, wPlayerMonAttackMod
-	jr z, .attackModOk
+	ld de, wPlayerMoveEffect
+	jr z, .gotSide
 	ld hl, wEnemyMonAttackMod
-.attackModOk
+	ld de, wEnemyMoveEffect
+.gotSide
 	ld a, [hl]
 	cp $d
 	ret z ; already +6
-	ld de, wPlayerMoveEffect
-	ldh a, [hWhoseTurn]
-	and a
-	jr z, .patchEffect
-	ld de, wEnemyMoveEffect
-.patchEffect
 	ld a, [de]
 	push de ; StatModifierUpEffect reassigns de; keep the move-effect pointer
-	push af
+	push af ; original move effect
+	dec de
+	ld a, [de]
+	push af ; original move number
+	xor a
+	ld [de], a ; move 0: PlayCurrentMoveAnimation won't replay the attack's animation
+	inc de
 	ld a, ATTACK_UP1_EFFECT
 	ld [de], a
 	call StatModifierUpEffect
-	pop af
+	pop bc ; b = original move number
+	pop af ; a = original move effect
 	pop de
+	ld [de], a
+	dec de
+	ld a, b
 	ld [de], a
 	ret
 

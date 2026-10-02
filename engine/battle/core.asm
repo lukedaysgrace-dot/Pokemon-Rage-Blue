@@ -6238,10 +6238,7 @@ ENDC
 	ld a, ATKDEFDV_TRAINER
 	ld b, SPDSPCDV_TRAINER
 	jr .storeDVs
-.perfectTrainerDVs
-	ld a, PERFECT_DV_BYTE
-	ld b, PERFECT_DV_BYTE
-	jr .storeDVs
+.perfectTrainerDVs ; same values as wild/gift mons; shares the code below to save space
 .wildOrGiftDVs
 	ld a, PERFECT_DV_BYTE
 	ld b, PERFECT_DV_BYTE
@@ -7108,21 +7105,25 @@ InitWildEnemyPartyFromLoadedMon::
 	ret
 
 InitBattle::
-	xor a
-	ld [wBattleSpeciesIsWild], a
 	ld a, [wCurOpponent]
 	and a
-	jr z, DetermineWildOpponent
+	jr z, DetermineWildOpponent ; TryDoWildEncounter sets wBattleSpeciesIsWild itself
 
 InitOpponent:
 	ld a, [wCurOpponent]
 	ld [wCurPartySpecies], a
 	ld [wEnemyMonSpecies2], a
+; wMoveMissed is nonzero only after a fishing bite (RodResponse). Always write the
+; flag here: link/debug battles enter at InitOpponent and must not see a stale 1.
 	ld a, [wMoveMissed]
+	ld [wBattleSpeciesIsWild], a
 	and a
 	jr z, InitBattleCommon
-	ld a, 1
-	ld [wBattleSpeciesIsWild], a
+; Fished species can have ids >= OPP_ID_OFFSET (e.g. Old Rod Chinchou). Clear
+; wCurOpponent like grass encounters do, so battle music and the battle
+; transition don't mistake the species id for a trainer class.
+	xor a
+	ld [wCurOpponent], a
 	jr InitBattleCommon
 
 DetermineWildOpponent:
