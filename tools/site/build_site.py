@@ -1068,7 +1068,7 @@ def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
         '<section class="hero"><div><p class="eyebrow">GAME BOY COLOR ROM HACK</p>'
         '<h1>Rage Blue</h1><p>%s</p>'
         '<a class="button" href="pokedex.html">Explore the Pokédex</a></div>'
-        '<div class="gem">◆</div></section>'
+        '<div class="hero-art"><img src="assets/hero.png" alt="Blastoise and Charizard"></div></section>'
         '<section class="counts"><div><b>%d</b> Pokémon</div><div><b>%d</b> Moves</div>'
         '<div><b>%d</b> Encounter slots</div></section>'
         '<section class="panel"><h2>Pikachu-family field moves</h2>'
@@ -1392,6 +1392,32 @@ def render_encounters(locations, mons, old_rod, good_rod):
     page("encounters.html", "Encounters", body)
 
 
+def build_hero(src, dst):
+    """Copy the home-page art, making the white background around it transparent."""
+    if not HAVE_PIL:
+        shutil.copyfile(src, dst)
+        return
+    im = Image.open(src).convert("RGBA")
+    w, h = im.size
+    px = im.load()
+    white = lambda c: c[3] == 0 or (c[0] > 235 and c[1] > 235 and c[2] > 235)
+    seen = bytearray(w * h)
+    stack = [(x, y) for x in range(w) for y in (0, h - 1)]
+    stack += [(x, y) for y in range(h) for x in (0, w - 1)]
+    while stack:
+        x, y = stack.pop()
+        i = y * w + x
+        if seen[i] or not white(px[x, y]):
+            continue
+        seen[i] = 1
+        px[x, y] = (0, 0, 0, 0)
+        if x > 0: stack.append((x - 1, y))
+        if x < w - 1: stack.append((x + 1, y))
+        if y > 0: stack.append((x, y - 1))
+        if y < h - 1: stack.append((x, y + 1))
+    im.save(dst)
+
+
 def main():
     # docs/ is entirely generated: clear it so removed pages never linger
     if OUT.exists():
@@ -1404,6 +1430,9 @@ def main():
     css_src = Path(__file__).with_name("style.css")
     (OUT / "assets").mkdir(parents=True, exist_ok=True)
     shutil.copyfile(css_src, OUT / "assets" / "style.css")
+    hero = ROOT / "gfx" / "charizardblastoise.png"
+    if hero.exists():
+        build_hero(hero, OUT / "assets" / "hero.png")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
     build()
     n = sum(1 for _ in OUT.rglob("*.html"))
