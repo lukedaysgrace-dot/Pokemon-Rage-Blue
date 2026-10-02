@@ -1,6 +1,0 @@
-path=/home/luke/romhacks/pokemon-red-vanilla/pokered.sav
-size=32768 (0x8000)
-PKHeX IsG1INT party checks: list_ok(0x2F2C)=false list_ok(0x30C0)=false
-0x2F2C: 00002f2c: 0000 01b1 ff00 0000 0000 b100 1700 0015  ................
-0x30C0: 000030c0: 0000 00ff 0000 0000 0000 0000 0000 0000  ................
-If both list_ok are false, PKHeX will reject (retail offset mismatch or corrupt save).
