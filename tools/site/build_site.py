@@ -500,6 +500,151 @@ def parse_tmhm():
     return out
 
 
+def parse_move_list(rel, label):
+    """db MOVE ... db -1 list following `label` -> set of move consts."""
+    out, on = set(), False
+    for ln in read(rel):
+        s = uncomment(ln)
+        if s.startswith(label):
+            on = True
+            continue
+        if not on:
+            continue
+        m = re.match(r"^db\s+(\w+)$", s)
+        if m:
+            out.add(m.group(1))
+        elif s.startswith("db -1") or (s and not s.startswith("db")):
+            break
+    return out
+
+
+HIGH_CRIT_MOVES = parse_move_list("data/battle/critical_hit_moves.asm", "HighCriticalMoves:")
+PRIORITY_MOVES = parse_move_list("engine/battle/core.asm", ".priorityMoves:")
+
+FIXED_DAMAGE = {
+    "SONICBOOM": "Always inflicts 20 HP of damage.",
+    "DRAGON_RAGE": "Always inflicts 40 HP of damage.",
+    "SEISMIC_TOSS": "Inflicts damage equal to the user's level.",
+    "NIGHT_SHADE": "Inflicts damage equal to the user's level.",
+    "PSYWAVE": "Inflicts random damage up to 1.5x the user's level.",
+}
+
+# effect constant -> (description, effect chance or None)
+EFFECT_DESC = {
+    "NO_ADDITIONAL_EFFECT": ("A regular damaging attack.", None),
+    "POISON_SIDE_EFFECT1": ("May poison the target.", 20),
+    "POISON_SIDE_EFFECT2": ("May poison the target.", 40),
+    "BURN_SIDE_EFFECT1": ("May burn the target.", 10),
+    "BURN_SIDE_EFFECT2": ("May burn the target.", 30),
+    "FREEZE_SIDE_EFFECT1": ("May freeze the target.", 10),
+    "FREEZE_SIDE_EFFECT2": ("May freeze the target.", 30),
+    "PARALYZE_SIDE_EFFECT1": ("May paralyze the target.", 10),
+    "PARALYZE_SIDE_EFFECT2": ("May paralyze the target.", 30),
+    "FLINCH_SIDE_EFFECT1": ("May make the target flinch.", 10),
+    "FLINCH_SIDE_EFFECT2": ("May make the target flinch.", 30),
+    "CONFUSION_SIDE_EFFECT": ("May confuse the target.", 10),
+    "ATTACK_DOWN_SIDE_EFFECT": ("May lower the target's Attack.", 33),
+    "DEFENSE_DOWN_SIDE_EFFECT": ("May lower the target's Defense.", 33),
+    "SPEED_DOWN_SIDE_EFFECT": ("May lower the target's Speed.", 33),
+    "SPECIAL_DOWN_SIDE_EFFECT": ("May lower the target's Special.", 33),
+    "SPEED_DOWN_SIDE_EFFECT2": ("May lower the target's Speed.", 10),
+    "ATTACK_UP_SIDE_EFFECT": ("May raise the user's Attack.", 33),
+    "THUNDER_FANG_EFFECT": ("May paralyze the target, and may make it flinch (10% each).", 10),
+    "DRAIN_HP_EFFECT": ("Restores the user's HP by half the damage dealt.", None),
+    "DREAM_EATER_EFFECT": ("Only works on a sleeping target. Restores half the damage dealt.", None),
+    "EXPLODE_EFFECT": ("The user faints after attacking.", None),
+    "MIRROR_MOVE_EFFECT": ("Uses the last move the target used.", None),
+    "ATTACK_UP1_EFFECT": ("Raises the user's Attack.", None),
+    "DEFENSE_UP1_EFFECT": ("Raises the user's Defense.", None),
+    "SPEED_UP1_EFFECT": ("Raises the user's Speed.", None),
+    "SPECIAL_UP1_EFFECT": ("Raises the user's Special.", None),
+    "ACCURACY_UP1_EFFECT": ("Raises the user's accuracy.", None),
+    "EVASION_UP1_EFFECT": ("Raises the user's evasiveness.", None),
+    "ATTACK_UP2_EFFECT": ("Sharply raises the user's Attack.", None),
+    "DEFENSE_UP2_EFFECT": ("Sharply raises the user's Defense.", None),
+    "SPEED_UP2_EFFECT": ("Sharply raises the user's Speed.", None),
+    "SPECIAL_UP2_EFFECT": ("Sharply raises the user's Special.", None),
+    "ACCURACY_UP2_EFFECT": ("Sharply raises the user's accuracy.", None),
+    "EVASION_UP2_EFFECT": ("Sharply raises the user's evasiveness.", None),
+    "ATTACK_DOWN1_EFFECT": ("Lowers the target's Attack.", None),
+    "DEFENSE_DOWN1_EFFECT": ("Lowers the target's Defense.", None),
+    "SPEED_DOWN1_EFFECT": ("Lowers the target's Speed.", None),
+    "SPECIAL_DOWN1_EFFECT": ("Lowers the target's Special.", None),
+    "ACCURACY_DOWN1_EFFECT": ("Lowers the target's accuracy.", None),
+    "EVASION_DOWN1_EFFECT": ("Lowers the target's evasiveness.", None),
+    "ATTACK_DOWN2_EFFECT": ("Sharply lowers the target's Attack.", None),
+    "DEFENSE_DOWN2_EFFECT": ("Sharply lowers the target's Defense.", None),
+    "SPEED_DOWN2_EFFECT": ("Sharply lowers the target's Speed.", None),
+    "SPECIAL_DOWN2_EFFECT": ("Sharply lowers the target's Special.", None),
+    "ACCURACY_DOWN2_EFFECT": ("Sharply lowers the target's accuracy.", None),
+    "EVASION_DOWN2_EFFECT": ("Sharply lowers the target's evasiveness.", None),
+    "PAY_DAY_EFFECT": ("Scatters coins that are picked up after the battle.", None),
+    "SWIFT_EFFECT": ("An attack that never misses.", None),
+    "CONVERSION_EFFECT": ("Changes the user's type to match the target's.", None),
+    "HAZE_EFFECT": ("Resets all stat changes and status for both sides.", None),
+    "BIDE_EFFECT": ("Endures attacks for 2-3 turns, then strikes back double.", None),
+    "THRASH_PETAL_DANCE_EFFECT": ("Attacks for 2-3 turns, then confuses the user.", None),
+    "SWITCH_AND_TELEPORT_EFFECT": ("Flees from wild battles. Fails against trainers.", None),
+    "TWO_TO_FIVE_ATTACKS_EFFECT": ("Hits 2 to 5 times in a row.", None),
+    "ATTACK_TWICE_EFFECT": ("Hits twice in a row.", None),
+    "TWINEEDLE_EFFECT": ("Hits twice. Each hit may poison the target.", 20),
+    "SLEEP_EFFECT": ("Puts the target to sleep.", None),
+    "OHKO_EFFECT": ("A one-hit KO. Fails if the target is faster.", None),
+    "CHARGE_EFFECT": ("Charges up on the first turn, attacks on the second.", None),
+    "FLY_EFFECT": ("Flies or digs out of reach on the first turn, attacks on the second.", None),
+    "SUPER_FANG_EFFECT": ("Halves the target's current HP.", None),
+    "SPECIAL_DAMAGE_EFFECT": ("Inflicts a fixed amount of damage.", None),
+    "TRAPPING_EFFECT": ("Traps the target and attacks for 2-5 turns.", None),
+    "JUMP_KICK_EFFECT": ("The user takes damage if the attack misses.", None),
+    "MIST_EFFECT": ("Protects the user's stats from being lowered.", None),
+    "FOCUS_ENERGY_EFFECT": ("Raises the user's critical-hit ratio.", None),
+    "RECOIL_EFFECT": ("The user takes recoil damage.", None),
+    "CONFUSION_EFFECT": ("Confuses the target.", None),
+    "HEAL_EFFECT": ("Restores up to half of the user's max HP.", None),
+    "TRANSFORM_EFFECT": ("The user transforms into a copy of the target.", None),
+    "LIGHT_SCREEN_EFFECT": ("Halves damage from special attacks.", None),
+    "REFLECT_EFFECT": ("Halves damage from physical attacks.", None),
+    "POISON_EFFECT": ("Poisons the target.", None),
+    "PARALYZE_EFFECT": ("Paralyzes the target.", None),
+    "SUBSTITUTE_EFFECT": ("Uses 1/4 of max HP to make a decoy.", None),
+    "HYPER_BEAM_EFFECT": ("The user must recharge on the next turn.", None),
+    "RAGE_EFFECT": ("Attack rises each time the user is hit while raging.", None),
+    "MIMIC_EFFECT": ("Copies one of the target's moves for the battle.", None),
+    "METRONOME_EFFECT": ("Uses a random move.", None),
+    "LEECH_SEED_EFFECT": ("Drains HP from the target every turn.", None),
+    "SPLASH_EFFECT": ("Does nothing at all.", None),
+    "DISABLE_EFFECT": ("Disables one of the target's moves for a few turns.", None),
+}
+
+
+def move_desc(m):
+    """(description, effect chance) for a move record."""
+    if m["const"] in FIXED_DAMAGE:
+        desc, chance = FIXED_DAMAGE[m["const"]], None
+    else:
+        desc, chance = EFFECT_DESC.get(
+            m["effect"], (effect_name(m["effect"]) + ".", None))
+    extra = []
+    if m["const"] in PRIORITY_MOVES:
+        extra.append("Always goes first.")
+    if m["const"] in HIGH_CRIT_MOVES:
+        extra.append("High critical-hit ratio.")
+    if extra:
+        if desc == EFFECT_DESC["NO_ADDITIONAL_EFFECT"][0]:
+            desc = " ".join(extra)
+        else:
+            desc = desc + " " + " ".join(extra)
+    return desc, chance
+
+
+def move_power(m):
+    return str(m["power"]) if m["power"] > 1 else "—"
+
+
+def move_acc(m):
+    return ("%d%%" % m["acc"]) if m["acc"] else "—"
+
+
 ITEM_NAMES = [title_name(n) for n in parse_string_list("data/items/names.asm", ("li",))]
 ITEM_CONSTS = parse_consts("constants/item_constants.asm")
 ITEM_BY_CONST = {}
@@ -950,22 +1095,43 @@ def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
         render_mon(rec, mons, moves, tmhm_num)
 
     # ---------- moves -----------------------------------------------------
+    tm_of = {mv: lbl for mv, lbl in tmhm_num.items()}
+    learners = {}
+    for rec in ordered:
+        seen_lv = set()
+        for mv in rec["start_moves"]:
+            if (mv, 1) not in seen_lv:
+                seen_lv.add((mv, 1))
+                learners.setdefault(mv, {}).setdefault("level", []).append((rec, 1))
+        for lvl, mv in rec["learnset"]:
+            if (mv, lvl) not in seen_lv:
+                seen_lv.add((mv, lvl))
+                learners.setdefault(mv, {}).setdefault("level", []).append((rec, lvl))
+        for mv in dict.fromkeys(rec["tmhm"]):
+            learners.setdefault(mv, {}).setdefault("tm", []).append(rec)
+
     rows = []
     for m in sorted(moves.values(), key=lambda x: x["num"]):
         tn = type_name(m["type"])
+        tm = tm_of.get(m["const"], "")
+        desc, chance = move_desc(m)
         rows.append(
-            '<div class="row" data-search="%s" data-types="%s">'
-            '<span><b>%s</b></span><span>%s</span><span>%s</span>'
-            '<span>%s</span><span>%s</span><span>%s</span></div>' % (
-                esc((m["name"] + " " + tn + " " + effect_name(m["effect"])).lower()),
-                esc(tn.lower()), esc(m["name"]), type_badge(m["type"]),
-                esc(effect_name(m["effect"])),
-                m["power"] or "—", m["acc"] or "—", m["pp"]))
+            '<a class="row" href="moves/%s.html" data-search="%s" data-types="%s">'
+            '<span><b>%s</b>%s</span><span>%s</span><span class="desc">%s</span>'
+            '<span>%s</span><span>%s</span><span>%s</span></a>' % (
+                m["slug"],
+                esc((m["name"] + " " + tn + " " + desc + " " + tm).lower()),
+                esc(tn.lower()), esc(m["name"]),
+                (' <small class="tmtag">%s</small>' % esc(tm)) if tm else "",
+                type_badge(m["type"]), esc(desc),
+                move_power(m), move_acc(m), m["pp"]))
+        render_move(m, learners.get(m["const"], {}), tm)
     header = ('<div class="row labels"><span>Move</span><span>Type</span>'
-              '<span>Effect</span><span>Pwr</span><span>Acc</span><span>PP</span></div>')
-    body = ('<div class="head"><h1>Moves</h1><p class="muted">%d moves.</p></div>'
+              '<span>Effect</span><span>Power</span><span>Acc.</span><span>PP</span></div>')
+    body = ('<div class="head"><p class="eyebrow">BATTLE DATA</p><h1>Moves</h1>'
+            '<p class="muted">%d moves. Search by name, type, effect or TM number.</p></div>'
             '%s<div class="table">%s%s</div>%s') % (
-        len(moves), toolbar(move_types, "Search moves..."),
+        len(moves), toolbar(move_types, "Search moves, types, or TM number..."),
         header, "".join(rows), SEARCH_JS)
     page("moves.html", "Moves", body)
 
@@ -1000,6 +1166,29 @@ def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
 
 
 
+def tm_sort_key(label):
+    # TMs first, then HMs, each in numeric order
+    return (label[:2] != "TM", int(label[2:]) if label[2:].isdigit() else 999)
+
+
+def mv_row(lv, mv, moves, up):
+    m = moves.get(mv)
+    if not m:
+        return ('<div class="mv"><span class="lv">%s</span><span>%s</span>'
+                '<span></span><span>—</span><span>—</span><span>—</span></div>') % (
+            esc(lv), esc(title_name(mv.replace("_", " "))))
+    return ('<div class="mv"><span class="lv">%s</span><a href="%smoves/%s.html">%s</a>'
+            '<span>%s</span><span>%s</span><span>%s</span><span>%d</span></div>') % (
+        esc(lv), up, m["slug"], esc(m["name"]), type_badge(m["type"]),
+        move_power(m), move_acc(m), m["pp"])
+
+
+def mv_table(first_col, rows):
+    head = ('<div class="mv header"><span>%s</span><span>Move</span><span>Type</span>'
+            '<span>Power</span><span>Acc.</span><span>PP</span></div>') % esc(first_col)
+    return '<div class="mvtable">%s%s</div>' % (head, "".join(rows))
+
+
 def render_mon(rec, mons, moves, tmhm_num):
     up = "../"
     img = ('<img class="big" src="%s%s" alt="%s">' % (up, rec["front_png"], esc(rec["name"]))
@@ -1011,14 +1200,14 @@ def render_mon(rec, mons, moves, tmhm_num):
     flavour = rec.get("flavour", "")
     meta = []
     if entry.get("species"):
-        meta.append("<div><dt>Species</dt><dd>%s</dd></div>" % esc(entry["species"]))
+        meta.append("<div><dt>Species</dt><dd>%s Pokémon</dd></div>" % esc(entry["species"]))
     if entry.get("ft") or entry.get("inch"):
         meta.append("<div><dt>Height</dt><dd>%d'%02d\"</dd></div>" % (entry["ft"], entry["inch"]))
     if entry.get("weight"):
         meta.append("<div><dt>Weight</dt><dd>%.1f lb</dd></div>" % (entry["weight"] / 10.0))
-    meta.append("<div><dt>Catch rate</dt><dd>%d</dd></div>" % rec["catch"])
-    meta.append("<div><dt>Base exp</dt><dd>%d</dd></div>" % rec["exp"])
-    meta.append("<div><dt>Growth</dt><dd>%s</dd></div>" % esc(rec["growth"]))
+    meta.append("<div><dt>Catch rate</dt><dd>%d / 255</dd></div>" % rec["catch"])
+    meta.append("<div><dt>Base experience</dt><dd>%d</dd></div>" % rec["exp"])
+    meta.append("<div><dt>Growth rate</dt><dd>%s</dd></div>" % esc(rec["growth"]))
 
     stats = "".join([
         stat_bar("HP", rec["hp"]), stat_bar("Attack", rec["atk"]),
@@ -1029,7 +1218,8 @@ def render_mon(rec, mons, moves, tmhm_num):
     # evolutions
     evo_rows = []
     for prev, kind, arg in rec.get("from", []):
-        evo_rows.append('<p class="evofrom">Evolves from %s</p>' % mon_link(prev, up))
+        label = {"level": "Level %s" % arg, "item": item_name(arg), "trade": "Trade"}.get(kind, kind)
+        evo_rows.append('<p class="evofrom">Evolves from %s — %s</p>' % (mon_link(prev, up), esc(label)))
     for kind, arg, target in rec["evos"]:
         t = mons.get(target)
         label = {"level": "Level %s" % arg, "item": item_name(arg), "trade": "Trade"}.get(kind, kind)
@@ -1038,25 +1228,16 @@ def render_mon(rec, mons, moves, tmhm_num):
                         '<span class="arrow">→</span>%s</div>' % (esc(label), name))
     evo_html = "".join(evo_rows) or '<p class="noevo">Does not evolve.</p>'
 
-    # learnset
-    learn = ['<div class="learn header"><span>Level</span><span>Move</span><span>Type</span></div>']
-    for mv in rec["start_moves"]:
-        m = moves.get(mv)
-        learn.append('<div class="learn"><span>Start</span><span>%s</span><span>%s</span></div>' % (
-            esc(m["name"] if m else title_name(mv)), type_badge(m["type"]) if m else ""))
-    for lvl, mv in rec["learnset"]:
-        m = moves.get(mv)
-        learn.append('<div class="learn"><span>Lv %d</span><span>%s</span><span>%s</span></div>' % (
-            lvl, esc(m["name"] if m else title_name(mv)), type_badge(m["type"]) if m else ""))
+    # level-up learnset (starting moves are learned at level 1)
+    learn = [mv_row("1", mv, moves, up) for mv in rec["start_moves"]]
+    learn += [mv_row(str(lvl), mv, moves, up) for lvl, mv in rec["learnset"]]
+    learn_html = mv_table("Level", learn) if learn else '<p class="muted">None.</p>'
 
-    tms = []
-    for mv in rec["tmhm"]:
-        m = moves.get(mv)
-        num = tmhm_num.get(mv, "")
-        tms.append("<code>%s%s</code>" % (
-            ("<b>%s</b> " % esc(num)) if num else "",
-            esc(m["name"] if m else title_name(mv))))
-    tm_html = ('<div class="chips">%s</div>' % "".join(tms)) if tms else '<p class="noevo">None.</p>'
+    # TM / HM learnset, sorted TM01..TMxx then HM01..
+    tm_list = [(tmhm_num.get(mv, ""), mv) for mv in dict.fromkeys(rec["tmhm"])]
+    tm_list.sort(key=lambda x: tm_sort_key(x[0]) if x[0] else (2, 0))
+    tm_html = (mv_table("TM / HM", [mv_row(n or "—", mv, moves, up) for n, mv in tm_list])
+               if tm_list else '<p class="muted">None.</p>')
 
     # where to find
     locs = []
@@ -1066,26 +1247,68 @@ def render_mon(rec, mons, moves, tmhm_num):
         locs.append('<div class="location-row">%s<span>%s</span><span>Lv %d</span></div>' % (
             link, esc(method), lvl))
     loc_html = ("".join(locs) if locs
-                else '<p class="noevo">Not found in the wild — evolve, trade or catch it elsewhere.</p>')
+                else '<p class="muted">Not found in the wild — evolve, trade or catch it elsewhere.</p>')
 
     body = (
-        '<p><a class="back" href="%spokedex.html">← Pokédex</a></p>'
+        '<a class="back" href="%spokedex.html">← Pokédex</a>'
         '<section class="monhero"><div class="sprites">%s%s</div>'
         '<div><p class="eyebrow">#%03d</p><h1>%s</h1><div>%s</div>'
         '<p class="flavour">%s</p></div></section>'
         '<div class="twocol">'
-        '<div class="panel"><h2>Base stats <em>Total %d</em></h2>%s</div>'
-        '<div class="panel"><h2>Details</h2><dl>%s</dl></div></div>'
-        '<div class="twocol">'
-        '<div class="panel"><h2>Level-up moves</h2>%s</div>'
-        '<div><div class="panel"><h2>Evolution</h2><div class="evolist">%s</div></div>'
-        '<div class="panel"><h2>Where to find</h2>%s</div></div></div>'
-        '<div class="panel"><h2>TM / HM</h2>%s</div>'
+        '<section class="panel"><h2>Base stats <em>Total %d</em></h2>%s</section>'
+        '<section class="panel"><h2>Evolution</h2><div class="evolist">%s</div></section></div>'
+        '<section class="panel"><h2>Pokédex data</h2><dl class="info">%s</dl></section>'
+        '<section class="panel"><h2>Level-up moves <em>%d</em></h2>%s</section>'
+        '<section class="panel"><h2>TM / HM moves <em>%d</em></h2>%s</section>'
+        '<section class="panel"><h2>Wild locations</h2>%s</section>'
     ) % (up, img, back, rec["dex"], esc(rec["name"]),
          "".join(type_badge(t) for t in dict.fromkeys(rec["types"])),
-         esc(flavour), rec["total"], stats, "".join(meta),
-         "".join(learn), evo_html, loc_html, tm_html)
+         esc(flavour), rec["total"], stats, evo_html, "".join(meta),
+         len(learn), learn_html, len(tm_list), tm_html, loc_html)
     page("pokemon/%s.html" % rec["slug"], rec["name"], body, depth=1)
+
+
+def render_move(m, learners, tm_label):
+    up = "../"
+    tn = type_name(m["type"])
+    desc, chance = move_desc(m)
+    info = [
+        "<div><dt>Type</dt><dd>%s</dd></div>" % type_badge(m["type"]),
+        "<div><dt>Power</dt><dd>%s</dd></div>" % move_power(m),
+        "<div><dt>Accuracy</dt><dd>%s</dd></div>" % move_acc(m),
+        "<div><dt>PP</dt><dd>%d</dd></div>" % m["pp"],
+    ]
+    if chance:
+        info.append("<div><dt>Effect chance</dt><dd>%d%%</dd></div>" % chance)
+    if m["const"] in PRIORITY_MOVES:
+        info.append("<div><dt>Priority</dt><dd>+1</dd></div>")
+    if tm_label:
+        info.append("<div><dt>Taught by</dt><dd>%s</dd></div>" % esc(tm_label))
+
+    lv = sorted(learners.get("level", []), key=lambda x: (x[0]["dex"] or 9999, x[1]))
+    tm = sorted(learners.get("tm", []), key=lambda r: (r["dex"] or 9999, r["name"]))
+    parts = []
+    if lv:
+        chips = "".join('<a class="learner" href="%spokemon/%s.html">%s <small>Lv. %d</small></a>' % (
+            up, r["slug"], esc(r["name"]), l) for r, l in lv)
+        parts.append('<h3>Level up <em>%d</em></h3><div class="learners">%s</div>' % (
+            len({r["slug"] for r, _ in lv}), chips))
+    if tm:
+        chips = "".join('<a class="learner" href="%spokemon/%s.html">%s</a>' % (
+            up, r["slug"], esc(r["name"])) for r in tm)
+        parts.append('<h3>%s <em>%d</em></h3><div class="learners">%s</div>' % (
+            esc(tm_label or "TM / HM"), len(tm), chips))
+    learn_html = "".join(parts) or '<p class="muted">No Pokémon learn this move.</p>'
+
+    body = (
+        '<a class="back" href="%smoves.html">← Moves</a>'
+        '<section class="head"><p class="eyebrow">%s MOVE</p><h1>%s</h1>'
+        '<p class="movedesc">%s</p></section>'
+        '<section class="panel"><dl class="info">%s</dl></section>'
+        '<section class="panel"><h2>Pokémon that learn %s</h2>%s</section>'
+    ) % (up, esc(tn.upper()), esc(m["name"]), esc(desc), "".join(info),
+         esc(m["name"]), learn_html)
+    page("moves/%s.html" % m["slug"], m["name"], body, depth=1)
 
 
 def encounter_table(entries, mons, up, title, rate=None):
