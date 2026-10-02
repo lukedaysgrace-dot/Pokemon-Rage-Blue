@@ -104,6 +104,27 @@ def title_name(s):
     return "".join(out)
 
 
+# In-game names are capped at 10-12 characters; show the full modern spelling.
+NAME_FIXES = {
+    # pokemon
+    "Mr.Mime": "Mr. Mime", "Porygonz": "Porygon-Z",
+    # moves
+    "Doubleslap": "Double Slap", "Thunderpunch": "Thunder Punch",
+    "Vicegrip": "Vise Grip", "Sand-Attack": "Sand Attack",
+    "Sonicboom": "Sonic Boom", "Bubblebeam": "Bubble Beam",
+    "Solarbeam": "Solar Beam", "Poisonpowder": "Poison Powder",
+    "Thundershock": "Thunder Shock", "Selfdestruct": "Self-Destruct",
+    "Softboiled": "Soft-Boiled", "Hi Jump Kick": "High Jump Kick",
+    "Extremespeed": "Extreme Speed", "X Scissor": "X-Scissor",
+    # items
+    "Thunderstone": "Thunder Stone",
+}
+
+
+def display_name(s):
+    return NAME_FIXES.get(s, s)
+
+
 def slugify(s):
     s = s.lower()
     s = s.replace("♂", "-m").replace("♀", "-f").replace("é", "e")
@@ -243,7 +264,7 @@ MON_NAMES_RAW = parse_string_list("data/pokemon/names.asm", ("dname",))
 # internal index (1..N) -> display name
 INDEX_NAME = {}
 for i, raw in enumerate(MON_NAMES_RAW, start=1):
-    INDEX_NAME[i] = title_name(raw)
+    INDEX_NAME[i] = display_name(title_name(raw))
 
 CONST_NAME = {}
 for const, idx in MON_CONSTS.items():
@@ -291,9 +312,6 @@ def parse_base_stats():
         stats = [int(x) for x in re.findall(r"-?\d+", dbs[1])]
         types = [t.strip() for t in dbs[2].split(",")]
         slug = Path(path).stem
-        name = None
-        for const, idx in MON_CONSTS.items():
-            pass
         mons[slug] = {
             "slug": slug,
             "file": path,
@@ -366,28 +384,45 @@ def detext(s):
     return s.replace("@", "").strip()
 
 
+def finish_sentence(text):
+    text = text.strip()
+    return text if not text or text[-1] in ".!?" else text + "."
+
+
 def parse_dex_text():
-    """_XDexEntry -> flavour text."""
+    """_XDexEntry -> flavour text.
+
+    The in-game `dex` terminator prints the closing period itself, and a
+    sentence that ends on a page break often has none, so add them back.
+    """
     out, cur, parts = {}, None, []
+
+    def done():
+        return finish_sentence(" ".join(parts))
+
     for ln in read("data/pokemon/dex_text.asm"):
         m = re.match(r"^_(\w+)DexEntry::", ln)
         if m:
             if cur:
-                out[cur] = " ".join(parts).strip()
+                out[cur] = done()
             cur, parts = m.group(1), []
             continue
         if cur is None:
             continue
         s = ln.strip()
         if s.startswith("dex"):
-            out[cur] = " ".join(parts).strip()
+            out[cur] = done()
             cur, parts = None, []
             continue
         m = re.match(r'^(text|next|page|line|para)\s+"([^"]*)"', s)
         if m:
-            parts.append(detext(m.group(2)))
+            line = detext(m.group(2))
+            # a page break that starts a new sentence lost its period
+            if m.group(1) in ("page", "para") and parts and line[:1].isupper():
+                parts[-1] = finish_sentence(parts[-1])
+            parts.append(line)
     if cur:
-        out[cur] = " ".join(parts).strip()
+        out[cur] = done()
     return out
 
 
@@ -453,7 +488,7 @@ def parse_evos_moves():
 # --------------------------------------------------------------------------
 
 def parse_moves():
-    names = [title_name(n) for n in parse_string_list("data/moves/names.asm", ("li",))]
+    names = [display_name(title_name(n)) for n in parse_string_list("data/moves/names.asm", ("li",))]
     lines = apply_conditionals(strip_macros(read("data/moves/moves.asm")))
     rows = []
     for ln in lines:
@@ -645,7 +680,7 @@ def move_acc(m):
     return ("%d%%" % m["acc"]) if m["acc"] else "—"
 
 
-ITEM_NAMES = [title_name(n) for n in parse_string_list("data/items/names.asm", ("li",))]
+ITEM_NAMES = [display_name(title_name(n)) for n in parse_string_list("data/items/names.asm", ("li",))]
 ITEM_CONSTS = parse_consts("constants/item_constants.asm")
 ITEM_BY_CONST = {}
 for _c, _v in ITEM_CONSTS.items():
@@ -665,7 +700,13 @@ MAP_FIXUPS = [
     (r"\bSs\b", "S.S."), (r"\bMt\b", "Mt."), (r"\bB(\d)f\b", r"B\1F"),
     (r"\b(\d)f\b", r"\1F"), (r"\bHq\b", "HQ"), (r"\bPokecenter\b", "Poké Center"),
     (r"\bPokemon\b", "Pokémon"), (r"\bSilphco\b", "Silph Co."),
+    (r"\bDigletts\b", "Diglett's"),
 ]
+
+
+def natural_key(text):
+    """Sort 'Route 2' before 'Route 10'."""
+    return [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", text)]
 
 
 def map_title(const):
@@ -853,10 +894,12 @@ def build_sprites(mons):
         # the art files are named after the INCBIN path, which does not always
         # match the base_stats filename (mrmime -> mr.mime, porygonz -> porygon_z)
         art = Path(mon["front"]).stem if mon.get("front") else slug
-        for kind, rel in (("front", "gfx/pokemon/front/%s.png" % art),
-                          ("back", "gfx/pokemon/back/%sb.png" % art)):
-            src = ROOT / rel
-            if not src.exists():
+        candidates = (("front", ["gfx/pokemon/front/%s.png" % art]),
+                      ("back", ["gfx/pokemon/back/%sb.png" % art,
+                                "gfx/pokemon/back/%s.png" % art]))
+        for kind, rels in candidates:
+            src = next((ROOT / r for r in rels if (ROOT / r).exists()), None)
+            if src is None:
                 continue
             dst = OUT / "assets" / "sprites" / kind / ("%s.png" % slug)
             try:
@@ -886,8 +929,7 @@ def page(path, title, body, depth=0):
         '<link rel="stylesheet" href="%sassets/style.css"></head><body>'
         '<header><a class="brand" href="%sindex.html">◆ %s</a><nav>%s</nav></header>'
         '<main>%s</main>'
-        '<footer>Generated from the <a href="%s">Pokémon Rage Blue</a> source. '
-        'Data reflects the Blue build.</footer>'
+        '<footer><a href="%s">Pokémon Rage Blue</a> documentation generated from source</footer>'
         '</body></html>'
     ) % (esc(title), esc(TITLE), up, up, esc(TITLE), nav, body, REPO_URL)
     dst = OUT / path
@@ -920,6 +962,7 @@ def build():
     good_rod = parse_rod("data/wild/good_rod.asm", "GoodRodMons")
 
     # ---- assemble the pokemon records -----------------------------------
+    entry_keys = {k.lower(): k for k in dex_entries}
     mons = {}          # const -> record
     by_slug = {}
     for slug, m in base.items():
@@ -937,14 +980,9 @@ def build():
         rec["evos"] = ev["evos"]
         rec["learnset"] = ev["learnset"]
         rec["locations"] = []
-        entry_key = "".join(c for c in slug.title() if c.isalnum())
-        rec["entry"] = None
-        for key in (entry_key, slug.capitalize()):
-            if key in dex_entries:
-                rec["entry"] = dex_entries[key]
-                rec["flavour"] = dex_text.get(key, "")
-                break
-        rec.setdefault("flavour", "")
+        key = entry_keys.get(re.sub(r"[^a-z0-9]", "", slug.lower()))
+        rec["entry"] = dex_entries.get(key) if key else None
+        rec["flavour"] = dex_text.get(key, "") if key else ""
         mons[const] = rec
         by_slug[slug] = rec
 
@@ -1071,13 +1109,6 @@ def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
         '<div class="hero-art"><img src="assets/hero.png" alt="Blastoise and Charizard"></div></section>'
         '<section class="counts"><div><b>%d</b> Pokémon</div><div><b>%d</b> Moves</div>'
         '<div><b>%d</b> Encounter slots</div></section>'
-        '<section class="panel"><h2>Pikachu-family field moves</h2>'
-        '<p><a class="back" href="pokemon/pikachu.html">Pikachu</a>, '
-        '<a class="back" href="pokemon/raichu.html">Raichu</a> and '
-        '<a class="back" href="pokemon/gorochu.html">Gorochu</a> use shared '
-        'Pikachu graphics when using Surf or Fly. Gorochu can now learn HM03 Surf.</p>'
-        '<p class="muted">Town Map Fly uses the first compatible Pokémon in your party. '
-        'You need HM02 in your bag and the Thunder Badge.</p></section>'
         '<h2>Pokédex preview</h2><div class="grid">%s</div>'
         '<p class="more"><a class="button" href="pokedex.html">See all %d Pokémon</a></p>'
     ) % (esc(TAGLINE), len(ordered), len(moves), slots, preview, len(ordered))
@@ -1095,7 +1126,6 @@ def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
         render_mon(rec, mons, moves, tmhm_num)
 
     # ---------- moves -----------------------------------------------------
-    tm_of = {mv: lbl for mv, lbl in tmhm_num.items()}
     learners = {}
     for rec in ordered:
         seen_lv = set()
@@ -1113,7 +1143,7 @@ def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
     rows = []
     for m in sorted(moves.values(), key=lambda x: x["num"]):
         tn = type_name(m["type"])
-        tm = tm_of.get(m["const"], "")
+        tm = tmhm_num.get(m["const"], "")
         desc, chance = move_desc(m)
         rows.append(
             '<a class="row" href="moves/%s.html" data-search="%s" data-types="%s">'
@@ -1137,7 +1167,7 @@ def render_all(mons, ordered, moves, tmhm_num, locations, old_rod, good_rod):
 
     # ---------- locations -------------------------------------------------
     cards = []
-    for loc in sorted(locations, key=lambda l: l["title"]):
+    for loc in sorted(locations, key=lambda l: natural_key(l["title"])):
         bits = []
         if loc["grass"]:
             bits.append("Grass")
@@ -1352,7 +1382,7 @@ def render_location(loc, mons):
 
 def render_encounters(locations, mons, old_rod, good_rod):
     rows = []
-    for loc in sorted(locations, key=lambda l: l["title"]):
+    for loc in sorted(locations, key=lambda l: natural_key(l["title"])):
         for method, entries in (("Grass", loc["grass"]), ("Surfing", loc["water"]),
                                 ("Super Rod", loc["super_rod"])):
             seen = []
