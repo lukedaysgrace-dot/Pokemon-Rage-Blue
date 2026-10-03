@@ -41,7 +41,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 /_to_delete/
-/Claude outputs/
 /_audit_snapshot.tar.gz
 
 # Install RGBDS outside the source tree
