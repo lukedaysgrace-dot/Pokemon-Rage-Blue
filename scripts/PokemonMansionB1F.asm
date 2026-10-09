@@ -164,17 +164,14 @@ PokemonMansionB1FGreenApproachMovement:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
 PokemonMansionB1FGreenApproachScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
-	jr z, .movementDone
-	call PokemonMansionB1FGreenReachedApproachTile
 	ret nz
-	call PokemonMansionB1FClearGreenMovement
-.movementDone
+	; Finish the approach at y 11, one tile above the player at y 12.
+	; Map coordinates advance before the walking animation has finished.
 	call PokemonMansionB1FGreenFacePlayer
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
@@ -245,13 +242,13 @@ PokemonMansionB1FGreenAfterBattleScript:
 
 PokemonMansionB1FMewApproachScript:
 	call PokemonMansionB1FClearGreenMovement
-	ld de, PokemonMansionB1FGreenExitMovement
 	ld a, SPRITE_FACING_UP
 	ldh [hSpriteFacingDirection], a
 	ld a, POKEMONMANSIONB1F_GREEN
 	ldh [hSpriteIndex], a
 	call SetSpriteFacingDirectionAndDelay
 	call PokemonMansionB1FAllowGreenAnyDirection
+	ld de, PokemonMansionB1FGreenExitMovement
 	call MoveSprite
 	ld a, SCRIPT_POKEMONMANSIONB1F_GREEN_EXIT
 	ld [wPokemonMansionB1FCurScript], a
@@ -361,7 +358,6 @@ PokemonMansionB1FGreenExitMovement:
 	db NPC_MOVEMENT_UP
 	db NPC_MOVEMENT_UP
 	db NPC_MOVEMENT_UP
-	db NPC_MOVEMENT_UP
 	db -1 ; end
 
 PokemonMansionB1FGreenExitScript:
@@ -370,9 +366,10 @@ PokemonMansionB1FGreenExitScript:
 	ret nz
 	ld de, TOGGLE_POKEMON_MANSION_B1F_GREEN
 	predef HideObject
-	call EndGreenEncounterMusic
-	xor a ; EndGreenEncounterMusic leaves garbage in a
+	xor a
 	ld [wJoyIgnore], a
+	call EndGreenEncounterMusic
+	xor a
 	ld [wPokemonMansionB1FCurScript], a
 	ld [wCurMapScript], a
 	ret
@@ -442,22 +439,6 @@ PokemonMansionB1FGetSpriteMapCoords:
 	ld h, a
 	ld de, SPRITESTATEDATA2_MAPY
 	add hl, de
-	ret
-
-PokemonMansionB1FGreenReachedApproachTile:
-	ld hl, wSpriteStateData2
-	ld a, POKEMONMANSIONB1F_GREEN
-	swap a
-	add l
-	ld l, a
-	ld a, h
-	adc 0
-	ld h, a
-	ld de, SPRITESTATEDATA2_MAPY
-	add hl, de
-	ld a, [hl]
-	sub 4
-	cp 12
 	ret
 
 PokemonMansionB1FClearGreenMovement:
