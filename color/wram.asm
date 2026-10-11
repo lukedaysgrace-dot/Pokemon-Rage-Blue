@@ -54,3 +54,6 @@ DEF W2_VBCOPYBGNUMROWS             EQU $d78d
 
 ; In bank 1, the stack starts at $dfff. So, that's also the stack here when bank 2 is
 ; loaded. Don't use anything too close to there.
+
+; Cached options bits: readable while WRAM bank 2 is selected.
+DEF W2_ColorMode EQU $d08b

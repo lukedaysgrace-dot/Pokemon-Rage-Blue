@@ -97,7 +97,7 @@ def load_symbols(path: Path) -> dict[str, Symbol]:
 def scan(root: Path, symbols: dict[str, Symbol]) -> list[Transfer]:
     findings: list[Transfer] = []
     for path in sorted(root.rglob("*.asm")):
-        if ".git" in path.parts or "_to_delete" in path.parts:
+        if any(part in path.parts for part in (".git", "_to_delete", ".reference")):
             continue
         caller: str | None = None
         caller_symbol: Symbol | None = None

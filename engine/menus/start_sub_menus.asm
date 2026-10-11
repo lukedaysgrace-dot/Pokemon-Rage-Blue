@@ -663,7 +663,11 @@ StartMenu_Option::
 	call ClearScreen
 	call UpdateSprites
 	callfar DisplayOptionMenu
+	ld b, SET_PAL_OVERWORLD
+	call RunPaletteCommand
 	call LoadScreenTilesFromBuffer2
+	; The map's BG attributes still contain the previous mode's palette IDs.
+	farcall RedrawMapView
 	call LoadTextBoxTilePatterns
 	call UpdateSprites
 	jp RedisplayStartMenu

@@ -9,13 +9,13 @@ SpritePalettes: ; Taken from pokemon GSC.
 ; PAL_OW_BLUE
 	RGB 27,31,27
 	RGB 31,19,10
-	RGB 10,7,31
+	RGB 10,9,31
 	RGB 0,0,0
 
 ; PAL_OW_GREEN
 	RGB 27,31,27
 	RGB 31,19,10
-	RGB 0,17,5
+	RGB 7,23,3
 	RGB 0,0,0
 
 ; PAL_OW_BROWN
@@ -27,14 +27,13 @@ SpritePalettes: ; Taken from pokemon GSC.
 ; PAL_OW_PURPLE
 	RGB 27,31,27
 	RGB 31,19,10
-	RGB 22,9,24
+	RGB 18,4,18
 	RGB 0,0,0
 
-; PAL_OW_EMOTE (slot 5, dedicated emote palette — matches GSC's PAL_OW_SILVER)
-; Emote bubbles use only colors 1 and 3, so color 1 = white, color 3 = black.
+; PAL_OW_EMOJI
 	RGB 31,31,31
 	RGB 31,31,31
-	RGB 28,30,31
+	RGB 13,13,13
 	RGB 0,0,0
 
 ; PAL_OW_TREE
@@ -60,13 +59,13 @@ SpritePalettesNite: ; Taken from pokemon GSC.
 ; PAL_OW_BLUE
 	RGB 27,31,27
 	RGB 31,19,10
-	RGB 10,7,31
+	RGB 10,9,31
 	RGB 0,0,0
 
 ; PAL_OW_GREEN
 	RGB 27,31,27
 	RGB 31,19,10
-	RGB 0,17,5
+	RGB 7,23,3
 	RGB 0,0,0
 
 ; PAL_OW_BROWN
@@ -78,14 +77,13 @@ SpritePalettesNite: ; Taken from pokemon GSC.
 ; PAL_OW_PURPLE
 	RGB 27,31,27
 	RGB 31,19,10
-	RGB 22,9,24
+	RGB 18,4,18
 	RGB 0,0,0
 
-; PAL_OW_EMOTE (slot 5, dedicated emote palette — matches GSC's PAL_OW_SILVER)
-; Emote bubbles use only colors 1 and 3, so color 1 = white, color 3 = black.
+; PAL_OW_EMOJI
 	RGB 31,31,31
 	RGB 31,31,31
-	RGB 28,30,31
+	RGB 13,13,13
 	RGB 0,0,0
 
 ; PAL_OW_TREE
@@ -111,13 +109,13 @@ SpritePalettesPokecenter: ; Taken from pokemon GSC.
 ; PAL_OW_BLUE
 	RGB 27,31,27
 	RGB 31,19,10
-	RGB 10,7,31
+	RGB 10,9,31
 	RGB 0,0,0
 
 ; PAL_OW_GREEN
 	RGB 27,31,27
 	RGB 31,19,10
-	RGB 0,17,5
+	RGB 7,23,3
 	RGB 0,0,0
 
 ; PAL_OW_BROWN
@@ -132,11 +130,10 @@ SpritePalettesPokecenter: ; Taken from pokemon GSC.
 	RGB 31,7,1
 	RGB 0,0,0
 
-; PAL_OW_EMOTE (slot 5, dedicated emote palette — matches GSC's PAL_OW_SILVER)
-; Emote bubbles use only colors 1 and 3, so color 1 = white, color 3 = black.
+; PAL_OW_EMOJI
 	RGB 31,31,31
 	RGB 31,31,31
-	RGB 28,30,31
+	RGB 13,13,13
 	RGB 0,0,0
 
 ; PAL_OW_TREE

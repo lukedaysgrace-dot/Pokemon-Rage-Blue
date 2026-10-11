@@ -28,6 +28,10 @@ LoadOverworldSpritePalettes:
 	xor a
 	ldh [rWBK], a
 	push bc
+	ldh a, [rIE]
+	push af
+	xor a
+	ldh [rIE], a ; protect palette copies from WRAM-changing interrupts
 	; Does the map we're on use dark/night palettes?
 	; Load the matching Object Pals if so
 	ld a, [wCurMapTileset]
@@ -44,10 +48,20 @@ LoadOverworldSpritePalettes:
 	; If not, load the normal Object Pals
 	ld hl, SpritePalettes
 .gotPaletteList
-	pop bc
-	ld a, b
+	ld a, [wOptions]
+	and COLOR_MODE_MASK
+	cp COLOR_MODE_SHIN
+	jr nz, .useGbcPalettes
+	farcall LoadShinSpritePalettes
+	jr .done
+.useGbcPalettes
+	call LoadSpritePaletteData
+.done
+	pop af
+	ldh [rIE], a
+	pop af
 	ldh [rWBK], a
-	jr LoadSpritePaletteData
+	ret
 
 LoadAttackSpritePalettes:
 	ld hl, AttackSpritePalettes
@@ -84,6 +98,17 @@ ColorOverworldSprite::
 	and $f8
 	ld b, a
 
+	; Shin uses palette 0 for OBP0 and palette 4 for OBP1.
+	ld a, [wOptions]
+	and COLOR_MODE_MASK
+	cp COLOR_MODE_SHIN
+	jr nz, .gbcSprite
+	ld a, b
+	and $10
+	rrca
+	rrca
+	jp .norandomColor
+.gbcSprite
 	ldh a, [hSpriteOffset2]
 	ld e, a
 	ld d, wSpriteStateData1 >> 8
@@ -96,10 +121,7 @@ ColorOverworldSprite::
 	jr nc, .noCarry
 	inc d
 .noCarry
-	; Get the picture ID's palette. The female Yellow player keeps the default
-	; SPR_PAL_ORANGE slot (PAL_OW_RED: peach skin + orange + black), the same
-	; overworld palette Red uses — no gender override.
-	ld a, [de]
+	ld a, [de] ; upstream palette for this sprite identity
 
 	; If it's 8, that means no particular palette is assigned
 	cp SPR_PAL_RANDOM
@@ -373,17 +395,17 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x03: SPRITE_OAK
 	db SPR_PAL_BROWN
 
-	; 0x04: SPRITE_BUG_CATCHER
-	db SPR_PAL_BLUE
+	; 0x04: SPRITE_YOUNGSTER
+	db SPR_PAL_RANDOM
 
-	; 0x05: SPRITE_SLOWBRO
+	; 0x05: SPRITE_MONSTER
 	db SPR_PAL_ORANGE
 
-	; 0x06: SPRITE_LASS
-	db SPR_PAL_PURPLE
+	; 0x06: SPRITE_COOLTRAINER_F
+	db SPR_PAL_RANDOM
 
-	; 0x07: SPRITE_BLACK_HAIR_BOY_1
-	db SPR_PAL_GREEN
+	; 0x07: SPRITE_COOLTRAINER_M
+	db SPR_PAL_RANDOM
 
 	; 0x08: SPRITE_LITTLE_GIRL
 	db SPR_PAL_RANDOM
@@ -391,23 +413,23 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x09: SPRITE_BIRD
 	db SPR_PAL_ORANGE
 
-	; 0x0a: SPRITE_FAT_BALD_GUY
+	; 0x0a: SPRITE_MIDDLE_AGED_MAN
 	db SPR_PAL_RANDOM
 
 	; 0x0b: SPRITE_GAMBLER
-	db SPR_PAL_PURPLE
+	db SPR_PAL_RANDOM
 
-	; 0x0c: SPRITE_BLACK_HAIR_BOY_2
-	db SPR_PAL_BROWN
+	; 0x0c: SPRITE_SUPER_NERD
+	db SPR_PAL_RANDOM
 
 	; 0x0d: SPRITE_GIRL
-	db SPR_PAL_GREEN
+	db SPR_PAL_RANDOM
 
 	; 0x0e: SPRITE_HIKER
-	db SPR_PAL_PURPLE
+	db SPR_PAL_RANDOM
 
-	; 0x0f: SPRITE_FOULARD_WOMAN
-	db SPR_PAL_BLUE
+	; 0x0f: SPRITE_BEAUTY
+	db SPR_PAL_RANDOM
 
 	; 0x10: SPRITE_GENTLEMAN
 	db SPR_PAL_BLUE
@@ -416,36 +438,36 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_BLUE
 
 	; 0x12: SPRITE_BIKER
-	db SPR_PAL_BLUE
+	db SPR_PAL_RANDOM
 
 	; 0x13: SPRITE_SAILOR
-	db SPR_PAL_BLUE
+	db SPR_PAL_RANDOM
 
 	; 0x14: SPRITE_COOK
 	db SPR_PAL_RANDOM
 
-	; 0x15: SPRITE_BIKE_SHOP_GUY
+	; 0x15: SPRITE_BIKE_SHOP_CLERK
 	db SPR_PAL_RANDOM
 
 	; 0x16: SPRITE_MR_FUJI
 	db SPR_PAL_GREEN
 
 	; 0x17: SPRITE_GIOVANNI
-	db SPR_PAL_BROWN
+	db SPR_PAL_BLUE
 
 	; 0x18: SPRITE_ROCKET
 	db SPR_PAL_BROWN
 
-	; 0x19: SPRITE_MEDIUM
-	db SPR_PAL_BLUE
+	; 0x19: SPRITE_CHANNELER
+	db SPR_PAL_RANDOM
 
 	; 0x1a: SPRITE_WAITER
 	db SPR_PAL_RANDOM
 
-	; 0x1b: SPRITE_ERIKA
+	; 0x1b: SPRITE_SILPH_WORKER_F
 	db SPR_PAL_RANDOM
 
-	; 0x1c: SPRITE_MOM_GEISHA
+	; 0x1c: SPRITE_MIDDLE_AGED_WOMAN
 	db SPR_PAL_RANDOM
 
 	; 0x1d: SPRITE_BRUNETTE_GIRL
@@ -454,59 +476,59 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x1e: SPRITE_LANCE
 	db SPR_PAL_ORANGE
 
-	; 0x1f: SPRITE_OAK_SCIENTIST_AIDE
-	db SPR_PAL_GREEN
-
-	; 0x20: SPRITE_OAK_AIDE
+	; 0x1f: SPRITE_UNUSED_SCIENTIST
 	db SPR_PAL_BROWN
 
-	; 0x21: SPRITE_ROCKER ($20)
-	db SPR_PAL_ORANGE
+	; 0x20: SPRITE_SCIENTIST
+	db SPR_PAL_BROWN
+
+	; 0x21: SPRITE_ROCKER
+	db SPR_PAL_RANDOM
 
 	; 0x22: SPRITE_SWIMMER
-	db SPR_PAL_BLUE
-
-	; 0x23: SPRITE_WHITE_PLAYER
 	db SPR_PAL_RANDOM
 
-	; 0x24: SPRITE_GYM_HELPER
+	; 0x23: SPRITE_SAFARI_ZONE_WORKER
 	db SPR_PAL_RANDOM
 
-	; 0x25: SPRITE_OLD_PERSON
+	; 0x24: SPRITE_GYM_GUIDE
 	db SPR_PAL_RANDOM
 
-	; 0x26: SPRITE_MART_GUY
+	; 0x25: SPRITE_GRAMPS
 	db SPR_PAL_RANDOM
 
-	; 0x27: SPRITE_FISHER
+	; 0x26: SPRITE_CLERK
 	db SPR_PAL_RANDOM
 
-	; 0x28: SPRITE_OLD_MEDIUM_WOMAN
+	; 0x27: SPRITE_FISHING_GURU
+	db SPR_PAL_RANDOM
+
+	; 0x28: SPRITE_GRANNY
 	db SPR_PAL_RANDOM
 
 	; 0x29: SPRITE_NURSE
 	db SPR_PAL_ORANGE
 
-	; 0x2a: SPRITE_CABLE_CLUB_WOMAN
+	; 0x2a: SPRITE_LINK_RECEPTIONIST
 	db SPR_PAL_GREEN
 
-	; 0x2b: SPRITE_MR_MASTERBALL
+	; 0x2b: SPRITE_SILPH_PRESIDENT
 	db SPR_PAL_PURPLE
 
-	; 0x2c: SPRITE_LAPRAS_GIVER
+	; 0x2c: SPRITE_SILPH_WORKER_M
 	db SPR_PAL_RANDOM
 
 	; 0x2d: SPRITE_WARDEN
 	db SPR_PAL_RANDOM
 
-	; 0x2e: SPRITE_SS_CAPTAIN
+	; 0x2e: SPRITE_CAPTAIN
 	db SPR_PAL_RANDOM
 
-	; 0x2f: SPRITE_FISHER2
-	db SPR_PAL_BLUE
+	; 0x2f: SPRITE_FISHER
+	db SPR_PAL_RANDOM
 
 	; 0x30: SPRITE_KOGA
-	db SPR_PAL_PURPLE
+	db SPR_PAL_RANDOM
 
 	; 0x31: SPRITE_BROCK
 	db SPR_PAL_BROWN
@@ -518,7 +540,7 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_ORANGE
 
 	; 0x34: SPRITE_ERIKA
-	db SPR_PAL_GREEN
+	db SPR_PAL_RANDOM
 
 	; 0x35: SPRITE_SABRINA
 	db SPR_PAL_ORANGE
@@ -622,7 +644,7 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x56: SPRITE_PROTON
 	db SPR_PAL_GREEN
 
-	; 0x57: SPRITE_SOLDIER (same overworld green tint as GREEN / unused scientist)
+	; 0x57: SPRITE_SOLDIER
 	db SPR_PAL_GREEN
 
 	; 0x58: SPRITE_BULBASAUR
@@ -713,7 +735,7 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_PURPLE
 
 	; 0x75: SPRITE_SLOWBRO
-	db SPR_PAL_PURPLE
+	db SPR_PAL_ORANGE
 
 	; 0x76: SPRITE_VOLTORB
 	db SPR_PAL_ORANGE
@@ -787,7 +809,7 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x8d: SPRITE_SWIMMER_F
 	db SPR_PAL_PURPLE
 
-	; 0x8e: SPRITE_ROCKET_GIRL (match male GRUNT browns / uniform)
+	; 0x8e: SPRITE_ROCKET_GIRL
 	db SPR_PAL_BROWN
 
 	; 0x8f: SPRITE_BEAUTY_NEW

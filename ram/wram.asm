@@ -806,7 +806,9 @@ wOptionsTextSpeedCursorX:: db
 wOptionsBattleAnimCursorX:: db
 wOptionsBattleStyleCursorX:: db
 wOptionsBackSpriteCursorX:: db
+wOptionsColorModeCursorX:: db
 wOptionsCancelCursorX:: db
+wOptionsMenuRow:: db
 
 NEXTU
 ; tile ID of the badge number being drawn

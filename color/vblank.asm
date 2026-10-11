@@ -380,6 +380,20 @@ endr
 ; Used in pre-vblank routines.
 SetColor:
 	push de
+	ld e, a
+	ld a, [W2_ColorMode]
+	cp COLOR_MODE_ORIGINAL
+	ld a, e
+	jr nz, .color
+	and 3
+	add a
+	ld de, MonochromePalette
+	add e
+	ld e, a
+	jr nc, .copy
+	inc d
+	jr .copy
+.color
 	and 3
 	add a
 	ld d, a
@@ -390,6 +404,7 @@ SetColor:
 	add d
 	ld d, W2_BgPaletteData >> 8
 	ld e, a ; de points to W2_BgPaletteData (or SprPaletteData)
+.copy
 
 	ld a, [de]
 	inc de
@@ -417,3 +432,6 @@ SetWhiteColor:
 	dec c
 	jr nz, .loop
 	ret
+
+MonochromePalette:
+	RGB 31,31,31, 21,21,21, 10,10,10, 0,0,0

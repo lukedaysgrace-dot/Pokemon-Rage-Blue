@@ -11,6 +11,46 @@ LoadTilesetPalette:
 	push de
 	push hl
 	ldh a, [rWBK]
+	ld c, a
+	xor a
+	ldh [rWBK], a
+	ld a, c
+	push af ; original WRAM bank, saved on the bank-1 stack
+	ldh a, [rIE]
+	push af
+	xor a
+	ldh [rIE], a ; LCD/VBlank handlers select WRAM bank 1
+	ld a, [wOptions]
+	and COLOR_MODE_MASK
+	cp COLOR_MODE_SHIN
+	jr nz, .gbc
+	farcall LoadShinTilesetPalette
+	jr .done
+.gbc
+	ld b, a
+	ld a, 2
+	ldh [rWBK], a
+	ld a, b
+	ld [W2_ColorMode], a
+	xor a
+	ldh [rWBK], a
+	call LoadGbcTilesetPalette
+.done
+	; Both loaders return in WRAM bank 1. Restore its stack before the caller's.
+	pop af
+	ldh [rIE], a
+	pop af
+	ldh [rWBK], a
+	pop hl
+	pop de
+	pop bc
+	ret
+
+LoadGbcTilesetPalette:
+	push bc
+	push de
+	push hl
+	ldh a, [rWBK]
 	ld d, a
 	xor a
 	ldh [rWBK], a

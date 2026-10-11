@@ -17,6 +17,10 @@ retail Pokémon Red or Blue ROMs.
 
 ## Recent gameplay updates
 
+- Options now includes `COLOR MODE`: `ORIG` (monochrome Game Boy), `GBC`
+  (pokered-gbc overworld colors with original Gen 1 Pokémon palettes), and
+  `SHIN` (Shin's enhanced overworld colors). The choice persists in saves.
+  See [color mode details and credits](color/README.md).
 - In the Blue build, Route 2 now has level 5 Sandile in the slot previously
   occupied by level 3 Pidgey. Safari Zone East now has level 37 Paras in the
   slot previously occupied by level 35 Sandile.

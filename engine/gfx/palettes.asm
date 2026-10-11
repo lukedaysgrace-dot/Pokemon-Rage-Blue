@@ -82,6 +82,16 @@ DeterminePaletteID:
 	jr .skipDexNumConversion
 
 .trainerPalette:
+	ld a, [wOptions]
+	and COLOR_MODE_MASK
+	jr nz, .rageTrainerPalette
+	ld a, [wLinkState]
+	cp LINK_STATE_BATTLING
+	ld a, PAL_REDMON
+	ret z
+	ld a, PAL_MEWMON
+	ret
+.rageTrainerPalette
 IF 1 ; Trainers are given individualized palettes
 	; In link battle, don't rely in wTrainerClass (for some reason it's set to
 	; OPP_GARY, so ignore it)

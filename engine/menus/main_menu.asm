@@ -84,7 +84,7 @@ MainMenu:
 	jr z, .choseContinue
 	cp 1
 	jp z, StartNewGame
-	call DisplayOptionMenu
+	farcall DisplayOptionMenu
 	ld a, TRUE
 	ld [wOptionsInitialized], a
 	jp .mainMenuLoop
@@ -440,21 +440,12 @@ SaveScreenInfoText:
 	next "#DEX    "
 	next "TIME@"
 
+PUSHS
+SECTION "Color Mode Options", ROMX
+
 DisplayOptionMenu:
 	hlcoord 0, 0
-	ld b, 2
-	ld c, 18
-	call TextBoxBorder
-	hlcoord 0, 4
-	ld b, 2
-	ld c, 18
-	call TextBoxBorder
-	hlcoord 0, 8
-	ld b, 2
-	ld c, 18
-	call TextBoxBorder
-	hlcoord 0, 12
-	ld b, 2
+	ld b, 16
 	ld c, 18
 	call TextBoxBorder
 	ldh a, [hUILayoutFlags]
@@ -464,34 +455,38 @@ DisplayOptionMenu:
 	hlcoord 1, 1
 	ld de, TextSpeedOptionText
 	call PlaceString
-	hlcoord 1, 5
+	hlcoord 1, 4
 	ld de, BattleAnimationOptionText
 	call PlaceString
-	hlcoord 1, 9
+	hlcoord 1, 7
 	ld de, BattleStyleOptionText
 	call PlaceString
-	hlcoord 1, 13
+	hlcoord 1, 10
 	ld de, BackSpritesOptionText
+	call PlaceString
+	hlcoord 1, 13
+	ld de, ColorModeOptionText
 	call PlaceString
 	pop af
 	ldh [hUILayoutFlags], a
-	hlcoord 2, 17
+	hlcoord 2, 16
 	ld de, OptionMenuCancelText
 	call PlaceString
 	xor a
 	ld [wCurrentMenuItem], a
 	ld [wLastMenuItem], a
+	ld [wOptionsMenuRow], a
 	ASSERT BIT_FAST_TEXT_DELAY == 0
-	inc a ; 1 << BIT_FAST_TEXT_DELAY
+	inc a
 	ld [wLetterPrintingDelayFlags], a
 	ld [wOptionsCancelCursorX], a
-	ld a, 2 ; text speed cursor Y coordinate
+	ld a, 2
 	ld [wTopMenuItemY], a
 	call SetCursorPositionsFromOptions
-	ld a, [wOptionsTextSpeedCursorX] ; text speed cursor X coordinate
+	ld a, [wOptionsTextSpeedCursorX]
 	ld [wTopMenuItemX], a
-	ld a, $01
-	ldh [hAutoBGTransferEnabled], a ; enable auto background transfer
+	ld a, 1
+	ldh [hAutoBGTransferEnabled], a
 	call Delay3
 .loop
 	call PlaceMenuCursor
@@ -500,7 +495,7 @@ DisplayOptionMenu:
 	call JoypadLowSensitivity
 	ldh a, [hJoy5]
 	ld b, a
-	and ~PAD_SELECT ; any key besides select pressed?
+	and ~PAD_SELECT
 	jr z, .getJoypadStateLoop
 	bit B_PAD_B, b
 	jr nz, .exitMenu
@@ -508,9 +503,8 @@ DisplayOptionMenu:
 	jr nz, .exitMenu
 	bit B_PAD_A, b
 	jr z, .checkDirectionKeys
-; A was pressed
-	ld a, [wTopMenuItemY]
-	cp 17 ; is the cursor on Cancel?
+	ld a, [wOptionsMenuRow]
+	cp 5
 	jr nz, .loop
 .exitMenu
 	ld a, SFX_PRESS_AB
@@ -521,82 +515,90 @@ DisplayOptionMenu:
 	call EraseMenuCursor
 	jp .loop
 .checkDirectionKeys
-	ld a, [wTopMenuItemY]
+	ld a, [wOptionsMenuRow]
 	bit B_PAD_DOWN, b
 	jr nz, .downPressed
 	bit B_PAD_UP, b
 	jr nz, .upPressed
-	cp 6 ; cursor in Battle Animation section?
+	cp 1
 	jr z, .cursorInBattleAnimation
-	cp 10 ; cursor in Battle Style section?
+	cp 2
 	jr z, .cursorInBattleStyle
-	cp 14 ; cursor in Back Sprites section?
+	cp 3
 	jr z, .cursorInBackSprites
-	cp 17 ; cursor on Cancel?
+	cp 4
+	jp z, .cursorInColorMode
+	cp 5
 	jr z, .loop
-; cursor in Text Speed
 	bit B_PAD_LEFT, b
 	jp nz, .pressedLeftInTextSpeed
 	jp .pressedRightInTextSpeed
 .downPressed
-	cp 17
-	ld b, -15
-	ld hl, wOptionsTextSpeedCursorX
-	jr z, .updateMenuVariables
-	ld b, 4
-	cp 2
-	inc hl
-	jr z, .updateMenuVariables
+	inc a
 	cp 6
-	inc hl
-	jr z, .updateMenuVariables
-	cp 10
-	inc hl
-	jr z, .updateMenuVariables
-	ld b, 3
-	inc hl
+	jr c, .updateMenuVariables
+	xor a
 	jr .updateMenuVariables
 .upPressed
-	cp 6
-	ld b, -4
-	ld hl, wOptionsTextSpeedCursorX
-	jr z, .updateMenuVariables
-	cp 10
-	inc hl
-	jr z, .updateMenuVariables
-	cp 14
-	inc hl
-	jr z, .updateMenuVariables
-	cp 17
-	ld b, -3
-	inc hl
-	jr z, .updateMenuVariables
-	ld b, 15
-	inc hl
+	sub 1
+	jr nc, .updateMenuVariables
+	ld a, 5
 .updateMenuVariables
-	add b
+	ld [wOptionsMenuRow], a
+	ld e, a
+	ld d, 0
+	ld hl, OptionMenuRowYCoords
+	add hl, de
+	ld a, [hl]
 	ld [wTopMenuItemY], a
+	ld hl, wOptionsTextSpeedCursorX
+	add hl, de
 	ld a, [hl]
 	ld [wTopMenuItemX], a
 	call PlaceUnfilledArrowMenuCursor
 	jp .loop
 .cursorInBattleAnimation
-	ld a, [wOptionsBattleAnimCursorX] ; battle animation cursor X coordinate
-	xor 1 ^ 10 ; toggle between 1 and 10
+	ld a, [wOptionsBattleAnimCursorX]
+	xor 1 ^ 10
 	ld [wOptionsBattleAnimCursorX], a
 	jp .eraseOldMenuCursor
 .cursorInBattleStyle
-	ld a, [wOptionsBattleStyleCursorX] ; battle style cursor X coordinate
-	xor 1 ^ 10 ; toggle between 1 and 10
+	ld a, [wOptionsBattleStyleCursorX]
+	xor 1 ^ 10
 	ld [wOptionsBattleStyleCursorX], a
 	jp .eraseOldMenuCursor
 .cursorInBackSprites
-	ld a, [wOptionsBackSpriteCursorX] ; back sprites cursor X coordinate
-	xor 1 ^ 10 ; toggle between 1 and 10
+	ld a, [wOptionsBackSpriteCursorX]
+	xor 1 ^ 10
 	ld [wOptionsBackSpriteCursorX], a
 	jp .eraseOldMenuCursor
+.cursorInColorMode
+	ld a, [wOptionsColorModeCursorX]
+	bit B_PAD_LEFT, b
+	jr nz, .colorLeft
+	cp 14
+	ld a, 1
+	jr z, .storeColorCursor
+	ld a, [wOptionsColorModeCursorX]
+	cp 1
+	ld a, 10
+	jr z, .storeColorCursor
+	ld a, 14
+	jr .storeColorCursor
+.colorLeft
+	cp 1
+	ld a, 14
+	jr z, .storeColorCursor
+	ld a, [wOptionsColorModeCursorX]
+	cp 14
+	ld a, 10
+	jr z, .storeColorCursor
+	ld a, 1
+.storeColorCursor
+	ld [wOptionsColorModeCursorX], a
+	jp .eraseOldMenuCursor
 .pressedLeftInTextSpeed
-	ld a, [wOptionsTextSpeedCursorX] ; text speed cursor X coordinate
+	ld a, [wOptionsTextSpeedCursorX]
 	cp 1
 	jr z, .updateTextSpeedXCoord
 	cp 7
@@ -607,7 +609,7 @@ DisplayOptionMenu:
 	sub 7
 	jr .updateTextSpeedXCoord
 .pressedRightInTextSpeed
-	ld a, [wOptionsTextSpeedCursorX] ; text speed cursor X coordinate
+	ld a, [wOptionsTextSpeedCursorX]
 	cp 14
 	jr z, .updateTextSpeedXCoord
 	cp 7
@@ -617,8 +619,11 @@ DisplayOptionMenu:
 .fromFastToMedium
 	add 6
 .updateTextSpeedXCoord
-	ld [wOptionsTextSpeedCursorX], a ; text speed cursor X coordinate
+	ld [wOptionsTextSpeedCursorX], a
 	jp .eraseOldMenuCursor
+
+OptionMenuRowYCoords:
+	db 2, 5, 8, 11, 14, 16
 
 TextSpeedOptionText:
 	db   "TEXT SPEED"
@@ -635,6 +640,10 @@ BattleStyleOptionText:
 BackSpritesOptionText:
 	db   "BACK SPRITES"
 	next " CLASSIC  HIGH DEF@"
+
+ColorModeOptionText:
+	db   "COLOR MODE"
+	next " ORIG     GBC SHIN@"
 
 OptionMenuCancelText:
 	db "CANCEL@"
@@ -680,8 +689,45 @@ SetOptionsFromCursorPositions:
 .backSprites32
 	res BIT_BACK_SPRITES_HD, d
 .storeOptions
-	ld a, d
+	ld a, [wOptionsColorModeCursorX]
+	cp 1
+	jr nz, .checkShin
+	ld a, COLOR_MODE_ORIGINAL
+	jr .storeColorMode
+.checkShin
+	cp 14
+	ld a, COLOR_MODE_GBC
+	jr nz, .storeColorMode
+	ld a, COLOR_MODE_SHIN
+.storeColorMode
+	or d
 	ld [wOptions], a
+	; Refresh even when BGP/OBP have not changed (monochrome preview).
+	ldh a, [rWBK]
+	ld c, a
+	push af
+	ldh a, [rIE]
+	push af
+	xor a
+	ldh [rIE], a
+	ld a, 2
+	ldh [rWBK], a
+	ld a, [wOptionsColorModeCursorX]
+	cp 1
+	ld a, COLOR_MODE_ORIGINAL
+	jr z, .cacheColorMode
+	ld a, COLOR_MODE_GBC
+.cacheColorMode
+	ld [W2_ColorMode], a
+	ld a, 1
+	ld [W2_ForceBGPUpdate], a
+	ld [W2_ForceOBPUpdate], a
+	ld a, c
+	ldh [rWBK], a
+	pop af
+	ldh [rIE], a
+	pop af
+	ldh [rWBK], a
 	ret
 
 ; reads the options variable and places menu cursors in the correct positions within the options menu
@@ -706,7 +752,7 @@ SetCursorPositionsFromOptions:
 	ld a, 10 ; Off
 .storeBattleAnimationCursorX
 	ld [wOptionsBattleAnimCursorX], a ; battle animation cursor X coordinate
-	hlcoord 0, 6
+	hlcoord 0, 5
 	call .placeUnfilledRightArrow
 	ld a, c
 	bit BIT_BATTLE_SHIFT, a
@@ -715,7 +761,7 @@ SetCursorPositionsFromOptions:
 	ld a, 10
 .storeBattleStyleCursorX
 	ld [wOptionsBattleStyleCursorX], a ; battle style cursor X coordinate
-	hlcoord 0, 10
+	hlcoord 0, 8
 	call .placeUnfilledRightArrow
 	ld a, c
 	bit BIT_BACK_SPRITES_HD, a
@@ -724,10 +770,25 @@ SetCursorPositionsFromOptions:
 	ld a, 10
 .storeBackSpriteCursorX
 	ld [wOptionsBackSpriteCursorX], a ; back sprites cursor X coordinate
+	hlcoord 0, 11
+	call .placeUnfilledRightArrow
+	ld a, c
+	and COLOR_MODE_MASK
+	cp COLOR_MODE_ORIGINAL
+	ld a, 1
+	jr z, .storeColorModeCursorX
+	ld a, c
+	and COLOR_MODE_MASK
+	cp COLOR_MODE_SHIN
+	ld a, 14
+	jr z, .storeColorModeCursorX
+	ld a, 10
+.storeColorModeCursorX
+	ld [wOptionsColorModeCursorX], a
 	hlcoord 0, 14
 	call .placeUnfilledRightArrow
 ; cursor in front of Cancel
-	hlcoord 0, 17
+	hlcoord 0, 16
 	ld a, 1
 .placeUnfilledRightArrow
 	ld e, a
@@ -745,6 +806,8 @@ TextSpeedOptionData:
 	db  7, TEXT_DELAY_MEDIUM
 	db  1, TEXT_DELAY_FAST
 	db  7, -1 ; end (default X coordinate)
+
+POPS
 
 CheckForPlayerNameInSRAM:
 ; Check if the player name data in SRAM has a string terminator character

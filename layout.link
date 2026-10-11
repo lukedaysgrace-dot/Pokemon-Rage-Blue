@@ -136,7 +136,6 @@ ROMX $19
 	"Tilesets 1"
 ROMX $1A
 	"Battle Engine 11"
-	"Tilesets 2"
 ROMX $1B
 	"Tilesets 3"
 ROMX $1C
@@ -246,6 +245,11 @@ ROMX $42
 	"Pokemon Back HD Pics 14"
 ROMX $43
 	"Pokemon Back HD Pics 15"
+ROMX $44
+	"Color Modes"
+	"Color Mode Options"
+ROMX $45
+	"Tilesets 2"
 WRAM0
 	"Audio RAM"
 	org $c100

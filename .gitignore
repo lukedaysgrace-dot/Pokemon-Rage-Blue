@@ -47,3 +47,6 @@ Thumbs.db
 /tools/rgbds-*/
 /tools/rgbds-*.zip
 /tools/rgbds-*.tar.*
+
+# Downloaded upstream references and local verification artifacts
+/.reference/
