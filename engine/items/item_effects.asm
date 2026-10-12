@@ -3038,12 +3038,24 @@ RecalculateStatsAfterStatusCure:
 	ret
 
 ReapplyBurnAndParalysisPenaltiesToUser:
-; QuarterSpeedDueToParalysis and HalveAttackDueToBurn act on the battler whose turn it
-; is NOT, so flip hWhoseTurn to aim them at the user of the move being executed instead.
-; Both are no-ops unless that battler is actually paralysed or burned.
-; hWhoseTurn is restored before returning.
+	ldh a, [hWhoseTurn]
+	ld [wCalculateWhoseStats], a
+	jr RecalculateStatsWithStatusPenalties
+
+ReapplyBurnAndParalysisPenaltiesToTarget:
+	ldh a, [hWhoseTurn]
+	xor 1
+	ld [wCalculateWhoseStats], a
+
+RecalculateStatsWithStatusPenalties:
+; Rebuild all stats before applying status penalties exactly once. Merely
+; halving/quartering the existing stats stacks the penalty when a move changes
+; an unrelated stat (including Accuracy/Evasion).
+; Input: wCalculateWhoseStats = battler to rebuild; preserves hWhoseTurn.
+	call RecalculateStatsAfterStatusCure
 	ldh a, [hWhoseTurn]
 	push af
+	ld a, [wCalculateWhoseStats]
 	xor 1
 	ldh [hWhoseTurn], a
 	callfar QuarterSpeedDueToParalysis

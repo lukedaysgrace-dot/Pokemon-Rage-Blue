@@ -54,6 +54,7 @@ RGBGFXFLAGS  ?= -Weverything
 .PHONY: \
 	all \
 	audit \
+	audit-runtime \
 	red \
 	blue \
 	blue_debug \
@@ -108,10 +109,17 @@ tools:
 
 audit: $(roms)
 	python3 tools/audit_game_data.py
+	python3 tools/audit_map_geometry.py
 	python3 tools/audit_trainer_movesets.py
 	python3 tools/audit_banked_calls.py pokered.sym
 	python3 tools/audit_banked_calls.py pokeblue.sym
 	python3 tools/audit_banked_calls.py pokeblue_debug.sym
+
+# Requires PyBoy; all emulator tests use disposable ROM copies and saves.
+audit-runtime: $(roms)
+	$(PYTHON) tools/test_gameplay_regressions.py
+	$(PYTHON) tools/test_color_modes.py
+	$(PYTHON) tools/test_intro_palettes.py
 
 
 RGBASMFLAGS += -Q8 -P includes.asm

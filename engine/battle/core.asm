@@ -4183,6 +4183,9 @@ GetDamageVarsForPlayerAttack:
 	ld a, [wEnemyBattleStatus3]
 	bit HAS_REFLECT_UP, a ; check for Reflect
 	jr z, .physicalAttackCritCheck
+	ld a, [wCriticalHitOrOHKO]
+	and a
+	jr nz, .physicalAttackCritCheck ; critical hits bypass Reflect
 ; if the enemy has used Reflect, double the enemy's defense
 	sla c
 	rl b
@@ -4196,24 +4199,17 @@ GetDamageVarsForPlayerAttack:
 	ld a, [wEnemyMonDefenseMod]
 	cp 7
 	jr c, .keepEnemyDefense
-	ld c, STAT_DEFENSE
-	push hl ; GetEnemyMonStat clobbers hl, which still points at the attacking stat
-	call GetEnemyMonStat
-	pop hl
-	ldh a, [hProduct + 2]
+	push hl
+	ld hl, wEnemyMonUnmodifiedDefense
+	ld a, [hli]
 	ld b, a
-	ldh a, [hProduct + 3]
-	ld c, a
+	ld c, [hl]
+	pop hl
 .keepEnemyDefense
 	ld a, [wPlayerMonAttackMod]
 	cp 8
 	jr nc, .scaleStats
-	push bc
-	ld hl, wPartyMon1Attack
-	ld a, [wPlayerMonNumber]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	pop bc
+	ld hl, wPlayerMonUnmodifiedAttack
 	jr .scaleStats
 .specialAttack
 	ld hl, wEnemyMonSpecial
@@ -4223,11 +4219,12 @@ GetDamageVarsForPlayerAttack:
 	ld a, [wEnemyBattleStatus3]
 	bit HAS_LIGHT_SCREEN_UP, a ; check for Light Screen
 	jr z, .specialAttackCritCheck
+	ld a, [wCriticalHitOrOHKO]
+	and a
+	jr nz, .specialAttackCritCheck ; critical hits bypass Light Screen
 ; if the enemy has used Light Screen, double the enemy's special
 	sla c
 	rl b
-; reflect and light screen boosts do not cap the stat at MAX_STAT_VALUE, so weird things will happen during stats scaling
-; if a Pokemon with 512 or more Defense has used Reflect, or if a Pokemon with 512 or more Special has used Light Screen
 .specialAttackCritCheck
 	ld hl, wBattleMonSpecial
 	ld a, [wCriticalHitOrOHKO]
@@ -4237,51 +4234,19 @@ GetDamageVarsForPlayerAttack:
 	ld a, [wEnemyMonSpecialMod]
 	cp 7
 	jr c, .keepEnemySpecial
-	ld c, STAT_SPECIAL
-	push hl ; GetEnemyMonStat clobbers hl, which still points at the attacking stat
-	call GetEnemyMonStat
-	pop hl
-	ldh a, [hProduct + 2]
+	push hl
+	ld hl, wEnemyMonUnmodifiedSpecial
+	ld a, [hli]
 	ld b, a
-	ldh a, [hProduct + 3]
-	ld c, a
+	ld c, [hl]
+	pop hl
 .keepEnemySpecial
 	ld a, [wPlayerMonSpecialMod]
 	cp 8
 	jr nc, .scaleStats
-	push bc
-	ld hl, wPartyMon1Special
-	ld a, [wPlayerMonNumber]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	pop bc
-; if either the offensive or defensive stat is too large to store in a byte, scale both stats by dividing them by 4
-; this allows values with up to 10 bits (values up to 1023) to be handled
-; anything larger will wrap around
+	ld hl, wPlayerMonUnmodifiedSpecial
 .scaleStats
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a ; hl = player's offensive stat
-	or b ; is either high byte nonzero?
-	jr z, .next ; if not, we don't need to scale
-; bc /= 4 (scale enemy's defensive stat)
-	srl b
-	rr c
-	srl b
-	rr c
-; defensive stat can actually end up as 0, leading to a division by 0 freeze during damage calculation
-; hl /= 4 (scale player's offensive stat)
-	srl h
-	rr l
-	srl h
-	rr l
-	ld a, l
-	or h ; is the player's offensive stat 0?
-	jr nz, .next
-	inc l ; if the player's offensive stat is 0, bump it up to 1
-.next
-	ld b, l ; b = player's offensive stat (possibly scaled)
-	        ; (c already contains enemy's defensive stat (possibly scaled))
+	call ScaleDamageStats
 	ld a, [wBattleMonLevel]
 	ld e, a ; e = level
 	ld a, [wCriticalHitOrOHKO]
@@ -4315,6 +4280,9 @@ GetDamageVarsForEnemyAttack:
 	ld a, [wPlayerBattleStatus3]
 	bit HAS_REFLECT_UP, a ; check for Reflect
 	jr z, .physicalAttackCritCheck
+	ld a, [wCriticalHitOrOHKO]
+	and a
+	jr nz, .physicalAttackCritCheck ; critical hits bypass Reflect
 ; if the player has used Reflect, double the player's defense
 	sla c
 	rl b
@@ -4329,10 +4297,7 @@ GetDamageVarsForEnemyAttack:
 	cp 7
 	jr c, .keepPlayerDefense
 	push hl ; hl still points at the attacking stat
-	ld hl, wPartyMon1Defense
-	ld a, [wPlayerMonNumber]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	ld hl, wPlayerMonUnmodifiedDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -4341,11 +4306,7 @@ GetDamageVarsForEnemyAttack:
 	ld a, [wEnemyMonAttackMod]
 	cp 8
 	jr nc, .scaleStats
-	push bc
-	ld c, STAT_ATTACK
-	call GetEnemyMonStat
-	ld hl, hProduct + 2
-	pop bc
+	ld hl, wEnemyMonUnmodifiedAttack
 	jr .scaleStats
 .specialAttack
 	ld hl, wBattleMonSpecial
@@ -4355,11 +4316,12 @@ GetDamageVarsForEnemyAttack:
 	ld a, [wPlayerBattleStatus3]
 	bit HAS_LIGHT_SCREEN_UP, a ; check for Light Screen
 	jr z, .specialAttackCritCheck
+	ld a, [wCriticalHitOrOHKO]
+	and a
+	jr nz, .specialAttackCritCheck ; critical hits bypass Light Screen
 ; if the player has used Light Screen, double the player's special
 	sla c
 	rl b
-; reflect and light screen boosts do not cap the stat at MAX_STAT_VALUE, so weird things will happen during stats scaling
-; if a Pokemon with 512 or more Defense has used Reflect, or if a Pokemon with 512 or more Special has used Light Screen
 .specialAttackCritCheck
 	ld hl, wEnemyMonSpecial
 	ld a, [wCriticalHitOrOHKO]
@@ -4370,10 +4332,7 @@ GetDamageVarsForEnemyAttack:
 	cp 7
 	jr c, .keepPlayerSpecial
 	push hl ; hl still points at the attacking stat
-	ld hl, wPartyMon1Special
-	ld a, [wPlayerMonNumber]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	ld hl, wPlayerMonUnmodifiedSpecial
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -4382,38 +4341,9 @@ GetDamageVarsForEnemyAttack:
 	ld a, [wEnemyMonSpecialMod]
 	cp 8
 	jr nc, .scaleStats
-	push bc
-	ld c, STAT_SPECIAL
-	call GetEnemyMonStat
-	ld hl, hProduct + 2
-	pop bc
-; if either the offensive or defensive stat is too large to store in a byte, scale both stats by dividing them by 4
-; this allows values with up to 10 bits (values up to 1023) to be handled
-; anything larger will wrap around
+	ld hl, wEnemyMonUnmodifiedSpecial
 .scaleStats
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a ; hl = enemy's offensive stat
-	or b ; is either high byte nonzero?
-	jr z, .next ; if not, we don't need to scale
-; bc /= 4 (scale player's defensive stat)
-	srl b
-	rr c
-	srl b
-	rr c
-; defensive stat can actually end up as 0, leading to a division by 0 freeze during damage calculation
-; hl /= 4 (scale enemy's offensive stat)
-	srl h
-	rr l
-	srl h
-	rr l
-	ld a, l
-	or h ; is the enemy's offensive stat 0?
-	jr nz, .next
-	inc l ; if the enemy's offensive stat is 0, bump it up to 1
-.next
-	ld b, l ; b = enemy's offensive stat (possibly scaled)
-	        ; (c already contains player's defensive stat (possibly scaled))
+	call ScaleDamageStats
 	ld a, [wEnemyMonLevel]
 	ld e, a
 	ld a, [wCriticalHitOrOHKO]
@@ -4423,6 +4353,40 @@ GetDamageVarsForEnemyAttack:
 .done
 	ld a, $1
 	and a
+	ret
+
+; Input: hl points to the attacking stat, bc is the defending stat.
+; Output: b = attack and c = defense, both nonzero bytes; preserves de.
+; Screens can raise defense above 1023, so repeat the existing /4 scaling
+; until BOTH stats fit. Floor each stat at 1 to prevent division by zero.
+ScaleDamageStats:
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+.scale
+	ld a, h
+	or b
+	jr z, .scaled
+	srl b
+	rr c
+	srl b
+	rr c
+	srl h
+	rr l
+	srl h
+	rr l
+	jr .scale
+.scaled
+	ld a, c
+	and a
+	jr nz, .defenseReady
+	inc c
+.defenseReady
+	ld b, l
+	ld a, b
+	and a
+	ret nz
+	inc b
 	ret
 
 ; get stat c of enemy mon
@@ -5186,6 +5150,14 @@ IncrementMovePP:
 	ld c, a
 	add hl, bc
 	inc [hl] ; increment PP in the currently battling pokemon memory location
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wPlayerBattleStatus3]
+	jr z, .checkTransformed
+	ld a, [wEnemyBattleStatus3]
+.checkTransformed
+	bit TRANSFORMED, a
+	ret nz ; copied moves must never change the original party's PP
 	ld h, d
 	ld l, e
 	add hl, bc

@@ -50,6 +50,16 @@ The audit validates trainer parties and custom moves, encounters, Pokémon and
 move data, sprites, progression gates, toggleable objects, version parity, and
 cross-bank calls for all supported builds.
 
+Map geometry checks also validate block-data lengths, event coordinates, and
+warp destinations in both versions. With PyBoy installed, run CPU-level
+gameplay, color, save/load, and new-game intro regressions:
+
+```sh
+make audit-runtime
+```
+
+These emulator checks use disposable ROM copies and do not use player saves.
+
 ## Website
 
 A browsable guide to the game — Pokédex, moves, wild encounters and locations —

@@ -43,6 +43,9 @@ HazeEffect_:
 	call CureVolatileStatuses
 	ld hl, wEnemyBattleStatus1
 	call CureVolatileStatuses
+; Only the target's status was cured. The user's remaining Burn/Paralysis
+; must still reduce its stats after Haze restores the unmodified values.
+	callfar ReapplyBurnAndParalysisPenaltiesToUser
 	ld hl, PlayCurrentMoveAnimation
 	call CallBankF
 	ld hl, StatusChangesEliminatedText

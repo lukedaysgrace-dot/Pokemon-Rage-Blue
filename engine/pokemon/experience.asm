@@ -5,6 +5,9 @@ CalcLevelFromExperience::
 	call GetMonHeader
 	ld d, $1 ; init level to 1
 .loop
+	ld a, d
+	cp MAX_LEVEL
+	ret nc ; daycare EXP can exceed the level-100 threshold
 	inc d ; increment level
 	call CalcExperience
 	push hl

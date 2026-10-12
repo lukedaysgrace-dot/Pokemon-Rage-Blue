@@ -752,11 +752,9 @@ UpdateLoweredStatDone:
 	ld hl, MonsStatsFellText
 	call PrintText
 
-; These where probably added given that a stat-down move affecting speed or attack will override
-; the stat penalties from paralysis and burn respectively.
-; But they are always called regardless of the stat affected by the stat-down move.
-	call QuarterSpeedDueToParalysis
-	jp HalveAttackDueToBurn
+; Rebuild the target's stats before applying its status penalty once, so
+; changing another stat cannot stack Burn/Paralysis reductions.
+	farjp ReapplyBurnAndParalysisPenaltiesToTarget
 
 CantLowerAnymore_Pop:
 	pop de
