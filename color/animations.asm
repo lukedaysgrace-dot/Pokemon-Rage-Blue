@@ -14,6 +14,8 @@ SpriteifyPlayerPokemon:
 
 	ld a, 2
 	ldh [rWBK], a
+	xor a
+	ld [W2_ShinSpriteShades], a
 	ld hl, W2_BgPaletteData
 	ld de, W2_SprPaletteData
 	ld bc, 8

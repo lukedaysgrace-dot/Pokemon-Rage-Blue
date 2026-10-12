@@ -90,6 +90,15 @@ RefreshPalettesPreVBlank:
 	cp b
 	jr nz, .objPalFromWram ; the shortcuts below only look at OBP0
 .obpShortcuts
+	; Shin's darkest color is RGB 3,3,3, so its black fade must read
+	; the source palette rather than use the generic RGB 0,0,0 shortcut.
+	ld a, [W2_ShinSpriteShades]
+	and a
+	jr z, .genericObpShortcuts
+	ld a, [W2_ColorMode]
+	cp COLOR_MODE_SHIN
+	jr z, .objPalFromWram
+.genericObpShortcuts
 	ldh a, [rOBP0]
 	and a
 	jr nz, .obpNotWhite
@@ -124,6 +133,7 @@ RefreshPalettesPreVBlank:
 	ldh a, [rOBP0]
 .gotObp
 	ld d, a
+	call RemapShinSpriteShades
 	ld e, 4
 .doNextObjColor
 	ld a, d
@@ -146,6 +156,44 @@ RefreshPalettesPreVBlank:
 	xor a
 	ld [W2_ForceBGPUpdate], a
 	ld [W2_ForceOBPUpdate], a
+	ret
+
+; Rage Blue's shared fade table uses the same shades for BG and objects.
+; Shin's home/fade.asm instead uses OBP0=$d0 and OBP1=$e0 at rest.
+; Translate only Shin overworld objects; leave the hardware registers and
+; background, GBC, monochrome, battle, and menu palettes alone.
+; D is the object register pattern, B is the palette number (8-15).
+RemapShinSpriteShades:
+	ld a, [W2_ShinSpriteShades]
+	and a
+	ret z
+	ld a, [W2_ColorMode]
+	cp COLOR_MODE_SHIN
+	ret nz
+	ld a, d
+	cp $e4 ; FadePal4/FadePal5: normal
+	jr z, .normal
+	cp $f9 ; FadePal3: fade toward black
+	jr z, .dark
+	bit 2, b
+	jr nz, .obp1
+	cp $90 ; FadePal6: fade toward white
+	ret nz
+	ld d, $80
+	ret
+.obp1
+	cp $fe ; FadePal2: darkest non-black frame / dark maps
+	ret nz
+	ld d, $f8
+	ret
+.normal
+	ld d, $d0 ; white face, light red clothing, black outline
+	bit 2, b
+	ret z
+	ld d, $e0
+	ret
+.dark
+	ld d, $e4
 	ret
 
 

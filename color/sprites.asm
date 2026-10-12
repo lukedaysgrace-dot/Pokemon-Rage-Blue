@@ -72,6 +72,8 @@ LoadSpritePaletteData:
 	ld a, 2
 	ldh [rWBK], a
 	push bc
+	xor a
+	ld [W2_ShinSpriteShades], a
 
 	ld de, W2_SprPaletteData
 	ld b, $40

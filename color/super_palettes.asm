@@ -25,6 +25,8 @@ LoadSGBPalette_Sprite:
 	ld a, 2
 	ldh [rWBK], a
 	push bc
+	xor a
+	ld [W2_ShinSpriteShades], a
 
 	ld a, e
 	ld l, d

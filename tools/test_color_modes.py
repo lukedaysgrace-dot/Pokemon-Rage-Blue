@@ -34,12 +34,12 @@ for rom in ('pokered', 'pokeblue', 'pokeblue_debug'):
         bank, addr = s[name]
         return p.memory[bank, addr:addr + size]
 
-    def call(name, **regs):
+    def call(name, wram_bank=0, **regs):
         bank, addr = s[name]
         p.memory[0, 256:261] = [205, addr & 255, addr >> 8, 24, 254]
         p.memory[65535] = 0
         p.memory[65344] = 0
-        p.memory[65392] = 0
+        p.memory[65392] = wram_bank
         p.memory[8192] = bank
         setvar('hLoadedROMBank', bank)
         r = p.register_file
@@ -50,6 +50,8 @@ for rom in ('pokered', 'pokeblue', 'pokeblue_debug'):
         p.tick(30 if name in ('SaveMainData', 'LoadMainData') else 2, render=False)
         assert r.PC in (259, 260), (rom, name, hex(r.PC))
         assert r.SP == 0xDFFF, (name, hex(r.SP))
+        # Keep subsequent setvar calls on the game's main WRAM bank.
+        p.memory[65392] = 0
     for mode, cursor in ((0, 10), (8, 1), (16, 14)):
         for flags in (0, 32, 64, 128, 224):
             setvar('wOptions', 3 | mode | flags)
@@ -97,6 +99,49 @@ for rom in ('pokered', 'pokeblue', 'pokeblue_debug'):
             assert p.memory[2, 53856:54016] == [3] * 160
             call('LoadOverworldSpritePalettes')
             assert p.memory[2, 53312:53376] == data(palette, 64)
+    # Compare the final object buffer to Shin's home/fade.asm, rather than
+    # merely checking that its unprocessed RGB palette data was copied.
+    setvar('wOptions', 16)
+    setvar('wCurMap', 0)
+    setvar('wMapPalOffset', 0)
+    call('LoadTilesetPalette')
+    call('LoadOverworldSpritePalettes')
+    raw = data('ShinGBCEnhancedOverworldPalettes', 64)
+    # Shared Rage Blue pattern, Shin OBP0, Shin OBP1 (FadePal1..8).
+    fades = [(0xff, 0xff, 0xff), (0xfe, 0xfe, 0xf8),
+             (0xf9, 0xe4, 0xe4), (0xe4, 0xd0, 0xe0),
+             (0xe4, 0xd0, 0xe0), (0x90, 0x80, 0x90),
+             (0x40, 0x40, 0x40), (0, 0, 0)]
+    def mapped_colors(palettes, patterns):
+        return [byte for slot in range(8) for color in range(4)
+                for byte in palettes[slot * 8 + ((patterns[slot] >> (color * 2)) & 3) * 2:
+                                     slot * 8 + ((patterns[slot] >> (color * 2)) & 3) * 2 + 2]]
+    for current, obp0, obp1 in fades:
+        p.memory[0xff47] = current
+        p.memory[0xff48] = current
+        p.memory[0xff49] = current
+        p.memory[2, 0xd788:0xd78a] = [1, 1]
+        p.memory[2, 0xd703] = 1
+        call('RefreshPalettesPreVBlank', wram_bank=2)
+        assert p.memory[2, 0xd744:0xd784] == mapped_colors(raw, [obp0] * 4 + [obp1] * 4), (rom, hex(current), 'Shin sprite fade')
+        bg_expected = ([0] * 64 if current == 0xff else [0xff] * 64
+                       if current == 0 else mapped_colors(raw, [current] * 8))
+        assert p.memory[2, 0xd704:0xd744] == bg_expected, (rom, hex(current), 'background unchanged')
+    # Menu/battle palette loaders must turn off the overworld shade adapter.
+    call('LoadSGBPalette_Sprite', D=16, E=0)
+    assert p.memory[2, 0xd08c] == 0
+    for mode in (0, 8):
+        setvar('wOptions', mode)
+        call('LoadTilesetPalette')
+        call('LoadOverworldSpritePalettes')
+        assert p.memory[2, 0xd08c] == 0
+        sprite_raw = p.memory[2, 0xd040:0xd080]
+        p.memory[0xff48] = 0xe4
+        p.memory[0xff49] = 0xe4
+        p.memory[2, 0xd789] = 1
+        call('RefreshPalettesPreVBlank', wram_bank=2)
+        expected = sprite_raw if mode == 0 else data('MonochromePalette', 8) * 8
+        assert p.memory[2, 0xd744:0xd784] == expected, (rom, mode, 'original/GBC unchanged')
     for index in range(4):
         bank, addr = s['SetColor']
         p.memory[65535] = 0
@@ -121,4 +166,4 @@ for rom in ('pokered', 'pokeblue', 'pokeblue_debug'):
         call('LoadMainData')
         assert p.memory[s['wOptions'][1]] == 3 | mode
     p.stop(save=False)
-    print(rom + ': Gen 1 Pokemon/trainer palettes, 144 Shin map cases, sprite palettes, monochrome mapping, save/load PASS')
+    print(rom + ': Gen 1 palettes, 144 Shin map cases, Shin sprite shades/fades, original/GBC buffers, monochrome, save/load PASS')

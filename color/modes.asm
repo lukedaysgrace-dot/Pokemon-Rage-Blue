@@ -31,6 +31,7 @@ LoadShinSpritePalettes::
 	ld bc, 64
 	call CopyData
 	ld a, 1
+	ld [W2_ShinSpriteShades], a
 	ld [W2_ForceOBPUpdate], a
 	xor a
 	ldh [rWBK], a

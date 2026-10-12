@@ -13,8 +13,10 @@ GBC. Text speed, battle settings, and back-sprite selection remain independent.
   Rage Blue's added species and sprite identities retain their own assignments.
 - **SHIN**: Shin's enhanced overworld palettes and tile assignments, including
   town-specific colors, Seafoam's cold palette, and unlit caves. Overworld
-  sprites use Shin's OBP0/OBP1 palette selection. Battles retain Rage Blue's
-  Gen 1 Pokémon palettes and existing animation rendering.
+  sprites use Shin's OBP0/OBP1 palette selection and shade mappings, including
+  white faces, the light red clothing accent, and the original sprite fades.
+  Battles retain Rage Blue's Gen 1 Pokémon palettes and existing animation
+  rendering.
 
 ## Sources and credit
 
@@ -38,7 +40,10 @@ bank-preservation, monochrome, and SRAM persistence checks use PyBoy:
 
 ```sh
 python3 tools/test_color_modes.py
+python3 tools/test_intro_palettes.py
 ```
 
 This requires PyBoy and uses disposable ROM copies under `.reference/`.
 It does not load or overwrite the player's save files.
+The intro checks cover A/B input, preset and custom names, both character
+choices, and restoring the version's portrait palette after name entry.

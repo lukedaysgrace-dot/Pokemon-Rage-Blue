@@ -9,6 +9,17 @@ _RedsHouse1FMomWakeUpText::
 	cont "for you."
 	done
 
+_RedsHouse1FMomGirlWakeUpText::
+	text "MOM: Right."
+	line "All girls leave"
+	cont "home some day."
+	cont "It said so on TV."
+
+	para "PROF.OAK, next"
+	line "door, is looking"
+	cont "for you."
+	done
+
 _RedsHouse1FMomYouShouldRestText::
 	text "MOM: <PLAYER>!"
 	line "You should take a"

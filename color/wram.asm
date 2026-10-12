@@ -57,3 +57,5 @@ DEF W2_VBCOPYBGNUMROWS             EQU $d78d
 
 ; Cached options bits: readable while WRAM bank 2 is selected.
 DEF W2_ColorMode EQU $d08b
+; Set only while the sprite buffer contains Shin's overworld palettes.
+DEF W2_ShinSpriteShades EQU $d08c

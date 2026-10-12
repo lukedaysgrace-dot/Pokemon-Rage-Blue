@@ -12,6 +12,11 @@ RedsHouse1FMomText:
 	bit BIT_GOT_STARTER, a
 	jr nz, .heal
 	ld hl, .WakeUpText
+	ld a, [wPlayerGender]
+	and a
+	jr z, .printWakeUpText
+	ld hl, .GirlWakeUpText
+.printWakeUpText
 	call PrintText
 	jr .done
 .heal
@@ -21,6 +26,10 @@ RedsHouse1FMomText:
 
 .WakeUpText:
 	text_far _RedsHouse1FMomWakeUpText
+	text_end
+
+.GirlWakeUpText:
+	text_far _RedsHouse1FMomGirlWakeUpText
 	text_end
 
 RedsHouse1FMomHealScript:

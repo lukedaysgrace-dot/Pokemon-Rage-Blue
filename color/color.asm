@@ -965,15 +965,11 @@ SetPal_TrainerCard:
 	ld e, 3
 	farcall LoadSGBPalette
 
-	; Trainer card portrait palette is version-based.
-IF DEF(_BLUE)
-	ld d, PAL_YELLOW_HERO
-ELSE
+	; Both player portraits use Red's trainer-card palette.
 IF GEN_2_GRAPHICS
 	ld d, PAL_HERO
 ELSE
 	ld d, PAL_REDMON
-ENDC
 ENDC
 	ld e, 4
 	farcall LoadSGBPalette
@@ -1030,10 +1026,22 @@ ENDC
 	ret
 
 
-; Clear colors after titlescreen
+; Restore the version's intro palette after the title or name-entry screen.
+; Name entry uses SetPal_Generic's red palette, so clearing attributes alone
+; leaves the player/rival portraits red when returning to Oak's speech.
 SetPal_OakIntro:
 	ld a, 2
 	ldh [rWBK], a
+
+IF DEF(_BLUE)
+	ld d, PAL_CYANMON
+ELSE
+	ld d, PAL_REDMON
+ENDC
+	ld e, 0
+	farcall LoadSGBPalette
+	ld a, 1
+	ld [W2_ForceBGPUpdate], a
 
 	ld bc, 20 * 18
 	ld hl, W2_TilesetPaletteMap
