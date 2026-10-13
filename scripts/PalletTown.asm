@@ -447,8 +447,9 @@ PalletTownGreenBeforeBattleText:
 	cont "across KANTO,"
 	cont "diving into"
 	cont "ruins, and"
-	cont "nearly getting"
-	cont "myself killed..."
+	cont "getting lost more"
+	cont "times than I can"
+	cont "count..."
 
 	para "Actually paid"
 	line "off."

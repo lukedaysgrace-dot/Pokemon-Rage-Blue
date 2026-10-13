@@ -100,8 +100,8 @@ _LancesRoomLanceRematchMustRestartText::
 	done
 
 _LancesRoomLanceGoFightChampionReminderText::
-	text "The CHAMPION is"
-	line "waiting past those"
-	cont "doors. Don't keep"
-	cont "them waiting!"
+	text "The CHAMPION"
+	line "awaits beyond"
+	cont "those doors."
+	cont "Go on!"
 	done

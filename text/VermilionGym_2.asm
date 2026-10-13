@@ -81,7 +81,7 @@ _VermilionGymSoldier1AfterBattleText::
 _VermilionGymSoldier2BattleText::
 	text "Lightweight gear,"
 	line "heavy voltage!"
-	cont "Enlist in pain!"
+	cont "Brace for a shock!"
 	done
 
 _VermilionGymSoldier2EndBattleText::

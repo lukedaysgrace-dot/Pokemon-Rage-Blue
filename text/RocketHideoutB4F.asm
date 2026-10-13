@@ -110,9 +110,9 @@ _RocketHideoutB4FRocket2AfterBattleText::
 	cont "be celebrating"
 	cont "today."
 
-	para "A few wins have"
-	line "made you awfully"
-	cont "confident."
+	para "You're awfully"
+	line "confident for a"
+	cont "kid."
 
 	para "Let's see how"
 	line "long that lasts."
