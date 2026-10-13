@@ -639,7 +639,7 @@ _AddEnemyMonToPlayerParty::
 	add hl, bc ; hl = base + MON_HP_EXP - 1
 	ld a, [wLoadedMon + MON_LEVEL]
 	ld [wCurEnemyLevel], a ; CalcStat reads the level from here
-	ld b, $0
+	ld b, $1 ; keep the traded mon's Stat EXP, as level-ups and the PC do
 	call CalcStats
 ; Max HP was just recalculated but current HP was copied verbatim from the
 ; traded mon, so it can now exceed the new maximum. Clamp it.

@@ -25,36 +25,38 @@ INCLUDE "data/moves/effects_pointers.asm"
 
 SleepEffect:
 	ld de, wEnemyMonStatus
-	ld bc, wEnemyBattleStatus2
+	ld hl, wEnemyBattleStatus2
 	ldh a, [hWhoseTurn]
 	and a
 	jp z, .sleepEffect
 	ld de, wBattleMonStatus
-	ld bc, wPlayerBattleStatus2
+	ld hl, wPlayerBattleStatus2
 
 .sleepEffect
-	ld a, [bc]
-	bit NEEDS_TO_RECHARGE, a ; does the target need to recharge? (hyper beam)
-	res NEEDS_TO_RECHARGE, a ; target no longer needs to recharge
-	ld [bc], a
-	jr nz, .setSleepCounter ; if the target had to recharge, all hit tests will be skipped
-	                        ; including the event where the target already has another status
 	ld a, [de]
-	ld b, a
 	and SLP_MASK
 	jr z, .notAlreadySleeping ; can't affect a mon that is already asleep
 	ld hl, AlreadyAsleepText
 	jp PrintText
 .notAlreadySleeping
-	ld a, b
+	ld a, [de]
 	and a
 	jr nz, .didntAffect ; can't affect a mon that is already statused
+; A target recharging from Hyper Beam still can't avoid the move, but the
+; original game also skipped the status check above for it, so sleep could
+; replace an existing Burn, Poison, Paralysis or Freeze.
+	bit NEEDS_TO_RECHARGE, [hl]
+	jr nz, .hit
+	push hl
 	push de
 	call MoveHitTest ; apply accuracy tests
 	pop de
+	pop hl
 	ld a, [wMoveMissed]
 	and a
 	jr nz, .didntAffect
+.hit
+	res NEEDS_TO_RECHARGE, [hl] ; a sleeping target no longer needs to recharge
 .setSleepCounter
 ; set target's sleep counter to a random number between 1 and 7
 	call BattleRandom

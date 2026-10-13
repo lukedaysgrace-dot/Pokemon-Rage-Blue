@@ -535,6 +535,7 @@ HandlePoisonBurnLeechSeed:
 	ld a, BURN_PSN_ANIM
 	call PlayMoveAnimation   ; play burn/poison animation
 	pop hl
+	and a ; poison/burn damage: apply the Toxic counter
 	call HandlePoisonBurnLeechSeed_DecreaseOwnHP
 .notBurnedOrPoisoned
 	ld de, wPlayerBattleStatus2
@@ -558,6 +559,7 @@ HandlePoisonBurnLeechSeed:
 	pop af
 	ldh [hWhoseTurn], a
 	pop hl
+	scf ; Leech Seed: don't apply (or advance) the Toxic counter
 	call HandlePoisonBurnLeechSeed_DecreaseOwnHP
 	call HandlePoisonBurnLeechSeed_IncreaseEnemyHP
 	push hl
@@ -587,12 +589,14 @@ HurtByLeechSeedText:
 	text_end
 
 ; decreases the mon's current HP by 1/16 of the Max HP (multiplied by number of toxic ticks if active)
-; note that the toxic ticks are considered even if the damage is not poison (hence the Leech Seed glitch)
+; carry set (Leech Seed): ignore the toxic ticks. The original game applied
+; them to Leech Seed too, which also advanced the counter twice per turn.
 ; hl: HP pointer
 ; bc (out): total damage
 HandlePoisonBurnLeechSeed_DecreaseOwnHP:
 	push hl
 	push hl
+	push af ; carry = Leech Seed
 	ld bc, $e      ; skip to max HP
 	add hl, bc
 	ld a, [hli]    ; load max HP
@@ -612,6 +616,8 @@ HandlePoisonBurnLeechSeed_DecreaseOwnHP:
 	jr nz, .nonZeroDamage
 	inc c         ; damage is at least 1
 .nonZeroDamage
+	pop af
+	jr c, .noToxic ; Leech Seed drain is always 1/16
 	ld hl, wPlayerBattleStatus3
 	ld de, wPlayerToxicCounter
 	ldh a, [hWhoseTurn]
@@ -4867,11 +4873,13 @@ ApplyAttackToPlayerPokemon:
 	srl a
 	add b
 	ld b, a ; b = attacker's level * 1.5
-; loop until a random number in the range [0, b) is found
-; this differs from the range when the player attacks, which is [1, b)
-; it's possible for the enemy to do 0 damage with Psywave, but the player always does at least 1 damage
+; loop until a random number in the range [1, b) is found, the same range
+; the player's Psywave uses (the original game let the enemy roll 0 damage,
+; which also made link battles consume different random numbers)
 .loop
 	call BattleRandom
+	and a
+	jr z, .loop
 	cp b
 	jr nc, .loop
 	ld b, a

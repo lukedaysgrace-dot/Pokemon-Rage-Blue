@@ -31,7 +31,19 @@ TryTownMapFlyEligibility::
 
 PartyAnyCanLearnMove::
 ; a = move id. Returns carry if at least one party member can learn it.
+; CanLearnTM reads the species from wCurPartySpecies, so save and restore it:
+; the party menu field-move path (e.g. Strength's cry) still needs the
+; species of the Pokémon the player selected.
 	ld [wMoveNum], a
+	ld a, [wCurPartySpecies]
+	push af
+	call .search
+	pop de ; d = saved species; pop de leaves the carry result intact
+	ld a, d
+	ld [wCurPartySpecies], a
+	ret
+
+.search
 	ld hl, wPartySpecies
 	ld a, [wPartyCount]
 	and a

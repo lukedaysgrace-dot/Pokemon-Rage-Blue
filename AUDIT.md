@@ -1,3 +1,51 @@
+# Code audit — October 13, 2026
+
+## Scope
+
+Full pass over everything that differs from pret/pokered (about 6,000 changed
+lines in `engine/` and `home/`, plus the new battle, AI, field-move, Pokémon
+data and back-sprite files), using the October 12/13 content audit as the
+reference for what had already been covered. Battle turn order, damage and
+type maths, Counter, the trainer AI layers, party building and Stat EXP, EXP
+bar, hard-mode caps, items, field HMs, toggleable objects, Town Map Fly, Hall
+of Fame, trades and the new fossils were all read line by line. A scan of
+every `callfar`/`farcall`/`predef` site checked that no caller reads a
+register or flag those calls clobber, and every event flag that is checked
+is also set somewhere.
+
+## Bugs fixed
+
+| Problem | Correction |
+| --- | --- |
+| When the player's Pokémon used Transform, it kept its own back sprite. `ChangeMonPic` redraws it through `LoadMonBackPic`, which uses the party species until `TRANSFORMED` is set — and Transform sets that bit only after the animation. | `ChangeMonPic` loads the requested species through the new `LoadMonBackPicOfCurPartySpecies` entry point. |
+| Using Strength from the party menu played the cry of the first party member able to learn Strength instead of the Pokémon chosen. The HM-compatibility scan left its last checked species in `wCurPartySpecies`. | `PartyAnyCanLearnMove` saves and restores `wCurPartySpecies`. |
+| A Pokémon received in a link trade had its stats recalculated without its Stat EXP, so it showed lower stats until its next level-up or PC deposit. | Recalculate with Stat EXP, like level-ups and the PC do. |
+| Leech Seed drain was multiplied by the Toxic counter and advanced it a second time each turn (the original game's Leech Seed/Toxic glitch). | Leech Seed always drains 1/16 and leaves the counter alone. |
+| A sleep move used on a Pokémon recharging from Hyper Beam skipped the "already has a status" check, so sleep replaced an existing Burn, Poison, Paralysis or Freeze. | The status check always runs. A recharging target still can't avoid the move, and stops needing to recharge only if it falls asleep. |
+| With all nine fossil types in the bag, the fossil menu (Cinnabar Lab and the Cerulean scientist) stopped at eight and left out the Old Amber. | The menu holds every fossil type. Up to eight keep the usual two-row spacing; with nine, it lists one fossil per row so the box still fits on screen. |
+| The enemy's Psywave could roll 0 damage while the player's never could. Link partners also consumed different random numbers for the same move. | Both sides roll in the range [1, level × 1.5). |
+
+## New checks
+
+`tools/test_gameplay_regressions.py` (run by `make audit-runtime`) adds six
+CPU-level cases per build: the Transform back sprite, the field-move species
+being kept, Stat EXP on traded Pokémon, Leech Seed with Toxic, sleep against
+recharging and already-statused targets, and the fossil menu with two, eight
+and nine fossils. Each one fails on the previous ROMs and passes now.
+
+## Notes, not changed
+
+- Psywave still never ends for a level-1 user (the damage range is empty).
+  No Pokémon can know Psywave at level 1, so this can't happen in play.
+- `LoadMonPartySpriteGfxWithLCDDisabled` loops forever if the party is
+  empty. Every party-menu caller requires at least one Pokémon first.
+- If a Metal Claw user's Attack is already 999, the 25% boost prints
+  "Nothing happened!".
+
+## Verification
+
+`make` builds all three ROMs; `make audit` and `make audit-runtime` pass.
+
 # Content audit — October 12, 2026
 
 ## Scope

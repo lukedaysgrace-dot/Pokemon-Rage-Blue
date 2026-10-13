@@ -14,12 +14,22 @@ GiveFossilToCinnabarLab::
 	ld a, 1
 	ld [wTopMenuItemX], a
 	ld a, [wFilteredBagItemsCount]
+	cp FOSSIL_MENU_DOUBLE_SPACED_MAX + 1
+	jr c, .doubleSpacedMenu
+; Too many fossils for one per two rows: list them on consecutive rows.
+	inc a
+	ld b, a ; box height = count + 1 (items on rows 2 to count + 1)
+	ld hl, hUILayoutFlags
+	set BIT_DOUBLE_SPACED_MENU, [hl] ; despite the name, this moves the cursor one row at a time
+	jr .drawMenuBox
+.doubleSpacedMenu
 	dec a
 	ld bc, 2
 	ld hl, 3
 	call AddNTimes
 	dec l
 	ld b, l
+.drawMenuBox
 	ld c, $d
 	hlcoord 0, 0
 	call TextBoxBorder
@@ -28,6 +38,8 @@ GiveFossilToCinnabarLab::
 	ld hl, wStatusFlags5
 	res BIT_NO_TEXT_DELAY, [hl]
 	call HandleMenuInput
+	ld hl, hUILayoutFlags
+	res BIT_DOUBLE_SPACED_MENU, [hl] ; back to the usual two-row menu spacing
 	bit B_PAD_B, a
 	jp nz, .cancelledGivingFossil
 	ld hl, wFilteredBagItems
@@ -142,9 +154,14 @@ PrintFossilsInBag:
 	push hl
 	ld [wNamedObjectIndex], a
 	call GetItemName
+	ld bc, SCREEN_WIDTH * 2
+	ldh a, [hUILayoutFlags]
+	bit BIT_DOUBLE_SPACED_MENU, a
+	jr z, .gotRowSpacing
+	ld bc, SCREEN_WIDTH ; single-spaced list (see GiveFossilToCinnabarLab)
+.gotRowSpacing
 	hlcoord 2, 2
 	ldh a, [hItemCounter]
-	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld de, wNameBuffer
 	call PlaceString
@@ -190,7 +207,7 @@ Lab4Script_GetFossilsInBag::
 	ld hl, wFilteredBagItemsCount
 	inc [hl]
 	ld a, [hl]
-	cp 8 ; the menu can display at most eight fossils at once
+	cp FossilsListEnd - FossilsList - 1 ; every fossil type fits in the menu
 	pop hl
 	jr z, .done
 	jr .loop
@@ -210,6 +227,10 @@ FossilsList:
 	db SAIL_FOSSIL
 	db OLD_AMBER
 	db 0 ; end
+FossilsListEnd:
+
+; Up to this many fossils, the menu keeps its two-row spacing (8 fill the screen).
+DEF FOSSIL_MENU_DOUBLE_SPACED_MAX EQU 8
 
 CloseFossilSelectionMenu::
 	jp LoadScreenTilesFromBuffer2

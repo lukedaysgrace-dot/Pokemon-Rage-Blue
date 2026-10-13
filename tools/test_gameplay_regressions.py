@@ -41,7 +41,7 @@ class Game:
         address = self.address(name)
         self.p.memory[address:address + 2] = [value >> 8, value & 255]
 
-    def call(self, name, **registers):
+    def call(self, name, frames=None, **registers):
         bank, address = self.symbols[name]
         # CALL routine; JR to itself. No interrupts or LCD-dependent waits.
         self.p.memory[0, 0x100:0x105] = [0xCD, address & 255, address >> 8, 0x18, 0xFE]
@@ -54,7 +54,9 @@ class Game:
         r.PC, r.SP = 0x100, 0xDFFF
         for key, value in registers.items():
             setattr(r, key, value)
-        self.p.tick(30 if name == "CalcLevelFromExperience" else 3, render=False)
+        if frames is None:
+            frames = 30 if name == "CalcLevelFromExperience" else 3
+        self.p.tick(frames, render=False)
         assert r.PC in (0x103, 0x104), f"{name} did not return: PC={r.PC:04x}"
         assert r.SP == 0xDFFF, f"{name} left an unbalanced stack"
         return r
@@ -240,13 +242,173 @@ def haze_status(game):
             assert game.get("hWhoseTurn") == turn
 
 
+def constant(path, name):
+    """Value of a const_def/const enumeration entry."""
+    value = None
+    for line in (ROOT / path).read_text().splitlines():
+        line = line.split(";")[0].strip()
+        if line.startswith("const_def"):
+            value = 0
+        elif line.startswith("const ") and value is not None:
+            if line.split()[1] == name:
+                return value
+            value += 1
+        elif line.startswith("const_skip") and value is not None:
+            parts = line.split()
+            value += int(parts[1]) if len(parts) > 1 else 1
+        elif line.startswith("const_next") and value is not None:
+            value = int(line.split()[1].replace("$", "0x"), 0)
+    raise KeyError(name)
+
+
+def species(name):
+    return constant("constants/pokemon_constants.asm", name)
+
+
+def word_at(game, name):
+    address = game.address(name)
+    return int.from_bytes(bytes(game.p.memory[address:address + 2]), "big")
+
+
+def leech_seed_toxic(game):
+    game.stub("UpdateCurMonHPBar")
+    for turn in (0, 1):
+        side = "Player" if turn == 0 else "Enemy"
+        struct = "wBattleMon" if turn == 0 else "wEnemyMon"
+        for leech_seed in (True, False):
+            game.set("hWhoseTurn", turn)
+            game.word(struct + "MaxHP", 160)
+            game.word(struct + "HP", 160)
+            game.set(f"w{side}BattleStatus3", 1)  # BADLY_POISONED
+            game.set(f"w{side}ToxicCounter", 3)
+            hp = game.address(struct + "HP")
+            r = game.call("HandlePoisonBurnLeechSeed_DecreaseOwnHP", HL=hp, F=0x10 if leech_seed else 0)
+            damage = 10 if leech_seed else 40  # Leech Seed ignores the Toxic counter
+            assert word_at(game, struct + "HP") == 160 - damage, (turn, leech_seed, word_at(game, struct + "HP"))
+            assert (r.B << 8 | r.C) == damage, (turn, leech_seed, r.B, r.C)
+            assert game.get(f"w{side}ToxicCounter") == (3 if leech_seed else 4), (turn, leech_seed)
+
+
+def sleep_recharge(game):
+    for routine in ("PrintText", "PlayCurrentMoveAnimation2", "PrintDidntAffectText", "MoveHitTest"):
+        game.stub(routine)
+    for turn in (0, 1):
+        side = "Enemy" if turn == 0 else "Player"
+        status = "wEnemyMonStatus" if turn == 0 else "wBattleMonStatus"
+        for recharging in (False, True):
+            for old_status in (0, 1 << 3, 1 << 4, 1 << 5, 1 << 6):  # none, PSN, BRN, FRZ, PAR
+                game.set("hWhoseTurn", turn)
+                game.set("wMoveMissed", 0)
+                game.set(status, old_status)
+                game.set(f"w{side}BattleStatus2", 1 << 5 if recharging else 0)  # NEEDS_TO_RECHARGE
+                game.call("SleepEffect")
+                if old_status:
+                    # an existing status is never replaced, recharging or not
+                    assert game.get(status) == old_status, (turn, recharging, old_status, game.get(status))
+                    assert game.get(f"w{side}BattleStatus2") == (1 << 5 if recharging else 0)
+                else:
+                    assert 1 <= game.get(status) <= 7, (turn, recharging, game.get(status))
+                    assert game.get(f"w{side}BattleStatus2") == 0, (turn, recharging)
+
+
+def fossil_menu(game):
+    # The Cinnabar Lab / Cerulean fossil menu lists every fossil type, the
+    # Old Amber included, switching to one row per fossil when nine are held.
+    for routine in ("SaveScreenTilesToBuffer2", "LoadScreenTilesFromBuffer2", "UpdateSprites", "PrintText"):
+        game.stub(routine)
+    bank, address = game.symbols["HandleMenuInput"]
+    game.p.memory[bank, address:address + 3] = [0x3E, 0x02, 0xC9]  # ld a, PAD_B; ret (cancel)
+    fossils = ["DOME_FOSSIL", "HELIX_FOSSIL", "SKULL_FOSSIL", "ARMOR_FOSSIL", "CLAW_FOSSIL",
+               "ROOT_FOSSIL", "JAW_FOSSIL", "SAIL_FOSSIL", "OLD_AMBER"]
+    for count in (9, 8, 2):
+        held = fossils if count == 9 else fossils[:count]
+        bag = game.address("wNumBagItems")
+        data = [count]
+        for name in held:
+            data += [constant("constants/item_constants.asm", name), 1]
+        game.p.memory[bag:bag + len(data) + 1] = data + [0xFF]
+        game.call("Lab4Script_GetFossilsInBag", frames=10)
+        filtered = game.address("wFilteredBagItems")
+        assert game.get("wFilteredBagItemsCount") == count, (count, game.get("wFilteredBagItemsCount"))
+        assert game.p.memory[filtered + count] == 0xFF
+        assert game.p.memory[filtered + count - 1] == constant("constants/item_constants.asm", held[-1])
+        tilemap = game.address("wTileMap")
+        game.p.memory[tilemap:tilemap + 20 * 18] = [0x7F] * (20 * 18)
+        game.set("hUILayoutFlags", 0)
+        game.call("GiveFossilToCinnabarLab", frames=60)
+        spacing = 1 if count > 8 else 2
+        bottom = 2 + (count - 1) * spacing + 1  # the box's bottom border row
+        assert bottom < 18, count
+        for index in range(count):
+            assert game.p.memory[tilemap + (2 + index * spacing) * 20 + 2] != 0x7F, (count, index)
+        assert game.p.memory[tilemap + bottom * 20 + 1] != 0x7F, (count, "bottom border")
+        assert game.get("hUILayoutFlags") == 0, "menu spacing flag left set"
+
+
+def transform_back_pic(game):
+    # Transform redraws the player's mon before TRANSFORMED is set; the new
+    # back sprite must be the target's species, not the party species.
+    for routine in ("GetMonHeader", "ClearScreenArea", "UncompressMonSprite", "ScaleSpriteByTwo",
+                    "InterlaceMergeSpriteBuffers", "CopyVideoData", "GetTileIDList",
+                    "GetMonSpriteTileMapPointerFromRowCount", "CopyPicTiles", "RunPaletteCommand"):
+        game.stub(routine)
+    ditto, pikachu = species("DITTO"), species("PIKACHU")
+    game.set("hWhoseTurn", 0)
+    game.set("wIsInBattle", 1)
+    game.set("wOptions", 0)
+    game.set("wPlayerBattleStatus3", 0)
+    game.set("wPlayerMonNumber", 0)
+    game.set("wPartyMon1Species", ditto)
+    game.set("wBattleMonSpecies", ditto)
+    game.set("wEnemyMonSpecies", pikachu)
+    game.call("AnimationTransformMon")
+    assert game.get("wCurSpecies") == pikachu, game.get("wCurSpecies")
+
+
+def field_move_species(game):
+    # Choosing Strength for the second party mon from the party menu must not
+    # leave the first compatible mon's species behind: the cry comes from it.
+    machoke, geodude = species("MACHOKE"), species("GEODUDE")
+    strength = constant("constants/move_constants.asm", "STRENGTH")
+    game.set("wPartyCount", 2)
+    party = game.address("wPartySpecies")
+    game.p.memory[party:party + 3] = [machoke, geodude, 0xFF]
+    game.set("wWhichPokemon", 1)
+    game.set("wCurPartySpecies", geodude)
+    r = game.call("PartyAnyCanLearnMove", A=strength)
+    assert r.F & 0x10, "the party should be able to use Strength"
+    assert game.get("wCurPartySpecies") == geodude, game.get("wCurPartySpecies")
+
+
+def traded_stat_exp(game):
+    # A mon received in a link trade keeps its Stat EXP contribution.
+    onix = species("ONIX")
+    max_hp = []
+    for stat_exp in (0, 0xFFFF):
+        game.set("wPartyCount", 0)
+        game.set("wCurPartySpecies", onix)
+        game.set("wWhichPokemon", 0)
+        loaded = game.address("wLoadedMon")
+        game.p.memory[loaded:loaded + 44] = [0] * 44
+        game.set("wLoadedMonSpecies", onix)
+        game.set("wLoadedMonLevel", 50)
+        game.word("wLoadedMonHP", 1)
+        for stat in ("HP", "Attack", "Defense", "Speed", "Special"):
+            game.word(f"wLoadedMon{stat}Exp", stat_exp)
+        r = game.call("_AddEnemyMonToPlayerParty", frames=30)
+        assert not r.F & 0x10, "trade add failed"
+        max_hp.append(word_at(game, "wPartyMon1MaxHP"))
+    assert max_hp[1] > max_hp[0], max_hp
+
+
 def main():
     failures = []
     with tempfile.TemporaryDirectory(prefix="rage-blue-audit-") as directory:
         for rom in ("pokered", "pokeblue", "pokeblue_debug"):
             game = Game(rom, directory)
             try:
-                for check in (damage_stats, critical_stats, transformed_pp, experience_levels, status_penalties, haze_status):
+                for check in (damage_stats, critical_stats, transformed_pp, experience_levels, status_penalties, haze_status,
+                              leech_seed_toxic, sleep_recharge, field_move_species, traded_stat_exp, fossil_menu, transform_back_pic):
                     try:
                         check(game)
                         print(f"{rom}: {check.__name__} PASS")

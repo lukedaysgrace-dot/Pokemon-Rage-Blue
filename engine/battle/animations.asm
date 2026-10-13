@@ -2043,7 +2043,11 @@ ChangeMonPic:
 	call LoadFrontSpriteByMonIndex
 	jr .done
 .playerTurn
-	predef LoadMonBackPic
+; Use the requested species. LoadMonBackPic would pick the party species,
+; because Transform plays this animation before setting TRANSFORMED.
+	ld a, [wChangeMonPicPlayerTurnSpecies]
+	ld [wCurPartySpecies], a
+	farcall LoadMonBackPicOfCurPartySpecies
 	xor a ; TILEMAP_MON_PIC
 	call GetTileIDList
 	call GetMonSpriteTileMapPointerFromRowCount

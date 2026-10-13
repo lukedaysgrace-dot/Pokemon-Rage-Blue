@@ -23,6 +23,11 @@ LoadMonBackPic:
 	ld a, [wBattleMonSpecies]
 .gotSpecies
 	ld [wCurPartySpecies], a
+
+LoadMonBackPicOfCurPartySpecies::
+; Like LoadMonBackPic, but for the species already in [wCurPartySpecies].
+; ChangeMonPic uses this: Transform redraws the user before TRANSFORMED is set.
+	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetMonHeader
 	hlcoord 1, 5
