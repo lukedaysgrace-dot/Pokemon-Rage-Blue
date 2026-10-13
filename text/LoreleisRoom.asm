@@ -72,8 +72,8 @@ _LoreleisRoomLoreleiRematchDefeatOverworldText::
 	done
 
 _LoreleisRoomLoreleiRematchMustRestartText::
-	text "If you want another"
-	line "shot at me, you'll"
+	text "Want another shot"
+	line "at me? You'll"
 	cont "have to enter the"
 	cont "LEAGUE from the"
 	cont "LOBBY again."

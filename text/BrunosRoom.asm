@@ -89,8 +89,8 @@ _KarenBeforeBattleText::
 	cont "had."
 
 	para "People cling to"
-	line "Strength.."
-	cont "Power.."
+	line "Strength..."
+	cont "Power..."
 
 	para "As if that's all"
 	line "that matters."
@@ -123,11 +123,11 @@ _KarenBeforeBattleText::
 	line "to show them"
 	cont "that."
 
-	para "Darkness"
+	para "Darkness..."
 	line "Fear..."
 
 	para "The things"
-	line "people avoid"
+	line "people avoid..."
 
 	para "Those are the"
 	line "things I trust."
@@ -171,7 +171,7 @@ _KarenAfterBattleText::
 
 	para "Show the rest"
 	line "of KANTO"
-	cont "your strength"
+	cont "your strength,"
 	cont "TRAINER."
 	done
 
@@ -206,9 +206,9 @@ _KarenRematchDefeatOverworldText::
 	done
 
 _KarenRematchMustRestartText::
-	text "Challenge the ELITE"
-	line "FOUR again from"
-	cont "the LOBBY if you"
-	cont "want a rematch."
+	text "Challenge the"
+	line "ELITE FOUR again"
+	cont "from the LOBBY"
+	cont "for a rematch."
 	done
 ENDC

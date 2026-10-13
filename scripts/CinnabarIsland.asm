@@ -230,6 +230,10 @@ CinnabarIslandBlueCloakText:
 	call PrintText
 	ld hl, CinnabarIslandBlueCloakTrainerHeader
 	call StoreTrainerHeaderPointer
+	; EndTrainerBattle sets the flag bit in wTrainerHeaderFlagBit, so load it
+	; from this header (otherwise a stale bit from another trainer is set).
+	xor a
+	call ReadTrainerHeaderInfo
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
 	set BIT_PRINT_END_BATTLE_TEXT, [hl]

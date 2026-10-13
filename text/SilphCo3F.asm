@@ -103,8 +103,8 @@ _SilphCo3FProtonText::
 	cont "top floor, you're"
 	cont "crazy! You may"
 	cont "have defeated me"
-	cont "at the game"
-	cont "corner, but i"
+	cont "at the GAME"
+	cont "CORNER, but I"
 	cont "was just toying"
 	cont "with you. I'm"
 	cont "done messing"
@@ -125,8 +125,8 @@ _SilphCo3FProtonEndBattleText::
 _SilphCo3FProtonAfterBattleText::
 	text "DAMN IT!"
 	line "I'm so sick of"
-	cont "you kid."
-	cont "you won't stand"
+	cont "you, kid."
+	cont "You won't stand"
 	cont "a chance against"
 	cont "ARCHER!"
 	done

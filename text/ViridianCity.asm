@@ -223,7 +223,9 @@ _ViridianCityBlueCloakDefeatedText::
 	prompt
 
 _ViridianCityBlueCloakVictoryText::
-	text "…(Placeholder) You lost!"
+	text "…Heh. I told you"
+	line "this time would"
+	cont "be different."
 	prompt
 
 _ViridianCityBlueCloakAfterBeatText::
@@ -240,5 +242,5 @@ _ViridianCityBlueCloakAfterBeatText::
 
 _ViridianCityBlueCloakAfterBeatShortText::
 	text "…Thanks for the"
-	cont "battle, <PLAYER>."
+	line "battle, <PLAYER>."
 	done

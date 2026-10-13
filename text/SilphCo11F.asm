@@ -207,11 +207,11 @@ _SilphCo11FRocket2BattleText::
 	done
 
 _SilphCo11FRocket2EndBattleText::
-	text "No.."
+	text "No..."
 	line "NO!..."
-    cont "GIOVANNI.."
+	cont "GIOVANNI..."
 
-	para "I've failed you.."
+	para "I've failed you..."
 	prompt
 
 _SilphCo11FRocket2AfterBattleText::

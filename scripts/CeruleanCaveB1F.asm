@@ -13,7 +13,7 @@ CeruleanCaveB1FDefaultScript:
 	jp nz, CheckFightingMapTrainers
 	ld hl, CeruleanCaveB1FExileBrunoTriggerCoords
 	call ArePlayerCoordsInArray
-	jp nc, CheckFightingMapTrainers
+	jr nc, .hideExileBruno
 	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	xor a
@@ -24,6 +24,21 @@ CeruleanCaveB1FDefaultScript:
 	ld [wCeruleanCaveB1FCurScript], a
 	ld [wCurMapScript], a
 	ret
+
+.hideExileBruno
+	; After the player loses to BRUNO he would otherwise stay visible, and
+	; talking to him replays his speech without starting the battle. Hide him
+	; again so the trigger tile restarts the whole encounter.
+	ld a, CERULEANCAVEB1F_EXILE_BRUNO
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	jp nz, CheckFightingMapTrainers
+	ld de, TOGGLE_CERULEANCAVEB1F_EXILE_BRUNO
+	predef HideObject
+	jp CheckFightingMapTrainers
 
 CeruleanCaveB1FExileBrunoTriggerCoords:
 	dbmapcoord 21, 8

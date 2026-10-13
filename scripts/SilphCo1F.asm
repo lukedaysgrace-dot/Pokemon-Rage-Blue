@@ -65,6 +65,15 @@ SilphCo1FDefaultScript:
 	ld a, SCRIPT_SILPHCO1F_PETREL_BATTLE
 	jp SilphCo1FSetCurScript
 .hide_petrel
+	; Runs every frame: only hide Petrel once, instead of rewriting the toggle
+	; flag and redrawing all sprites on every step.
+	ld a, SILPHCO1F_PETREL
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret nz
 	ld de, TOGGLE_SILPH_CO_1F_PETREL
 	predef_jump HideObject
 

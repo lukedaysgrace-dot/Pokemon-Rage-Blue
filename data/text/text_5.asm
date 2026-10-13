@@ -104,9 +104,9 @@ _BoxIsFullText::
 	done
 
 _NeedHMOrCompatibleMonText::
-	text "You need the HM and a"
-	line "#MON that can learn"
-	cont "this move."
+	text "You need the HM"
+	line "and a #MON that"
+	cont "can learn it."
 	prompt
 
 _UseCutPromptText::
@@ -128,5 +128,5 @@ _UseFlashPromptText::
 	done
 
 _StopSurfingPromptText::
-	text "Climb onto dry land?"
+	text "Climb onto land?"
 	done

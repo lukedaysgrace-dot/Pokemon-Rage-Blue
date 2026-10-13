@@ -116,6 +116,15 @@ SilphCo3FDefaultScript:
 	ld a, SCRIPT_SILPHCO3F_PROTON_BATTLE
 	jp SilphCo3FSetCurScript
 .hide_proton
+	; Runs every frame once Proton is beaten: only hide him once, instead of
+	; rewriting the toggle flag and redrawing all sprites on every step.
+	ld a, SILPHCO3F_PROTON
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	jp nz, CheckFightingMapTrainers
 	ld de, TOGGLE_SILPH_CO_3F_PROTON
 	predef HideObject
 	jp CheckFightingMapTrainers

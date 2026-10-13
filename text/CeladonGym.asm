@@ -241,8 +241,9 @@ _CeladonGymErikaRematchDefeatText::
 	prompt
 
 _CeladonGymErikaRematchDefeatOverworldText::
-	text "Your #MON bloomed"
-	line "beautifully under"
+	text "Your #MON"
+	line "bloomed so"
+	cont "beautifully under"
 	cont "pressure."
 
 	para "I must tend my"

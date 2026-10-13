@@ -48,7 +48,11 @@ make audit
 
 The audit validates trainer parties and custom moves, encounters, Pokémon and
 move data, sprites, progression gates, toggleable objects, version parity, and
-cross-bank calls for all supported builds.
+cross-bank calls for all supported builds. It also checks that dialogue fits
+the 18-tile text box, that `--colors auto` graphics keep their shades in
+light-to-dark order, that NPC sprites without walking frames are not set to
+WALK, that indoor maps stay within the overworld sprite VRAM limits, and that
+scripted trainer battles load their trainer header's event flag bit.
 
 Map geometry checks also validate block-data lengths, event coordinates, and
 warp destinations in both versions. With PyBoy installed, run CPU-level

@@ -612,7 +612,7 @@ PokemonMansionB1FGreenBeforeBattleText:
 	line "journals, the"
 	cont "experiments..."
 
-	para "I've been "
+	para "I've been"
 	line "reading"
 	cont "everything I"
 	cont "can find."
@@ -659,7 +659,7 @@ PokemonMansionB1FGreenBeforeBattleText:
 PokemonMansionB1FGreenEndBattleText:
 	text "You really"
 	line "just keep"
-	cont "training nonstop"
+	cont "training nonstop,"
 	cont "don't you? Hehe."
 
 	para "I really do"

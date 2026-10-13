@@ -7,7 +7,7 @@ _Route5GreenBeforeBattleText::
 	cont "man's lab. Must"
 	cont "be nice to get"
 	cont "special treatment"
-	cont "by him."
+	cont "from him."
 
 	para "I see you already"
 	line "have a badge or"
@@ -16,7 +16,7 @@ _Route5GreenBeforeBattleText::
 
 	para "Actually, I've"
 	line "been wanting to"
-	cont "try out my new,"
+	cont "try out my new"
 	cont "#MON and I"
 	cont "need someone"
 	cont "to test them on."

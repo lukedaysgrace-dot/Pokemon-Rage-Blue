@@ -17,7 +17,7 @@ _RocketHideoutB2FRocketAfterBattleText::
 	done
 
 _RocketHideoutB2FGreenBeforeBattleText::
-	text "GREEN: Hold it"
+	text "GREEN: Hold it,"
 	line "brat!"
 	cont "Hehe... Like my"
 	cont "uniform?"

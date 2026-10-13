@@ -44,7 +44,7 @@ _ExileBrunoEndBattleText::
 	text "You"
 	line "are worthy"
 	cont "of that"
-	cont "title"
+	cont "title."
 	prompt
 
 _ExileBrunoAfterBattleText::

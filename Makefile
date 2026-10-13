@@ -111,6 +111,7 @@ audit: $(roms)
 	python3 tools/audit_game_data.py
 	python3 tools/audit_map_geometry.py
 	python3 tools/audit_trainer_movesets.py
+	python3 tools/audit_content.py
 	python3 tools/audit_banked_calls.py pokered.sym
 	python3 tools/audit_banked_calls.py pokeblue.sym
 	python3 tools/audit_banked_calls.py pokeblue_debug.sym

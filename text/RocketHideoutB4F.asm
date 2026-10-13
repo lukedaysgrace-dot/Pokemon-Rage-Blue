@@ -51,7 +51,7 @@ _RocketHideoutB4FRocket1AfterBattleText::
 
 	para "But I'm not paid"
 	line "enough to really"
-	cont "care"
+	cont "care."
 
 	para "If the BOSS asks,"
 	line "I was never here."
@@ -93,7 +93,7 @@ _RocketHideoutB4FRocket2BattleText::
 	done
 
 _RocketHideoutB4FRocket2EndBattleText::
-	text "I"
+	text "I..."
 
 	para "can't believe"
 	line "I lost to a kid."

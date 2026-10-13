@@ -56,9 +56,12 @@ _VermilionGymLTSurgeReceivedThunderBadgeText::
 	prompt
 
 _VermilionGymSoldier1BattleText::
-	text "Reporting for duty!"
-	line "LT.SURGE runs a"
-	cont "tight circuit here!"
+	text "Reporting for"
+	line "duty!"
+
+	para "LT.SURGE runs a"
+	line "tight circuit"
+	cont "here!"
 	done
 
 _VermilionGymSoldier1EndBattleText::
@@ -82,7 +85,7 @@ _VermilionGymSoldier2BattleText::
 	done
 
 _VermilionGymSoldier2EndBattleText::
-	text "S!"
+	text "Sir! Yes, sir!"
 	prompt
 
 _VermilionGymSoldier2AfterBattleText::
@@ -95,13 +98,13 @@ _VermilionGymSoldier2AfterBattleText::
 
 _VermilionGymSoldier3BattleText::
 	text "SURGE saved me"
-	line "during the war"
+	line "during the war,"
 	cont "kid!"
 	done
 
 _VermilionGymSoldier3EndBattleText::
 	text "Shocking!"
-	line "good!"
+	line "Good!"
 	cont "Carry on."
 	prompt
 

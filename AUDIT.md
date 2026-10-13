@@ -1,3 +1,50 @@
+# Content audit — October 12, 2026
+
+## Scope
+
+Dialogue and text-box layout for all new and changed text, new trainer and
+cutscene scripts (Green, Blue, Oak, Petrel, Proton, Ariana, Archer, Exile
+Bruno, Elite Four and gym rematches, starter gifts, fossil scientist, bike
+shop), trainer headers and party references, overworld sprite sets and
+indoor sprite VRAM limits, NPC sprite sheets, Pokémon/icon/trainer graphics,
+map headers and connections.
+
+## Bugs fixed
+
+| Problem | Correction |
+| --- | --- |
+| Blue's Cinnabar Island battle stored its trainer header by hand but never loaded the header's flag bit, so `EndTrainerBattle` set whichever event bit was left over from the previous trainer. | Load the flag bit (`xor a / call ReadTrainerHeaderInfo`) like the Elite Four rematch scripts do. |
+| Golett's HD back sprite had its palette stored dark-to-light; `rgbgfx --colors auto` keeps indexed palette order, so the sprite was drawn with inverted shades. | Reordered the PNG palette light-to-dark (pixels unchanged). |
+| Ralts, Kirlia, Gardevoir, Leafeon, Whirlipede and Scolipede icons had their two middle colours stored out of order, swapping light/dark in game. | Reordered the PNG palettes light-to-dark (pixels unchanged). |
+| Clefairy (Celadon Mansion) and Chansey (Copycat's House) were set to WALK, but their sprite sheets have no walking frames, so they flickered garbage tiles while moving. | Changed both to STAY with the same axis, so they turn in place. |
+| Silph Co. 1F (Petrel) and 3F (Proton) called `HideObject` every frame once the admin was gone, rewriting the toggle flag and redrawing all sprites on every step. | Hide only when the object is still visible. |
+| After losing to Exile Bruno he stayed visible, and talking to him replayed his speech without starting the battle. | Hide him again when the player is off the trigger tile, so the trigger restarts the encounter. |
+| Nine dialogue lines overflowed the 18-tile text box (HM prompt, "Climb onto dry land?", Karen/Lorelei rematch, Erika rematch, Vermilion Gym soldier, Blue's placeholder lose text). | Re-wrapped to fit; replaced the "(Placeholder)" text. |
+| Typos and punctuation in new dialogue (Janine, Cerulean fossil scientist, Proton, Archer, Karen, Lance, Exile Bruno, Green, Rocket Hideout grunts, Vermilion Gym soldiers, rematch trainer). | Corrected capitalisation, apostrophes, ellipses and run-ons, and replaced a Vermilion Gym soldier's truncated "S!" with "Sir! Yes, sir!". |
+
+## New checks
+
+`tools/audit_content.py` (run by `make audit`) catches each class of problem
+above: text-box width, indexed-palette shade order, WALK objects using sheets
+without walking frames, indoor sprite VRAM limits, and scripted trainer
+battles that skip loading the header flag bit.
+
+## Notes, not changed
+
+- Lose texts passed to `SaveEndBattleTextPointers` (for example Green's "Come
+  back when you're ready.") are never shown: the battle engine only prints
+  end-of-battle text when the player wins, as in the original game.
+- `Route1`, `Route5`, `IndigoPlateau` and `IndigoPlateauLobby` keep their
+  cutscene state in the shared `wCurMapScript` byte instead of a per-map
+  variable. It works because other maps leave it at 0, but it is fragile.
+- Mansion B1F still defines toggles for a removed Mew/Poké Ball cutscene;
+  they are harmless, and removing them would shift every later toggle index
+  in existing saves.
+
+## Verification
+
+`make` builds all three ROMs; `make audit` and `make audit-runtime` pass.
+
 # Code audit — October 11, 2026
 
 ## Scope

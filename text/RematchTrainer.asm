@@ -1,9 +1,8 @@
 _RematchTrainerPreBattleText::
 	text "The CHAMPION!"
 	line "Let's see how"
-
-	para "much you've"
-	line "grown! Ready?"
+	cont "much you've"
+	cont "grown! Ready?"
 	prompt
 
 _RematchTrainerWinText::
