@@ -37,8 +37,8 @@ _FuchsiaGymKogaRematchPreBattleText::
 
 _FuchsiaGymKogaRematchDefeatText::
 	text "...Impressive."
-	line "You saw through"
-	cont "each trick."
+	line "Not one of my"
+	cont "tricks fooled you."
 
 	para "A true master!"
 	prompt

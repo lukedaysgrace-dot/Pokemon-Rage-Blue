@@ -199,11 +199,8 @@ _CeruleanCitySuperNerd3Text::
 
 	para "Only trainers"
 	line "who have"
-	cont "completely"
-	cont "conquered all"
-	cont "of KANTO at"
-	cont "its full might"
-	cont "may enter here!"
+	cont "conquered all of"
+	cont "KANTO may enter!"
 	done
 
 _CeruleanCitySignText::

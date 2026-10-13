@@ -37,7 +37,7 @@ _CinnabarIslandGymSignText::
 	done
 
 _CinnabarIslandBlueCloakPreBattleText1::
-	text "…So you finally"
+	text "...So you finally"
 	line "made it."
 
 	para "I was wondering"
@@ -53,7 +53,7 @@ _CinnabarIslandBlueCloakPreBattleText1::
 	cont "over who got"
 	cont "first pick."
 
-	para "And somehow…"
+	para "And somehow..."
 	line "it became this."
 
 	para "You beat the"
@@ -68,11 +68,12 @@ _CinnabarIslandBlueCloakPreBattleText1::
 	cont "anyone else."
 
 	para "But every time I"
-	line "heard your name…"
+	line "heard your name..."
 	done
 
 _CinnabarIslandBlueCloakPreBattleText2::
-	text "…I kept training."
+	text "...I kept"
+	line "training."
 
 	para "Because deep"
 	line "down, I knew"
@@ -88,7 +89,7 @@ _CinnabarIslandBlueCloakPreBattleText2::
 	line "ever made me"
 	cont "doubt myself."
 
-	para "…And the only"
+	para "...And the only"
 	line "one I ever"
 	cont "wanted to beat."
 
@@ -112,7 +113,7 @@ _CinnabarIslandBlueCloakDefeatedText::
 	prompt
 
 _CinnabarIslandBlueCloakAfterBeatText::
-	text "…Man."
+	text "...Man."
 
 	para "Guess I really"
 	line "can't beat you,"
@@ -126,7 +127,7 @@ _CinnabarIslandBlueCloakAfterBeatText::
 	line "hated losing to"
 	cont "you."
 
-	para "But now…"
+	para "But now..."
 
 	para "It kinda just"
 	line "feels right."
@@ -147,7 +148,7 @@ _CinnabarIslandBlueCloakAfterBeatText::
 	cont "PROF.OAK's lab,"
 	cont "huh?"
 
-	para "…Thanks."
+	para "...Thanks."
 
 	para "For all of it."
 

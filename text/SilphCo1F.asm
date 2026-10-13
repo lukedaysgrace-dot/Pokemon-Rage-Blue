@@ -17,8 +17,9 @@ _SilphCo1FPetrelText::
 	cont "business again."
 
 	para "Heh... You're"
-	line "damn near famous"
-	cont "around here, kid."
+	line "practically"
+	cont "famous around"
+	cont "here, kid."
 
 	para "I've been waiting"
 	line "for someone worth"

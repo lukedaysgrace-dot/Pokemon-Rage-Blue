@@ -38,10 +38,11 @@ _MtMoonB2fSuperNerdEachTakeOneText::
 	line "one! No being"
 	cont "greedy!"
 
-	para "Find every fossil"
-	line "in MT.MOON and"
-	cont "I'll let you have"
-	cont "the one I keep."
+	para "Bring me the six"
+	line "other fossils in"
+	cont "MT.MOON, and I'll"
+	cont "let you have the"
+	cont "one I kept."
 	done
 
 _MtMoonB2FSuperNerdTheresAPokemonLabText::
@@ -51,18 +52,17 @@ _MtMoonB2FSuperNerdTheresAPokemonLabText::
 	cont "moved to"
 	cont "CERULEAN CITY."
 
-	para "Bring me SAIL,"
+	para "Bring me the SAIL,"
 	line "ARMOR, CLAW,"
-	cont "SKULL, JAW, and"
-	cont "ROOT FOSSIL and"
+	cont "SKULL, JAW and"
+	cont "ROOT FOSSILs, and"
 	cont "I'll hand over"
 	cont "the one I kept."
 	done
 
 _MtMoonB2FSuperNerdFoundThemAllText::
-	text "You found every"
-	line "fossil in"
-	cont "MT.MOON?"
+	text "You brought all"
+	line "six fossils?"
 
 	para "A deal's a deal!"
 	line "Take the fossil I"
@@ -84,19 +84,18 @@ _MtMoonB2FSuperNerdThenThisIsMineText::
 
 IF DEF(_RED)
 _MtMoonB2FSuperNerdFourFossilsText::
-	text "Hey! If you find"
-	line "all 6 of the"
-	cont "fossils around"
-	cont "MT.MOON, I'll let"
-	cont "you have the"
-	cont "other one!"
+	text "Hey! Bring me the"
+	line "six other fossils"
+	cont "in MT.MOON, and"
+	cont "I'll let you have"
+	cont "the one I kept!"
 	done
 
 _MtMoonB2FSuperNerdSellWarningText::
 	text "Are you sure?"
 
 	para "If you sell the"
-	line "ones you have"
+	line "ones you have,"
 	cont "you'll never be"
 	cont "able to get the"
 	cont "other one from"

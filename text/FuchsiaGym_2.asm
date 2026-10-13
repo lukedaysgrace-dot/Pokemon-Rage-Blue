@@ -138,7 +138,7 @@ _FuchsiaGymRocker5BattleText::
 	done
 
 _FuchsiaGymRocker5EndBattleText::
-	text "Damn!"
+	text "Darn!"
 	prompt
 
 _FuchsiaGymRocker5AfterBattleText::
@@ -149,14 +149,18 @@ _FuchsiaGymRocker5AfterBattleText::
 _FuchsiaGymRocker6BattleText::
 	text "Boo! Ha, you"
 	line "didn't even see"
-	cont "me, did you? I'm"
-	cont "JANINE, KOGA's"
-	cont "daughter! One day"
-	cont "I'll be running"
-	cont "this place! Let's"
-	cont "see if you're good"
-	cont "enough to face my"
-	cont "dad!"
+	cont "me, did you?"
+
+	para "I'm JANINE,"
+	line "KOGA's daughter!"
+	cont "One day I'll be"
+	cont "running this"
+	cont "place!"
+
+	para "Let's see if"
+	line "you're good"
+	cont "enough to face"
+	cont "my dad!"
 	done
 
 _FuchsiaGymRocker6EndBattleText::

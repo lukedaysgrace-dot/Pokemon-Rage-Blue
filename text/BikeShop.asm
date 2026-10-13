@@ -44,10 +44,10 @@ _BikeShopExchangedVoucherSkateboardText::
 	text_end
 
 _BikeShopClerkSkateboardFollowupText::
-	text "It may be old but"
-	line "it's still in"
-	cont "great shape,"
-	cont "enjoy!"
+	text "It may be old,"
+	line "but it's still in"
+	cont "great shape."
+	cont "Enjoy!"
 	prompt
 
 _BikeShopComeAgainText::

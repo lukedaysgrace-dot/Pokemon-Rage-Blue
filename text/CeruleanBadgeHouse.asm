@@ -1,20 +1,21 @@
 _CeruleanBadgeHouseFossilScientistIntroText::
 	text "Hello there! I"
-	line "used to"
-	cont "work at the"
-	cont "CINNABAR LAB!"
-	cont "I split off from"
-	cont "the rest of them"
-	cont "since we had"
-	cont "very different"
-	cont "opinions. I'm"
-	cont "more than"
-	cont "capable of"
+	line "used to work at"
+	cont "the CINNABAR LAB!"
+
+	para "I split off from"
+	line "the rest of them"
+	cont "since we had very"
+	cont "different"
+	cont "opinions."
+
+	para "I'm more than"
+	line "capable of"
 	cont "reviving fossils"
-	cont "just as well in"
-	cont "my homemade lab"
-	cont "here. Do you have"
-	cont "any?"
+	cont "in my homemade"
+	cont "lab here!"
+
+	para "Do you have any?"
 	done
 
 _CeruleanBadgeHouseFossilScientistRepeatText::

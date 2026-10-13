@@ -147,7 +147,7 @@ _PewterGymGuidePostBattleText::
 
 _PewterGymBrockRematchPreBattleText::
 	text "So you're the"
-	line "Champion now..."
+	line "CHAMPION now..."
 	cont "Impressive!"
 
 	para "But rock doesn't"

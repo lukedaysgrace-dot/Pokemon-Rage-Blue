@@ -18,7 +18,7 @@ _CeruleanGymMistyPreBattleText::
 	done
 
 _CeruleanGymMistyRematchPreBattleText::
-	text "Champion, huh?"
+	text "CHAMPION, huh?"
 	line "Don't expect me"
 	cont "to go easy just"
 	cont "because you made"

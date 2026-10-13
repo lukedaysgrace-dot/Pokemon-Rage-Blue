@@ -48,7 +48,7 @@ _Route5GreenPlayerLoseText::
 _Route5GreenAfterBattleText::
 	text "Well, I've got to"
 	line "admit, I under-"
-	cont "estimated you,"
+	cont "estimated you."
 	cont "I thought you'd"
 	cont "be a pushover."
 

@@ -17,10 +17,10 @@ _ExileBrunoBeforeBattleText::
 	para "I am BRUNO."
 	line "Not long ago,"
 	cont "I was cast out"
-
-	para "of the ELITE"
-	line "FOUR for that"
-	cont "pompous woman"
+	cont "of the ELITE"
+	cont "FOUR to make"
+	cont "room for that"
+	cont "pompous woman,"
 	cont "KAREN."
 
 	para "But she made"
@@ -49,8 +49,8 @@ _ExileBrunoEndBattleText::
 
 _ExileBrunoAfterBattleText::
 	text "That was"
-	line "a great battle,"
-	cont "forgive me for"
+	line "a great battle."
+	cont "Forgive me for"
 	cont "doubting you."
 
 	para "I am going to"
@@ -64,7 +64,7 @@ _ExileBrunoAfterBattleText::
 	line "I must warn you."
 
 	para "There is a"
-	line "disgustingly"
+	line "terrifyingly"
 	cont "strong creature"
 	cont "up ahead."
 

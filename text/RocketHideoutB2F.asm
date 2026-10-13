@@ -19,30 +19,35 @@ _RocketHideoutB2FRocketAfterBattleText::
 _RocketHideoutB2FGreenBeforeBattleText::
 	text "GREEN: Hold it,"
 	line "brat!"
-	cont "Hehe... Like my"
-	cont "uniform?"
-	cont "Blends right in,"
-	cont "doesn't it?"
-	cont "These ROCKETs"
-	cont "didn't question"
-	cont "a thing."
-	cont "You thought"
-	cont "you could sneak"
-	cont "by, but you're"
-	cont "two steps from"
-	cont "being caught."
-	cont "Good thing I"
-	cont "found you first."
-	cont "Now I'm curious."
-	cont "Can you handle"
+
+	para "Hehe... Like my"
+	line "uniform?"
+
+	para "Blends right in,"
+	line "doesn't it? These"
+	cont "ROCKETs didn't"
+	cont "question a thing."
+
+	para "You thought you"
+	line "could sneak by,"
+	cont "but you're two"
+	cont "steps from being"
+	cont "caught."
+
+	para "Good thing I"
+	line "found you first."
+
+	para "Now I'm curious."
+	line "Can you handle"
 	cont "this place?"
-	cont "Show me,"
-	cont "<PLAYER>..."
-	cont "And don't blow"
-	cont "my cover!"
-	cont "I still wanna"
-	cont "loot more stuff"
-	cont "from them!"
+
+	para "Show me,"
+	line "<PLAYER>..."
+
+	para "And don't blow"
+	line "my cover! I still"
+	cont "wanna loot more"
+	cont "stuff from them!"
 	done
 
 _RocketHideoutB2FGreenEndBattleText::
@@ -61,42 +66,48 @@ _RocketHideoutB2FGreenPlayerLoseText::
 	prompt
 
 _RocketHideoutB2FGreenPostBattleText::
-	text "GREEN: …You"
+	text "GREEN: ...You"
 	line "handled that"
 	cont "pretty well."
 	cont "Better than"
 	cont "I expected."
-	cont "This place"
-	cont "has all kinds"
-	cont "of stuff. I even"
-	cont "found this old"
-	cont "dusty journal"
-	cont "entry talking"
+
+	para "This place has"
+	line "all kinds of"
+	cont "stuff."
+
+	para "I even found an"
+	line "old, dusty"
+	cont "journal entry"
 	cont "about some kind"
-	cont "of cloning"
-	cont "device and MEW's"
-	cont "DNA. It's very"
-	cont "interesting..."
-	cont "What could they"
-	cont "have possibly"
+	cont "of cloning device"
+	cont "and MEW's DNA."
+
+	para "It's very"
+	line "interesting..."
+
+	para "What could they"
+	line "have possibly"
 	cont "wanted to do"
 	cont "with its DNA?"
-	cont "I hope they"
-	cont "never got a hold"
-	cont "of MEW. That"
-	cont "cutie being"
-	cont "experimented"
-	cont "on... makes me"
-	cont "sick. I hope"
-	cont "one day I can"
-	cont "meet it..."
-	cont "Stay sharp,"
-	cont "<PLAYER>."
-	cont "I'm gonna finish"
-	cont "looking around"
+
+	para "I hope they never"
+	line "got ahold of MEW."
+
+	para "That cutie being"
+	line "experimented on..."
+	cont "It makes me sick."
+
+	para "I hope one day I"
+	line "can meet it..."
+
+	para "Stay sharp,"
+	line "<PLAYER>."
+
+	para "I'm gonna finish"
+	line "looking around"
 	cont "and get out of"
-	cont "here."
-	cont "Be safe!"
+	cont "here. Be safe!"
 	done
 
 _RocketHideoutB2FFoundTM07ShadowBallText::

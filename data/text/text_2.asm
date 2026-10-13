@@ -1704,20 +1704,24 @@ _DifficultyText::
 	done
 
 _NormalModeText::
-	text "Are you sure?"
+	text "NORMAL MODE:"
+	line "classic #MON"
+	cont "rules."
 
-	para "Classic #MON"
-	line "rules."
+	para "Is that OK?"
 	done
 
 _HardModeText::
-	text "Are you sure?"
-
-	para "Set mode, no"
-	line "items in trainer"
-	cont "battles, ordered"
+	text "HARD MODE:"
+	line "battle style SET,"
+	cont "no items in"
+	cont "trainer battles,"
 	cont "gym level caps,"
-	cont "trainer Stat EXP."
+	cont "and trainers'"
+	cont "#MON have"
+	cont "Stat EXP."
+
+	para "Is that OK?"
 	done
 
 _OakSpeechText1::

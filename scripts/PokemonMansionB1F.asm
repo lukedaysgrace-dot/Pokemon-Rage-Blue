@@ -688,6 +688,11 @@ PokemonMansionB1FGreenAfterBattleText:
 	line "just out of"
 	cont "reach."
 
+	para "Seems like a"
+	line "#MON with a"
+	cont "truly gentle"
+	cont "soul."
+
 	para "...I'd love to"
 	line "meet it."
 
@@ -703,11 +708,6 @@ PokemonMansionB1FGreenAfterBattleText:
 	para "#MON should"
 	line "never be used"
 	cont "for experiments."
-
-	para "Seems like a"
-	line "#MON with a"
-	cont "truly gentle"
-	cont "soul."
 
 	para "I'm going to get"
 	line "out of this awful"

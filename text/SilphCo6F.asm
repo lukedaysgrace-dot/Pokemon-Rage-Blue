@@ -122,6 +122,6 @@ _SilphCo6FTamerAfterBattleText::
 	text "SILPH thinks"
 	line "security matters?"
 
-	para "We're worse than"
-	line "guards."
+	para "We're tougher"
+	line "than any guard!"
 	done

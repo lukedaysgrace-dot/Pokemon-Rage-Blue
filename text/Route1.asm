@@ -54,14 +54,14 @@ _Route1OakBeforeBattleText::
 	line "You finally did"
 	cont "it."
 
-	para "All 151 #MON."
+	para "All 151 #MON"
+	line "of KANTO."
 
 	para "I had a feeling"
 	line "from the very"
-	cont "beginning,"
-
-	para "that you might"
-	line "be the one."
+	cont "beginning that"
+	cont "you might be"
+	cont "the one."
 
 	para "When you first"
 	line "stepped into"
@@ -70,9 +70,8 @@ _Route1OakBeforeBattleText::
 	para "You were just"
 	line "a child with"
 	cont "a single #MON"
-
-	para "and a dream too"
-	line "big for PALLET"
+	cont "and a dream too"
+	cont "big for PALLET"
 	cont "TOWN."
 
 	para "But now?"
@@ -80,9 +79,8 @@ _Route1OakBeforeBattleText::
 	para "You stand before"
 	line "me as the"
 	cont "greatest trainer"
-
-	para "this region has"
-	line "ever seen."
+	cont "this region has"
+	cont "ever seen."
 
 	para "Ha... Even old"
 	line "men hear rumors."
@@ -109,10 +107,8 @@ _Route1OakBeforeBattleText::
 
 	para "There was a time"
 	line "when I traveled"
-	cont "the world,"
-
-	para "not as a"
-	line "PROFESSOR..."
+	cont "the world, not"
+	cont "as a PROFESSOR..."
 
 	para "...but as a"
 	line "#MON trainer."
@@ -131,7 +127,7 @@ _Route1OakBeforeBattleText::
 	cont "behind me."
 
 	para "But seeing you"
-	line "complete the"
+	line "complete KANTO's"
 	cont "#DEX..."
 
 	para "Well."
@@ -145,10 +141,9 @@ _Route1OakBeforeBattleText::
 
 	para "Now that you've"
 	line "found every"
-	cont "#MON..."
-
-	para "Do you think"
-	line "you've found"
+	cont "#MON in KANTO,"
+	cont "do you think"
+	cont "you've found"
 	cont "all this world"
 	cont "has to offer?"
 
@@ -189,9 +184,8 @@ _Route1OakAfterBattleText::
 	para "By the way,"
 	line "I recently heard"
 	cont "that my grandson"
-
-	para "<RIVAL> has been"
-	line "training near"
+	cont "<RIVAL> has been"
+	cont "training near"
 	cont "CINNABAR as of"
 	cont "late."
 

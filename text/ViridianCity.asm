@@ -188,7 +188,7 @@ _ViridianCityBlueCloakNotYetText::
 	done
 
 _ViridianCityBlueCloakPreBattleText1::
-	text "…You and me."
+	text "...You and me."
 	line "That's all it"
 	cont "ever was. Not"
 	cont "the LEAGUE. Not"
@@ -198,34 +198,32 @@ _ViridianCityBlueCloakPreBattleText1::
 	done
 
 _ViridianCityBlueCloakPreBattleText2::
-	text "…I was so sure"
-	line "of myself: I had"
-	cont "no equal. After"
-	cont "all that"
-	cont "training, I"
+	text "...I was so sure"
+	line "of myself. I"
+	cont "thought I had no"
+	cont "equal. After all"
+	cont "that training, I"
 	cont "still couldn't"
 	cont "beat you."
 
-	para "Now is different."
+	para "Not this time."
 	line "I've learned from"
 	cont "my mistakes."
-	cont "This time will be"
-	cont "much different."
 
 	para "Hope you're ready,"
 	line "<PLAYER>!"
 	done
 
 _ViridianCityBlueCloakDefeatedText::
-	text "…Even now…"
+	text "...Even now..."
 	line "It wasn't"
 	cont "enough."
 	prompt
 
 _ViridianCityBlueCloakVictoryText::
-	text "…Heh. I told you"
-	line "this time would"
-	cont "be different."
+	text "...Heh. I told"
+	line "you. Not this"
+	cont "time."
 	prompt
 
 _ViridianCityBlueCloakAfterBeatText::
@@ -234,13 +232,13 @@ _ViridianCityBlueCloakAfterBeatText::
 	cont "that, I still"
 	cont "couldn't win."
 
-	para "…You're still"
-	line "ahead, ha…"
-	cont "Smell you later,"
+	para "...You're still"
+	line "ahead, ha..."
+	cont "Smell ya later,"
 	cont "<PLAYER>."
 	done
 
 _ViridianCityBlueCloakAfterBeatShortText::
-	text "…Thanks for the"
+	text "...Thanks for the"
 	line "battle, <PLAYER>."
 	done

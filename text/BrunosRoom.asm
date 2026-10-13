@@ -49,8 +49,8 @@ _BrunoRematchPreBattleText::
 
 _BrunoRematchDefeatText::
 	text "Hah!"
-	line "Your strength is"
-	cont "undeniable!"
+	line "Your power is"
+	cont "overwhelming!"
 
 	para "I'll train"
 	line "harder!"
@@ -89,8 +89,8 @@ _KarenBeforeBattleText::
 	cont "had."
 
 	para "People cling to"
-	line "Strength..."
-	cont "Power..."
+	line "strength..."
+	cont "power..."
 
 	para "As if that's all"
 	line "that matters."
@@ -170,9 +170,8 @@ _KarenAfterBattleText::
 	para "Go on."
 
 	para "Show the rest"
-	line "of KANTO"
-	cont "your strength,"
-	cont "TRAINER."
+	line "of KANTO that"
+	cont "bond, TRAINER."
 	done
 
 _KarensRoomKarenDontRunAwayText::
@@ -181,13 +180,15 @@ _KarensRoomKarenDontRunAwayText::
 	done
 
 _KarenRematchPreBattleText::
-	text "CHAMPION! I've"
-	line "changed my team"
-	cont "since your win."
+	text "Back again,"
+	line "CHAMPION?"
 
-	para "Let's test our"
-	line "skill once"
-	cont "more!"
+	para "My #MON and I"
+	line "have grown closer"
+	cont "since our battle."
+
+	para "Let's see whose"
+	line "bond is stronger."
 	done
 
 _KarenRematchDefeatText::

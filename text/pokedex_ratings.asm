@@ -112,8 +112,8 @@ _DexRatingText_Own140To149::
 
 _DexRatingText_Own150To169::
 	text "Incredible! You've"
-	line "passed what any"
-	cont "trainer had done!"
+	line "gone further than"
+	cont "any trainer!"
 	done
 
 _DexRatingText_Own170To189::
