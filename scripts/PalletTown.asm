@@ -215,6 +215,12 @@ PalletTownGreenAfterBattleScript:
 	ret
 
 PalletTownGreenExitMovementDefault:
+; Player is left of GREEN (3, 13). Walking straight up would cross the fence
+; at (4, 9), so take the same open route as when the player is above her.
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
+	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_UP
 	db NPC_MOVEMENT_UP
 	db NPC_MOVEMENT_UP

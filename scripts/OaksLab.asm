@@ -529,12 +529,13 @@ OaksLabGreenEntersLabScript:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN ; reach the door mat (5, 11) like the other two exits
 	db -1 ; end
 
 .MiddleBallExitMovementAround
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_LEFT
-	db NPC_MOVEMENT_LEFT 
+	db NPC_MOVEMENT_LEFT
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN

@@ -105,18 +105,29 @@ HallOfFameOakCongratulationsScript:
 	predef HideObject
 .skipCeruleanCaveGuy
 IF DEF(_RED)
+	; This runs after every Hall of Fame entry, so only bring back each gift
+	; Pokémon's overworld sprite if the player hasn't already received it.
 	ld de, TOGGLE_ROUTE_24_CHARMANDER_TRAINER
 	predef ShowObject
+	CheckEvent EVENT_GOT_CHARMANDER_ON_ROUTE24
+	jr nz, .gotCharmander
 	ld de, TOGGLE_ROUTE_24_CHARMANDER
 	predef ShowObject
+.gotCharmander
 	ld de, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR_TRAINER
 	predef ShowObject
+	CheckEvent EVENT_GOT_BULBASAUR_IN_CERULEAN
+	jr nz, .gotBulbasaur
 	ld de, TOGGLE_CERULEAN_TRADE_HOUSE_BULBASAUR
 	predef ShowObject
+.gotBulbasaur
 	ld de, TOGGLE_VERMILION_CITY_SQUIRTLE_TRAINER
 	predef ShowObject
+	CheckEvent EVENT_GOT_SQUIRTLE_IN_VERMILION
+	jr nz, .gotSquirtle
 	ld de, TOGGLE_VERMILION_CITY_SQUIRTLE
 	predef ShowObject
+.gotSquirtle
 ENDC
 	ld a, SCRIPT_HALLOFFAME_RESET_EVENTS_AND_SAVE
 	ld [wHallOfFameCurScript], a

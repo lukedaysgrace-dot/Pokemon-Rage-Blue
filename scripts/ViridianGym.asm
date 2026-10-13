@@ -24,6 +24,15 @@ MaybeShowGiovanniForRematch:
 	ret z
 	CheckEvent EVENT_REMATCH_DEFEATED_GIOVANNI
 	ret nz
+	; Runs every frame: only show Giovanni once, instead of rewriting the
+	; toggle flag and redrawing all sprites on every step.
+	ld a, VIRIDIANGYM_GIOVANNI
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret z
 	ld de, TOGGLE_VIRIDIAN_GYM_GIOVANNI
 	predef ShowObject
 	ret

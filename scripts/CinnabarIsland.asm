@@ -14,6 +14,15 @@ CinnabarIslandMaybeShowBlueCloak:
 	ret nz
 	CheckEvent EVENT_BEAT_ROUTE1_OAK
 	ret z
+	; Runs every frame: only show Blue once, instead of rewriting the toggle
+	; flag and redrawing all sprites on every step.
+	ld a, CINNABARISLAND_BLUE_CLOAK
+	swap a
+	ldh [hCurrentSpriteOffset], a
+	predef IsObjectHidden
+	ldh a, [hIsToggleableObjectOff]
+	and a
+	ret z
 	ld de, TOGGLE_CINNABAR_ISLAND_BLUE_CLOAK
 	predef ShowObject
 	ret

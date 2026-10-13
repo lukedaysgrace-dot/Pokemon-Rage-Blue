@@ -9,6 +9,7 @@ in game:
 - NPCs set to WALK whose sprite sheet has no walking frames
 - indoor maps that load more overworld sprite sheets than VRAM can hold
 - scripted trainer battles that never load the trainer header's flag bit
+- map-script helpers that show/hide an object on every frame
 """
 
 from __future__ import annotations
@@ -298,12 +299,51 @@ def check_scripted_trainer_headers() -> list[str]:
     return errors
 
 
+def check_per_frame_toggles() -> list[str]:
+    """Helpers called unconditionally at the top of a map script run every
+    frame. Showing or hiding an object there rewrites the toggle flag and
+    redraws every sprite on each step unless it first checks the object's
+    current state (IsObjectHidden), the map-load flag, or a one-shot event."""
+    errors: list[str] = []
+    guards = ("IsObjectHidden", "CUR_MAP_LOADED", "CheckAndSetEvent", "SetEvent")
+    for path in sorted((ROOT / "scripts").glob("*.asm")):
+        bodies: dict[str, list[str]] = {}
+        current = None
+        for raw in path.read_text(encoding="utf-8").splitlines():
+            line = strip_comment(raw)
+            match = re.match(r"^([A-Za-z_]\w*):", line)
+            if match:
+                current = match.group(1)
+                bodies[current] = []
+            elif current:
+                bodies[current].append(line)
+        for label, body in bodies.items():
+            if not label.endswith("_Script"):
+                continue
+            for line in body:
+                if re.match(r"\s+(jp|ret)\b", line):
+                    break
+                match = re.match(r"\s+call\s+(\w+)\s*$", line)
+                if not match:
+                    continue
+                helper = "\n".join(bodies.get(match.group(1), []))
+                if re.search(r"\b(ShowObject|HideObject)\b", helper) and not any(
+                    guard in helper for guard in guards
+                ):
+                    errors.append(
+                        f"{path.relative_to(ROOT)}: {match.group(1)} (called every frame from "
+                        f"{label}) shows/hides an object without checking IsObjectHidden first"
+                    )
+    return errors
+
+
 def main() -> int:
     errors: list[str] = []
     errors += check_text_widths()
     errors += check_shade_order()
     errors += check_overworld_sprites()
     errors += check_scripted_trainer_headers()
+    errors += check_per_frame_toggles()
     print(f"content errors: {len(errors)}")
     for error in errors:
         print(f"  {error}")

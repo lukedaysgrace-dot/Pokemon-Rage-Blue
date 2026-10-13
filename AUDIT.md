@@ -22,12 +22,31 @@ map headers and connections.
 | Nine dialogue lines overflowed the 18-tile text box (HM prompt, "Climb onto dry land?", Karen/Lorelei rematch, Erika rematch, Vermilion Gym soldier, Blue's placeholder lose text). | Re-wrapped to fit; replaced the "(Placeholder)" text. |
 | Typos and punctuation in new dialogue (Janine, Cerulean fossil scientist, Proton, Archer, Karen, Lance, Exile Bruno, Green, Rocket Hideout grunts, Vermilion Gym soldiers, rematch trainer). | Corrected capitalisation, apostrophes, ellipses and run-ons, and replaced a Vermilion Gym soldier's truncated "S!" with "Sir! Yes, sir!". |
 
+## Follow-up pass (October 13)
+
+Line-by-line review of the remaining new scripts: Oak's Lab, Bruno/Karen,
+Agatha, Lance, Indigo Plateau, every gym rematch including Giovanni, Route 13
+Mew, Hall of Fame, Day Care, Celadon Mart 5F, Rock Tunnel, Seafoam boulders,
+Silph Co. floors, the Viridian Mart fisher and the other small script changes.
+Starter-line teams for every Green, Blue and rival battle were matched against
+the scripts that pick them, and the trainer level curve was rechecked. Every
+new cutscene walking path was traced tile by tile against the map collision
+data.
+
+| Problem | Correction |
+| --- | --- |
+| After the Pallet Town finale, if the player stood to Green's left, she walked straight up through the fence at (4, 9). | That case now takes the same open route as the others (right, then up). |
+| In Oak's Lab, when Green took Charmander's ball she disappeared one tile short of the door, unlike the other two routes. | Added the missing step so she leaves from the door mat. |
+| Red: every Hall of Fame entry re-showed the Route 24 Charmander, Cerulean Bulbasaur and Vermilion Squirtle sprites, even after the player had received them. | Only re-show a gift Pokémon if it hasn't been given yet. |
+| Cinnabar Island (Blue's final battle) and Viridian Gym (Giovanni rematch) called `ShowObject` every frame while waiting, redrawing every sprite on each step. | Show the object only if it is still hidden. |
+
 ## New checks
 
 `tools/audit_content.py` (run by `make audit`) catches each class of problem
 above: text-box width, indexed-palette shade order, WALK objects using sheets
 without walking frames, indoor sprite VRAM limits, and scripted trainer
-battles that skip loading the header flag bit.
+battles that skip loading the header flag bit, and map-script helpers that
+show/hide an object on every frame without checking it first.
 
 ## Notes, not changed
 
@@ -37,6 +56,9 @@ battles that skip loading the header flag bit.
 - `Route1`, `Route5`, `IndigoPlateau` and `IndigoPlateauLobby` keep their
   cutscene state in the shared `wCurMapScript` byte instead of a per-map
   variable. It works because other maps leave it at 0, but it is fragile.
+- Red, Mt. Moon B2F: when the Super Nerd walks over to warn about the
+  fossils he stops one tile diagonally from the player instead of next to
+  them. It only affects how the scene looks.
 - Mansion B1F still defines toggles for a removed Mew/Poké Ball cutscene;
   they are harmless, and removing them would shift every later toggle index
   in existing saves.
