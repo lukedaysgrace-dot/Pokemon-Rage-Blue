@@ -33,11 +33,6 @@ _CinnabarGymBlainePostBattleAdviceText::
 _CinnabarGymBlaineVolcanoBadgeInfoText::
 	text "Hah!"
 
-	para "The VOLCANOBADGE"
-	line "heightens the"
-	cont "SPECIAL abilities"
-	cont "of your #MON!"
-
 	para "Here, you can"
 	line "have this too!"
 	done
