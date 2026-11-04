@@ -394,9 +394,6 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const UNUSED_MAP_F4,                  0,  0 ; $F4
 	map_const LORELEIS_ROOM,                  5,  6 ; $F5
 	map_const BRUNOS_ROOM,                    5,  6 ; $F6
-DEF KARENS_ROOM EQU BRUNOS_ROOM
-DEF KARENS_ROOM_WIDTH EQU BRUNOS_ROOM_WIDTH
-DEF KARENS_ROOM_HEIGHT EQU BRUNOS_ROOM_HEIGHT
 	map_const AGATHAS_ROOM,                   5,  6 ; $F7
 	end_indoor_group POKEMON_LEAGUE_3
 DEF NUM_MAPS EQU const_value

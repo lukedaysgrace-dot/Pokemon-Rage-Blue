@@ -37,7 +37,7 @@ TrainerAIPointers:
 	dbw 3, CooltrainerMAI  ; ROCKET
 	dbw 4, CooltrainerMAI  ; COOLTRAINER_M
 	dbw 4, CooltrainerFAI  ; COOLTRAINER_F
-	dbw 4, EliteFourAI     ; BRUNO/KAREN
+	dbw 4, EliteFourAI     ; BRUNO
 	dbw 4, EliteFourAI     ; BROCK
 	dbw 4, EliteFourAI     ; MISTY
 	dbw 4, EliteFourAI     ; LT_SURGE
@@ -62,7 +62,4 @@ TrainerAIPointers:
 	dbw 4, BlueAI          ; ARCHER
 	dbw 4, CooltrainerMAI  ; SOLDIER
 	dbw 3, CooltrainerMAI  ; ROCKET_F
-IF DEF(_BLUE)
-	dbw 4, EliteFourAI     ; EXILE_BRUNO
-ENDC
 	assert_table_length NUM_TRAINERS

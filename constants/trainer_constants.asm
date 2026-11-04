@@ -1,6 +1,6 @@
 ; Must satisfy OPP_ID_OFFSET + last trainer class <= 255 (8-bit wCurOpponent /
-; wEngagedTrainerClass). Blue: EXILE_BRUNO $3B, offset 196 + 59 = 255.
-; Red: ROCKET_F $3A, offset 197 + 58 = 255.
+; wEngagedTrainerClass). Last class: ROCKET_F $3A.
+; Preserve the existing version offsets (Blue 196, Red 197).
 IF DEF(_RED)
 DEF OPP_ID_OFFSET EQU 197
 ELSE
@@ -58,8 +58,6 @@ DEF OPP_UNUSED_JUGGLER EQU OPP_ARIANA
 	trainer_const COOLTRAINER_M  ; $20
 	trainer_const COOLTRAINER_F  ; $21
 	trainer_const BRUNO          ; $22
-DEF KAREN EQU BRUNO
-DEF OPP_KAREN EQU OPP_BRUNO
 	trainer_const BROCK          ; $23
 	trainer_const MISTY          ; $24
 	trainer_const LT_SURGE       ; $25
@@ -84,9 +82,6 @@ DEF OPP_KAREN EQU OPP_BRUNO
 	trainer_const ARCHER         ; $38
 	trainer_const SOLDIER        ; $39
 	trainer_const ROCKET_F       ; $3a
-IF DEF(_BLUE)
-	trainer_const EXILE_BRUNO    ; $3b (Blue only)
-ENDC
 DEF NUM_TRAINERS EQU const_value - 1
 ; wCurOpponent / wEngagedTrainerClass are single bytes holding OPP_ID_OFFSET + class.
 ; Adding a class past this point silently wraps them instead of failing the build.

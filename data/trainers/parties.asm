@@ -33,7 +33,7 @@ TrainerDataPointers:
 	dw RocketData
 	dw CooltrainerMData
 	dw CooltrainerFData
-	dw BrunoKarenData
+	dw BrunoData
 	dw BrockData
 	dw MistyData
 	dw LtSurgeData
@@ -58,9 +58,6 @@ TrainerDataPointers:
 	dw ArcherData
 	dw SoldierData
 	dw RocketData ; ROCKET_F: same parties as TEAM ROCKET
-IF DEF(_BLUE)
-	dw ExileBrunoData
-ENDC
 	assert_table_length NUM_TRAINERS
 
 ; if first byte != $FF, then

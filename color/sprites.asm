@@ -817,16 +817,8 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x8f: SPRITE_BEAUTY_NEW
 	db SPR_PAL_BLUE
 
-IF DEF(_BLUE)
-	; 0x90: SPRITE_EXILE_BRUNO
-	db SPR_PAL_BROWN
-
-	; 0x91: SPRITE_ROCKET_ASLEEP
-	db SPR_PAL_BROWN
-ELSE
 	; 0x90: SPRITE_ROCKET_ASLEEP
 	db SPR_PAL_BROWN
-ENDC
 
 	assert_table_length NUM_SPRITES
 

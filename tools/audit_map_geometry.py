@@ -70,15 +70,9 @@ def audit(version):
             objects = list(active_lines(ROOT / f"data/maps/objects/{name}.asm", version))
             warps = [(number, line) for number, line in objects if line.startswith("warp_event ")]
             maps[map_id] = name, width * 2, height * 2, objects, warps
-    if "BRUNOS_ROOM" in maps:
-        maps["KARENS_ROOM"] = maps["BRUNOS_ROOM"]
-    elif "KARENS_ROOM" in maps:
-        maps["BRUNOS_ROOM"] = maps["KARENS_ROOM"]
 
     warp_count = 0
     for map_id, (name, width, height, objects, warps) in maps.items():
-        if map_id == ("KARENS_ROOM" if version == "red" else "BRUNOS_ROOM"):
-            continue
         for number, line in objects:
             event = re.match(r"(warp_event|bg_event|object_event)\s+(-?\d+),\s*(-?\d+),", line)
             if event:

@@ -33,11 +33,7 @@ TrainerNames::
 	li "ROCKET"
 	li "COOLTRAINER♂"
 	li "COOLTRAINER♀"
-IF DEF(_RED)
 	li "BRUNO"
-ELSE
-	li "KAREN"
-ENDC
 	li "BROCK"
 	li "MISTY"
 	li "LT.SURGE"
@@ -62,7 +58,4 @@ ENDC
 	li "ROCKET ADMIN"
 	li "SOLDIER"
 	li "ROCKET♀"
-IF DEF(_BLUE)
-	li "EXILE BRUNO"
-ENDC
 	assert_list_length NUM_TRAINERS

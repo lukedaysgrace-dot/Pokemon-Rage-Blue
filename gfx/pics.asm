@@ -585,11 +585,7 @@ ScientistPic::     INCBIN "gfx/trainers/scientist.pic"
 GiovanniPic::      INCBIN "gfx/trainers/giovanni.pic"
 CooltrainerMPic::  INCBIN "gfx/trainers/cooltrainerm.pic"
 CooltrainerFPic::  INCBIN "gfx/trainers/cooltrainerf.pic"
-IF DEF(_RED)
-KarenPic::         INCBIN "gfx/trainers/bruno.pic"
-ELSE
-KarenPic::         INCBIN "gfx/trainers/karen.pic"
-ENDC
+BrunoPic::         INCBIN "gfx/trainers/bruno.pic"
 BrockPic::         INCBIN "gfx/trainers/brock.pic"
 MistyPic::         INCBIN "gfx/trainers/misty.pic"
 LtSurgePic::       INCBIN "gfx/trainers/lt.surge.pic"
@@ -605,9 +601,6 @@ ChannelerPic::     INCBIN "gfx/trainers/channeler.pic"
 AgathaPic::        INCBIN "gfx/trainers/agatha.pic"
 LancePic::         INCBIN "gfx/trainers/lance.pic"
 BlueCloakPic::     INCBIN "gfx/trainers/bluecloak.pic"
-IF DEF(_BLUE)
-ExileBrunoPic::     INCBIN "gfx/trainers/brunoblindfold.pic"
-ENDC
 
 SECTION "Trainer Pics Overflow", ROMX
 

@@ -119,6 +119,7 @@ audit: $(roms)
 # Requires PyBoy; all emulator tests use disposable ROM copies and saves.
 audit-runtime: $(roms)
 	$(PYTHON) tools/test_gameplay_regressions.py
+	$(PYTHON) tools/test_bruno_restoration.py
 	$(PYTHON) tools/test_color_modes.py
 	$(PYTHON) tools/test_intro_palettes.py
 

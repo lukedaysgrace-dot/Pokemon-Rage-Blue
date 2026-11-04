@@ -456,10 +456,11 @@ ENDC
 	toggle_object_state CERULEANCAVE2F_ULTRA_BALL,   ON
 	toggle_object_state CERULEANCAVE2F_FULL_RESTORE, ON
 
-	toggleable_objects_for CERULEAN_CAVE_B1F
 IF DEF(_BLUE)
-	toggle_object_state CERULEANCAVEB1F_EXILE_BRUNO,  OFF
+	; Unused slot preserves subsequent flags in existing saves. No map loads it.
+	db CERULEAN_CAVE_B1F, 0, OFF
 ENDC
+	toggleable_objects_for CERULEAN_CAVE_B1F
 	toggle_object_state CERULEANCAVEB1F_MEWTWO,       ON
 	toggle_object_state CERULEANCAVEB1F_ULTRA_BALL,   ON
 	toggle_object_state CERULEANCAVEB1F_MAX_REVIVE, ON

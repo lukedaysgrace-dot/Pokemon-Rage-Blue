@@ -17,6 +17,9 @@ retail Pokémon Red or Blue ROMs.
 
 ## Recent gameplay updates
 
+- Blue now uses Bruno in the Elite Four, with the same room, dialogue, teams,
+  and rematch as Red. The Cerulean Cave Bruno encounter has been removed.
+
 - Options now includes `COLOR MODE`: `ORIG` (monochrome Game Boy), `GBC`
   (pokered-gbc overworld colors with original Gen 1 Pokémon palettes), and
   `SHIN` (Shin's enhanced overworld colors). The choice persists in saves.

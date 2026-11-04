@@ -568,8 +568,8 @@ CooltrainerFData:
 	;db 45,NIDORINA,NIDOQUEEN,0
 	;db 43,PERSIAN,NINETALES,RAICHU,0
 
-BrunoKarenData:
-; Red uses Bruno in the shared BRUNO/KAREN trainer slot. Elite Four member 2 of 4.
+BrunoData:
+; Bruno: Elite Four member 2 of 4.
 	db $FF, 55, HITMONCHAN, 55, HITMONLEE, 56, MACHAMP, 56, PRIMEAPE, 56, LUCARIO, 57, HERACROSS, 0
 ; Post-Champion rematch (wTrainerNo 2)
 	db $FF, 64, HITMONCHAN, 64, HITMONLEE, 65, MACHAMP, 65, ANNIHILAPE, 65, LUCARIO, 66, HERACROSS, 0

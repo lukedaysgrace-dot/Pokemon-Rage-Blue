@@ -26,10 +26,7 @@ LABEL_OVERRIDES = {
     "ROCKET_F": "RocketF",
     "GREEN_ROCKET": "GreenRocket",
     "BLUE_CLOAK": "BlueCloak",
-    "EXILE_BRUNO": "ExileBruno",
     "UNUSED_JUGGLER": "UnusedJuggler",
-    "KAREN": "BrunoKaren",
-    "BRUNO": "BrunoKaren",
 }
 
 

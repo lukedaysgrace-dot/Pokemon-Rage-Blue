@@ -73,9 +73,6 @@ LittleBoySprite::        INCBIN "gfx/sprites/little_boy.2bpp"
 GameboyKidSprite::       INCBIN "gfx/sprites/gameboy_kid.2bpp"
 FairySprite::            INCBIN "gfx/sprites/fairy.2bpp"
 AgathaSprite::           INCBIN "gfx/sprites/agatha.2bpp"
-IF !DEF(_RED)
-KarenSprite::            INCBIN "gfx/sprites/karen.2bpp"
-ENDC
 LoreleiSprite::          INCBIN "gfx/sprites/lorelei.2bpp"
 
 
@@ -171,19 +168,12 @@ SECTION "Blue Cloak OW Sprite", ROMX
 
 BlueCloakWorldSprite::   INCBIN "gfx/sprites/blue_cloak_world.2bpp"
 
-IF DEF(_RED)
-; Red uses Bruno in the shared Bruno/Karen slot. Keep his larger source sheet out of
-; the cramped legacy NPC bank; the sprite pointer table already tracks the bank.
+; Keep Bruno's larger source sheet out of the cramped legacy NPC bank;
+; the sprite pointer table already tracks the bank.
 SECTION "Bruno OW Sprite", ROMX
 
-KarenSprite::            INCBIN "gfx/sprites/bruno.2bpp"
-ENDC
+BrunoSprite::            INCBIN "gfx/sprites/bruno.2bpp"
 
-IF DEF(_BLUE)
-SECTION "Exile Bruno OW Sprite", ROMX
-
-ExileBrunoSprite::        INCBIN "gfx/sprites/brunoblindfold.2bpp"
-ENDC
 
 
 SECTION "NPC Sprites 2 Overflow", ROMX

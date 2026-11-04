@@ -94,7 +94,7 @@ def trainer_pointer_map(version: str) -> dict[str, str]:
     trainer_names = [
         name
         for name in constants(ROOT / "constants/trainer_constants.asm", "trainer_const")
-        if name != "NOBODY" and (version == "blue" or name != "EXILE_BRUNO")
+        if name != "NOBODY"
     ]
     text = (ROOT / "data/trainers/parties.asm").read_text(encoding="utf-8")
     block = text.split("TrainerDataPointers:", 1)[1].split("assert_table_length", 1)[0]
@@ -116,7 +116,6 @@ def trainer_pointer_map(version: str) -> dict[str, str]:
             f"{version}: {len(trainer_names)} trainer constants but {len(pointers)} party pointers"
         )
     result = dict(zip(trainer_names, pointers))
-    result["KAREN"] = result["BRUNO"]
     result["UNUSED_JUGGLER"] = result["ARIANA"]
     return result
 
@@ -183,8 +182,6 @@ def validate_map_trainers(
     for path in sorted((ROOT / "data/maps/objects").glob("*.asm")):
         for number, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             for trainer, party_no_text in reference.findall(raw.split(";", 1)[0]):
-                if trainer == "EXILE_BRUNO" and version == "red":
-                    continue
                 pointer = pointers.get(trainer)
                 if pointer is None:
                     errors.append(f"{path.relative_to(ROOT)}:{number}: unknown trainer {trainer}")
@@ -204,14 +201,15 @@ def validate_version_parity(
 ) -> list[str]:
     """Keep version-exclusive species from accidentally changing party shape or levels."""
     errors: list[str] = []
-    allowed_blue_only = {"ExileBrunoData"}
     allowed_shape_differences = {("SuperNerdData", 10)}
     red_only = set(red) - set(blue)
-    blue_only = set(blue) - set(red) - allowed_blue_only
+    blue_only = set(blue) - set(red)
     for label in sorted(red_only):
         errors.append(f"trainer table exists only in Red: {label}")
     for label in sorted(blue_only):
         errors.append(f"trainer table exists only in Blue: {label}")
+    if red.get("BrunoData") != blue.get("BrunoData"):
+        errors.append("Bruno's initial and rematch parties must match between versions")
     for label in sorted(set(red) & set(blue)):
         if len(red[label]) != len(blue[label]):
             errors.append(
@@ -242,8 +240,8 @@ def validate_version_parity(
     expected_blue_parties = {
         ("BirdKeeperData", 11): ("FEAROW", "MURKROW", "PIDGEOTTO"),
         ("BlackbeltData", 8): ("MACHAMP", "ANNIHILAPE", "HITMONCHAN"),
-        ("BrunoKarenData", 1): ("UMBREON", "HONCHKROW", "BISHARP", "TYRANITAR", "HOUNDOOM", "WEAVILE"),
-        ("BrunoKarenData", 2): ("UMBREON", "HONCHKROW", "WEAVILE", "TYRANITAR", "BISHARP", "HOUNDOOM"),
+        ("BrunoData", 1): ("HITMONCHAN", "HITMONLEE", "MACHAMP", "PRIMEAPE", "LUCARIO", "HERACROSS"),
+        ("BrunoData", 2): ("HITMONCHAN", "HITMONLEE", "MACHAMP", "ANNIHILAPE", "LUCARIO", "HERACROSS"),
         ("BurglarData", 7): ("HOUNDOOM", "NINETALES"),
         ("BurglarData", 8): ("MAGMORTAR", "RAPIDASH"),
         ("CooltrainerFData", 3): ("PARASECT", "DEWGONG", "BLISSEY"),
@@ -288,7 +286,7 @@ MAIN_BOSSES: list[tuple[str, str, int]] = [
     ("Giovanni", "GiovanniData", 3),
     ("Green (Indigo)", "GreenData", 10),
     ("Lorelei", "LoreleiData", 1),
-    ("Bruno/Karen", "BrunoKarenData", 1),
+    ("Bruno", "BrunoData", 1),
     ("Agatha", "AgathaData", 1),
     ("Lance", "LanceData", 1),
     ("Champion", "Rival3Data", 1),
@@ -307,7 +305,7 @@ GYM_REMATCHES: list[tuple[str, str, int]] = [
 
 ELITE_FOUR_REMATCHES: list[tuple[str, str, int]] = [
     ("Lorelei", "LoreleiData", 2),
-    ("Bruno/Karen", "BrunoKarenData", 2),
+    ("Bruno", "BrunoData", 2),
     ("Agatha", "AgathaData", 2),
     ("Lance", "LanceData", 2),
     ("Champion", "Rival3Data", 4),

@@ -6200,7 +6200,7 @@ LoadEnemyMonData:
 	jr z, .perfectTrainerDVs
 	cp PROF_OAK
 	jr z, .perfectTrainerDVs
-	cp KAREN
+	cp BRUNO
 	jr c, .averageTrainerDVs
 	cp SABRINA + 1 ; $21-$28: Bruno, Brock, Misty, Lt.Surge, Erika, Koga, Blaine, Sabrina
 	jr c, .perfectTrainerDVs
@@ -6210,10 +6210,6 @@ LoadEnemyMonData:
 	jr z, .perfectTrainerDVs
 	cp LANCE
 	jr z, .perfectTrainerDVs
-IF DEF(_BLUE)
-	cp EXILE_BRUNO
-	jr z, .perfectTrainerDVs
-ENDC
 .averageTrainerDVs
 	ld a, ATKDEFDV_TRAINER
 	ld b, SPDSPCDV_TRAINER

@@ -249,7 +249,7 @@ MapSongBanks::
 IF DEF(_RED)
 	db MUSIC_DUNGEON1, BANK(Music_Dungeon1) ; BRUNOS_ROOM
 ELSE
-	db MUSIC_DUNGEON3, BANK(Music_Dungeon3) ; KARENS_ROOM
+	db MUSIC_DUNGEON3, BANK(Music_Dungeon3) ; BRUNOS_ROOM
 ENDC
 	db MUSIC_POKEMON_TOWER, BANK(Music_PokemonTower) ; AGATHAS_ROOM
 	assert_table_length NUM_MAPS

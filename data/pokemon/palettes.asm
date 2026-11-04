@@ -534,8 +534,5 @@ TrainerPalettes:
 	db PAL_ARCHER
 	db PAL_SOLDIER
 	db PAL_ROCKET
-IF DEF(_BLUE)
-	db PAL_BRUNO
-ENDC
 	assert_table_length NUM_TRAINERS + 1
 ENDC

@@ -66,7 +66,6 @@
 	const SPRITE_FAIRY                   ; $3e
 	const SPRITE_AGATHA                  ; $3f
 	const SPRITE_BRUNO                   ; $40
-DEF SPRITE_KAREN EQU SPRITE_BRUNO
 	const SPRITE_LORELEI                 ; $41
 	const SPRITE_SEEL                    ; $42
 DEF FIRST_STILL_SPRITE EQU const_value
@@ -147,8 +146,5 @@ DEF FIRST_STILL_SPRITE EQU const_value
 	const SPRITE_SWIMMER_F              ; $8d
 	const SPRITE_ROCKET_GIRL            ; $8e
 	const SPRITE_BEAUTY_NEW            ; $8f
-IF DEF(_BLUE)
-	const SPRITE_EXILE_BRUNO            ; $90 (Blue only)
-ENDC
 	const SPRITE_ROCKET_ASLEEP
 DEF NUM_SPRITES EQU const_value - 1
