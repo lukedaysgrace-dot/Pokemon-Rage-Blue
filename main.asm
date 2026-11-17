@@ -78,6 +78,7 @@ INCLUDE "engine/overworld/player_sprite_gfx.asm"
 SECTION "Add Party Mon", ROMX
 
 INCLUDE "engine/pokemon/add_mon.asm"
+INCLUDE "engine/battle/trainer_stat_exp.asm"
 
 
 SECTION "Font Graphics", ROMX

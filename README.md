@@ -17,6 +17,13 @@ retail Pokémon Red or Blue ROMs.
 
 ## Recent gameplay updates
 
+- In Hard Mode, Gym Leaders, the Elite Four, rivals, Green, Blue Cloak,
+  Giovanni, Rocket executives, Janine and Oak match the highest Stat EXP
+  in your party separately for HP, Attack, Defense, Speed and Special,
+  including fainted party members. They gain two extra training points,
+  capped at the usual maximum. Male and female Cooltrainers match exactly
+  without the bonus. This covers rematches too; levels, teams, moves and
+  DVs retain their authored values. Normal Mode keeps zero trainer Stat EXP.
 - Blue now uses Bruno in the Elite Four, with the same room, dialogue, teams,
   and rematch as Red. The Cerulean Cave Bruno encounter has been removed.
 

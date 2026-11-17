@@ -76,7 +76,6 @@ ROMX $9
 	"Battle Engine 3"
 ROMX $A
 	"Pics 2"
-	"Battle Engine 4"
 ROMX $B
 	"Pics 3"
 	"Battle Engine 5"
@@ -93,6 +92,8 @@ ROMX $F
 ROMX $10
 	"bank10"
 	"Add Party Mon"
+	; Keep small battle helpers out of the tightly packed picture bank.
+	"Battle Engine 4"
 ROMX $11
 	"Maps 5"
 	"Pokédex Rating"
