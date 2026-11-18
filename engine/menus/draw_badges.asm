@@ -65,15 +65,9 @@ DrawBadges:
 	inc a
 	ld [wBadgeNumberTile], a
 
-; Names aren't printed if the badge is owned.
-	ld a, [de]
-	and a
+; Leader names were erased from the graphics, so the name spots are always
+; left as blank spaces (loading the blank name tiles clobbered lowercase letters).
 	ld a, [wBadgeNameTile]
-	jr nz, .SkipName
-	call .PlaceTiles
-	jr .PlaceBadge
-
-.SkipName
 	inc a
 	inc a
 	inc hl

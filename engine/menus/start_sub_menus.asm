@@ -505,10 +505,9 @@ DrawTrainerInfo:
 	ld bc, 8 tiles
 	push bc
 	call TrainerInfo_FarCopyData
-	ld hl, BlankLeaderNames
-	ld de, vChars1 tile $20 ; TRAINER_CARD_BLANK_LEADER_NAMES_BASE ($a0); avoids overlap with badges at $31–$70
-	ld bc, $17 tiles
-	call TrainerInfo_FarCopyData
+	; BlankLeaderNames is no longer loaded: its tiles are fully blank, and loading them at
+	; tile IDs $a0+ overwrote the lowercase letters, so names like "Fae" showed as "F".
+	; DrawBadges now leaves the leader-name spots as plain spaces instead.
 	pop bc
 	ld hl, BadgeNumbersTileGraphics
 	ld de, vChars1 tile $58
