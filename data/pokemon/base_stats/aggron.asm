@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/aggron.pic", 0, 1
 	dw AggronPicFront, AggronPicBack
 
-	db TACKLE, HARDEN, METAL_CLAW, ROCK_THROW
+	db TACKLE, HARDEN, METAL_CLAW, HEADBUTT
 	db GROWTH_SLOW
 
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  ICE_BEAM,     \

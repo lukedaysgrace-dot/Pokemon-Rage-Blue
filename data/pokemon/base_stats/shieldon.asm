@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/shieldon.pic", 0, 1
 	dw ShieldonPicFront, ShieldonPicBack
 
-	db TACKLE, DEFENSE_CURL, NO_MOVE, NO_MOVE
+	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE
 	db GROWTH_SLOW
 
 	tmhm TOXIC        , BODY_SLAM    , TAKE_DOWN    , DOUBLE_EDGE  , ICE_BEAM     , \

@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/golett.pic", 0, 1
 	dw GolettPicFront, GolettPicBack
 
-	db TACKLE, LICK, NO_MOVE, NO_MOVE
+	db TACKLE, DEFENSE_CURL, NO_MOVE, NO_MOVE
 	db GROWTH_MEDIUM_SLOW
 
 	tmhm MEGA_PUNCH   , MEGA_KICK    , TOXIC        , SHADOW_BALL  , BODY_SLAM    , \

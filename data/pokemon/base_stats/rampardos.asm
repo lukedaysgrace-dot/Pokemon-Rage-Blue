@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/rampardos.pic", 0, 1
 	dw RampardosPicFront, RampardosPicBack
 
-	db TACKLE, LEER, ROCK_THROW, NO_MOVE
+	db TACKLE, LEER, HEADBUTT, NO_MOVE
 	db GROWTH_MEDIUM_FAST
 
 	tmhm SWORDS_DANCE , CRUNCH       , TOXIC        , BODY_SLAM    , TAKE_DOWN    , \

@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/bisharp.pic", 0, 1
 	dw BisharpPicFront, BisharpPicBack
 
-	db SCRATCH, LEER, METAL_CLAW, CRUNCH
+	db SCRATCH, LEER, METAL_CLAW, NO_MOVE
 	db GROWTH_MEDIUM_FAST
 
 	tmhm SWORDS_DANCE , CRUNCH       , TOXIC        , TAKE_DOWN    , DOUBLE_EDGE  , \

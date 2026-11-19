@@ -11,7 +11,7 @@
 	INCBIN "gfx/pokemon/front/drilbur.pic", 0, 1
 	dw DrilburPicFront, DrilburPicBack
 
-	db SCRATCH, SAND_ATTACK, NO_MOVE, NO_MOVE ; level 1 learnset
+	db SCRATCH, LEER, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

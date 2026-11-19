@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/pupitar.pic", 0, 1
 	dw PupitarPicFront, PupitarPicBack
 
-	db BITE, SAND_ATTACK, NO_MOVE, NO_MOVE
+	db BITE, LEER, NO_MOVE, NO_MOVE
 	db GROWTH_SLOW
 
 	tmhm CRUNCH       , TOXIC        , BODY_SLAM    , TAKE_DOWN    , DOUBLE_EDGE  , \

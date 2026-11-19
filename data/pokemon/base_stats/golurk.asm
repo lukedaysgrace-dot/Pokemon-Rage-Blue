@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/golurk.pic", 0, 1
 	dw GolurkPicFront, GolurkPicBack
 
-	db TACKLE, ROCK_THROW, NO_MOVE, NO_MOVE
+	db TACKLE, DEFENSE_CURL, NO_MOVE, NO_MOVE
 	db GROWTH_MEDIUM_SLOW
 
 	tmhm MEGA_PUNCH   , MEGA_KICK    , TOXIC        , SHADOW_BALL  , BODY_SLAM    , \

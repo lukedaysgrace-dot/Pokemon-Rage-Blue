@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/lanturn.pic", 0, 1
 	dw LanturnPicFront, LanturnPicBack
 
-	db BUBBLEBEAM, THUNDERSHOCK, NO_MOVE, NO_MOVE
+	db BUBBLEBEAM, THUNDER_WAVE, NO_MOVE, NO_MOVE
 	db GROWTH_SLOW
 
 	tmhm TOXIC        , BODY_SLAM    , TAKE_DOWN    , DOUBLE_EDGE  , BUBBLEBEAM   , \

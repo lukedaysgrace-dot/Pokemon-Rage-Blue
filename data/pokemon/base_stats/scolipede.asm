@@ -11,7 +11,7 @@
 	INCBIN "gfx/pokemon/front/scolipede.pic", 0, 1
 	dw ScolipedePicFront, ScolipedePicBack
 
-	db POISON_STING, STRING_SHOT, NO_MOVE, NO_MOVE ; level 1 learnset
+	db POISON_STING, DEFENSE_CURL, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

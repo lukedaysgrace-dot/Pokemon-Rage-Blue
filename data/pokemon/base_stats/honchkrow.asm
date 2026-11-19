@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/honchkrow.pic", 0, 1
 	dw HonchkrowPicFront, HonchkrowPicBack
 
-	db PECK, QUICK_ATTACK, NO_MOVE, NO_MOVE
+	db PECK, WING_ATTACK, NO_MOVE, NO_MOVE
 	db GROWTH_MEDIUM_SLOW
 
 	tmhm RAZOR_WIND   , TOXIC        , SHADOW_BALL  , TAKE_DOWN    , DOUBLE_EDGE  , \

@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/mimikyu.pic", 0, 1
 	dw MimikyuPicFront, MimikyuPicBack
 
-	db SCRATCH, LEER, NO_MOVE, NO_MOVE ; level 1 learnset
+	db SCRATCH, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

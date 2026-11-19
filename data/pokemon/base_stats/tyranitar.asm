@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/tyranitar.pic", 0, 1
 	dw TyranitarPicFront, TyranitarPicBack
 
-	db BITE, SAND_ATTACK, ROCK_THROW, NO_MOVE
+	db BITE, LEER, ROCK_THROW, NO_MOVE
 	db GROWTH_SLOW
 
 	tmhm MEGA_PUNCH   , CRUNCH       , MEGA_KICK    , TOXIC        , BODY_SLAM    , \

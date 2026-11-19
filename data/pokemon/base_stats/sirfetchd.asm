@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/sirfetchd.pic", 0, 1
 	dw SirfetchdPicFront, SirfetchdPicBack
 
-	db PECK, SAND_ATTACK, LEER, KARATE_CHOP
+	db PECK, SAND_ATTACK, LEER, NO_MOVE
 	db GROWTH_MEDIUM_FAST
 
 	tmhm RAZOR_WIND,   SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    \

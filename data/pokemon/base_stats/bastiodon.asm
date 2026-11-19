@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/bastiodon.pic", 0, 1
 	dw BastiodonPicFront, BastiodonPicBack
 
-	db TACKLE, DEFENSE_CURL, ROCK_THROW, NO_MOVE
+	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE
 	db GROWTH_SLOW
 
 	tmhm TOXIC        , BODY_SLAM    , TAKE_DOWN    , DOUBLE_EDGE  , ICE_BEAM     , \

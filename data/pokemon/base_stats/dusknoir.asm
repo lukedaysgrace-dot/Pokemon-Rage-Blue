@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/dusknoir.pic", 0, 1
 	dw DusknoirPicFront, DusknoirPicBack
 
-	db CONFUSE_RAY, NIGHT_SHADE, DISABLE, CONFUSION
+	db CONFUSE_RAY, NIGHT_SHADE, DISABLE, LEER
 	db GROWTH_SLOW
 
 	tmhm MEGA_PUNCH   , MEGA_KICK    , TOXIC        , SHADOW_BALL  , BODY_SLAM    , \

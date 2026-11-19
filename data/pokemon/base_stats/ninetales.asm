@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/ninetales.pic", 0, 1 ; sprite dimensions
 	dw NinetalesPicFront, NinetalesPicBack
 
-	db EMBER, TAIL_WHIP, QUICK_ATTACK, MACH_PUNCH ; level 1 learnset
+	db EMBER, TAIL_WHIP, QUICK_ATTACK, CONFUSE_RAY ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

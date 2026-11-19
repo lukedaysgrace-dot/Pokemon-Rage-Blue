@@ -11,7 +11,7 @@
 	INCBIN "gfx/pokemon/front/excadrill.pic", 0, 1
 	dw ExcadrillPicFront, ExcadrillPicBack
 
-	db SCRATCH, SAND_ATTACK, METAL_CLAW, DIG ; level 1 learnset
+	db SCRATCH, LEER, METAL_CLAW, DIG ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

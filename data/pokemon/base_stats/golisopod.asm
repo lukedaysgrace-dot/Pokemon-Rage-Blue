@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/golisopod.pic", 0, 1
 	dw GolisopodPicFront, GolisopodPicBack
 
-	db SAND_ATTACK, BUG_BITE, GROWL, NO_MOVE
+	db SAND_ATTACK, BUG_BITE, HARDEN, NO_MOVE
 	db GROWTH_MEDIUM_FAST
 
 	tmhm SWORDS_DANCE , TOXIC        , BODY_SLAM    , TAKE_DOWN    , DOUBLE_EDGE  , \
