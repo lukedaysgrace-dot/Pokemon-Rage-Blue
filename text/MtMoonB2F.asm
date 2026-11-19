@@ -34,47 +34,92 @@ _MtMoonB2FSuperNerdOkIllShareText::
 	prompt
 
 _MtMoonB2fSuperNerdEachTakeOneText::
-	text "We'll each take"
-	line "one! No being"
-	cont "greedy!"
+	text "Fine! We'll each"
+	line "take one!"
 
-	para "Bring me the six"
-	line "other fossils in"
-	cont "MT.MOON, and I'll"
-	cont "let you have the"
-	cont "one I kept."
+	para "But if you find"
+	line "any more fossils"
+	cont "in MT.MOON, come"
+	cont "show me!"
 	done
 
 _MtMoonB2FSuperNerdTheresAPokemonLabText::
-	text "I heard one of"
-	line "the scientists"
-	cont "from CINNABAR"
-	cont "moved to"
-	cont "CERULEAN CITY."
+	text "I'm looking for"
+	line "six kinds: SAIL,"
+	cont "ARMOR, CLAW,"
+	cont "SKULL, JAW, and"
+	cont "ROOT."
 
-	para "Bring me the SAIL,"
-	line "ARMOR, CLAW,"
-	cont "SKULL, JAW and"
-	cont "ROOT FOSSILs, and"
-	cont "I'll hand over"
-	cont "the one I kept."
+IF DEF(_RED)
+	para "Bring me all six,"
+	line "and I'll trade"
+	cont "you the fossil I"
+	cont "kept."
+
+	para "I also heard a"
+ELSE
+	para "Find all six and"
+	line "show me. I'll"
+	cont "even give you the"
+	cont "fossil I kept."
+
+	para "You can keep the"
+	line "others. I just"
+	cont "wanted to get a"
+	cont "good look at"
+	cont "them."
+
+	para "I heard a"
+ENDC
+	line "scientist from"
+	cont "CINNABAR moved to"
+	cont "CERULEAN CITY. He"
+	cont "might know how to"
+	cont "revive them."
 	done
 
 _MtMoonB2FSuperNerdFoundThemAllText::
-	text "You brought all"
-	line "six fossils?"
+	text "You found all"
+IF DEF(_RED)
+	line "six? Let me see!"
 
-	para "A deal's a deal!"
-	line "Take the fossil I"
-	cont "held onto."
+	para "These are just"
+	line "what I was"
+	cont "looking for."
+
+	para "A deal's a deal."
+	line "Here's the fossil"
+	cont "I kept."
+ELSE
+	line "six? Let me have"
+	cont "a look."
+
+	para "So these all came"
+	line "from MT.MOON..."
+
+	para "Thanks for"
+	line "showing me. Here,"
+	cont "take the fossil"
+	cont "I kept."
+ENDC
 	done
 
 _MtMoonB2FSuperNerdAfterRewardText::
+IF DEF(_RED)
 	text "That scientist in"
-	line "CERULEAN should"
-	cont "be able to help"
-	cont "with those"
-	cont "fossils."
+	line "CERULEAN might be"
+	cont "able to revive"
+	cont "your fossils."
+
+	para "I'd love to see"
+	line "what comes out of"
+	cont "them."
+ELSE
+	text "Take those"
+	line "fossils to the"
+	cont "scientist in"
+	cont "CERULEAN."
+ENDC
 	done
 
 _MtMoonB2FSuperNerdThenThisIsMineText::
@@ -84,22 +129,24 @@ _MtMoonB2FSuperNerdThenThisIsMineText::
 
 IF DEF(_RED)
 _MtMoonB2FSuperNerdFourFossilsText::
-	text "Hey! Bring me the"
-	line "six other fossils"
-	cont "in MT.MOON, and"
-	cont "I'll let you have"
-	cont "the one I kept!"
+	text "If you find those"
+	line "six fossils in"
+	cont "MT.MOON, bring"
+	cont "them back here."
+
+	para "I'll trade you"
+	line "the one I kept."
 	done
 
 _MtMoonB2FSuperNerdSellWarningText::
-	text "Are you sure?"
+	text "You're going to"
+	line "sell them?"
 
-	para "If you sell the"
-	line "ones you have,"
-	cont "you'll never be"
-	cont "able to get the"
-	cont "other one from"
-	cont "me."
+	para "Think it over."
+	line "You'll need all"
+	cont "six if you want"
+	cont "to trade for my"
+	cont "fossil."
 	done
 ENDC
 
